@@ -4,6 +4,7 @@ plugins {
     id 'pmd'
     id 'checkstyle'
     id "com.github.spotbugs" version "1.6.2"
+    id 'jacoco'
 }
 
 import com.github.spotbugs.SpotBugsTask
@@ -62,6 +63,15 @@ tasks.withType(Checkstyle) {
         xml.enabled = false
         html.enabled = true
         html.stylesheet resources.text.fromFile('config/xsl/checkstyle-custom.xsl')
+    }
+}
+
+//JaCoCo report
+jacocoTestReport {
+    reports {
+        xml.enabled = false
+        csv.enabled = false
+        html.destination file("${buildDir}/jacocoHtml")
     }
 }
 
