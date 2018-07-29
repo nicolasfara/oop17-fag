@@ -28,5 +28,6 @@ public class FightAvengeGuerrillaApp extends GameApplication {
         settings.setWidth(WIDTH_SCREEN);
         settings.setHeight(HEIGHT_SCREEN);
         settings.setTitle(APPLICATION_NAME);
+        throw new NullPointerException();
     }
 }
