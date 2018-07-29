@@ -30,7 +30,7 @@ dependencies {
 pmd {
     toolVersion = "6.0.1"
     ignoreFailures = false
-    ruleSetFiles = files("$project.rootDir/pmd.xml")
+    ruleSetFiles = files("$project.rootDir/plugins/pmd.xml")
 }
 
 //FindBugs setup
@@ -48,7 +48,7 @@ tasks.withType(SpotBugsTask) {
 //CheckStyle setup
 checkstyle {
     toolVersion '8.10.1'
-    configFile file("$project.rootDir/style.xml")
+    configFile file("$project.rootDir/plugins/style.xml")
 }
 
 checkstyleMain {
@@ -63,7 +63,7 @@ tasks.withType(Checkstyle) {
     reports {
         xml.enabled = false
         html.enabled = true
-        html.stylesheet resources.text.fromFile("$project.rootDir/checkstyle-css.xsl")
+        html.stylesheet resources.text.fromFile("$project.rootDir/plugins/checkstyle-css.xsl")
     }
 }
 
