@@ -29,4 +29,28 @@ public class FightAvengeGuerrillaApp extends GameApplication {
         settings.setHeight(HEIGHT_SCREEN);
         settings.setTitle(APPLICATION_NAME);
     }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    protected void initInput() {
+        super.initInput();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    protected void initGame() {
+        super.initGame();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    protected void initPhysics() {
+        super.initPhysics();
+    }
 }
