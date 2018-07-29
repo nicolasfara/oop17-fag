@@ -14,4 +14,4 @@ pipelines:
           # You must commit the Gradle wrapper to your repository
           # https://docs.gradle.org/current/userguide/gradle_wrapper.html
           - bash ./gradlew build
-          - bash ./gradlew checkstyleMain checkstyleTest
+          - bash ./gradlew checkstyleMain checkstyleTest pmdMain pmdTest spotbugsMain spotbugsTest
