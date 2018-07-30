@@ -11,8 +11,8 @@ import com.almasb.fxgl.entity.components.PositionComponent;
 public class AiMovement extends AbstractMovement {
 
     private static final Logger LOG = Logger.get("FXGL");
-    private Vec2 velocityVector = new Vec2();
-    private PositionComponent positionComponent;
+    private final Vec2 velocityVector = new Vec2();
+    private final PositionComponent positionComponent;
 
     /**
      * Default constructor used to assign a {@code PositionalComponent} to the movement.
@@ -26,14 +26,14 @@ public class AiMovement extends AbstractMovement {
      * {@inheritDoc}
      */
     @Override
-    void move(final float dx, final float dy) {
+    protected void move(final float deltaX, final float deltaY) {
         if (!positionComponent.getEntity().isActive()) {
             LOG.warning("The entity " + getEntity().toString() + "is not enable. Unable to move the entity");
             return;
         }
         LOG.info("Moving the entity: " + getEntity().toString());
-        velocityVector.set(dx, dy);
-        int vectorLength = FXGLMath.roundPositive(velocityVector.length());
+        velocityVector.set(deltaX, deltaY);
+        final int vectorLength = FXGLMath.roundPositive(velocityVector.length());
         velocityVector.normalizeLocal();
 
         for (int i = 0; i < vectorLength; i++) {

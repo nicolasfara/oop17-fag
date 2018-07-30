@@ -25,6 +25,16 @@ public enum MoveDirection {
 
     /**
      * Get the next direction in clockwise order.
+     * Note: calling this method multiple time on the same object state, the next value is the same.
+     * Example:
+     * <code>
+     *     MoveDirection moveDirection = MoveDirection.UP;
+     *     moveDirection.next() //result is RIGHT
+     *     moveDirection.next() //result is yet RIGHT
+     *     //update moveDirection
+     *     moveDirection = MoveDirection.DOWN
+     *     moveDirection.next() //result is LEFT
+     * </code>
      * @return return the position.
      */
     public MoveDirection next() {

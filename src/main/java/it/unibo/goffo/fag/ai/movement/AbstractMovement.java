@@ -53,9 +53,9 @@ public abstract class AbstractMovement extends Component implements Movement {
      * This method must be used to move the entity to a delta position.
      * Plus sign to {@code dx} move the entity to the right of the monitor; minus sign move to the left the entity.
      * Plus sign to {@code dy} move the entity dow to the screen; minus sign move to the top the entity.
-     * @param dx delta movement to move the entity on left or right.
-     * @param dy delta movement to move on top or bottom the entity.
+     * @param deltaX delta movement to move the entity on left or right.
+     * @param deltaY delta movement to move on top or bottom the entity.
      */
-    abstract void move(float dx, float dy);
+    abstract void move(float deltaX, float deltaY);
 
 }
