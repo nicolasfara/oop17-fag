@@ -28,5 +28,5 @@ public interface Movement {
      * Method useful to change the speed of the entity.
      * @param newSpeed the new speed to assign to the entity.
      */
-    void setSpeed(double newSpeed);
+    void setSpeed(float newSpeed);
 }

@@ -19,6 +19,7 @@ public class AiMovement extends AbstractMovement {
      * @param positionComponent Component used for the moving.
      */
     public AiMovement(final PositionComponent positionComponent) {
+        super();
         this.positionComponent = positionComponent;
     }
 

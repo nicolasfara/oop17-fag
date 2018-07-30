@@ -7,14 +7,22 @@ import com.almasb.fxgl.entity.component.Component;
  */
 public abstract class AbstractMovement extends Component implements Movement {
 
-    private double speed;
+    private float speed;
+    private static final int SPEED_FACTOR = 5;
+
+    /**
+     * Default constructor (Access: package protected).
+     */
+    AbstractMovement() {
+        super();
+    }
 
     /**
      * {@inheritDoc}
      */
     @Override
     public void moveUp() {
-
+        move(0, -SPEED_FACTOR * speed);
     }
 
     /**
@@ -22,7 +30,7 @@ public abstract class AbstractMovement extends Component implements Movement {
      */
     @Override
     public void moveDown() {
-
+        move(0, SPEED_FACTOR * speed);
     }
 
     /**
@@ -30,7 +38,7 @@ public abstract class AbstractMovement extends Component implements Movement {
      */
     @Override
     public void moveLeft() {
-
+        move(-SPEED_FACTOR * speed, 0);
     }
 
     /**
@@ -38,15 +46,15 @@ public abstract class AbstractMovement extends Component implements Movement {
      */
     @Override
     public void moveRight() {
-
+        move(SPEED_FACTOR * speed, 0);
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public void setSpeed(final double newSpeed) {
-
+    public void setSpeed(final float newSpeed) {
+        this.speed = newSpeed;
     }
 
     /**
@@ -56,6 +64,6 @@ public abstract class AbstractMovement extends Component implements Movement {
      * @param deltaX delta movement to move the entity on left or right.
      * @param deltaY delta movement to move on top or bottom the entity.
      */
-    abstract void move(float deltaX, float deltaY);
+    protected abstract void move(float deltaX, float deltaY);
 
 }
