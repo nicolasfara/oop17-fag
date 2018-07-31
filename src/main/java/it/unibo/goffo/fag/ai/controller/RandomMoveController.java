@@ -19,13 +19,6 @@ public class RandomMoveController extends Component implements MoveController {
     private static final List<? extends MoveDirection> DIRECTION_LIST = Arrays.asList(MoveDirection.values());
 
     /**
-     * Default constructor.
-     */
-    public RandomMoveController() {
-        super();
-    }
-
-    /**
      * {@inheritDoc}
      */
     @Override
