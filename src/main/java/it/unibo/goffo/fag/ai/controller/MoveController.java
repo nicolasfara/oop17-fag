@@ -1,12 +1,20 @@
 package it.unibo.goffo.fag.ai.controller;
 
+import javafx.geometry.Point2D;
+
 /**
- * Interface specify a method for setting the move direction.
+ * Interface that specify all methods to move a Component.
  */
 public interface MoveController {
     /**
-     * This method when called set the direction that the entity must take.
-     * @param moveDirection the direction where the entity must move to.
+     * .
+     * @return true if the component was completely move to destination, false otherwise.
      */
-    void setMoveDirection(MoveDirection moveDirection);
+    boolean isDone();
+
+    /**
+     * The method move the component from the current position to destination position.
+     * @param destination destination where the component must to be moved to.
+     */
+    void moveTo(Point2D destination);
 }
