@@ -1,8 +1,10 @@
 package it.unibo.goffo.fag;
 
 import com.almasb.fxgl.app.GameApplication;
+import com.almasb.fxgl.entity.Entity;
 import com.almasb.fxgl.extra.ai.pathfinding.AStarGrid;
 import com.almasb.fxgl.settings.GameSettings;
+import it.unibo.goffo.fag.entities.FagType;
 
 import static it.unibo.goffo.fag.FagUtils.APPLICATION_NAME;
 import static it.unibo.goffo.fag.FagUtils.HEIGHT_SCREEN;
@@ -30,6 +32,14 @@ public class FightAvengeGuerrillaApp extends GameApplication {
      */
     public AStarGrid getGrid() {
         return this.grid;
+    }
+
+    /**
+     * Method that return the player in the game.
+     * @return Return the player.
+     */
+    public Entity getPlayer() {
+        return getGameWorld().getSingleton(FagType.PLAYER).get();
     }
 
     /**
