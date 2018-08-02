@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ruleset
+         name="OOP PMD Rules"
+         xmlns="http://pmd.sourceforge.net/ruleset/2.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://pmd.sourceforge.net/ruleset/2.0.0 http://pmd.sourceforge.net/ruleset_2_0_0.xsd">
+
+    <description>PMD OOP Rules</description>
+
+    <rule ref="category/java/codestyle.xml" >
+        <exclude name="CommentDefaultAccessModifier" />
+        <exclude name="AtLeastOneConstructor" />
+        <exclude name="AbstractNaming" />
+        <exclude name="AtLeastOneConstructor" />
+        <exclude name="AvoidFinalLocalVariable" />
+        <exclude name="AvoidPrefixingMethodParameters" />
+        <exclude name="CommentDefaultAccessModifier" />
+        <exclude name="ConfusingTernary" />
+        <exclude name="EmptyMethodInAbstractClassShouldBeAbstract" />
+        <exclude name="MDBAndSessionBeanNamingConvention" />
+        <exclude name="LongVariable" />
+        <exclude name="MIsLeadingVariableName" />
+        <exclude name="OnlyOneReturn" />
+        <exclude name="ShortClassName" />
+        <exclude name="ShortMethodName" />
+        <exclude name="ShortVariable" />
+        <exclude name="TooManyStaticImports" />
+        <exclude name="UnnecessaryModifier" />
+        <!--exclude name="UnnecessaryParentheses" /-->
+        <!--exclude name="UselessParentheses" /-->
+        <exclude name="UselessQualifiedThis" />
+    </rule>
+    <rule ref="category/java/bestpractices.xml" >
+        <exclude name="GuardLogStatement" />
+        <exclude name="AccessorClassGeneration" />
+        <exclude name="AccessorMethodGeneration" />
+        <exclude name="AvoidPrintStackTrace" />
+        <exclude name="ConstantsInInterface" />
+        <exclude name="JUnitTestContainsTooManyAsserts" />
+        <exclude name="OneDeclarationPerLine" />
+        <exclude name="PositionLiteralsFirstInCaseInsensitiveComparisons" />
+        <exclude name="PositionLiteralsFirstInComparisons" />
+        <exclude name="PreserveStackTrace" />
+        <!--exclude name="SystemPrintln" /-->
+    </rule>
+    <rule ref="category/java/design.xml" >
+        <exclude name="LawOfDemeter"/>
+        <exclude name="LoosePackageCoupling" />
+        <exclude name="AvoidCatchingGenericException" />
+        <exclude name="AvoidDeeplyNestedIfStmts" />
+        <exclude name="AvoidThrowingRawExceptionTypes" />
+        <exclude name="CyclomaticComplexity" />
+        <exclude name="DataClass" />
+        <exclude name="ExcessiveClassLength" />
+        <exclude name="ExcessiveImports" />
+        <exclude name="ExcessiveMethodLength" />
+        <exclude name="ExcessiveParameterList" />
+        <exclude name="LoosePackageCoupling" />
+        <exclude name="ModifiedCyclomaticComplexity" />
+        <exclude name="NPathComplexity" />
+        <exclude name="NcssCount" />
+        <exclude name="SimplifiedTernary" />
+        <exclude name="StdCyclomaticComplexity" />
+        <exclude name="TooManyFields" />
+        <exclude name="TooManyMethods" />
+    </rule>
+    <rule ref="category/java/documentation.xml" >
+        <exclude name="CommentRequired" />
+        <exclude name="CommentSize" />
+        <exclude name="CommentRequired" />
+        <exclude name="UncommentedEmptyMethodBody" />
+    </rule>
+    <rule ref="category/java/errorprone.xml" >
+        <exclude name="BeanMembersShouldSerialize" />
+        <exclude name="AvoidLiteralsInIfCondition" />
+        <exclude name="CloneMethodMustBePublic" />
+        <exclude name="CloneMethodMustImplementCloneable" />
+        <exclude name="CloneMethodReturnTypeMustMatchClassName" />
+        <exclude name="CloneThrowsCloneNotSupportedException" />
+        <exclude name="DoNotCallSystemExit" />
+        <exclude name="DataflowAnomalyAnalysis"/>
+        <exclude name="InvalidSlf4jMessageFormat" />
+        <!--exclude name="NullAssignment" /-->
+        <exclude name="ProperCloneImplementation" />
+        <exclude name="ReturnEmptyArrayRatherThanNull" />
+        <exclude name="SingleMethodSingleton" />
+        <exclude name="SingletonClassReturningNewInstance" />
+        <exclude name="SuspiciousEqualsMethodName" />
+        <exclude name="UseProperClassLoader" />
+    </rule>
+    <rule ref="category/java/multithreading.xml" >
+        <exclude name="AvoidSynchronizedAtMethodLevel" />
+        <exclude name="AvoidUsingVolatile" />
+        <exclude name="DoNotUseThreads" />
+        <exclude name="UseConcurrentHashMap" />
+    </rule>
+    <rule ref="category/java/performance.xml" >
+        <!--exclude name="AvoidInstantiatingObjectsInLoops" /-->
+        <exclude name="ConsecutiveAppendsShouldReuse" />
+        <exclude name="SimplifyStartsWith" />
+        <exclude name="UseStringBufferForStringAppends" />
+    </rule>
+    <rule ref="category/java/security.xml" >
+        <!--exclude name="NoUnsanitizedJSPExpression" /-->
+    </rule>
+
+</ruleset>
