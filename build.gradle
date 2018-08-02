@@ -29,7 +29,7 @@ dependencies {
 //PMD rules (More rigid rules)
 pmd {
     toolVersion = '6.6.0'
-    ignoreFailures = true
+    ignoreFailures = false
     sourceSets = [sourceSets.main]
     reportsDir = file("$project.buildDir/reports/pmd")
     ruleSetFiles = files("$project.rootDir/plugins/pmd-new.xml")
