@@ -5,6 +5,7 @@ import com.almasb.fxgl.entity.Entities;
 import com.almasb.fxgl.entity.Entity;
 import com.almasb.fxgl.extra.ai.pathfinding.AStarGrid;
 import com.almasb.fxgl.settings.GameSettings;
+import it.unibo.goffo.fag.animation.FagControl;
 import it.unibo.goffo.fag.entities.FagType;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
@@ -71,7 +72,7 @@ public class FightAvengeGuerrillaApp extends GameApplication {
         Entity player = Entities.builder()
                 .type(FagType.PLAYER)
                 .at(400,300)
-                .viewFromNode(new Rectangle(128,128, Color.BLUE))
+                .with(new FagControl())
                 .buildAndAttach(getGameWorld());
     }
 
