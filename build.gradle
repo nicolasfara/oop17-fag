@@ -1,6 +1,7 @@
 plugins {
     id 'java'
     id 'idea'
+    id 'eclipse'
     id 'pmd'
     id 'checkstyle'
     id "com.github.spotbugs" version "1.6.2"
