@@ -1,6 +1,5 @@
 package it.unibo.goffo.fag.animation;
 
-import com.almasb.fxgl.animation.Animation;
 import com.almasb.fxgl.core.math.FXGLMath;
 import com.almasb.fxgl.entity.component.Component;
 import com.almasb.fxgl.texture.AnimatedTexture;
@@ -9,18 +8,25 @@ import javafx.util.Duration;
 
 public class FagControl extends Component {
 
-    private int speed = 0;
+    private int speedX = 0;
+    private int speedY = 0;
     private static final int width = 128;
     private static final int height = 128;
 
     private AnimatedTexture texture;
-    private AnimationChannel animIdle, animWalk, animWalk_L;
+    private AnimationChannel animIdleUp, animIdleRight, animIdleLeft, animIdleDown, animWalkRight, animWalkLeft, animWalkUp, animWalkDown;
 
     public FagControl() {
-        animWalk = new AnimationChannel("fagsheet.png", 4, width, height, Duration.millis(2000),4,7);
-        animIdle = new AnimationChannel("fagsheet.png", 4, width, height, Duration.millis(2800),20,23);
+        animWalkDown = new AnimationChannel("fagsheet.png", 4, width, height, Duration.millis(2000),0,3);
+        animWalkRight = new AnimationChannel("fagsheet.png", 4, width, height, Duration.millis(2000),4,7);
+        animWalkLeft = new AnimationChannel("fagsheet.png", 4, width, height, Duration.millis(2000),8,11);
+        animWalkUp = new AnimationChannel("fagsheet.png", 4, width, height, Duration.millis(2000),12,15);
+        animIdleDown = new AnimationChannel("fagsheet.png", 4, width, height, Duration.millis(2800),16,19);
+        animIdleRight = new AnimationChannel("fagsheet.png", 4, width, height, Duration.millis(2800),20,23);
+        animIdleLeft = new AnimationChannel("fagsheet.png", 4, width, height, Duration.millis(2800),24,27);
+        animIdleUp = new AnimationChannel("fagsheet.png", 4, width, height, Duration.millis(2800),28,31);
 
-        texture = new AnimatedTexture(animIdle);
+        texture = new AnimatedTexture(animIdleRight);
     }
 
     @Override
@@ -30,33 +36,55 @@ public class FagControl extends Component {
 
     @Override
     public void onUpdate(double tpf) {
-        entity.translateX(speed * tpf);
+        entity.translateX(speedX * tpf);
+        entity.translateY(speedY * tpf);
 
-        if (speed != 0) {
+        if (speedX != 0) {
 
-            if (texture.getAnimationChannel() == animIdle) {
-                texture.loopAnimationChannel(animWalk);
+            if (texture.getAnimationChannel() != animWalkRight && speedX > 0) {
+                texture.loopAnimationChannel(animWalkRight);
             }
 
-            speed = (int) (speed * 0.9);
+            if (texture.getAnimationChannel() != animWalkLeft && speedX < 0) {
+                texture.loopAnimationChannel(animWalkLeft);
+            }
 
-            if (FXGLMath.abs(speed) < 1) {
-                speed = 0;
-                texture.loopAnimationChannel(animIdle);
+            speedX = (int) (speedX * 0.9);
+
+            if (FXGLMath.abs(speedX) < 1) {
+                if (texture.getAnimationChannel() == animWalkRight){
+                    texture.loopAnimationChannel(animIdleRight);
+                }
+                if (texture.getAnimationChannel() == animWalkLeft){
+                    texture.loopAnimationChannel(animIdleLeft);
+                }
+                speedX = 0;
             }
         }
     }
 
-    public void moveRight() {
-        speed = 40;
+    public void moveUp() {
+        speedY = -40;
 
-        getEntity().setScaleX(1);
+        //texture.loopAnimationChannel(animWalkUp);
     }
 
     public void moveLeft() {
-        speed = -40;
+        speedX = -40;
 
-        getEntity().setScaleX(-1);
+        //texture.loopAnimationChannel(animWalkLeft);
+    }
+
+    public void moveRight() {
+        speedX = 40;
+
+        //texture.loopAnimationChannel(animWalkRight);
+    }
+
+    public void moveDown() {
+        speedY = 40;
+
+        //texture.loopAnimationChannel(animWalkDown);
     }
 
     public int getWidth() {

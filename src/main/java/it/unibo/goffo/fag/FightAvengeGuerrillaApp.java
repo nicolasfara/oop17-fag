@@ -84,14 +84,14 @@ public class FightAvengeGuerrillaApp extends GameApplication {
         input.addAction(new UserAction("Move Up") {
             @Override
             protected void onAction() {
-                player.translateY(-5); // move up 5 pixels
+                player.getComponent(FagControl.class).moveUp();
             }
         }, KeyCode.W);
 
         input.addAction(new UserAction("Move Down") {
             @Override
             protected void onAction() {
-                player.translateY(5); // move down 5 pixels
+                player.getComponent(FagControl.class).moveDown();
             }
         }, KeyCode.S);
     }
