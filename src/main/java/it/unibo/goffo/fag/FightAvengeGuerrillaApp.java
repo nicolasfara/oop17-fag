@@ -4,9 +4,12 @@ import com.almasb.fxgl.app.GameApplication;
 import com.almasb.fxgl.entity.Entities;
 import com.almasb.fxgl.entity.Entity;
 import com.almasb.fxgl.extra.ai.pathfinding.AStarGrid;
+import com.almasb.fxgl.input.Input;
+import com.almasb.fxgl.input.UserAction;
 import com.almasb.fxgl.settings.GameSettings;
 import it.unibo.goffo.fag.animation.FagControl;
 import it.unibo.goffo.fag.entities.FagType;
+import javafx.scene.input.KeyCode;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
@@ -21,6 +24,7 @@ public class FightAvengeGuerrillaApp extends GameApplication {
 
 
     private AStarGrid grid;
+    private Entity player;
 
     /**
      * Main method launch the game engine.
@@ -61,7 +65,35 @@ public class FightAvengeGuerrillaApp extends GameApplication {
      */
     @Override
     protected void initInput() {
-        super.initInput();
+        Input input = getInput();
+
+        input.addAction(new UserAction("Move Right") {
+            @Override
+            protected void onAction() {
+                player.getComponent(FagControl.class).moveRight();
+            }
+        }, KeyCode.D);
+
+        input.addAction(new UserAction("Move Left") {
+            @Override
+            protected void onAction() {
+                player.getComponent(FagControl.class).moveLeft();
+            }
+        }, KeyCode.A);
+
+        input.addAction(new UserAction("Move Up") {
+            @Override
+            protected void onAction() {
+                player.translateY(-5); // move up 5 pixels
+            }
+        }, KeyCode.W);
+
+        input.addAction(new UserAction("Move Down") {
+            @Override
+            protected void onAction() {
+                player.translateY(5); // move down 5 pixels
+            }
+        }, KeyCode.S);
     }
 
     /**
@@ -69,7 +101,7 @@ public class FightAvengeGuerrillaApp extends GameApplication {
      */
     @Override
     protected void initGame() {
-        Entity player = Entities.builder()
+        player = Entities.builder()
                 .type(FagType.PLAYER)
                 .at(400,300)
                 .with(new FagControl())

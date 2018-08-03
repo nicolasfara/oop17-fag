@@ -1,5 +1,6 @@
 package it.unibo.goffo.fag.animation;
 
+import com.almasb.fxgl.animation.Animation;
 import com.almasb.fxgl.core.math.FXGLMath;
 import com.almasb.fxgl.entity.component.Component;
 import com.almasb.fxgl.texture.AnimatedTexture;
@@ -13,11 +14,11 @@ public class FagControl extends Component {
     private static final int height = 128;
 
     private AnimatedTexture texture;
-    private AnimationChannel animIdle, animWalk;
+    private AnimationChannel animIdle, animWalk, animWalk_L;
 
     public FagControl() {
-        animWalk = new AnimationChannel("fagsheet.png", 4, width, height, Duration.seconds(1),  4, 7);
-        animIdle = new AnimationChannel("fagsheet.png", 4, width, height, Duration.seconds(1),20, 23);
+        animWalk = new AnimationChannel("fagsheet.png", 4, width, height, Duration.millis(2000),4,7);
+        animIdle = new AnimationChannel("fagsheet.png", 4, width, height, Duration.millis(2800),20,23);
 
         texture = new AnimatedTexture(animIdle);
     }
@@ -47,13 +48,13 @@ public class FagControl extends Component {
     }
 
     public void moveRight() {
-        speed = 50;
+        speed = 40;
 
         getEntity().setScaleX(1);
     }
 
     public void moveLeft() {
-        speed = -50;
+        speed = -40;
 
         getEntity().setScaleX(-1);
     }
