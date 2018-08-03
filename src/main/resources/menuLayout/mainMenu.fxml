@@ -12,6 +12,9 @@
             prefHeight="400.0" prefWidth="600.0">
 
     <children>
+        <Button fx:id="btnStartGame">
+
+        </Button>
 
     </children>
 
