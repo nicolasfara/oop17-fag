@@ -12,6 +12,9 @@ public final class FagUtils {
     public static final int ZOMBIE_SIZE_Y = 20;
     public static final int PLAYER_SIZE_X = 20;
     public static final int PLAYER_SIZE_Y = 20;
+    public static final int GRID_HEIGHT = 500;
+    public static final int GRID_WIDTH = 500;
+
 
     private FagUtils() { }
 }

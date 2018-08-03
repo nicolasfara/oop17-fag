@@ -31,7 +31,7 @@ public class AStarMoveAction extends GoalAction {
      * Constructor call. Simply call GoalAction constructor.
      */
     public AStarMoveAction() {
-        super(AStarMoveAction.class.toString());
+        super(AStarMoveAction.class.getName());
     }
 
     /**

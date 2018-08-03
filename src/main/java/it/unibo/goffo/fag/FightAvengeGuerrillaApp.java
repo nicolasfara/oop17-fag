@@ -6,9 +6,7 @@ import com.almasb.fxgl.extra.ai.pathfinding.AStarGrid;
 import com.almasb.fxgl.settings.GameSettings;
 import it.unibo.goffo.fag.entities.FagType;
 
-import static it.unibo.goffo.fag.FagUtils.APPLICATION_NAME;
-import static it.unibo.goffo.fag.FagUtils.HEIGHT_SCREEN;
-import static it.unibo.goffo.fag.FagUtils.WIDTH_SCREEN;
+import static it.unibo.goffo.fag.FagUtils.*;
 
 /**
  * Main class, used to launch FXGL.
@@ -65,7 +63,7 @@ public class FightAvengeGuerrillaApp extends GameApplication {
      */
     @Override
     protected void initGame() {
-        super.initGame();
+        grid = new AStarGrid(GRID_WIDTH, GRID_HEIGHT);
     }
 
     /**
