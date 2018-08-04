@@ -2,7 +2,8 @@ package it.unibo.goffo.fag;
 
 import com.almasb.fxgl.app.GameApplication;
 import com.almasb.fxgl.settings.GameSettings;
-import javafx.scene.text.Text;
+import com.almasb.fxgl.ui.UI;
+import it.unibo.goffo.fag.ui.hud.HUDController;
 
 /**
  * Main class, used to launch FXGL.
@@ -57,6 +58,7 @@ public class FightAvengeGuerrillaApp extends GameApplication {
     @Override
     protected void initGame() {
         super.initGame();
+        getGameState().setValue("playerLife", 1.0);
     }
 
     /**
@@ -69,12 +71,13 @@ public class FightAvengeGuerrillaApp extends GameApplication {
 
     @Override
     protected void initUI() {
-        Text textPixels = new Text();
-        textPixels.setText("TEXT");
-        textPixels.setTranslateX(HUD_LIFE_POS_X); // x = 50
-        textPixels.setTranslateY(HUD_LIFE_POS_Y); // y = 100
-
-        getGameScene().addUINode(textPixels); // add to the scene graph
+        /*
+         * No need to use FXMLLoader. FXGL's AssetLoader does the job.
+         * Remember to not use 'fx:controller' attribute in your fxml file.
+         */
+        final HUDController hudController = new HUDController(getGameScene(), getGameState());
+        final UI hud = getAssetLoader().loadUI("hud.fxml", hudController);
+        hudController.getPlayerLife().progressProperty().bind(getGameState().doubleProperty("playerLife"));
+        getGameScene().addUI(hud);
     }
-
 }

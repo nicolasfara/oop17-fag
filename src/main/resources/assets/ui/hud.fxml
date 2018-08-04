@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<?import javafx.scene.control.Button?>
+<AnchorPane xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1">
+
+    <ProgressBar fx:id="playerLife" progress="1.0" translateX="50" translateY="100" />
+    <Label fx:id="lblPointsTxt" layoutX="4.0" layoutY="8.0" text="Points:" translateX="50" translateY="120" />
+    <Label fx:id="lblPoints" layoutX="141.0" layoutY="8.0" text="0" translateY="120" />
+    <Label fx:id="lblRoundTxt" layoutX="52.0" layoutY="144.0" text="Round:" />
+    <Label fx:id="lblRound" layoutX="141.0" layoutY="24.0" text="1" translateY="120" />
+    <Button fx:id="btnDecreaseLife" text="HIT" onMouseClicked="#decreaseLife" />
+</AnchorPane>
