@@ -8,7 +8,6 @@ import com.almasb.fxgl.core.logging.Logger;
 import com.almasb.fxgl.core.math.FXGLMath;
 import com.almasb.fxgl.entity.Entity;
 import com.almasb.fxgl.entity.components.PositionComponent;
-import com.almasb.fxgl.extra.ai.pathfinding.AStarGrid;
 import it.unibo.goffo.fag.FightAvengeGuerrillaApp;
 import it.unibo.goffo.fag.ai.controller.AStarMoveController;
 import javafx.geometry.Point2D;
