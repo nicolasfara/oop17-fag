@@ -26,7 +26,8 @@ public class FagControl extends Component {
         animIdleLeft = new AnimationChannel("fagsheet.png", 4, width, height, Duration.millis(2800),24,27);
         animIdleUp = new AnimationChannel("fagsheet.png", 4, width, height, Duration.millis(2800),28,31);
 
-        texture = new AnimatedTexture(animIdleRight);
+        texture = new AnimatedTexture(animIdleDown);
+        texture.loopAnimationChannel(animIdleDown);
     }
 
     @Override
@@ -38,6 +39,29 @@ public class FagControl extends Component {
     public void onUpdate(double tpf) {
         entity.translateX(speedX * tpf);
         entity.translateY(speedY * tpf);
+
+        if (speedY != 0) {
+
+            if (texture.getAnimationChannel() != animWalkDown && speedY > 0) {
+                texture.loopAnimationChannel(animWalkDown);
+            }
+
+            if (texture.getAnimationChannel() != animWalkUp && speedY < 0) {
+                texture.loopAnimationChannel(animWalkUp);
+            }
+
+            speedY = (int) (speedY * 0.9);
+
+            if (FXGLMath.abs(speedY) < 1) {
+                if (texture.getAnimationChannel() == animWalkDown){
+                    texture.loopAnimationChannel(animIdleDown);
+                }
+                if (texture.getAnimationChannel() == animWalkUp){
+                    texture.loopAnimationChannel(animIdleUp);
+                }
+                speedY = 0;
+            }
+        }
 
         if (speedX != 0) {
 
