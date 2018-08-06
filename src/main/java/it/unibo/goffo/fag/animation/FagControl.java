@@ -17,10 +17,10 @@ public class FagControl extends Component {
     private AnimationChannel animIdleUp, animIdleRight, animIdleLeft, animIdleDown, animWalkRight, animWalkLeft, animWalkUp, animWalkDown;
 
     public FagControl() {
-        animWalkDown = new AnimationChannel("fagsheet.png", 4, width, height, Duration.millis(2000),0,3);
-        animWalkRight = new AnimationChannel("fagsheet.png", 4, width, height, Duration.millis(2000),4,7);
-        animWalkLeft = new AnimationChannel("fagsheet.png", 4, width, height, Duration.millis(2000),8,11);
-        animWalkUp = new AnimationChannel("fagsheet.png", 4, width, height, Duration.millis(2000),12,15);
+        animWalkDown = new AnimationChannel("fagsheet.png", 4, width, height, Duration.millis(1200),0,3);
+        animWalkRight = new AnimationChannel("fagsheet.png", 4, width, height, Duration.millis(1200),4,7);
+        animWalkLeft = new AnimationChannel("fagsheet.png", 4, width, height, Duration.millis(1200),8,11);
+        animWalkUp = new AnimationChannel("fagsheet.png", 4, width, height, Duration.millis(1200),12,15);
         animIdleDown = new AnimationChannel("fagsheet.png", 4, width, height, Duration.millis(2800),16,19);
         animIdleRight = new AnimationChannel("fagsheet.png", 4, width, height, Duration.millis(2800),20,23);
         animIdleLeft = new AnimationChannel("fagsheet.png", 4, width, height, Duration.millis(2800),24,27);
