@@ -12,7 +12,7 @@ import java.util.stream.Stream;
  * Class store a basic score for the game.
  */
 @ThreadSafe
-final public class BasicScore implements Score {
+public final class BasicScore implements Score {
 
     private static BasicScore instance;
     private final List<ScoreRecord<String, Integer>> scoreRecordList;
