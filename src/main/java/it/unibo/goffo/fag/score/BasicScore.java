@@ -2,6 +2,7 @@ package it.unibo.goffo.fag.score;
 
 import it.unibo.goffo.fag.exceptions.UserNotFoundExceptions;
 
+import javax.annotation.concurrent.ThreadSafe;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
@@ -10,9 +11,10 @@ import java.util.stream.Stream;
 /**
  * Class store a basic score for the game.
  */
-public class BasicScore implements Score {
+@ThreadSafe
+final public class BasicScore implements Score {
 
-    private static BasicScore instance = null;
+    private static BasicScore instance;
     private final List<ScoreRecord<String, Integer>> scoreRecordList;
 
     /**
@@ -26,7 +28,7 @@ public class BasicScore implements Score {
      * Return the singleton instance.
      * @return the instance.
      */
-    public static Score getInstance() {
+    public static synchronized Score getInstance() {
         if (instance == null) {
             instance = new BasicScore();
         }

@@ -5,12 +5,12 @@ import com.google.common.base.Objects;
 
 /**
  * Class used for a record in the {@code Score} class.
- * @param <N> username of the player.
- * @param <S> score of the player.
+ * @param <N> player's username.
+ * @param <S> player's username.
  */
 public class ScoreRecord<N, S> {
 
-    private N name;
+    private final N name;
     private S score;
 
     /**
@@ -58,7 +58,7 @@ public class ScoreRecord<N, S> {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        ScoreRecord<?, ?> that = (ScoreRecord<?, ?>) o;
+        final ScoreRecord<?, ?> that = (ScoreRecord<?, ?>) o;
         return Objects.equal(name, that.name)
                 && Objects.equal(score, that.score);
     }
@@ -71,6 +71,9 @@ public class ScoreRecord<N, S> {
         return Objects.hashCode(name, score);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String toString() {
         return MoreObjects.toStringHelper(this)
