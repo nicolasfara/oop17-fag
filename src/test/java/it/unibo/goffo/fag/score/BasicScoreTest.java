@@ -4,6 +4,7 @@ import it.unibo.goffo.fag.exceptions.UserNotFoundExceptions;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.lang.reflect.Field;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -16,7 +17,11 @@ public class BasicScoreTest {
     private Score score;
 
     @Before
-    public void initialize() {
+    public void initialize() throws NoSuchFieldException, IllegalAccessException {
+        final Field instance = BasicScore.class.getDeclaredField("instance");
+        instance.setAccessible(true);
+        instance.set(null, null);
+
         score = BasicScore.getInstance();
         score.addNewScore(new ScoreRecord<>("player1", 1));
         score.addNewScore(new ScoreRecord<>("player2", 1));
@@ -39,6 +44,11 @@ public class BasicScoreTest {
 
         assertThat(score.getAllScore().collect(Collectors.toList()))
                 .containsAllIn(expectedList);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void insertAlreadyPresentUserTest() {
+        score.addNewScore(new ScoreRecord<>("player1", 200));
     }
 
     @Test(expected = IllegalArgumentException.class)
