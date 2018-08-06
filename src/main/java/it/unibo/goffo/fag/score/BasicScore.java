@@ -43,6 +43,9 @@ public final class BasicScore implements Score {
         if (newScore.getScore() < 0) {
             throw new IllegalArgumentException("You must insert a positive score. " + newScore.getScore() + " is not a valid score");
         }
+        if (scoreRecordList.stream().anyMatch(record -> record.getName().equals(newScore.getName()))) {
+            throw new IllegalArgumentException("Record already insert in the list");
+        }
         scoreRecordList.add(newScore);
     }
 
