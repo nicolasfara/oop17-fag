@@ -1,9 +1,6 @@
-package it.unibo.goffo.fag.score;
+package it.unibo.goffo.fag.score.model.datatype;
 
 import it.unibo.goffo.fag.exceptions.UserNotFoundExceptions;
-import it.unibo.goffo.fag.score.model.datatype.BasicScore;
-import it.unibo.goffo.fag.score.model.datatype.Score;
-import it.unibo.goffo.fag.score.model.datatype.ScoreRecord;
 import org.junit.Before;
 import org.junit.Test;
 
