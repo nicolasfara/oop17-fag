@@ -4,7 +4,6 @@ import it.unibo.goffo.fag.score.model.datatype.BasicScore;
 import it.unibo.goffo.fag.score.model.datatype.Score;
 import it.unibo.goffo.fag.score.model.datatype.ScoreRecord;
 
-import java.util.Collections;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
