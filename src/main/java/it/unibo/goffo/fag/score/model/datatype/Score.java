@@ -27,4 +27,5 @@ public interface Score {
      * @return the result' stream.
      */
     Stream<ScoreRecord<String, Integer>> getAllScore();
+
 }

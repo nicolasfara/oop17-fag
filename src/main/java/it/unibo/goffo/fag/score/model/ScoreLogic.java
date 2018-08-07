@@ -20,4 +20,10 @@ public interface ScoreLogic {
      * @param scores stream of scores.
      */
     void getScoresFromController(Stream<ScoreRecord<String, Integer>> scores);
+
+    /**
+     * Return true if the BasicScore is empty, false otherwise.
+     * @return false if there are at least a record, true otherwise.
+     */
+    boolean isEmpty();
 }
