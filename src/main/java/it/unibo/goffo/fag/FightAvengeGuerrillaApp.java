@@ -8,8 +8,9 @@ import com.almasb.fxgl.settings.GameSettings;
  */
 public class FightAvengeGuerrillaApp extends GameApplication {
 
-    private static final int WIDTH_SCREEN = 800;
-    private static final int HEIGHT_SCREEN = 600;
+    private static final int WIDTH_SCREEN = 50;
+    private static final int HEIGHT_SCREEN = 30;
+    private static final int TILE_SIZE = 64;
     private static final String APPLICATION_NAME = "Final Avenge Guerrilla";
 
     /**
@@ -25,8 +26,8 @@ public class FightAvengeGuerrillaApp extends GameApplication {
      */
     @Override
     protected void initSettings(final GameSettings settings) {
-        settings.setWidth(WIDTH_SCREEN);
-        settings.setHeight(HEIGHT_SCREEN);
+        settings.setWidth(WIDTH_SCREEN * TILE_SIZE);
+        settings.setHeight(HEIGHT_SCREEN * TILE_SIZE);
         settings.setTitle(APPLICATION_NAME);
     }
 
@@ -43,7 +44,7 @@ public class FightAvengeGuerrillaApp extends GameApplication {
      */
     @Override
     protected void initGame() {
-        super.initGame();
+        getGameWorld().setLevelFromMap("level0.json");
     }
 
     /**
