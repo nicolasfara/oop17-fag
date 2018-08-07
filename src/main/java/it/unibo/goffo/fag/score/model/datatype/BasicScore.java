@@ -1,4 +1,4 @@
-package it.unibo.goffo.fag.score;
+package it.unibo.goffo.fag.score.model.datatype;
 
 import it.unibo.goffo.fag.exceptions.UserNotFoundExceptions;
 

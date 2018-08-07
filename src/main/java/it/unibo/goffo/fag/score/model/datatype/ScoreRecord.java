@@ -1,4 +1,4 @@
-package it.unibo.goffo.fag.score;
+package it.unibo.goffo.fag.score.model.datatype;
 
 import com.google.common.base.MoreObjects;
 import com.google.common.base.Objects;
