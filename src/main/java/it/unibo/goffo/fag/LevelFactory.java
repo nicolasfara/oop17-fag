@@ -12,7 +12,7 @@ public class LevelFactory implements EntityFactory {
     public Entity newCollidable(SpawnData data) {
         return Entities.builder()
                 .from(data)
-                .bbox(new HitBox(BoundingShape.box(data.<Integer>get("width"), data.<Integer>get("heigh"))))
+                .bbox(new HitBox(BoundingShape.box(data.<Integer>get("width"), data.<Integer>get("height"))))
                 .with(new PhysicsComponent())
                 .build();
 

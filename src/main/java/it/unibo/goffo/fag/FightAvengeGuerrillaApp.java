@@ -44,6 +44,7 @@ public class FightAvengeGuerrillaApp extends GameApplication {
      */
     @Override
     protected void initGame() {
+        getGameWorld().addEntityFactory(new LevelFactory());
         getGameWorld().setLevelFromMap("level0.json");
     }
 
