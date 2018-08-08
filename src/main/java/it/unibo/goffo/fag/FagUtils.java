@@ -4,9 +4,9 @@ package it.unibo.goffo.fag;
  * Utility class.
  */
 public final class FagUtils {
-    private static final int WIDTH_SCREEN = 50;
-    private static final int HEIGHT_SCREEN = 30;
-    private static final int TILE_SIZE = 64;
+    public static final int WIDTH_SCREEN = 50;
+    public static final int HEIGHT_SCREEN = 30;
+    public static final int TILE_SIZE = 64;
     public static final String APPLICATION_NAME = "Final Avenge Guerrilla";
     public static final int BLOCK_SIZE = 10;
     public static final int ZOMBIE_SIZE_X = 20;
