@@ -16,6 +16,7 @@ import javafx.scene.shape.Rectangle;
 import static it.unibo.goffo.fag.FagUtils.APPLICATION_NAME;
 import static it.unibo.goffo.fag.FagUtils.HEIGHT_SCREEN;
 import static it.unibo.goffo.fag.FagUtils.WIDTH_SCREEN;
+import static it.unibo.goffo.fag.FagUtils.TILE_SIZE;
 
 /**
  * Main class, used to launch FXGL.
@@ -55,8 +56,8 @@ public class FightAvengeGuerrillaApp extends GameApplication {
      */
     @Override
     protected void initSettings(final GameSettings settings) {
-        settings.setWidth(WIDTH_SCREEN);
-        settings.setHeight(HEIGHT_SCREEN);
+        settings.setWidth(WIDTH_SCREEN * TILE_SIZE);
+        settings.setHeight(HEIGHT_SCREEN * TILE_SIZE);
         settings.setTitle(APPLICATION_NAME);
     }
 
@@ -101,6 +102,10 @@ public class FightAvengeGuerrillaApp extends GameApplication {
      */
     @Override
     protected void initGame() {
+
+        getGameWorld().addEntityFactory(new LevelFactory());
+        getGameWorld().setLevelFromMap("level0.json");
+
         player = Entities.builder()
                 .type(FagType.PLAYER)
                 .at(400,300)
