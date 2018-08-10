@@ -111,6 +111,11 @@ public class FagControl extends Component {
         //texture.loopAnimationChannel(animWalkDown);
     }
 
+    public void stop() {
+        speedX = 0;
+        speedY = 0;
+    }
+
     public int getWidth() {
         return width;
     }

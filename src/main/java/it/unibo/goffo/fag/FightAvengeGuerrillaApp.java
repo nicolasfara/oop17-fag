@@ -5,6 +5,7 @@ import com.almasb.fxgl.entity.Entity;
 import com.almasb.fxgl.extra.ai.pathfinding.AStarGrid;
 import com.almasb.fxgl.input.Input;
 import com.almasb.fxgl.input.UserAction;
+import com.almasb.fxgl.physics.CollisionHandler;
 import com.almasb.fxgl.settings.GameSettings;
 import it.unibo.goffo.fag.animation.FagControl;
 import it.unibo.goffo.fag.entities.FagType;
@@ -108,6 +109,13 @@ public class FightAvengeGuerrillaApp extends GameApplication {
      */
     @Override
     protected void initPhysics() {
-        super.initPhysics();
+        getPhysicsWorld().addCollisionHandler(new CollisionHandler(FagType.PLAYER, FagType.WALL){
+            @Override
+            protected void onCollisionBegin(Entity collector, Entity collectible) {
+                //player.getComponent(FagControl.class).stop();
+                getDisplay().showMessageBox("collision");
+                System.out.println("collision");
+            }
+        });
     }
 }
