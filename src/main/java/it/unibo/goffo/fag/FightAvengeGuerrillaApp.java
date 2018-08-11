@@ -112,9 +112,13 @@ public class FightAvengeGuerrillaApp extends GameApplication {
         getPhysicsWorld().addCollisionHandler(new CollisionHandler(FagType.PLAYER, FagType.WALL){
             @Override
             protected void onCollisionBegin(Entity collector, Entity collectible) {
-                //player.getComponent(FagControl.class).stop();
-                getDisplay().showMessageBox("collision");
+                player.getComponent(FagControl.class).stop();
                 System.out.println("collision");
+            }
+
+            @Override
+            protected void onCollision(Entity a, Entity b) {
+                player.getComponent(FagControl.class).stop();
             }
         });
     }
