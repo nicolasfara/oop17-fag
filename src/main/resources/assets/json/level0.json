@@ -675,6 +675,17 @@
                  "width":3200,
                  "x":0,
                  "y":58.6667
+                }, 
+                {
+                 "height":64,
+                 "id":76,
+                 "name":"",
+                 "rotation":0,
+                 "type":"player",
+                 "visible":true,
+                 "width":64,
+                 "x":1152,
+                 "y":1472
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -682,7 +693,7 @@
          "x":0,
          "y":0
         }],
- "nextobjectid":72,
+ "nextobjectid":77,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.1.6",

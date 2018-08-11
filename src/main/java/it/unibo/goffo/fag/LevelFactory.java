@@ -23,8 +23,8 @@ public class LevelFactory implements EntityFactory {
     public Entity newPlayer(SpawnData data) {
         return Entities.builder()
                 .type(FagType.PLAYER)
-                .at(400,300)
-                .bbox(new HitBox(BoundingShape.box(64, 64)))
+                .from(data)
+                .bbox(new HitBox(BoundingShape.box(data.<Integer>get("width"), data.<Integer>get("height"))))
                 .with(new CollidableComponent(true))
                 .with(new FagControl())
                 .build();
