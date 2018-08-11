@@ -101,7 +101,7 @@ public class FightAvengeGuerrillaApp extends GameApplication {
         getGameWorld().addEntityFactory(new LevelFactory());
         getGameWorld().setLevelFromMap("level0.json");
 
-        player = getGameWorld().spawn("player");
+        player = getPlayer();
     }
 
     /**
