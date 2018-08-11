@@ -25,6 +25,8 @@ dependencies {
     testCompile "com.google.truth:truth:0.42"
     compile 'com.github.almasb:fxgl:0.5.3'
     compile 'com.google.guava:guava:26.0-jre'
+    compile 'com.esotericsoftware:kryo:5.0.0-RC1'
+    compile 'com.google.code.gson:gson:2.8.5'
     // SpotBugs
     spotbugsPlugins 'com.h3xstream.findsecbugs:findsecbugs-plugin:1.7.1'
 }
