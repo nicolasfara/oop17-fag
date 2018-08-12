@@ -1,22 +1,13 @@
 package it.unibo.goffo.fag.animation;
 
-import com.almasb.fxgl.app.FXGL;
 import com.almasb.fxgl.core.math.FXGLMath;
-import com.almasb.fxgl.entity.Entity;
 import com.almasb.fxgl.entity.component.Component;
-import com.almasb.fxgl.entity.components.BoundingBoxComponent;
-import com.almasb.fxgl.entity.components.PositionComponent;
 import com.almasb.fxgl.texture.AnimatedTexture;
 import com.almasb.fxgl.texture.AnimationChannel;
-import it.unibo.goffo.fag.entities.FagType;
 import javafx.util.Duration;
-
-import java.util.List;
 
 public class FagControl extends Component {
 
-    private PositionComponent position;
-    private BoundingBoxComponent bbox;
     private int speedX = 0;
     private int speedY = 0;
     private static final int width = 128;
@@ -123,41 +114,6 @@ public class FagControl extends Component {
     public void stop() {
         speedX = 0;
         speedY = 0;
-    }
-
-    private List<Entity> walls;
-    
-    private void move(double dx, double dy) {
-        if (!getEntity().isActive())
-            return;
-
-        if (walls == null) {
-            walls = FXGL.getApp().getGameWorld().getEntitiesByType(FagType.WALL);
-        }
-
-        double mag = Math.sqrt(dx * dx + dy * dy);
-        long length = Math.round(mag);
-
-        double unitX = dx / mag;
-        double unitY = dy / mag;
-
-        for (int i = 0; i < length; i++) {
-            position.translate(unitX, unitY);
-
-            boolean collision = false;
-
-            for (int j = 0; j < walls.size(); j++) {
-                if (walls.get(j).getBoundingBoxComponent().isCollidingWith(bbox)) {
-                    collision = true;
-                    break;
-                }
-            }
-
-            if (collision) {
-                position.translate(-unitX, -unitY);
-                break;
-            }
-        }
     }
 
     public int getWidth() {
