@@ -2,7 +2,7 @@ package it.unibo.goffo.fag.score.controller.format;
 
 import it.unibo.goffo.fag.score.Score;
 
-import java.util.Collection;
+import java.util.List;
 
 /**
  * Interface for creating an object to handle object formatting for serialization.
@@ -15,12 +15,12 @@ public interface Format<T> {
      * @param collection the collection to be formatted.
      * @return the formatted collection.
      */
-    T formatter(Collection<? extends Score> collection);
+    <U, S> T formatter(List<? extends Score<U, S>> collection);
 
     /**
      * Method for restore a formatted collection into his original type.
      * @param formatted the formatted object.
      * @return the restored collection.
      */
-    Collection<? extends Score> restore(T formatted);
+    <U, S> List<? extends Score<U, S>> restore(T formatted, Class<U> usernameClass, Class<S> scoreClass);
 }

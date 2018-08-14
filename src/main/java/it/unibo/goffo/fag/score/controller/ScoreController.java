@@ -9,23 +9,20 @@ import java.util.List;
  */
 public interface ScoreController {
     /**
-     * This method is used to save all score to file.
-     * Other class or entities must not know the name of the file.
-     * @param scoreList the score list to save.
+     * This method store the list (from model) to file.
      */
-    void saveScoreToFile(List<? extends Score> scoreList);
+    void saveScoreToFile();
 
     /**
-     * This method is used to restore all saved score into the file.
-     * Other class or entities must not know the name of the file.
-     * @return a list with al scores.
+     * This method is used to restore the saving from file to a list.
+     * Since the saving collection is generic, you must specify the class type of the username and for the score.
+     * Note: when using this method is a good thing wrap the list to a {@code unmodifiableList}.
+     * @param usernameClass username class.
+     * @param scoreClass score class.
+     * @param <U> username class' type.
+     * @param <S> score class' type.
+     * @return return a list with the saved scores.
      */
-    List<? extends Score> loadScoreFromFile();
+    <U, S> List<? extends Score<U, S>> loadScoreFromFile(Class<U> usernameClass, Class<S> scoreClass);
 
-    /**
-     * This method return the list contains all scores.
-     * NB: this method must be called after {@link #loadScoreFromFile() loadScoreFromFile}, otherwise an exception will be thrown.
-     * @return the scores list.
-     */
-    List<? extends Score> getScoreList();
 }
