@@ -1,7 +1,7 @@
 package it.unibo.goffo.fag.score.builder;
 
+import it.unibo.goffo.fag.score.JsonScore;
 import it.unibo.goffo.fag.score.Score;
-import it.unibo.goffo.fag.score.ScoreImpl;
 
 import java.time.LocalDate;
 
@@ -16,7 +16,7 @@ public class ScoreBuilder implements Builder<Score<String, Integer>> {
      * Default constructor.
      */
     public ScoreBuilder() {
-        score = new ScoreImpl();
+        score = new JsonScore();
     }
 
     /**
