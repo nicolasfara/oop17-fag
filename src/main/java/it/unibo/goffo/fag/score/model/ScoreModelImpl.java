@@ -29,15 +29,6 @@ public class ScoreModelImpl implements ScoreModel {
      * {@inheritDoc}
      */
     @Override
-    public void getAllScore(final List<Score<String, Integer>> scoreList) {
-        this.scoreList.clear();
-        this.scoreList.addAll(scoreList);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
     public List<Score<String, Integer>> sendUpdatedScoreList() {
         String username = FXGL.getSystemConfig().getProfileName();
         Optional<Score<String, Integer>> optionalScore = scoreList.stream()
@@ -46,8 +37,10 @@ public class ScoreModelImpl implements ScoreModel {
 
         //Using >Java9 all this line can be replaced with method ifPresentOrElse() directly into the stream
         if (optionalScore.isPresent()) {
-            optionalScore.get().setScore(userScore);
-            optionalScore.get().setDate(LocalDate.now());
+            if (optionalScore.get().getScore() < userScore) {
+                optionalScore.get().setScore(userScore);
+                optionalScore.get().setDate(LocalDate.now());
+            }
         } else {
             final Score<String, Integer> score = new ScoreBuilder()
                     .setUsername(username)

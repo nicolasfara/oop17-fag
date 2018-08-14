@@ -9,12 +9,6 @@ import java.util.List;
  */
 public interface ScoreModel {
     /**
-     * Get a score list.
-     * @param scoreList the score list.
-     */
-    void getAllScore(List<Score<String, Integer>> scoreList);
-
-    /**
      * Return a list with all update score.
      * @return update list score.
      */
