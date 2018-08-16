@@ -1,10 +1,9 @@
 package it.unibo.goffo.fag.score.controller.format;
 
-import com.google.common.reflect.TypeParameter;
-import com.google.common.reflect.TypeToken;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonDeserializer;
+import com.google.gson.reflect.TypeToken;
 import it.unibo.goffo.fag.score.JsonScore;
 import it.unibo.goffo.fag.score.Score;
 
@@ -14,7 +13,7 @@ import java.util.List;
 /**
  * This class use JSON for serialize object.
  */
-public class JsonFormatter implements Format<String> {
+public class JsonFormatter implements Format<String, String, Integer> {
 
     private final Gson gson;
 
@@ -31,7 +30,7 @@ public class JsonFormatter implements Format<String> {
      * {@inheritDoc}
      */
     @Override
-    public <U, S> String formatter(final List<? extends Score<U, S>> collection) {
+    public String formatter(final List<? extends Score<String, Integer>> collection) {
         return gson.toJson(collection);
     }
 
@@ -39,11 +38,8 @@ public class JsonFormatter implements Format<String> {
      * {@inheritDoc}
      */
     @Override
-    public <U, S> List<? extends Score<U, S>> restore(final String formatted, final Class<U> usernameClass, final Class<S> scoreClass) {
-        final Type collectionType = new TypeToken<List<Score<U, S>>>() { }
-                .where(new TypeParameter<U>() { }, TypeToken.of(usernameClass))
-                .where(new TypeParameter<S>() { }, TypeToken.of(scoreClass))
-                .getType();
-        return gson.fromJson(formatted, collectionType);
+    public List<? extends Score<String, Integer>> restore(final String formatted) {
+        final Type type = new TypeToken<List<Score<String, Integer>>>() { }.getType();
+        return gson.fromJson(formatted, type);
     }
 }
