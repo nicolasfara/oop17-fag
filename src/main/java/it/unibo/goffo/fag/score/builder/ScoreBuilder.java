@@ -10,7 +10,7 @@ import java.time.LocalDate;
  */
 public class ScoreBuilder implements Builder<Score<String, Integer>> {
 
-    private Score<String, Integer> score;
+    private final Score<String, Integer> score;
 
     /**
      * Default constructor.
