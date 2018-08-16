@@ -26,13 +26,6 @@ public class ScoreControllerTest {
 
     @Test
     public void test1() {
-        List<Score<String, Integer>> scoreList = new ArrayList<>();
-        Score<String, Integer> score = new JsonScore("user10", 10);
-        score.setDate(LocalDate.now());
-        scoreList.add(score);
-        scoreList.add(new JsonScore("user20", 200));
-        scoreList.add(new JsonScore("user30", 23));
-        scoreController.saveScoreToFile(scoreList);
     }
 
     @Test
