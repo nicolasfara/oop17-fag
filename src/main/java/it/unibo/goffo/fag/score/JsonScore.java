@@ -12,6 +12,7 @@ import java.time.LocalDate;
  */
 public class JsonScore implements Score<String, Integer>, Serializable {
 
+    public static final long serialVersionUID = 49228374;
     private String username;
     private Integer score;
     private LocalDate date;
@@ -92,7 +93,7 @@ public class JsonScore implements Score<String, Integer>, Serializable {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        JsonScore score1 = (JsonScore) o;
+        final JsonScore score1 = (JsonScore) o;
         return Objects.equal(username, score1.username)
                 && Objects.equal(score, score1.score)
                 && Objects.equal(date, score1.date);
