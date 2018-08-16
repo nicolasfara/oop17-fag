@@ -4,9 +4,9 @@ import com.esotericsoftware.kryo.Kryo;
 import com.esotericsoftware.kryo.io.Input;
 import com.esotericsoftware.kryo.io.Output;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 /**
  * This class handle the serialization of generic object.
@@ -20,21 +20,22 @@ public class LoadStoreManager<T> implements LoadStore<T> {
      * {@inheritDoc}
      */
     @Override
-    public void saveToFile(final String fileName, final T payload, final Class<T> classType) throws FileNotFoundException {
+    public void saveToFile(final String fileName, final T payload, final Class<T> classType) throws IOException {
         kryoManager.register(classType);
-        try (Output output = new Output(new FileOutputStream(fileName))) {
-            kryoManager.writeObject(output, payload);
-        }
+        final Output output = new Output(Files.newOutputStream(Paths.get(fileName)));
+        kryoManager.writeObject(output, payload);
+        output.close();
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public T loadFromFile(final String fileName, final Class<T> classType) throws FileNotFoundException {
+    public T loadFromFile(final String fileName, final Class<T> classType) throws IOException {
         kryoManager.register(classType);
-        try (Input input = new Input(new FileInputStream(fileName))) {
-            return kryoManager.readObject(input, classType);
-        }
+        final Input input = new Input(Files.newInputStream(Paths.get(fileName)));
+        T tmp = kryoManager.readObjectOrNull(input, classType);
+        input.close();
+        return tmp;
     }
 }
