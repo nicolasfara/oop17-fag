@@ -13,4 +13,6 @@ public interface ScoreModel {
      * @return update list score.
      */
     List<Score<String, Integer>> sendUpdatedScoreList();
+
+    void initializeScore(List<Score<String, Integer>> firsScore);
 }

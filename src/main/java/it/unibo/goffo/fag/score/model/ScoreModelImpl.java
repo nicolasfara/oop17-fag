@@ -9,20 +9,21 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import static com.almasb.fxgl.app.DSLKt.geti;
+
 /**
- * Implementation of the business logic for scoring.
+ * Implementation of the business logic for score.
  */
 public class ScoreModelImpl implements ScoreModel {
 
     private final List<Score<String, Integer>> scoreList = new ArrayList<>();
     private Integer userScore;
+    private final String propertyName = "score";
 
     /**
      * Constructor accept a string that match the property name for the score.
-     * @param propertyName property's name;
      */
-    public ScoreModelImpl(final String propertyName) {
-        userScore = FXGL.getApp().getGameState().getInt(propertyName);
+    public ScoreModelImpl() {
     }
 
     /**
@@ -30,6 +31,7 @@ public class ScoreModelImpl implements ScoreModel {
      */
     @Override
     public List<Score<String, Integer>> sendUpdatedScoreList() {
+        userScore = geti(propertyName);
         String username = FXGL.getSystemConfig().getProfileName();
         Optional<Score<String, Integer>> optionalScore = scoreList.stream()
                 .filter(score -> score.getUsername().equals(username))
@@ -50,5 +52,14 @@ public class ScoreModelImpl implements ScoreModel {
             scoreList.add(score);
         }
         return scoreList;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void initializeScore(final List<Score<String, Integer>> firsScore) {
+        scoreList.clear();
+        scoreList.addAll(firsScore);
     }
 }
