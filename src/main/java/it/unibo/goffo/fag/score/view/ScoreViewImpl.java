@@ -9,7 +9,7 @@ import javafx.collections.ObservableList;
  */
 public class ScoreViewImpl implements ScoreView {
 
-    private ScoreController scoreController;
+    private final ScoreController scoreController;
 
     /**
      * Accept a controller to get information on the score status.
@@ -24,9 +24,9 @@ public class ScoreViewImpl implements ScoreView {
      */
     @Override
     public ObservableList<JsonScoreWrapper> convertList() {
-        ObservableList<JsonScoreWrapper> scoreWrappers = FXCollections.observableArrayList();
+        final ObservableList<JsonScoreWrapper> scoreWrappers = FXCollections.observableArrayList();
         scoreController.loadScoreFromFile().forEach(score -> {
-            JsonScoreWrapper tmp = new JsonScoreWrapper(score.getUsername(), score.getScore());
+            final JsonScoreWrapper tmp = new JsonScoreWrapper(score.getUsername(), score.getScore());
             tmp.setDate(score.getDate());
             scoreWrappers.add(tmp);
         });

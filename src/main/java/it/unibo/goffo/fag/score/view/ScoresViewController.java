@@ -1,9 +1,9 @@
 package it.unibo.goffo.fag.score.view;
 
-import com.almasb.fxgl.app.FXGL;
 import it.unibo.goffo.fag.score.controller.ScoreController;
 import it.unibo.goffo.fag.score.controller.ScoreControllerImpl;
 import it.unibo.goffo.fag.score.model.ScoreModelImpl;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
@@ -20,8 +20,11 @@ public class ScoresViewController {
     @FXML private TableView<JsonScoreWrapper> scoreTableView;
     @FXML private TableColumn<JsonScoreWrapper, String> usernameColumn;
     @FXML private TableColumn<JsonScoreWrapper, Integer> scoreColumn;
-    private ScoreView scoreView;
+    private final ScoreView scoreView;
 
+    /**
+     * Initialize the Gui controller with model & controller from score.
+     */
     public ScoresViewController() {
         ScoreController scoreController = new ScoreControllerImpl(new ScoreModelImpl());
         scoreView = new ScoreViewImpl(scoreController);
@@ -32,15 +35,26 @@ public class ScoresViewController {
         usernameColumn.setCellValueFactory(new PropertyValueFactory<>("username"));
         scoreColumn.setCellValueFactory(new PropertyValueFactory<>("score"));
         scoreTableView.setItems(scoreView.convertList());
+        scoreTableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
         scoreTableView.getColumns().clear();
-        scoreTableView.getColumns().add(scoreColumn);
         scoreTableView.getColumns().add(usernameColumn);
-
+        scoreTableView.getColumns().add(scoreColumn);
+        columnGraphicalSetup(usernameColumn);
+        columnGraphicalSetup(scoreColumn);
+        tableViewGraphicalSetup(scoreTableView);
     }
 
     @FXML
-    private void goBackHandler() {
+    private void goBackHandler(final ActionEvent event) {
         // Handler
+    }
+
+    private void tableViewGraphicalSetup(final TableView<?> tableView) {
+        tableView.setDisable(true);
+    }
+
+    private void columnGraphicalSetup(final TableColumn<?, ?> column) {
+        column.setSortable(false);
     }
 
 }

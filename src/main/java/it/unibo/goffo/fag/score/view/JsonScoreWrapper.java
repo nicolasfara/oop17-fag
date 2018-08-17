@@ -8,15 +8,13 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
-import java.time.LocalDate;
-
 /**
  * Wrapper used for view the score into the view with JavaFX.
  */
 public class JsonScoreWrapper extends JsonScore {
 
-    private StringProperty username;
-    private IntegerProperty score;
+    private final StringProperty username;
+    private final IntegerProperty score;
 
     /**
      * Constructor wrap the {@link #JsonScore JsonScore}. Refer to it for detail.
@@ -24,6 +22,7 @@ public class JsonScoreWrapper extends JsonScore {
      * @param score the score to save.
      */
     public JsonScoreWrapper(final String username, final Integer score) {
+        super(username, score);
         this.username = new SimpleStringProperty(username);
         this.score = new SimpleIntegerProperty(score);
     }
@@ -32,6 +31,7 @@ public class JsonScoreWrapper extends JsonScore {
      * Default constructor.
      */
     public JsonScoreWrapper() {
+        super();
         this.username = new SimpleStringProperty(Strings.nullToEmpty(null));
         this.score = new SimpleIntegerProperty(0);
     }
@@ -72,22 +72,6 @@ public class JsonScoreWrapper extends JsonScore {
      * {@inheritDoc}
      */
     @Override
-    public LocalDate getDate() {
-        return super.getDate();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void setDate(final LocalDate date) {
-        super.setDate(date);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
     public boolean equals(final Object o) {
         if (this == o) {
             return true;
@@ -98,7 +82,7 @@ public class JsonScoreWrapper extends JsonScore {
         if (!super.equals(o)) {
             return false;
         }
-        JsonScoreWrapper that = (JsonScoreWrapper) o;
+        final JsonScoreWrapper that = (JsonScoreWrapper) o;
         return Objects.equal(username, that.username)
                 && Objects.equal(score, that.score);
     }
