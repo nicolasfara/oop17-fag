@@ -6,15 +6,46 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.geometry.Insets?>
+<BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="it.unibo.goffo.fag.score.view.ScoresViewController"
-            prefHeight="300.0" prefWidth="300.0">
-    <TableView fx:id="scoreTableView" >
-        <columns>
-            <TableColumn text="Ciao" fx:id="scoreColumn"/>
-            <TableColumn text="Fuffa" fx:id="usernameColumn" />
-        </columns>
-    </TableView>
+            prefHeight="600.0" prefWidth="800.0"
+            stylesheets="@../css/fag-style.css">
 
-</AnchorPane>
+    <top>
+
+        <BorderPane>
+            <padding><Insets top="20" bottom="20" left="20" right="20"/></padding>
+            <top>
+                <Button fx:id="backButton" >
+                    <graphic>
+                        <ImageView fitWidth="40" fitHeight="40" pickOnBounds="true" preserveRatio="true">
+                            <Image url="/assets/ui/graphics/left-arrows.png" />
+                        </ImageView>
+                    </graphic>
+                </Button>
+            </top>
+
+            <center>
+                <Label text="Ranking" />
+            </center>
+        </BorderPane>
+
+
+
+    </top>
+
+    <center>
+        <TableView fx:id="scoreTableView" maxHeight="400" maxWidth="550">
+            <columns>
+                <TableColumn text="Username" fx:id="usernameColumn" />
+                <TableColumn text="Score" fx:id="scoreColumn" />
+            </columns>
+        </TableView>
+    </center>
+
+
+</BorderPane>
