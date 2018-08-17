@@ -34,7 +34,7 @@ public class LoadStoreManager<T> implements LoadStore<T> {
     public T loadFromFile(final String fileName, final Class<T> classType) throws IOException {
         kryoManager.register(classType);
         final Input input = new Input(Files.newInputStream(Paths.get(fileName)));
-        T tmp = kryoManager.readObjectOrNull(input, classType);
+        final T tmp = kryoManager.readObjectOrNull(input, classType);
         input.close();
         return tmp;
     }

@@ -31,6 +31,7 @@ public class ScoreControllerImpl implements ScoreController {
 
     /**
      * Default constructor, check if exist the saving directory. If not exist the controller create it.
+     * @param scoreModel the score model.
      */
     public ScoreControllerImpl(final ScoreModel scoreModel) {
         this.scoreModel = scoreModel;
@@ -77,7 +78,7 @@ public class ScoreControllerImpl implements ScoreController {
                 return Collections.emptyList();
             }
             final String loadJson = loadStore.loadFromFile(filePath.toString(), String.class);
-            List<Score<String, Integer>> list = ImmutableList.copyOf(formatManager.restore(loadJson));
+            final List<Score<String, Integer>> list = ImmutableList.copyOf(formatManager.restore(loadJson));
             scoreModel.initializeScore(list);
             return list;
         } catch (IOException ex) {
