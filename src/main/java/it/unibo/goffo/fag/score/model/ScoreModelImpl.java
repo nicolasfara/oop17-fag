@@ -17,23 +17,16 @@ import static com.almasb.fxgl.app.DSLKt.geti;
 public class ScoreModelImpl implements ScoreModel {
 
     private final List<Score<String, Integer>> scoreList = new ArrayList<>();
-    private Integer userScore;
-    private final String propertyName = "score";
-
-    /**
-     * Constructor accept a string that match the property name for the score.
-     */
-    public ScoreModelImpl() {
-    }
+    private static final String PROPERTY_NAME = "score";
 
     /**
      * {@inheritDoc}
      */
     @Override
     public List<Score<String, Integer>> sendUpdatedScoreList() {
-        userScore = geti(propertyName);
-        String username = FXGL.getSystemConfig().getProfileName();
-        Optional<Score<String, Integer>> optionalScore = scoreList.stream()
+        final Integer userScore = geti(PROPERTY_NAME);
+        final String username = FXGL.getSystemConfig().getProfileName();
+        final Optional<Score<String, Integer>> optionalScore = scoreList.stream()
                 .filter(score -> score.getUsername().equals(username))
                 .findFirst();
 

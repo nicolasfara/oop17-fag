@@ -14,5 +14,9 @@ public interface ScoreModel {
      */
     List<Score<String, Integer>> sendUpdatedScoreList();
 
+    /**
+     * Initialize the score with the given list.
+     * @param firsScore the list contains all read scores.
+     */
     void initializeScore(List<Score<String, Integer>> firsScore);
 }
