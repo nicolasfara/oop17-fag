@@ -18,5 +18,5 @@ public interface ScoreController {
      * Since the saving collection is generic, you must specify the class type of the username and for the score.
      * @return return a list with the saved scores.
      */
-    List<? extends Score<String, Integer>> loadScoreFromFile();
+    List<Score<String, Integer>> loadScoreFromFile();
 }

@@ -24,5 +24,5 @@ public interface Format<T, U, S> {
      * @param formatted the formatted object.
      * @return the restored collection.
      */
-    List<? extends Score<U, S>> restore(T formatted);
+    List<Score<U, S>> restore(T formatted);
 }

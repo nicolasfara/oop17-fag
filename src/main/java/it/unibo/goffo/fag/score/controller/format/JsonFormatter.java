@@ -38,7 +38,7 @@ public class JsonFormatter implements Format<String, String, Integer> {
      * {@inheritDoc}
      */
     @Override
-    public List<? extends Score<String, Integer>> restore(final String formatted) {
+    public List<Score<String, Integer>> restore(final String formatted) {
         final Type type = new TypeToken<List<Score<String, Integer>>>() { }.getType();
         return gson.fromJson(formatted, type);
     }

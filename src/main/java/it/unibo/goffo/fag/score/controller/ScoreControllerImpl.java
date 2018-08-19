@@ -1,7 +1,7 @@
 package it.unibo.goffo.fag.score.controller;
 
 import com.almasb.fxgl.core.logging.Logger;
-import com.google.common.collect.ImmutableList;
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import it.unibo.goffo.fag.score.Score;
 import it.unibo.goffo.fag.score.controller.format.Format;
 import it.unibo.goffo.fag.score.controller.format.JsonFormatter;
@@ -20,6 +20,7 @@ import java.util.List;
 /**
  * Implementation of controller for saving score.
  */
+@SuppressFBWarnings(value = "PATH_TRAVERSAL_IN", justification = "Tha path cannot be controlled by the user")
 public class ScoreControllerImpl implements ScoreController {
 
     private final Format<String, String, Integer> formatManager = new JsonFormatter();
@@ -53,6 +54,7 @@ public class ScoreControllerImpl implements ScoreController {
                 LOGGER.fatal("Unable to create the file", ex);
             }
         }
+        scoreModel.initializeScore(loadScoreFromFile());
     }
 
     /**
@@ -72,15 +74,14 @@ public class ScoreControllerImpl implements ScoreController {
      * {@inheritDoc}
      */
     @Override
-    public List<? extends Score<String, Integer>> loadScoreFromFile() {
+    public List<Score<String, Integer>> loadScoreFromFile() {
         try {
             if (fileIsEmpty(filePath.toString())) {
                 return Collections.emptyList();
             }
             final String loadJson = loadStore.loadFromFile(filePath.toString(), String.class);
-            final List<Score<String, Integer>> list = ImmutableList.copyOf(formatManager.restore(loadJson));
-            scoreModel.initializeScore(list);
-            return list;
+            return formatManager.restore(loadJson);
+
         } catch (IOException ex) {
             LOGGER.fatal("Unable to find the file", ex);
         }
