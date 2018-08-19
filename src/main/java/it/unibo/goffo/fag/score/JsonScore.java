@@ -2,17 +2,14 @@ package it.unibo.goffo.fag.score;
 
 import com.google.common.base.MoreObjects;
 import com.google.common.base.Objects;
-import com.google.common.base.Strings;
 
-import java.io.Serializable;
 import java.time.LocalDate;
 
 /**
  * Implementation of the Score.
  */
-public class JsonScore implements Score<String, Integer>, Serializable {
+public class JsonScore implements Score<String, Integer> {
 
-    public static final long serialVersionUID = 49228374;
     private String username;
     private Integer score;
     private LocalDate date;
@@ -31,7 +28,8 @@ public class JsonScore implements Score<String, Integer>, Serializable {
      * Default constructor.
      */
     public JsonScore() {
-        this.username = Strings.nullToEmpty(null);
+        this.username = "";
+        this.score = 0;
     }
 
     /**
