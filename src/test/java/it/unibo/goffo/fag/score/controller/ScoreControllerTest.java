@@ -1,14 +1,13 @@
 package it.unibo.goffo.fag.score.controller;
 
-import it.unibo.goffo.fag.score.JsonScore;
 import it.unibo.goffo.fag.score.Score;
+import it.unibo.goffo.fag.score.model.ScoreModelImpl;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.lang.reflect.Field;
 import java.nio.file.Paths;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -18,7 +17,7 @@ public class ScoreControllerTest {
 
     @Before
     public void initialize() throws NoSuchFieldException, IllegalAccessException {
-        scoreController = new ScoreControllerImpl("prop");
+        scoreController = new ScoreControllerImpl(new ScoreModelImpl());
         Field filePath = ScoreControllerImpl.class.getDeclaredField("path");
         filePath.setAccessible(true);
         filePath.set(scoreController, Paths.get(System.getProperty("java.io.tmpdir"), "fag"));
@@ -30,7 +29,7 @@ public class ScoreControllerTest {
 
     @Test
     public void test2() {
-        List<Score<String, Integer>> list = Collections.unmodifiableList(scoreController.loadScoreFromFile(String.class, Integer.class));
+        List<Score<String, Integer>> list = Collections.unmodifiableList(scoreController.loadScoreFromFile());
         for (Score<String, Integer> score : list) {
             System.out.println(score);
         }
