@@ -3,6 +3,7 @@ package it.unibo.goffo.fag.ui.hud;
 import com.almasb.fxgl.gameplay.GameState;
 import com.almasb.fxgl.scene.GameScene;
 import com.almasb.fxgl.ui.UIController;
+import it.unibo.goffo.fag.life.LifeController;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;

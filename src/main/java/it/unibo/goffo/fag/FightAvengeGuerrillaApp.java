@@ -3,6 +3,7 @@ package it.unibo.goffo.fag;
 import com.almasb.fxgl.app.GameApplication;
 import com.almasb.fxgl.settings.GameSettings;
 import com.almasb.fxgl.ui.UI;
+import it.unibo.goffo.fag.life.LifeImpl;
 import it.unibo.goffo.fag.ui.hud.HUDController;
 
 /**
