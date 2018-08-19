@@ -26,7 +26,7 @@ public class ScoresViewController {
      * Initialize the Gui controller with model & controller from score.
      */
     public ScoresViewController() {
-        ScoreController scoreController = new ScoreControllerImpl(new ScoreModelImpl());
+        final ScoreController scoreController = new ScoreControllerImpl(new ScoreModelImpl());
         scoreView = new ScoreViewImpl(scoreController);
     }
 

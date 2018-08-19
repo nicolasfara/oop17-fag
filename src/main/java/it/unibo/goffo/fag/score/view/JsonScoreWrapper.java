@@ -1,7 +1,6 @@
 package it.unibo.goffo.fag.score.view;
 
 import com.google.common.base.Objects;
-import com.google.common.base.Strings;
 import it.unibo.goffo.fag.score.JsonScore;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
@@ -32,7 +31,7 @@ public class JsonScoreWrapper extends JsonScore {
      */
     public JsonScoreWrapper() {
         super();
-        this.username = new SimpleStringProperty(Strings.nullToEmpty(null));
+        this.username = new SimpleStringProperty("");
         this.score = new SimpleIntegerProperty(0);
     }
 

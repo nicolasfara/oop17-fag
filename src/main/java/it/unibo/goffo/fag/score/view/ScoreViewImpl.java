@@ -1,8 +1,12 @@
 package it.unibo.goffo.fag.score.view;
 
+import it.unibo.goffo.fag.score.Score;
+import it.unibo.goffo.fag.score.ScoreComparator;
 import it.unibo.goffo.fag.score.controller.ScoreController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+
+import java.util.List;
 
 /**
  * Concrete class for the view.
@@ -25,7 +29,9 @@ public class ScoreViewImpl implements ScoreView {
     @Override
     public ObservableList<JsonScoreWrapper> convertList() {
         final ObservableList<JsonScoreWrapper> scoreWrappers = FXCollections.observableArrayList();
-        scoreController.loadScoreFromFile().forEach(score -> {
+        final List<Score<String, Integer>> tmpList = scoreController.loadScoreFromFile();
+        tmpList.sort(new ScoreComparator());
+        tmpList.forEach(score -> {
             final JsonScoreWrapper tmp = new JsonScoreWrapper(score.getUsername(), score.getScore());
             tmp.setDate(score.getDate());
             scoreWrappers.add(tmp);
