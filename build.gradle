@@ -30,6 +30,7 @@ dependencies {
     compile 'io.reactivex.rxjava2:rxjava:2.2.0'
     // SpotBugs
     spotbugsPlugins 'com.h3xstream.findsecbugs:findsecbugs-plugin:1.7.1'
+    compile 'com.github.spotbugs:spotbugs:3.1.6'
 }
 
 //PMD rules (More rigid rules)
