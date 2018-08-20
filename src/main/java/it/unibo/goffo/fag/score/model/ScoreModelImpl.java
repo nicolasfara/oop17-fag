@@ -2,7 +2,7 @@ package it.unibo.goffo.fag.score.model;
 
 import com.almasb.fxgl.app.FXGL;
 import it.unibo.goffo.fag.score.Score;
-import it.unibo.goffo.fag.score.builder.ScoreBuilder;
+import it.unibo.goffo.fag.score.builder.JsonScoreBuilder;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -37,7 +37,7 @@ public class ScoreModelImpl implements ScoreModel {
                 optionalScore.get().setDate(LocalDate.now());
             }
         } else {
-            final Score<String, Integer> score = new ScoreBuilder()
+            final Score<String, Integer> score = new JsonScoreBuilder()
                     .setUsername(username)
                     .setScore(userScore)
                     .setDate(LocalDate.now())
