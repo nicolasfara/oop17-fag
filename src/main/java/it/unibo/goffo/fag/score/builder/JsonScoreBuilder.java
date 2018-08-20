@@ -8,14 +8,14 @@ import java.time.LocalDate;
 /**
  * Builder that build a score object.
  */
-public class ScoreBuilder implements Builder<Score<String, Integer>> {
+public class JsonScoreBuilder implements Builder<Score<String, Integer>> {
 
     private final Score<String, Integer> score;
 
     /**
      * Default constructor.
      */
-    public ScoreBuilder() {
+    public JsonScoreBuilder() {
         score = new JsonScore();
     }
 
@@ -32,7 +32,7 @@ public class ScoreBuilder implements Builder<Score<String, Integer>> {
      * @param username the username to set.
      * @return this class.
      */
-    public ScoreBuilder setUsername(final String username) {
+    public JsonScoreBuilder setUsername(final String username) {
         score.setUsername(username);
         return this;
     }
@@ -42,7 +42,7 @@ public class ScoreBuilder implements Builder<Score<String, Integer>> {
      * @param score the score.
      * @return this class.
      */
-    public ScoreBuilder setScore(final Integer score) {
+    public JsonScoreBuilder setScore(final Integer score) {
         this.score.setScore(score);
         return this;
     }
@@ -52,7 +52,7 @@ public class ScoreBuilder implements Builder<Score<String, Integer>> {
      * @param date the date.
      * @return this class.
      */
-    public ScoreBuilder setDate(final LocalDate date) {
+    public JsonScoreBuilder setDate(final LocalDate date) {
         score.setDate(date);
         return this;
     }
