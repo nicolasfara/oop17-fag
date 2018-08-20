@@ -1,21 +1,39 @@
 package it.unibo.goffo.fag.life;
 
 import com.almasb.fxgl.app.FXGL;
+import javafx.beans.property.DoubleProperty;
 
 public class LifeController {
 
-    private final LifeImpl life;
+    private final LifeModelImpl life;
 
-    private static final int MAX_LIFE = 100;
+    private static final double MAX_LIFE = 1.0;
 
-    private LifeController() {
-        life = new LifeImpl.Builder()
+    public LifeController() {
+        life = new LifeModelImpl.Builder()
                 .setMaxLife(MAX_LIFE)
                 .startFrom(MAX_LIFE)
                 .build();
     }
 
     public void bindLife() {
-        life.lifeProperty().bind(FXGL.getApp().getGameState().intProperty("life"));
+        FXGL.getApp().getGameState().doubleProperty("life").bind(this.getLifeProperty());
+/*        this.getLifeProperty().bind(FXGL.getApp().getGameState().intProperty("life"));*/
+    }
+
+    public DoubleProperty getLifeProperty() {
+        return this.life.getProperty();
+    }
+
+    public double getLife() {
+        return Double.valueOf(this.life.getLife());
+    }
+
+    public void decreaseLife(final double amount) throws GameOverException {
+        this.life.setLife(this.life.getLife() - Math.abs(amount));
+        System.out.println(this.life.getLife());
+        if (Double.compare(this.life.getLife(), 0) < 0) {
+            throw new GameOverException();
+        }
     }
 }

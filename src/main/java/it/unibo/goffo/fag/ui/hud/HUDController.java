@@ -1,8 +1,11 @@
 package it.unibo.goffo.fag.ui.hud;
 
+import com.almasb.fxgl.app.FXGL;
 import com.almasb.fxgl.gameplay.GameState;
 import com.almasb.fxgl.scene.GameScene;
 import com.almasb.fxgl.ui.UIController;
+import it.unibo.goffo.fag.FightAvengeGuerrillaApp;
+import it.unibo.goffo.fag.life.GameOverException;
 import it.unibo.goffo.fag.life.LifeController;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -23,6 +26,10 @@ public class HUDController implements UIController {
     private final GameScene scene;
     private final GameState state;
 
+    private final LifeController lifeController;
+
+    private static final double LIFE_OFFSET = 0.1;
+
     /**
      * Controller for in-game HUD.
      * @param scene used GameScene to interact with
@@ -30,6 +37,7 @@ public class HUDController implements UIController {
     public HUDController(final GameScene scene, final GameState state) {
         this.scene = scene;
         this.state = state;
+        this.lifeController = new LifeController();
     }
 
     public ProgressBar getPlayerLife() {
@@ -38,9 +46,15 @@ public class HUDController implements UIController {
 
     @FXML
     public void decreaseLife() {
-        this.state.doubleProperty("playerLife").set(this.playerLife.getProgress() - 0.1);
-        System.out.println(this.state.doubleProperty("playerLife").get());
-        System.out.println((this.playerLife.getProgress()));
+        try {
+            this.lifeController.decreaseLife(LIFE_OFFSET);
+        } catch (GameOverException e) {
+            e.printStackTrace();
+        }
+        /* this.state.doubleProperty("playerLife").set(this.playerLife.getProgress() - 0.1); */
+        /*state.setValue("playerLife", this.lifeController.getLife());*/
+        System.out.println("doubleProperty = " + this.state.getDouble("playerLife"));
+        System.out.println("Progress = " + this.playerLife.getProgress());
     }
 
     @FXML

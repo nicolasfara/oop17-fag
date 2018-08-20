@@ -3,7 +3,7 @@ package it.unibo.goffo.fag;
 import com.almasb.fxgl.app.GameApplication;
 import com.almasb.fxgl.settings.GameSettings;
 import com.almasb.fxgl.ui.UI;
-import it.unibo.goffo.fag.life.LifeImpl;
+import it.unibo.goffo.fag.life.LifeController;
 import it.unibo.goffo.fag.ui.hud.HUDController;
 
 /**
@@ -27,6 +27,8 @@ public class FightAvengeGuerrillaApp extends GameApplication {
     private static final int HUD_LIFE_POS_Y = HUD_START_Y + HUD_OFFSET_Y;
     private static final String APPLICATION_NAME = "Final Avenge Guerrilla";
 
+    private LifeController lifeController;
+
     /**
      * Main method launch the game engine.
      * @param args Command line arguments.
@@ -43,6 +45,7 @@ public class FightAvengeGuerrillaApp extends GameApplication {
         settings.setWidth(WIDTH_SCREEN);
         settings.setHeight(HEIGHT_SCREEN);
         settings.setTitle(APPLICATION_NAME);
+        lifeController = new LifeController();
     }
 
     /**
@@ -59,11 +62,12 @@ public class FightAvengeGuerrillaApp extends GameApplication {
     @Override
     protected void initGame() {
         super.initGame();
-        getGameState().setValue("playerLife", 1.0);
+        /*lifeController.bindLife();*/
+        this.getGameState().setValue("playerLife", 1.0);
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritDoc}Math.abs
      */
     @Override
     protected void initPhysics() {
@@ -78,7 +82,14 @@ public class FightAvengeGuerrillaApp extends GameApplication {
          */
         final HUDController hudController = new HUDController(getGameScene(), getGameState());
         final UI hud = getAssetLoader().loadUI("hud.fxml", hudController);
-        hudController.getPlayerLife().progressProperty().bind(getGameState().doubleProperty("playerLife"));
+
+        /*
+        hudController.getPlayerLife().progressProperty().bind(this.lifeController.getLifeProperty());
+        */
+
+        hudController.getPlayerLife().progressProperty().bindBidirectional(this.lifeController.getLifeProperty());
+
+        /*hudController.getPlayerLife().progressProperty().bind(this.getGameState().doubleProperty("playerLife"));*/
         getGameScene().addUI(hud);
     }
 }
