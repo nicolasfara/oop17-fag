@@ -6,7 +6,9 @@ import com.almasb.fxgl.texture.AnimatedTexture;
 import com.almasb.fxgl.texture.AnimationChannel;
 import javafx.util.Duration;
 
-public class FagControl extends Component {
+public class FagControl extends Component implements AnimationPlayer {
+
+
 
     private int speedX = 0;
     private int speedY = 0;
