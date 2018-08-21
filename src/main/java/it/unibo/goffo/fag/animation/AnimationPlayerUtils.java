@@ -13,7 +13,7 @@ public class AnimationPlayerUtils {
         private boolean mov;
         private boolean atk;
 
-        public Animation(MoveDirection direction, boolean moving, boolean attacking){
+        private Animation(MoveDirection direction, boolean moving, boolean attacking){
             dir = direction;
             mov = moving;
             atk = attacking;
