@@ -6,16 +6,16 @@ import io.reactivex.Observable;
 /**
  *
  */
-public interface SpawnerController {
+public interface SpawnController {
     /**
      *
      */
-    void startSpawner();
+    void startSpawn();
 
     /**
      *
      */
-    void stopSpawner();
+    void stopSpawn();
 
     /**
      *
