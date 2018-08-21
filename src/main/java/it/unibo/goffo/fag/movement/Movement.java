@@ -24,6 +24,11 @@ import java.util.Map;
 
 public class Movement extends FightAvengeGuerrillaApp {
 
+    /**
+     * deve implementare movement (che non si è capito chi deve farla)
+     *
+     * bisogna anche importare la classe che genera il player e sostituire i vari parametri
+     */
     public enum EntityType {
 
         PLAYER
@@ -43,9 +48,13 @@ public class Movement extends FightAvengeGuerrillaApp {
                 .buildAndAttach(getGameWorld());
     }
 
-    @Override
-    protected void initInput() {
-        Input input = getInput();
+    /**
+     *
+     * @param input
+     *
+     * sostituire "player" con il corrispondente della classe che verrà fatta
+     */
+    public void onMovement(Input input) {
 
         input.addAction(new UserAction("Move Right") {
             @Override
