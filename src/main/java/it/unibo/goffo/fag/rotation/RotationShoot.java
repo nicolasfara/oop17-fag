@@ -24,6 +24,13 @@ import java.util.Map;
 
 public class RotationShoot extends FightAvengeGuerrillaApp {
 
+    /**
+     * implementa player
+     *
+     * un metodo per la rotazione e un metodo per sparare ( test su come fare lo sparo)
+     *
+     * sicuramente bisogna importare player e bullet in qualche modo
+     */
     public enum EntityType {
 
         PLAYER
@@ -43,14 +50,25 @@ public class RotationShoot extends FightAvengeGuerrillaApp {
                 .buildAndAttach(getGameWorld());
     }
 
-    @Override
-    protected void initInput() {
-        Input input = getInput();
+    /**
+     *
+     */
+    private void onShoot() {
+        System.out.println("SHOOT");
+
+    }
+
+    /**
+     *
+     * @param input
+     */
+    public void onRotation(Input input) {
 
         input.addAction(new UserAction("Rotate Left") {
             @Override
             protected void onAction() {
                 player.setRotation(-90.0);
+                onShoot();
             }
         }, KeyCode.LEFT);
 
@@ -58,6 +76,7 @@ public class RotationShoot extends FightAvengeGuerrillaApp {
             @Override
             protected void onAction() {
                 player.setRotation(90.0);
+                onShoot();
             }
         }, KeyCode.RIGHT);
 
@@ -65,6 +84,7 @@ public class RotationShoot extends FightAvengeGuerrillaApp {
             @Override
             protected void onAction() {
                 player.setRotation(0.0);
+                onShoot();
             }
         }, KeyCode.UP);
 
@@ -72,6 +92,7 @@ public class RotationShoot extends FightAvengeGuerrillaApp {
             @Override
             protected void onAction() {
                 player.setRotation(180.0);
+                onShoot();
             }
         }, KeyCode.DOWN);
     }
