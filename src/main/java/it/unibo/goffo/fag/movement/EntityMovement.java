@@ -3,9 +3,9 @@ package it.unibo.goffo.fag.movement;
 import com.almasb.fxgl.entity.Entity;
 
 /**
- *
+ * This class is used to move an entity.
  */
-public class PlayerMovement extends AbstractMovement {
+public class EntityMovement extends AbstractMovement {
 
 
     private final Entity entity;
@@ -14,7 +14,7 @@ public class PlayerMovement extends AbstractMovement {
      *
      * @param entity the entity we want to move
      */
-    public PlayerMovement(final Entity entity) {
+    public EntityMovement(final Entity entity) {
         super();
         this.entity = entity;
     }
