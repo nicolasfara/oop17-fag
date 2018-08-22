@@ -1,9 +1,14 @@
 package it.unibo.goffo.fag.life;
 
-abstract class AbsLifeModel<T> implements LifeModel<T> {
+public abstract class AbsLifeModel<T extends Number> implements LifeModel<T> {
 
     protected T life;
     protected T maxLife;
+
+    protected AbsLifeModel(final T start, final T maxLife) {
+        this.life = start;
+        this.maxLife = maxLife;
+    }
 
    @Override
    public T getLife() {
@@ -13,14 +18,11 @@ abstract class AbsLifeModel<T> implements LifeModel<T> {
    @Override
    public abstract void setLife(T amount);
 
-   @Override
-   public abstract void setMaxLife(T maxLife);
-
 
     public abstract static class Builder<T extends Number> {
 
-        private T life;
-        private T maxLife;
+        protected T life;
+        protected T maxLife;
 
         public Builder setMaxLife(final T maxLife) {
             this.maxLife = maxLife;
@@ -32,7 +34,7 @@ abstract class AbsLifeModel<T> implements LifeModel<T> {
             return this;
         }
 
-        abstract LifeModel<T> build() throws IllegalStateException;
+        public abstract LifeModel<T> build() throws IllegalStateException;
     }
 
 }

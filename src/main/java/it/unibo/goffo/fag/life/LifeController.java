@@ -5,9 +5,9 @@ import javafx.beans.property.DoubleProperty;
 
 public class LifeController {
 
-    private final LifeModelImpl life;
+    private final LifeModel<Double> life;
 
-    private static final double MAX_LIFE = 1.0;
+    private static final Double MAX_LIFE = 1.0;
 
     public LifeController() {
         life = new LifeModelImpl.Builder()
@@ -16,17 +16,18 @@ public class LifeController {
                 .build();
     }
 
+    /*
     public void bindLife() {
         FXGL.getApp().getGameState().doubleProperty("life").bind(this.getLifeProperty());
-/*        this.getLifeProperty().bind(FXGL.getApp().getGameState().intProperty("life"));*/
-    }
+/*        this.getLifeProperty().bind(FXGL.getApp().getGameState().intProperty("life"));
+    }*/
 
-    public DoubleProperty getLifeProperty() {
+    /*public DoubleProperty getLifeProperty() {
         return this.life.getProperty();
-    }
+    }*/
 
     public double getLife() {
-        return Double.valueOf(this.life.getLife());
+        return this.life.getLife();
     }
 
     public void decreaseLife(final double amount) throws GameOverException {
