@@ -10,7 +10,7 @@ import java.util.List;
  * @param <U> Username format of the object to be formatted.
  * @param <S> Score type of the object to be serialized.
  */
-public interface Format<T, U, S> {
+public interface Formatter<T, U, S> {
     /**
      * Method for formatting a collection into his format.
      * The format is defined on the implementation of this class.
