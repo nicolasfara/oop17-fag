@@ -3,7 +3,7 @@ package it.unibo.goffo.fag.score.controller;
 import com.almasb.fxgl.core.logging.Logger;
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import it.unibo.goffo.fag.score.Score;
-import it.unibo.goffo.fag.score.controller.format.Format;
+import it.unibo.goffo.fag.score.controller.format.Formatter;
 import it.unibo.goffo.fag.score.controller.format.JsonFormatter;
 import it.unibo.goffo.fag.score.controller.serialize.LoadStore;
 import it.unibo.goffo.fag.score.controller.serialize.LoadStoreManager;
@@ -23,7 +23,7 @@ import java.util.List;
 @SuppressFBWarnings(value = "PATH_TRAVERSAL_IN", justification = "Tha path cannot be controlled by the user")
 public class ScoreControllerImpl implements ScoreController {
 
-    private final Format<String, String, Integer> formatManager = new JsonFormatter();
+    private final Formatter<String, String, Integer> formatManager = new JsonFormatter();
     private final LoadStore<String> loadStore = new LoadStoreManager<>();
     private static final Logger LOGGER = Logger.get(ScoreControllerImpl.class);
     private final Path path = Paths.get(System.getProperty("user.home"), ".fag");
@@ -62,7 +62,7 @@ public class ScoreControllerImpl implements ScoreController {
      */
     @Override
     public void saveScoreToFile() {
-        final String jsonString = formatManager.formatter(scoreModel.sendUpdatedScoreList());
+        final String jsonString = formatManager.formatter(scoreModel.updatedScoreList());
         try {
             loadStore.saveToFile(filePath.toString(), jsonString, String.class);
         } catch (IOException ex) {

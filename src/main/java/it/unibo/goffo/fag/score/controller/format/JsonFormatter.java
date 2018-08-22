@@ -13,7 +13,7 @@ import java.util.List;
 /**
  * This class use JSON for serialize object.
  */
-public class JsonFormatter implements Format<String, String, Integer> {
+public class JsonFormatter implements Formatter<String, String, Integer> {
 
     private final Gson gson;
 

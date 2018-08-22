@@ -23,7 +23,7 @@ public class ScoreModelImpl implements ScoreModel {
      * {@inheritDoc}
      */
     @Override
-    public List<Score<String, Integer>> sendUpdatedScoreList() {
+    public List<Score<String, Integer>> updatedScoreList() {
         final Integer userScore = geti(PROPERTY_NAME);
         final String username = FXGL.getSystemConfig().getProfileName();
         final Optional<Score<String, Integer>> optionalScore = scoreList.stream()
