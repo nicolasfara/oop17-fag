@@ -1,6 +1,7 @@
 package it.unibo.goffo.fag.movement;
 
 import com.almasb.fxgl.entity.component.Component;
+import io.reactivex.subjects.PublishSubject;
 
 /**
  * Abstract class implement basic entity movement.
@@ -9,6 +10,7 @@ public abstract class AbstractMovement extends Component implements Movement {
 
     private float speed;
     private static final int SPEED_FACTOR = 1;
+    private final PublishSubject<MoveDirection> observable = PublishSubject.create();
 
     /**
      * Default constructor (Access: package protected).
@@ -24,6 +26,7 @@ public abstract class AbstractMovement extends Component implements Movement {
     @Override
     public void moveUp() {
         move(0, -SPEED_FACTOR * speed);
+        observable.onNext(MoveDirection.UP);
     }
 
     /**
@@ -32,6 +35,7 @@ public abstract class AbstractMovement extends Component implements Movement {
     @Override
     public void moveDown() {
         move(0, SPEED_FACTOR * speed);
+        observable.onNext(MoveDirection.DOWN);
     }
 
     /**
@@ -40,6 +44,7 @@ public abstract class AbstractMovement extends Component implements Movement {
     @Override
     public void moveLeft() {
         move(-SPEED_FACTOR * speed, 0);
+        observable.onNext(MoveDirection.LEFT);
     }
 
     /**
@@ -48,6 +53,7 @@ public abstract class AbstractMovement extends Component implements Movement {
     @Override
     public void moveRight() {
         move(SPEED_FACTOR * speed, 0);
+        observable.onNext(MoveDirection.RIGHT);
     }
 
     /**
@@ -56,6 +62,14 @@ public abstract class AbstractMovement extends Component implements Movement {
     @Override
     public void setSpeed(final float newSpeed) {
         this.speed = newSpeed;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public PublishSubject<MoveDirection> getObservable() {
+        return observable;
     }
 
     /**
