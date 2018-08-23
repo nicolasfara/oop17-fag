@@ -8,13 +8,14 @@ import com.almasb.fxgl.entity.component.Component;
 public abstract class AbstractMovement extends Component implements Movement {
 
     private float speed;
-    private static final int SPEED_FACTOR = 5;
+    private static final int SPEED_FACTOR = 1;
 
     /**
      * Default constructor (Access: package protected).
      */
-    AbstractMovement() {
+    AbstractMovement(final float speed) {
         super();
+        this.speed = speed;
     }
 
     /**
