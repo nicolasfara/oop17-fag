@@ -52,14 +52,6 @@ public class SpawnerControllerImpl implements SpawnController {
      * {@inheritDoc}
      */
     @Override
-    public void setSpawnMode(final SpawnMode mode) {
-
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
     public Observable<? extends Entity> getObservable() {
         return observable;
     }

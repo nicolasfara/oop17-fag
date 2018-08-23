@@ -24,12 +24,6 @@ public interface SpawnController {
 
     /**
      *
-     * @param mode the mode used to spawn the entities.
-     */
-    void setSpawnMode(SpawnMode mode);
-
-    /**
-     *
      * @return
      */
     Observable<? extends Entity> getObservable();
