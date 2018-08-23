@@ -1,27 +1,19 @@
 package it.unibo.goffo.fag.collision;
 
-import com.almasb.fxgl.entity.Entity;
-
 /**
  * Basic class that handle collisions between player and zombie.
  */
-public class PlayerZombieCollision extends AbstractCollision {
+public class PlayerZombieCollision implements Collision<Player, Zombie> {
 
-    private final Entity player, zombie;
-
-    PlayerZombieCollision(final Entity entityOne, final Entity entityTwo) {
+    PlayerZombieCollision() {
         super();
-        this.player = entityOne;
-        this.zombie = entityTwo;
     }
 
     /**
-     *
-     *
+     * {@inheritDoc}
      */
     @Override
-    protected void onCollision() {
-        // player perde vita
-        //
+    public void onCollision(Player p1, Zombie z1) {
+        // p1.decLife();
     }
 }

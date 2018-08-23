@@ -1,38 +1,20 @@
 package it.unibo.goffo.fag.collision;
 
-import com.almasb.fxgl.entity.Entity;
-
 /**
  * Basic class that handle collisions between bullet and zombie.
  */
-public class BulletZombieCollision extends AbstractCollision {
+public class BulletZombieCollision implements Collision<Bullet, Zombie> {
 
-    private final Entity bullet, zombie;
-
-    BulletZombieCollision(final Entity entityOne, final Entity entityTwo) {
+    BulletZombieCollision() {
         super();
-        this.bullet = entityOne;
-        this.zombie = entityTwo;
     }
 
     /**
-     *
-     *
+     * {@inheritDoc}
      */
     @Override
-    protected void onCollision() {
-        // zombie.decreaseLife();
-        zombie.removeFromWorld();
-        bullet.removeFromWorld();
+    public void onCollision(Bullet p1, Zombie z1) {
+        // z1.decLife();
+        // b1.removeFromWorld();
     }
 }
-
-/*
-
-Remove Abstract class
-Remove param from constructor
-
-add param to method
-
-
- */
