@@ -14,11 +14,12 @@ public class LifeModelImpl extends AbsLifeModel<Double> implements LifeModel<Dou
         }
     }
 
-    public static class Builder extends AbsLifeModel.Builder<java.lang.Double> {
+    public static class Builder extends AbsLifeModel.Builder<Double> {
+
         /**
-         * aaaaa
-         * @return LifeMel the lifemodel
-         * @throws IllegalStateException aaaa eeee
+         * aaa.
+         * @return LifeMel the life model.
+         * @throws IllegalStateException aaa edee.
          *
          */
         public LifeModel<Double> build() throws IllegalStateException {

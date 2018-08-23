@@ -4,9 +4,10 @@ import com.almasb.fxgl.app.FXGL;
 import com.almasb.fxgl.gameplay.GameState;
 import com.almasb.fxgl.scene.GameScene;
 import com.almasb.fxgl.ui.UIController;
-import it.unibo.goffo.fag.FightAvengeGuerrillaApp;
+import it.unibo.goffo.fag.life.CharacterDiesException;
 import it.unibo.goffo.fag.life.GameOverException;
 import it.unibo.goffo.fag.life.LifeController;
+import it.unibo.goffo.fag.life.LifeControllerImpl;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -26,7 +27,7 @@ public class HUDController implements UIController {
     private final GameScene scene;
     private final GameState state;
 
-    private final LifeController lifeController;
+    private final LifeController<Double> lifeController;
 
     private static final double LIFE_OFFSET = 0.1;
 
@@ -37,7 +38,7 @@ public class HUDController implements UIController {
     public HUDController(final GameScene scene, final GameState state) {
         this.scene = scene;
         this.state = state;
-        this.lifeController = new LifeController();
+        this.lifeController = new LifeControllerImpl();
     }
 
     public ProgressBar getPlayerLife() {
@@ -45,14 +46,22 @@ public class HUDController implements UIController {
     }
 
     @FXML
-    public void decreaseLife() {
+    public void decreaseLife() throws GameOverException {
         try {
-            this.lifeController.decreaseLife(LIFE_OFFSET);
-        } catch (GameOverException e) {
+            this.lifeController.decreaseOf(LIFE_OFFSET);
+        } catch (CharacterDiesException e) {
+            /* ** non qui, perchè questo è il controller della view,
+                   ** ma immagino sia interessante farlo così
+            if (player) {
+                throw new GameOverException()
+            }*/
             e.printStackTrace();
+            FXGL.getApp().stop();
+            System.exit(0);
         }
         /* this.state.doubleProperty("playerLife").set(this.playerLife.getProgress() - 0.1); */
-        /*state.setValue("playerLife", this.lifeController.getLife());*/
+        /*this.state.increment("doubleProperty", LIFE_OFFSET);*/
+        this.state.setValue("playerLife", this.lifeController.getLife());
         System.out.println("doubleProperty = " + this.state.getDouble("playerLife"));
         System.out.println("Progress = " + this.playerLife.getProgress());
     }

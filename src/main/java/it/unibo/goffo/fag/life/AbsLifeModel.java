@@ -18,7 +18,6 @@ public abstract class AbsLifeModel<T extends Number> implements LifeModel<T> {
    @Override
    public abstract void setLife(T amount);
 
-
     public abstract static class Builder<T extends Number> {
 
         protected T life;

@@ -3,7 +3,9 @@ package it.unibo.goffo.fag;
 import com.almasb.fxgl.app.GameApplication;
 import com.almasb.fxgl.settings.GameSettings;
 import com.almasb.fxgl.ui.UI;
+import it.unibo.goffo.fag.life.AbsLifeController;
 import it.unibo.goffo.fag.life.LifeController;
+import it.unibo.goffo.fag.life.LifeControllerImpl;
 import it.unibo.goffo.fag.ui.hud.HUDController;
 
 /**
@@ -45,7 +47,7 @@ public class FightAvengeGuerrillaApp extends GameApplication {
         settings.setWidth(WIDTH_SCREEN);
         settings.setHeight(HEIGHT_SCREEN);
         settings.setTitle(APPLICATION_NAME);
-        lifeController = new LifeController();
+        this.lifeController = new LifeControllerImpl();
     }
 
     /**
@@ -83,13 +85,12 @@ public class FightAvengeGuerrillaApp extends GameApplication {
         final HUDController hudController = new HUDController(getGameScene(), getGameState());
         final UI hud = getAssetLoader().loadUI("hud.fxml", hudController);
 
-        /*
-        hudController.getPlayerLife().progressProperty().bind(this.lifeController.getLifeProperty());
+        /* NOT WORKING
+        hudController.getPlayerLife().progressProperty().bind(this.absLifeController.getLifeProperty());
         */
 
-        hudController.getPlayerLife().progressProperty().bindBidirectional(this.lifeController.getLifeProperty());
-
-        /*hudController.getPlayerLife().progressProperty().bind(this.getGameState().doubleProperty("playerLife"));*/
+        hudController.getPlayerLife().progressProperty().bind(
+                this.getGameState().doubleProperty("playerLife"));
         getGameScene().addUI(hud);
     }
 }
