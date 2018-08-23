@@ -21,7 +21,18 @@ public class BulletZombieCollision extends AbstractCollision {
      */
     @Override
     protected void onCollision() {
+        // zombie.decreaseLife();
         zombie.removeFromWorld();
         bullet.removeFromWorld();
     }
 }
+
+/*
+
+Remove Abstract class
+Remove param from constructor
+
+add param to method
+
+
+ */
