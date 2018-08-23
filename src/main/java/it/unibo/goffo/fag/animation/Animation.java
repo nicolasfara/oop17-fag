@@ -6,19 +6,12 @@ import javafx.util.Duration;
 import java.util.HashMap;
 import java.util.Map;
 
-public interface AnimationPlayer {
+/**
+ * Interface that allows to play animations
+ */
+public interface Animation {
 
-        class Animation{
-            private MoveDirection dir;
-            private boolean mov;
-            private boolean atk;
-
-            Animation(MoveDirection direction, boolean moving, boolean attacking){
-                dir = direction;
-                mov = moving;
-                atk = attacking;
-            }
-        }
+        MoveDirection dir = null;
 
         int width = 128;
         int height = 128;
@@ -28,5 +21,10 @@ public interface AnimationPlayer {
 
         Map<Animation, AnimationChannel> playerAnimations = new HashMap<Animation, AnimationChannel>();
 
-        void PlayAnimation(MoveDirection direction, boolean moving, boolean attacking);
+    /**
+     * Plays the walking animation corresponding to a direction
+     *
+     * @param direction direction that the character is facing
+     */
+    void PlayWalkAnimation(MoveDirection direction);
 }
