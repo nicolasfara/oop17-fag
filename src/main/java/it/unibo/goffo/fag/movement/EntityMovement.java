@@ -1,22 +1,15 @@
 package it.unibo.goffo.fag.movement;
 
-import com.almasb.fxgl.entity.Entity;
-
 /**
  * This class is used to move an entity.
  */
 public class EntityMovement extends AbstractMovement {
 
-
-    private final Entity entity;
-
     /**
      *
-     * @param entity the entity we want to move
      */
-    public EntityMovement(final Entity entity) {
+    public EntityMovement() {
         super();
-        this.entity = entity;
     }
 
     /**
@@ -24,7 +17,7 @@ public class EntityMovement extends AbstractMovement {
      */
     @Override
     protected void move(final float deltaX, final float deltaY) {
-        entity.translate(deltaX, deltaY);
+        getEntity().translate(deltaX, deltaY);
     }
 
 }
