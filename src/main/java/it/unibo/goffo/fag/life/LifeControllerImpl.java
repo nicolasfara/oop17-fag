@@ -1,5 +1,7 @@
 package it.unibo.goffo.fag.life;
 
+import com.almasb.fxgl.app.FXGL;
+
 public class LifeControllerImpl extends AbsLifeController<Double> {
 
     private static final Double MAX_LIFE = 1.0;
@@ -22,10 +24,19 @@ public class LifeControllerImpl extends AbsLifeController<Double> {
             throw new CharacterDiesException();
         }
         this.life.setLife(newLife);
+        updateGameEngine();
     }
 
     @Override
     public void increaseOf(final Double amount) {
         this.life.setLife(this.life.getLife() + Math.abs(amount));
+        updateGameEngine();
+    }
+
+
+    /* NON IMPLEMENTARE QUI */
+    private void updateGameEngine() {
+        FXGL.getApp().getGameState().setValue("playerLife", this.life.getLife());
+
     }
 }
