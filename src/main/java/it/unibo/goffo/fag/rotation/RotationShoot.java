@@ -21,6 +21,12 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import java.util.Map;
 
+/*
+- create interface, abstract class and clas like Movement
+- create class for attack, maybe even interface and/or abstract
+- Into rotation Handler we call rotation and attack
+
+ */
 
 public class RotationShoot extends FightAvengeGuerrillaApp {
 
