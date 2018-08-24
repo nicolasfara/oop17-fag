@@ -2,14 +2,21 @@ package it.unibo.goffo.fag.life;
 
 public abstract class AbsLifeController<T extends Number> implements LifeController<T> {
 
-    protected LifeModel<T> life;
+    private LifeModel<T> life;
 
     @SuppressWarnings("unchecked")
-    protected AbsLifeController() { }
+    AbsLifeController(final LifeModel<T> lifeModel) {
+        this.life = lifeModel;
+    }
 
     @Override
     public T getLife() {
         return this.life.getLife();
+    }
+
+    @Override
+    public void setLife(final T amount) {
+        this.life.setLife(amount);
     }
 
     @Override

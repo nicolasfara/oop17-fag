@@ -6,10 +6,10 @@ package it.unibo.goffo.fag.life;
  */
 public abstract class AbsLifeModel<T extends Number> implements LifeModel<T> {
 
-    protected T life;
-    protected T maxLife;
+    private T life;
+    private T maxLife;
 
-    protected AbsLifeModel(final T start, final T maxLife) {
+    AbsLifeModel(final T start, final T maxLife) {
         this.life = start;
         this.maxLife = maxLife;
     }
@@ -26,7 +26,17 @@ public abstract class AbsLifeModel<T extends Number> implements LifeModel<T> {
      * {@inheritDoc}
      */
    @Override
-   public abstract void setLife(T amount);
+   public void setLife(final T amount) {
+       this.life = amount;
+   }
+
+    /**
+     * aaa.
+     * @return aaa.
+     */
+   T getMaxLife() {
+       return this.maxLife;
+   }
 
     /**
      * Simple builder to get a new life stored value in number way.
@@ -34,8 +44,8 @@ public abstract class AbsLifeModel<T extends Number> implements LifeModel<T> {
      */
    public abstract static class Builder<T extends Number> {
 
-       protected T life;
-       protected T maxLife;
+       private T life;
+       private T maxLife;
 
        public Builder setMaxLife(final T maxLife) {
            this.maxLife = maxLife;
@@ -45,6 +55,14 @@ public abstract class AbsLifeModel<T extends Number> implements LifeModel<T> {
        public Builder startFrom(final T value) {
            this.life = value;
            return this;
+       }
+
+       T getLife() {
+           return this.life;
+       }
+
+       T getMaxLife() {
+           return this.maxLife;
        }
 
        public abstract LifeModel<T> build() throws IllegalStateException;

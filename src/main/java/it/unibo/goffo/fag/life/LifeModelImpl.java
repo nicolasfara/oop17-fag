@@ -8,9 +8,9 @@ public class LifeModelImpl extends AbsLifeModel<Double> implements LifeModel<Dou
 
     @Override
     public void setLife(final Double amount) {
-        this.life = amount;
-        if (Double.compare(this.life, this.maxLife) > 0) {
-            this.life = this.maxLife;
+        super.setLife(amount);
+        if (Double.compare(super.getLife(), super.getMaxLife()) > 0) {
+            super.setLife(super.getMaxLife());
         }
     }
 
@@ -23,7 +23,12 @@ public class LifeModelImpl extends AbsLifeModel<Double> implements LifeModel<Dou
          *
          */
         public LifeModel<Double> build() throws IllegalStateException {
-            return new LifeModelImpl(this.life, this.maxLife);
+            if (super.getLife() == null) {
+                throw new IllegalStateException("Life in Builder must be assigned");
+            } else if (super.getMaxLife() == null) {
+                throw new IllegalStateException("Max Life in Builder must be assigned");
+            }
+            return new LifeModelImpl(super.getLife(), super.getMaxLife());
         }
     }
 
