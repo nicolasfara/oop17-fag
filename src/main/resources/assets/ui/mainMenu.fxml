@@ -8,14 +8,13 @@
 
 <AnchorPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="it.unibo.goffo.fag.ui.menu.MainMenuController"
             prefHeight="400.0" prefWidth="600.0">
 
-    <children>
-        <Button fx:id="btnStartGame">
+    <GridPane>
+        <Button fx:id="btnStartGame" text="START GAME" onAction="#startGame" />
 
-        </Button>
+        <Button fx:id="btnScores" text="SCORES" onAction="#showScores" />
 
-    </children>
-
+        <Button fx:id="btnExit" text="EXIT" onAction="#onExit" />
+    </GridPane>
 </AnchorPane>

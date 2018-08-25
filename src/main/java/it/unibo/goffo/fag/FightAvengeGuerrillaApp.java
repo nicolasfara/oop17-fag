@@ -2,6 +2,8 @@ package it.unibo.goffo.fag;
 
 import com.almasb.fxgl.app.GameApplication;
 import com.almasb.fxgl.settings.GameSettings;
+import com.almasb.fxgl.ui.UI;
+import it.unibo.goffo.fag.ui.menu.MainMenuController;
 
 /**
  * Main class, used to launch FXGL.
@@ -53,4 +55,20 @@ public class FightAvengeGuerrillaApp extends GameApplication {
     protected void initPhysics() {
         super.initPhysics();
     }
+
+    @Override
+    protected void initUI() {
+        // 1. create a controller class that implements UIController
+        MainMenuController controller = new MainMenuController();
+
+        // 2. place fxml file in "assets/ui" and load it
+        UI fxmlUI = getAssetLoader().loadUI("mainMenu.fxml", controller);
+
+        // 3. controller instance now has its @FXML fields injected
+        /* controller.getLabelCount().textProperty().bind(count.asString("Count: [%d]")); */
+
+        // 4. add UI to game scene
+        getGameScene().addUI(fxmlUI);
+    }
+
 }
