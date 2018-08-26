@@ -1,4 +1,4 @@
-package it.unibo.goffo.fag.spawner.logic;
+package it.unibo.goffo.fag.spawn.logic;
 
 /**
  * Interface used to realize the spawn logic.
@@ -9,7 +9,7 @@ public interface SpawnLogic {
      */
     enum SpawnMode {
         LINEAR,
-        QUADRATIC
+        EXPONENTIAL
     }
 
     /**

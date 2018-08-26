@@ -1,4 +1,4 @@
-package it.unibo.goffo.fag.spawner.logic;
+package it.unibo.goffo.fag.spawn.logic;
 
 import com.almasb.fxgl.core.math.FXGLMath;
 
@@ -7,11 +7,20 @@ import com.almasb.fxgl.core.math.FXGLMath;
  */
 public class SpawnLogicImpl implements SpawnLogic {
 
-    private int count;
+    private int linearCount;
     private int quadraticCount;
     private SpawnMode currentMode;
     private static final int LINEAR_FACTOR = 2;
-    private static final int QUADRATIC_BASE = 2;
+    private static final int EXPONENTIAL_BASE = 2;
+
+    /**
+     * Initialize all property.
+     */
+    public SpawnLogicImpl() {
+        linearCount = 0;
+        quadraticCount = 0;
+        currentMode = SpawnMode.LINEAR;
+    }
 
     /**
      * {@inheritDoc}
@@ -20,15 +29,15 @@ public class SpawnLogicImpl implements SpawnLogic {
     public int getNextCount() {
         switch (currentMode) {
             case LINEAR:
-                count += LINEAR_FACTOR;
+                linearCount += LINEAR_FACTOR;
                 break;
-            case QUADRATIC:
-                count = FXGLMath.round(FXGLMath.pow(QUADRATIC_BASE, quadraticCount++));
+            case EXPONENTIAL:
+                linearCount = FXGLMath.round(FXGLMath.pow(EXPONENTIAL_BASE, quadraticCount++));
                 break;
                 default:
                     throw new IllegalArgumentException("Ordinal not present in the enum");
         }
-        return count;
+        return linearCount;
     }
 
     /**
@@ -36,6 +45,15 @@ public class SpawnLogicImpl implements SpawnLogic {
      */
     @Override
     public void setSpawnType(final SpawnMode mode) {
+        switchMode(mode);
         currentMode = mode;
+    }
+
+    private void switchMode(final SpawnMode mode) {
+        if (currentMode == SpawnMode.LINEAR && mode == SpawnMode.EXPONENTIAL) {
+            quadraticCount = FXGLMath.round(FXGLMath.log(EXPONENTIAL_BASE, linearCount));
+        } else if (currentMode == SpawnMode.EXPONENTIAL && mode == SpawnMode.LINEAR) {
+            linearCount = quadraticCount;
+        }
     }
 }
