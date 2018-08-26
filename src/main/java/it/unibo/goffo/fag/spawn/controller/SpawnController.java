@@ -1,4 +1,4 @@
-package it.unibo.goffo.fag.spawner.controller;
+package it.unibo.goffo.fag.spawn.controller;
 
 import com.almasb.fxgl.entity.Entity;
 import io.reactivex.Observable;
