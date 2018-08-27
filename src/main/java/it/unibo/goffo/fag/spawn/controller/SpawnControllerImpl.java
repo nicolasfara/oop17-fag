@@ -5,7 +5,7 @@ import com.almasb.fxgl.time.TimerAction;
 import io.reactivex.Observable;
 import io.reactivex.subjects.PublishSubject;
 import it.unibo.goffo.fag.entities.Character;
-import it.unibo.goffo.fag.entities.Zombie;
+import it.unibo.goffo.fag.entities.builders.ZombieFactory;
 import it.unibo.goffo.fag.spawn.logic.SpawnLogic;
 import it.unibo.goffo.fag.spawn.logic.SpawnLogicImpl;
 import javafx.util.Duration;
@@ -24,11 +24,9 @@ public final class SpawnControllerImpl implements SpawnController {
     private static SpawnController spawnController;
 
     private SpawnControllerImpl() {
-        timerAction = FXGL.getMasterTimer().runAtInterval(() -> {
-            Stream.generate(Zombie::new)
+        timerAction = FXGL.getMasterTimer().runAtInterval(() -> Stream.generate(ZombieFactory::createSimpleZombie)
                     .limit(spawnLogic.getNextCount())
-                    .forEach(observable::onNext);
-        }, Duration.seconds(TIMER_TICK));
+                    .forEach(observable::onNext), Duration.seconds(TIMER_TICK));
     }
 
     /**

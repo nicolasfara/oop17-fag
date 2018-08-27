@@ -65,7 +65,7 @@ public final class FagEntities {
          * @param type the entity type.
          * @return instance class.
          */
-        public EntityBuilder type(final Enum<?> type) {
+        public EntityBuilder type(final Enum type) {
             player.setType(type);
             return this;
         }
