@@ -1,7 +1,5 @@
 package it.unibo.goffo.fag.movement;
 
-import io.reactivex.subjects.PublishSubject;
-
 /**
  * Interface used to generate a movement assignable to an entity.
  */
@@ -31,10 +29,4 @@ public interface Movement {
      * @param newSpeed the new speed to assign to the entity.
      */
     void setSpeed(float newSpeed);
-
-    /**
-     *
-     * @return Moving Direction.
-     */
-    PublishSubject<MoveDirection> getObservable();
 }
