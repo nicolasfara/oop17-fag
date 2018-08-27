@@ -26,12 +26,21 @@ public class ZombieFactory {
         Zombie zombie = (Zombie) FagEntities.builder(Zombie.class)
                 .at(randomPoint(/*max height, max width*/))
                 .type(FagType.SIMPLE_ZOMBIE)
-                .with(new ZombieAnimationImpl()z)
+                .with(new ZombieAnimationImpl())
                 .buildAndAttach(FXGL.getApp().getGameWorld());
 
         return zombie;
     }
-    
+
+    public static Zombie createAdvancedZombie() {
+        Zombie zombie = (Zombie) FagEntities.builder(Zombie.class)
+                .at(randomPoint(/*max height, max width*/))
+                .type(FagType.ADVANCE_ZOMBIE)
+                .with(new ZombieAnimationImpl())
+                .buildAndAttach(FXGL.getApp().getGameWorld());
+
+        return zombie;
+    }
 
     private static Point2D randomPoint(){
         final Point2D position;
