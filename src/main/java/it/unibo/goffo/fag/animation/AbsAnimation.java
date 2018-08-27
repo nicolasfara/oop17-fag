@@ -3,6 +3,7 @@ package it.unibo.goffo.fag.animation;
 import com.almasb.fxgl.entity.component.Component;
 import com.almasb.fxgl.texture.AnimatedTexture;
 import com.almasb.fxgl.texture.AnimationChannel;
+import it.unibo.goffo.fag.movement.MoveDirection;
 import javafx.util.Duration;
 
 import java.util.HashMap;
