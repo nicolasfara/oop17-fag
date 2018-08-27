@@ -1,6 +1,7 @@
 package it.unibo.goffo.fag.entities.builders;
 
 import com.almasb.fxgl.app.FXGL;
+import it.unibo.goffo.fag.animation.ZombieAnimationImpl;
 import it.unibo.goffo.fag.entities.FagType;
 import it.unibo.goffo.fag.entities.Zombie;
 import javafx.geometry.Point2D;
@@ -25,6 +26,7 @@ public class ZombieFactory {
         Zombie zombie = (Zombie) FagEntities.builder(Zombie.class)
                 .at(randomPoint(/*max height, max width*/))
                 .type(FagType.SIMPLE_ZOMBIE)
+                .with(new ZombieAnimationImpl()z)
                 .buildAndAttach(FXGL.getApp().getGameWorld());
 
         return zombie;
