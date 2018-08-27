@@ -23,7 +23,7 @@ public class ZombieFactory {
     private ZombieFactory() {}
 
     public static Zombie createSimpleZombie() {
-        Zombie zombie = (Zombie) FagEntities.builder(Zombie.class)
+        final Zombie zombie = (Zombie) FagEntities.builder(Zombie.class)
                 .at(randomPoint(/*max height, max width*/))
                 .type(FagType.SIMPLE_ZOMBIE)
                 .with(new ZombieAnimationImpl())
@@ -33,7 +33,7 @@ public class ZombieFactory {
     }
 
     public static Zombie createAdvancedZombie() {
-        Zombie zombie = (Zombie) FagEntities.builder(Zombie.class)
+        final Zombie zombie = (Zombie) FagEntities.builder(Zombie.class)
                 .at(randomPoint(/*max height, max width*/))
                 .type(FagType.ADVANCE_ZOMBIE)
                 .with(new ZombieAnimationImpl())
