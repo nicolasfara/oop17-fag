@@ -1,6 +1,5 @@
 package it.unibo.goffo.fag.entities.builders;
 
-import com.almasb.fxgl.app.FXGL;
 import it.unibo.goffo.fag.animation.ZombieAnimationImpl;
 import it.unibo.goffo.fag.entities.FagType;
 import it.unibo.goffo.fag.entities.Zombie;
@@ -27,7 +26,7 @@ public class ZombieFactory {
                 .at(randomPoint(/*max height, max width*/))
                 .type(FagType.SIMPLE_ZOMBIE)
                 .with(new ZombieAnimationImpl())
-                .buildAndAttach(FXGL.getApp().getGameWorld());
+                .build();
 
         return zombie;
     }
@@ -37,7 +36,7 @@ public class ZombieFactory {
                 .at(randomPoint(/*max height, max width*/))
                 .type(FagType.ADVANCE_ZOMBIE)
                 .with(new ZombieAnimationImpl())
-                .buildAndAttach(FXGL.getApp().getGameWorld());
+                .build();
 
         return zombie;
     }
