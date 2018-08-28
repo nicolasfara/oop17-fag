@@ -25,7 +25,7 @@ public class ScoreModelImpl implements ScoreModel {
     @Override
     public List<Score<String, Integer>> updatedScoreList() {
         final Integer userScore = geti(PROPERTY_NAME);
-        final String username = FXGL.getSystemConfig().getProfileName();
+        final String username = FXGL.getApp().getMenuListener().profileNameProperty().getName();
         final Optional<Score<String, Integer>> optionalScore = scoreList.stream()
                 .filter(score -> score.getUsername().equals(username))
                 .findFirst();
