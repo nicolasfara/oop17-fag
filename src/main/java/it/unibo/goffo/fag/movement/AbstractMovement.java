@@ -51,6 +51,42 @@ public abstract class AbstractMovement extends Component implements Movement {
     }
 
     /**
+     *
+     * @param deltaX
+     */
+    @Override
+    public void translateX(final double deltaX) {
+        getEntity().translateX(deltaX);
+    }
+
+    /**
+     *
+     * @param deltaY
+     */
+    @Override
+    public void translateY(final double deltaY) {
+        getEntity().translateY(deltaY);
+    }
+
+    /**
+     *
+     * @param x
+     */
+    @Override
+    public void setX(final double x) {
+        getEntity().setX(x);
+    }
+
+    /**
+     *
+     * @param y
+     */
+    @Override
+    public void setY(final double y) {
+        getEntity().setY(y);
+    }
+
+    /**
      * {@inheritDoc}
      */
     @Override

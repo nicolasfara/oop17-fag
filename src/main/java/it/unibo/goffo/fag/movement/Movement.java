@@ -24,6 +24,14 @@ public interface Movement {
      */
     void moveRight();
 
+    void translateX(double deltaX);
+
+    void translateY(double deltaY);
+
+    void setX(double x);
+
+    void setY(double y);
+
     /**
      * Method useful to change the speed of the entity.
      * @param newSpeed the new speed to assign to the entity.
