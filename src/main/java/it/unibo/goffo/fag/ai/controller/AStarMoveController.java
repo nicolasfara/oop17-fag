@@ -9,6 +9,7 @@ import com.almasb.fxgl.entity.components.PositionComponent;
 import com.almasb.fxgl.extra.ai.pathfinding.AStarGrid;
 import com.almasb.fxgl.extra.ai.pathfinding.AStarNode;
 import it.unibo.goffo.fag.FightAvengeGuerrillaApp;
+import it.unibo.goffo.fag.movement.EntityMovement;
 import javafx.geometry.Point2D;
 
 import java.util.LinkedList;
@@ -26,7 +27,7 @@ public class AStarMoveController extends Component implements MoveController {
     private final Queue<AStarNode> nodeList = new LinkedList<>();
     private PositionComponent position;
     private static final Logger LOGGER = Logger.get(AStarMoveController.class);
-    private static final int TPF_MULTIPLIER = 50;
+    private static final int TPF_MULTIPLIER = 70;
 
     /**
      * {@inheritDoc}
@@ -43,7 +44,7 @@ public class AStarMoveController extends Component implements MoveController {
     public void moveTo(final Point2D destination) {
         position = getEntity().getPositionComponent();
 
-        if (position.getValue().equals(destination)) {
+        if (getEntity().getPosition().equals(destination)) {
             LOGGER.info(getEntity().toString() + " is already in: " + destination);
             return;
         }
@@ -61,6 +62,7 @@ public class AStarMoveController extends Component implements MoveController {
             return grid.getPath(startX, startY, targetX, targetY);
         });
         nodeList.addAll(getPathTask.await());
+        getEntity().getComponentOptional(EntityMovement.class).ifPresent(EntityMovement::resume);
     }
 
     /**
@@ -70,6 +72,7 @@ public class AStarMoveController extends Component implements MoveController {
     public void onUpdate(final double tpf) {
         if (nodeList.isEmpty()) {
             LOGGER.info("No node find in the list, no movement");
+            return;
         }
 
         final double speed = tpf * TPF_MULTIPLIER;
@@ -81,7 +84,21 @@ public class AStarMoveController extends Component implements MoveController {
         final double deltaX = nextX - position.getX();
         final double deltaY = nextY - position.getY();
 
-        position.translateX(speed * Math.signum(deltaX));
-        position.translateY(speed * Math.signum(deltaY));
+
+        if (Math.abs(deltaX) <= speed) {
+            getEntity().getComponentOptional(EntityMovement.class).ifPresent(c -> c.setX(nextX));
+        } else {
+            getEntity().getComponentOptional(EntityMovement.class).ifPresent(e -> e.translateX(speed * Math.signum(deltaX)));
+        }
+
+        if (Math.abs(deltaY) <= speed) {
+            getEntity().getComponentOptional(EntityMovement.class).ifPresent(c -> c.setY(nextY));
+        } else {
+            getEntity().getComponentOptional(EntityMovement.class).ifPresent(e -> e.translateY(speed * Math.signum(deltaY)));
+        }
+
+        if (nodeList.isEmpty()) {
+            getEntity().getComponentOptional(EntityMovement.class).ifPresent(EntityMovement::pause);
+        }
     }
 }
