@@ -24,12 +24,28 @@ public interface Movement {
      */
     void moveRight();
 
+    /**
+     * Translate the entity by the given delta on X.
+     * @param deltaX the delta.
+     */
     void translateX(double deltaX);
 
+    /**
+     * Translate the entity by the given delta on Y.
+     * @param deltaY the delta.
+     */
     void translateY(double deltaY);
 
+    /**
+     * Set the X position.
+     * @param x x position.
+     */
     void setX(double x);
 
+    /**
+     * Set the Y position.
+     * @param y y position.
+     */
     void setY(double y);
 
     /**
