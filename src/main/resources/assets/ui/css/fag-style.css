@@ -1,0 +1,50 @@
+@font-face {
+    font-family: 'Retro Computer';
+    src: url('fonts/pixel-font.ttf');
+}
+
+.root {
+    -fx-background-color: #424242;
+}
+
+.table-view {
+    -fx-background-color: transparent;
+    -fx-table-cell-border-color: transparent;
+}
+
+.table-row-cell {
+    -fx-background-color: transparent;
+    -fx-cell-size: 50px;
+}
+
+.table-view .column-header-background {
+    -fx-background-color: transparent;
+}
+
+.table-view .column-header {
+    -fx-font-size: 32px;
+}
+
+.table-column {
+    -fx-alignment: center;
+    -fx-background-color: transparent;
+}
+
+.table-view .column-header .label {
+    -fx-font-size: 24px;
+}
+
+.button {
+    -fx-background-color: transparent;
+    -fx-table-cell-border-color: transparent;
+}
+
+.label {
+    -fx-font-family: 'Retro Computer';
+    -fx-font-size: 32px;
+}
+
+.text {
+    -fx-fill: white;
+    -fx-font-family: 'Retro Computer';
+}
