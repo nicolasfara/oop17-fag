@@ -1,16 +1,21 @@
 package it.unibo.goffo.fag;
 
 import com.almasb.fxgl.app.GameApplication;
+import com.almasb.fxgl.entity.Entity;
+import com.almasb.fxgl.extra.ai.pathfinding.AStarGrid;
 import com.almasb.fxgl.settings.GameSettings;
+import it.unibo.goffo.fag.entities.FagType;
+
+
+import static it.unibo.goffo.fag.FagUtils.*;
 
 /**
  * Main class, used to launch FXGL.
  */
 public class FightAvengeGuerrillaApp extends GameApplication {
 
-    private static final int WIDTH_SCREEN = 800;
-    private static final int HEIGHT_SCREEN = 600;
-    private static final String APPLICATION_NAME = "Final Avenge Guerrilla";
+
+    private AStarGrid grid;
 
     /**
      * Main method launch the game engine.
@@ -18,6 +23,22 @@ public class FightAvengeGuerrillaApp extends GameApplication {
      */
     public static void main(final String[] args) {
         launch(args);
+    }
+
+    /**
+     * Return the grid used in the game.
+     * @return the game's grid.
+     */
+    public AStarGrid getGrid() {
+        return this.grid;
+    }
+
+    /**
+     * Method that return the player in the game.
+     * @return Return the player.
+     */
+    public Entity getPlayer() {
+        return getGameWorld().getSingleton(FagType.PLAYER).get();
     }
 
     /**
@@ -43,7 +64,7 @@ public class FightAvengeGuerrillaApp extends GameApplication {
      */
     @Override
     protected void initGame() {
-        super.initGame();
+        grid = new AStarGrid(MAP_SIZE, MAP_SIZE);
     }
 
     /**
