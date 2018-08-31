@@ -4,7 +4,6 @@ import com.almasb.fxgl.app.FXGL;
 import com.almasb.fxgl.core.logging.Logger;
 import com.almasb.fxgl.core.math.FXGLMath;
 import com.almasb.fxgl.core.math.Vec2;
-import com.almasb.fxgl.entity.Entity;
 import com.almasb.fxgl.extra.ai.pathfinding.AStarNode;
 import com.almasb.fxgl.extra.ai.pathfinding.NodeState;
 import it.unibo.goffo.fag.FightAvengeGuerrillaApp;
@@ -20,7 +19,7 @@ import static it.unibo.goffo.fag.FagUtils.BLOCK_SIZE;
 public class EntityMovement extends AbstractMovement {
 
     private List<AStarNode> blocks;
-    private Vec2 velocity = new Vec2();
+    private final Vec2 velocity = new Vec2();
     private static final Logger LOGGER = Logger.get(EntityMovement.class);
 
     /**
@@ -46,7 +45,7 @@ public class EntityMovement extends AbstractMovement {
         }
 
         velocity.set(deltaX, deltaY);
-        int length = FXGLMath.roundPositive(velocity.length());
+        final int length = FXGLMath.roundPositive(velocity.length());
         velocity.normalizeLocal();
 
         for (int i = 0; i < length; i++) {

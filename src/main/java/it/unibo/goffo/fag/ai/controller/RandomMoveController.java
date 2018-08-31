@@ -15,7 +15,7 @@ import javafx.util.Duration;
 public class RandomMoveController extends Component {
 
     private MoveDirection moveDirection;
-    private LocalTimer timer = FXGL.newLocalTimer();
+    private final LocalTimer timer = FXGL.newLocalTimer();
     private static final Logger LOGGER = Logger.get(RandomMoveController.class);
 
     /**

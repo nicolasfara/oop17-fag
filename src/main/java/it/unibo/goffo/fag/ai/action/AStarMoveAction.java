@@ -21,7 +21,7 @@ public class AStarMoveAction extends GoalAction {
      * Constructor call. Simply call GoalAction constructor.
      */
     public AStarMoveAction() {
-        super();
+        super("AStar");
     }
 
     /**
@@ -34,7 +34,7 @@ public class AStarMoveAction extends GoalAction {
 
         final Entity player = ((FightAvengeGuerrillaApp) FXGL.getApp()).getPlayer();
 
-        Async<Void> moving = FXGL.getExecutor().async(() -> getEntity().getComponent(AStarMoveController.class).moveTo(player.getPositionComponent().getValue()));
+        final Async<Void> moving = FXGL.getExecutor().async(() -> getEntity().getComponent(AStarMoveController.class).moveTo(player.getPositionComponent().getValue()));
         moving.await();
     }
 

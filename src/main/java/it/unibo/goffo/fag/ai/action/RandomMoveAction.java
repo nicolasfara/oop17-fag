@@ -1,10 +1,8 @@
 package it.unibo.goffo.fag.ai.action;
 
 import com.almasb.fxgl.ai.GoalAction;
-import com.almasb.fxgl.app.FXGL;
 import com.almasb.fxgl.core.logging.Logger;
 import com.almasb.fxgl.entity.component.Component;
-import it.unibo.goffo.fag.FightAvengeGuerrillaApp;
 import it.unibo.goffo.fag.ai.controller.RandomMoveController;
 
 /**
