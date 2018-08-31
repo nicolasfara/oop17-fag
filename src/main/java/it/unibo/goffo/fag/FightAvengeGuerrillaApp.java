@@ -1,10 +1,14 @@
 package it.unibo.goffo.fag;
 
+import com.almasb.fxgl.app.FXGL;
 import com.almasb.fxgl.app.GameApplication;
 import com.almasb.fxgl.entity.Entity;
 import com.almasb.fxgl.extra.ai.pathfinding.AStarGrid;
 import com.almasb.fxgl.settings.GameSettings;
 import it.unibo.goffo.fag.entities.FagType;
+import it.unibo.goffo.fag.spawn.controller.SpawnControllerImpl;
+import it.unibo.goffo.fag.spawn.view.SpawnView;
+import it.unibo.goffo.fag.spawn.view.SpawnViewImpl;
 
 import static it.unibo.goffo.fag.FagUtils.*;
 
@@ -64,6 +68,8 @@ public class FightAvengeGuerrillaApp extends GameApplication {
     @Override
     protected void initGame() {
         grid = new AStarGrid(MAP_SIZE, MAP_SIZE);
+        SpawnView spawnView = new SpawnViewImpl(SpawnControllerImpl.getInstance());
+        spawnView.subscribeHandler(FXGL.getApp().getGameWorld()::addEntity);
     }
 
     /**
