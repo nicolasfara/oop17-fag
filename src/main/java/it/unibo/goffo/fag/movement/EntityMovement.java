@@ -23,8 +23,8 @@ public class EntityMovement extends AbstractMovement {
     private static final Logger LOGGER = Logger.get(EntityMovement.class);
 
     /**
-     *
-     * @param speed
+     * Constructor, build a Movement component with velocity.
+     * @param speed the speed must have the entity.
      */
     public EntityMovement(final float speed) {
         super(speed);
@@ -51,10 +51,11 @@ public class EntityMovement extends AbstractMovement {
         for (int i = 0; i < length; i++) {
             getEntity().getPositionComponent().translate(velocity.x, velocity.y);
             boolean collision = false;
-            for (int j = 0; j < blocks.size(); j++) {
-                if (blocks.get(j).getX() == getEntity().getPositionComponent().getX() && blocks.get(j).getY() == getEntity().getPositionComponent().getY()
-                        || blocks.get(j).getX() == getEntity().getPositionComponent().getX() + BLOCK_SIZE && blocks.get(j).getY() == getEntity().getPositionComponent().getY()
-                        || blocks.get(j).getX() == getEntity().getPositionComponent().getX() && blocks.get(j).getY() == getEntity().getPositionComponent().getY() + BLOCK_SIZE + BLOCK_SIZE / 2) {
+
+            for (final AStarNode block : blocks) {
+                if (block.getX() == getEntity().getPositionComponent().getX() && block.getY() == getEntity().getPositionComponent().getY()
+                        || block.getX() == getEntity().getPositionComponent().getX() + BLOCK_SIZE && block.getY() == getEntity().getPositionComponent().getY()
+                        || block.getX() == getEntity().getPositionComponent().getX() && block.getY() == getEntity().getPositionComponent().getY() + BLOCK_SIZE + (float) BLOCK_SIZE / 2) {
                     collision = true;
                     break;
                 }
@@ -65,6 +66,5 @@ public class EntityMovement extends AbstractMovement {
                 break;
             }
         }
-        //getEntity().translate(deltaX, deltaY);
     }
 }
