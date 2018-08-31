@@ -41,7 +41,9 @@ public class EntityMovement extends AbstractMovement {
         }
 
         if (blocks == null) {
-            blocks = FXGL.<FightAvengeGuerrillaApp>getAppCast().getGrid().getNodes().stream().filter(e -> e.getState().equals(NodeState.NOT_WALKABLE)).collect(Collectors.toList());
+            blocks = FXGL.<FightAvengeGuerrillaApp>getAppCast().getGrid().getNodes().stream()
+                    .filter(e -> e.getState().equals(NodeState.NOT_WALKABLE))
+                    .collect(Collectors.toList());
         }
 
         velocity.set(deltaX, deltaY);
