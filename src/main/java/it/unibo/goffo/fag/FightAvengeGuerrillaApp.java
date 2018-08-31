@@ -1,7 +1,11 @@
 package it.unibo.goffo.fag;
 
+import com.almasb.fxgl.app.FXGL;
 import com.almasb.fxgl.app.GameApplication;
 import com.almasb.fxgl.settings.GameSettings;
+import it.unibo.goffo.fag.spawn.controller.SpawnControllerImpl;
+import it.unibo.goffo.fag.spawn.view.SpawnView;
+import it.unibo.goffo.fag.spawn.view.SpawnViewImpl;
 
 /**
  * Main class, used to launch FXGL.
@@ -43,7 +47,8 @@ public class FightAvengeGuerrillaApp extends GameApplication {
      */
     @Override
     protected void initGame() {
-        super.initGame();
+        SpawnView spawnView = new SpawnViewImpl(SpawnControllerImpl.getInstance());
+        spawnView.subscribeHandler(FXGL.getApp().getGameWorld()::addEntity);
     }
 
     /**
