@@ -21,7 +21,7 @@ import java.util.List;
  * Implementation of controller for saving score.
  */
 @SuppressFBWarnings(value = "PATH_TRAVERSAL_IN", justification = "Tha path cannot be controlled by the user")
-public class ScoreControllerImpl implements ScoreController {
+public final class ScoreControllerImpl implements ScoreController {
 
     private final Formatter<String, String, Integer> formatManager = new JsonFormatter();
     private final LoadStore<String> loadStore = new LoadStoreManager<>();
@@ -44,7 +44,7 @@ public class ScoreControllerImpl implements ScoreController {
      * @param scoreModel the score model instance.
      * @return the single instance of score controller.
      */
-    public static ScoreControllerImpl getInstance(final ScoreModel scoreModel) {
+    public static synchronized ScoreControllerImpl getInstance(final ScoreModel scoreModel) {
         if (scoreController == null) {
             scoreController = new ScoreControllerImpl(scoreModel);
             scoreController.createDirectoryIfNotExist();
