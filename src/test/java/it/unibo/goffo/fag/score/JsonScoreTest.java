@@ -1,38 +1,49 @@
 package it.unibo.goffo.fag.score;
 
-import org.junit.Before;
 import org.junit.Test;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
+import java.time.Month;
 
 import static com.google.common.truth.Truth.assertThat;
 
 public class JsonScoreTest {
 
-    private final List<Score<String, Integer>> scoreList = new ArrayList<>();
+    private ScoreComparator scoreComparator = new ScoreComparator();
 
-    @Before
-    public void initialize() {
-        JsonScore score1 = new JsonScore("user1", 30);
+    @Test
+    public void testGraterThan() {
+        JsonScore score1 = new JsonScore("player1", 20);
         score1.setDate(LocalDate.now());
-        JsonScore score2 = new JsonScore("user2", 32);
+        JsonScore score2 = new JsonScore("player2", 30);
         score2.setDate(LocalDate.now());
-        JsonScore score3 = new JsonScore("user3", 3);
-        score3.setDate(LocalDate.now());
-        JsonScore score4 = new JsonScore("user4", 44);
-        score4.setDate(LocalDate.now());
-        scoreList.add(score1);
-        scoreList.add(score2);
-        scoreList.add(score3);
-        scoreList.add(score4);
-
+        assertThat(scoreComparator.compare(score1, score2)).isGreaterThan(0);
     }
 
     @Test
-    public void testComparator() {
-        scoreList.sort(new ScoreComparator());
-        assertThat(scoreList).isOrdered(new ScoreComparator());
+    public void testEqual() {
+        JsonScore score1 = new JsonScore("player1", 20);
+        score1.setDate(LocalDate.now());
+        JsonScore score2 = new JsonScore("player2", 20);
+        score2.setDate(LocalDate.now());
+        assertThat(scoreComparator.compare(score1, score2)).isEqualTo(0);
+    }
+
+    @Test
+    public void testLessThan() {
+        JsonScore score1 = new JsonScore("player1", 30);
+        score1.setDate(LocalDate.now());
+        JsonScore score2 = new JsonScore("player2", 20);
+        score2.setDate(LocalDate.now());
+        assertThat(scoreComparator.compare(score1, score2)).isLessThan(0);
+    }
+
+    @Test
+    public void testEqualScoreDifferentDate() {
+        JsonScore score1 = new JsonScore("player1", 20);
+        score1.setDate(LocalDate.of(2018, Month.JANUARY, 1));
+        JsonScore score2 = new JsonScore("player2", 20);
+        score2.setDate(LocalDate.of(2018, Month.DECEMBER, 31));
+        assertThat(scoreComparator.compare(score1, score2)).isLessThan(0);
     }
 }
