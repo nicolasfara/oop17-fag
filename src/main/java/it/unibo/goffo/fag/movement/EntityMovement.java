@@ -6,6 +6,7 @@ import com.almasb.fxgl.core.math.FXGLMath;
 import com.almasb.fxgl.core.math.Vec2;
 import com.almasb.fxgl.extra.ai.pathfinding.AStarNode;
 import com.almasb.fxgl.extra.ai.pathfinding.NodeState;
+import com.google.common.math.DoubleMath;
 import it.unibo.goffo.fag.FightAvengeGuerrillaApp;
 
 import java.util.List;
@@ -20,6 +21,7 @@ public class EntityMovement extends AbstractMovement {
 
     private List<AStarNode> blocks;
     private final Vec2 velocity = new Vec2();
+    private static final double TOLLERANCE = 0.00001;
     private static final Logger LOGGER = Logger.get(EntityMovement.class);
 
     /**
@@ -55,9 +57,12 @@ public class EntityMovement extends AbstractMovement {
             boolean collision = false;
 
             for (final AStarNode block : blocks) {
-                if (block.getX() == getEntity().getPositionComponent().getX() && block.getY() == getEntity().getPositionComponent().getY()
-                        || block.getX() == getEntity().getPositionComponent().getX() + BLOCK_SIZE && block.getY() == getEntity().getPositionComponent().getY()
-                        || block.getX() == getEntity().getPositionComponent().getX() && block.getY() == getEntity().getPositionComponent().getY() + BLOCK_SIZE + (float) BLOCK_SIZE / 2) {
+                if (DoubleMath.fuzzyEquals(block.getX(), getEntity().getPositionComponent().getX(), TOLLERANCE)
+                        && DoubleMath.fuzzyEquals(block.getY(), getEntity().getPositionComponent().getY(), TOLLERANCE)
+                        || DoubleMath.fuzzyEquals(block.getX(), getEntity().getPositionComponent().getX() + BLOCK_SIZE, TOLLERANCE)
+                        && DoubleMath.fuzzyEquals(block.getY(), getEntity().getPositionComponent().getY(), TOLLERANCE)
+                        || DoubleMath.fuzzyEquals(block.getX(), getEntity().getPositionComponent().getX(), TOLLERANCE)
+                        && DoubleMath.fuzzyEquals(block.getY(), getEntity().getPositionComponent().getY() + (double) BLOCK_SIZE * 3 / 2, TOLLERANCE)) {
                     collision = true;
                     break;
                 }
