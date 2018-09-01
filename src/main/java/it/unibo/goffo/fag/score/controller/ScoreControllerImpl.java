@@ -29,32 +29,29 @@ public class ScoreControllerImpl implements ScoreController {
     private final Path path = Paths.get(System.getProperty("user.home"), ".fag");
     private final Path filePath = Paths.get(path.toString(), "score");
     private final ScoreModel scoreModel;
+    private static ScoreControllerImpl scoreController;
 
     /**
      * Default constructor, check if exist the saving directory. If not exist the controller create it.
      * @param scoreModel the score model.
      */
-    public ScoreControllerImpl(final ScoreModel scoreModel) {
+    private ScoreControllerImpl(final ScoreModel scoreModel) {
         this.scoreModel = scoreModel;
-        if (Files.notExists(path)) {
-            LOGGER.warning("Unable to find directory: " + path);
-            LOGGER.info("Create the directory");
-            try {
-                Files.createDirectory(path);
-            } catch (IOException ex) {
-                LOGGER.fatal("Unable to create directory", ex);
-            }
-        }
+    }
 
-        if (Files.notExists(filePath)) {
-            LOGGER.info("Creating score files");
-            try {
-                Files.createFile(filePath);
-            } catch (IOException ex) {
-                LOGGER.fatal("Unable to create the file", ex);
-            }
+    /**
+     * Return only one instance of score controller, only one object must handle the score.
+     * @param scoreModel the score model instance.
+     * @return the single instance of score controller.
+     */
+    public static ScoreControllerImpl getInstance(final ScoreModel scoreModel) {
+        if (scoreController == null) {
+            scoreController = new ScoreControllerImpl(scoreModel);
+            scoreController.createDirectoryIfNotExist();
+            scoreController.createFileIfNotExist();
+            scoreModel.initializeScore(scoreController.loadScoreFromFile());
         }
-        scoreModel.initializeScore(loadScoreFromFile());
+        return scoreController;
     }
 
     /**
@@ -91,5 +88,28 @@ public class ScoreControllerImpl implements ScoreController {
 
     private boolean fileIsEmpty(final String path) {
         return new File(path).length() <= 0;
+    }
+
+    private void createDirectoryIfNotExist() {
+        if (Files.notExists(path)) {
+            LOGGER.warning("Unable to find directory: " + path);
+            LOGGER.info("Create the directory");
+            try {
+                Files.createDirectory(path);
+            } catch (IOException ex) {
+                LOGGER.fatal("Unable to create directory", ex);
+            }
+        }
+    }
+
+    private void createFileIfNotExist() {
+                if (Files.notExists(filePath)) {
+            LOGGER.info("Creating score files");
+            try {
+                Files.createFile(filePath);
+            } catch (IOException ex) {
+                LOGGER.fatal("Unable to create the file", ex);
+            }
+        }
     }
 }
