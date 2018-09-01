@@ -20,7 +20,7 @@
         <BorderPane>
             <padding><Insets top="20" bottom="20" left="20" right="20"/></padding>
             <top>
-                <Button fx:id="backButton" >
+                <Button fx:id="backButton" onAction="#goBackHandler">
                     <graphic>
                         <ImageView fitWidth="40" fitHeight="40" pickOnBounds="true" preserveRatio="true">
                             <Image url="/assets/ui/graphics/left-arrows.png" />
