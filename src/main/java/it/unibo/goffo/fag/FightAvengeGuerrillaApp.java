@@ -77,33 +77,69 @@ public class FightAvengeGuerrillaApp extends GameApplication {
 
         input.addAction(new UserAction("Move Right") {
             @Override
+            protected void onActionBegin() {
+                player.getComponent(PlayerAnimationImpl.class).playWalkAnimation(MoveDirection.RIGHT);
+            }
+
+            @Override
             protected void onAction() {
                 player.getComponent(EntityMovement.class).moveRight();
-                player.getComponent(PlayerAnimationImpl.class).playWalkAnimation(MoveDirection.RIGHT);
+            }
+
+            @Override
+            protected void onActionEnd() {
+                player.getComponent(PlayerAnimationImpl.class).playIdleAnimation(MoveDirection.RIGHT);
             }
         }, KeyCode.D);
 
         input.addAction(new UserAction("Move Left") {
             @Override
+            protected void onActionBegin() {
+                player.getComponent(PlayerAnimationImpl.class).playWalkAnimation(MoveDirection.LEFT);
+            }
+
+            @Override
             protected void onAction() {
                 player.getComponent(EntityMovement.class).moveLeft();
-                player.getComponent(PlayerAnimationImpl.class).playWalkAnimation(MoveDirection.LEFT);
+            }
+
+            @Override
+            protected void onActionEnd() {
+                player.getComponent(PlayerAnimationImpl.class).playIdleAnimation(MoveDirection.LEFT);
             }
         }, KeyCode.A);
 
         input.addAction(new UserAction("Move Up") {
             @Override
+            protected void onActionBegin() {
+                player.getComponent(PlayerAnimationImpl.class).playWalkAnimation(MoveDirection.UP);
+            }
+
+            @Override
             protected void onAction() {
                 player.getComponent(EntityMovement.class).moveUp();
-                player.getComponent(PlayerAnimationImpl.class).playWalkAnimation(MoveDirection.UP);
+            }
+
+            @Override
+            protected void onActionEnd() {
+                player.getComponent(PlayerAnimationImpl.class).playIdleAnimation(MoveDirection.UP);
             }
         }, KeyCode.W);
 
         input.addAction(new UserAction("Move Down") {
             @Override
+            protected void onActionBegin() {
+                player.getComponent(PlayerAnimationImpl.class).playWalkAnimation(MoveDirection.DOWN);
+            }
+
+            @Override
             protected void onAction() {
                 player.getComponent(EntityMovement.class).moveDown();
-                player.getComponent(PlayerAnimationImpl.class).playWalkAnimation(MoveDirection.DOWN);
+            }
+
+            @Override
+            protected void onActionEnd() {
+                player.getComponent(PlayerAnimationImpl.class).playIdleAnimation(MoveDirection.DOWN);
             }
         }, KeyCode.S);
     }
@@ -123,7 +159,7 @@ public class FightAvengeGuerrillaApp extends GameApplication {
 
         player = Entities.builder()
                 .type(FagType.PLAYER)
-                .at(100,100)
+                .at(200,100)
                 .with(new EntityMovement(1))
                 .with(new PlayerAnimationImpl())
                 .buildAndAttach(getGameWorld());

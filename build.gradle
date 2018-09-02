@@ -24,14 +24,10 @@ dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
     testCompile "com.google.truth:truth:0.42"
     compile 'com.github.almasb:fxgl:0.5.3'
-<<<<<<< HEAD
     compile 'com.google.guava:guava:26.0-jre'
     compile 'com.esotericsoftware:kryo:5.0.0-RC1'
     compile 'com.google.code.gson:gson:2.8.5'
-    compile 'io.reactivex.rxjava2:rxjava:2.2.0'
-=======
     compile 'io.reactivex.rxjava2:rxjava:2.2.1'
->>>>>>> entity
     // SpotBugs
     spotbugsPlugins 'com.h3xstream.findsecbugs:findsecbugs-plugin:1.7.1'
     compile 'com.github.spotbugs:spotbugs:3.1.6'

@@ -28,12 +28,12 @@ public class PlayerAnimationImpl extends AbstractAnimation {
     private static final int END_FRAME_SIDE_WALK = 7;
     private static final int START_FRAME_BACK_WALK = 8;
     private static final int END_FRAME_BACK_WALK = 11;
-    private final AnimationChannel shotFront = new AnimationChannel("shotFag.png", 4, WIDTH, HEIGHT, idleDuration, 0, 3);
-    private final AnimationChannel shotSide = new AnimationChannel("shotFag.png", 4, WIDTH, HEIGHT, idleDuration, 4, 7);
-    private final AnimationChannel shotBack = new AnimationChannel("shotFag.png", 4, WIDTH, HEIGHT, idleDuration, 8, 11);
-    private final AnimationChannel walkFront = new AnimationChannel("shotFag.png", 4, WIDTH, HEIGHT, walkDuration, 12, 15);
-    private final AnimationChannel walkSide = new AnimationChannel("shotFag.png", 4, WIDTH, HEIGHT, walkDuration, 16, 19);
-    private final AnimationChannel walkBack = new AnimationChannel("shotFag.png", 4, WIDTH, HEIGHT, walkDuration, 20, 23);
+    private final AnimationChannel shotFront = new AnimationChannel("shootFag.png", 4, WIDTH, HEIGHT, idleDuration, 0, 3);
+    private final AnimationChannel shotSide = new AnimationChannel("shootFag.png", 4, WIDTH, HEIGHT, idleDuration, 4, 7);
+    private final AnimationChannel shotBack = new AnimationChannel("shootFag.png", 4, WIDTH, HEIGHT, idleDuration, 8, 11);
+    private final AnimationChannel walkFront = new AnimationChannel("shootFag.png", 4, WIDTH, HEIGHT, walkDuration, 12, 15);
+    private final AnimationChannel walkSide = new AnimationChannel("shootFag.png", 4, WIDTH, HEIGHT, walkDuration, 16, 19);
+    private final AnimationChannel walkBack = new AnimationChannel("shootFag.png", 4, WIDTH, HEIGHT, walkDuration, 20, 23);
     private AnimatedTexture texture;
 
     public PlayerAnimationImpl() {
@@ -66,15 +66,27 @@ public class PlayerAnimationImpl extends AbstractAnimation {
                 } else {
                     texture.loopAnimationChannel(shotSide);
                 }
-                getEntity().getView().setScaleX(-1);
+                getEntity().setScaleX(-1);
+                break;
             case RIGHT:
                 if (animationType == AnimationType.WALKING) {
                     texture.loopAnimationChannel(walkSide);
                 } else {
                     texture.loopAnimationChannel(shotSide);
                 }
+                getEntity().setScaleX(1);
+                break;
                 default:
                     break;
         }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void onAdded() {
+        super.onAdded();
+        getEntity().setView(texture);
     }
 }
