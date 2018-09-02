@@ -6,7 +6,8 @@ import com.almasb.fxgl.entity.Entity;
  * Abstract class for weapon.
  */
 public abstract class AbstractWeapon extends Entity {
-    protected int damage;
+
+    private int damage;
 
     /**
      * Build the object with the damage.

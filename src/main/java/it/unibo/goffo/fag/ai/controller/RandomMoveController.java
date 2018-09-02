@@ -16,6 +16,7 @@ public class RandomMoveController extends Component {
 
     private MoveDirection moveDirection;
     private final LocalTimer timer = FXGL.newLocalTimer();
+
     private static final Logger LOGGER = Logger.get(RandomMoveController.class);
 
     /**

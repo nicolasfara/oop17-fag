@@ -47,15 +47,13 @@ public class EntityMovement extends AbstractMovement {
                     .filter(e -> e.getState().equals(NodeState.NOT_WALKABLE))
                     .collect(Collectors.toList());
         }
-
         velocity.set(deltaX, deltaY);
-        final int length = FXGLMath.roundPositive(velocity.length());
+        int length = FXGLMath.roundPositive(velocity.length());
         velocity.normalizeLocal();
 
         for (int i = 0; i < length; i++) {
             getEntity().getPositionComponent().translate(velocity.x, velocity.y);
             boolean collision = false;
-
             for (final AStarNode block : blocks) {
                 if (DoubleMath.fuzzyEquals(block.getX(), getEntity().getPositionComponent().getX(), TOLERANCE)
                         && DoubleMath.fuzzyEquals(block.getY(), getEntity().getPositionComponent().getY(), TOLERANCE)
@@ -63,6 +61,7 @@ public class EntityMovement extends AbstractMovement {
                         && DoubleMath.fuzzyEquals(block.getY(), getEntity().getPositionComponent().getY(), TOLERANCE)
                         || DoubleMath.fuzzyEquals(block.getX(), getEntity().getPositionComponent().getX(), TOLERANCE)
                         && DoubleMath.fuzzyEquals(block.getY(), getEntity().getPositionComponent().getY() + (double) BLOCK_SIZE * 3 / 2, TOLERANCE)) {
+
                     collision = true;
                     break;
                 }

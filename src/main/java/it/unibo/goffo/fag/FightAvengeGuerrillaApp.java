@@ -12,7 +12,6 @@ import it.unibo.goffo.fag.spawn.view.SpawnView;
 import it.unibo.goffo.fag.spawn.view.SpawnViewImpl;
 
 import static it.unibo.goffo.fag.FagUtils.*;
-import com.almasb.fxgl.entity.Entities;
 import com.almasb.fxgl.input.Input;
 import com.almasb.fxgl.input.UserAction;
 import javafx.scene.input.KeyCode;
@@ -29,8 +28,8 @@ public class FightAvengeGuerrillaApp extends GameApplication {
 
 
     private AStarGrid grid;
-
     private Entity player;
+
 
     /**
      * Main method launch the game engine.
