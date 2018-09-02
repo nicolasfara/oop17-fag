@@ -250,8 +250,9 @@ public final class FagEntities {
          * @return instance class.
          */
         public EntityBuilder with(final Component... components) {
-            for (Component c : components)
+            for (Component c : components) {
                 player.addComponent(c);
+            }
             return this;
         }
 

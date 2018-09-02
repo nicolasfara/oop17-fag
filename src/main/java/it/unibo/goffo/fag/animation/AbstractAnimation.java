@@ -4,21 +4,18 @@ import com.almasb.fxgl.entity.component.Component;
 import com.almasb.fxgl.texture.AnimatedTexture;
 import com.almasb.fxgl.texture.AnimationChannel;
 import it.unibo.goffo.fag.movement.MoveDirection;
-import javafx.util.Duration;
 
 import java.util.HashMap;
 import java.util.Map;
 
 /**
- *
+ * Abstract animation.
  */
 public abstract class AbstractAnimation extends Component implements Animation {
 
     private AnimatedTexture texture;
-    static final int WIDTH = 128;
-    static final int HEIGHT = 128;
-    static Map<MoveDirection, AnimationChannel> walkAnimations = new HashMap<>();
-    static Map<MoveDirection, AnimationChannel> idleAnimations = new HashMap<>();
+    protected static Map<MoveDirection, AnimationChannel> walkAnimations = new HashMap<>();
+    protected static Map<MoveDirection, AnimationChannel> idleAnimations = new HashMap<>();
 
     /**
      * Initialize and populates the above fields with the values corresponding to the proper character.

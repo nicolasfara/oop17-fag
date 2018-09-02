@@ -13,6 +13,8 @@ public class ZombieAnimationImpl extends AbstractAnimation {
     private static final int WALK_DURATION = 2400;
     private final Duration walkDuration = Duration.millis(IDLE_DURATION);
     private final Duration idleDuration = Duration.millis(WALK_DURATION);
+    private static final int WIDTH = 128;
+    private static final int HEIGHT = 128;
     private static final int FRAMES_PER_ROW_ATTACK = 6;
     private static final int FRAMES_PER_ROW_WALK = 4;
     private static final int END_FRAME_FRONT_ATTACK = 11;
