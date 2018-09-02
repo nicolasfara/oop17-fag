@@ -6,6 +6,13 @@ import it.unibo.goffo.fag.movement.MoveDirection;
  * Interface that allows to play animations.
  */
 public interface Animation {
+    /**
+     * Enum for animation type.
+     */
+    enum AnimationType {
+        IDLE,
+        WALKING
+    }
 
     /**
      * Plays the walking animation corresponding to a direction.
