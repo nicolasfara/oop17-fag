@@ -5,24 +5,39 @@ import it.unibo.goffo.fag.movement.MoveDirection;
 import javafx.util.Duration;
 
 /**
- * Plays animations for the zombies
+ * Plays animations for the zombies.
  */
-public class ZombieAnimationImpl extends AbsAnimation {
+public class ZombieAnimationImpl extends AbstractAnimation {
+
+    private static final int IDLE_DURATION = 1200;
+    private static final int WALK_DURATION = 2400;
+    private final Duration walkDuration = Duration.millis(IDLE_DURATION);
+    private final Duration idleDuration = Duration.millis(WALK_DURATION);
+    private static final int WIDTH = 128;
+    private static final int HEIGHT = 128;
+    private static final int FRAMES_PER_ROW_ATTACK = 6;
+    private static final int FRAMES_PER_ROW_WALK = 4;
+    private static final int END_FRAME_FRONT_ATTACK = 11;
+    private static final int START_FRAME_SIDE_ATTACK = 12;
+    private static final int END_FRAME_SIDE_ATTACK = 23;
+    private static final int START_FRAME_BACK_ATTACK = 24;
+    private static final int END_FRAME_BACK_ATTACK = 35;
+    private static final int END_FRAME_FRONT_WALK = 3;
+    private static final int START_FRAME_SIDE_WALK = 4;
+    private static final int END_FRAME_SIDE_WALK = 7;
+    private static final int START_FRAME_BACK_WALK = 8;
+    private static final int END_FRAME_BACK_WALK = 11;
 
     /**
      * {@inheritDoc}
      */
     @Override
     protected void initValues() {
-
-        idleDuration = Duration.millis(1200);
-
-        IdleAnimations.put(MoveDirection.DOWN, new AnimationChannel("attackZombie.png", 6, width, height, idleDuration, 0, 11));   //AttackFront
-        IdleAnimations.put(MoveDirection.RIGHT, new AnimationChannel("attackZombie.png", 6, width, height, idleDuration, 12, 23)); //AttackSide
-        IdleAnimations.put(MoveDirection.UP, new AnimationChannel("attackZombie.png", 6, width, height, idleDuration, 24, 35));    //AttackBack
-        WalkAnimations.put(MoveDirection.DOWN, new AnimationChannel("walkZombie.png", 4, width, height, walkDuration, 0, 3));      //WalkFront
-        WalkAnimations.put(MoveDirection.RIGHT, new AnimationChannel("walkZombie.png", 4, width, height, walkDuration, 4, 7));     //WalkSide
-        WalkAnimations.put(MoveDirection.UP, new AnimationChannel("walkZombie.png", 4, width, height, walkDuration, 8, 11));       //WalkBack
+        idleAnimations.put(MoveDirection.DOWN, new AnimationChannel("attackZombie.png", FRAMES_PER_ROW_ATTACK, WIDTH, HEIGHT, idleDuration, 0, END_FRAME_FRONT_ATTACK));   //AttackFront
+        idleAnimations.put(MoveDirection.RIGHT, new AnimationChannel("attackZombie.png", FRAMES_PER_ROW_ATTACK, WIDTH, HEIGHT, idleDuration, START_FRAME_SIDE_ATTACK, END_FRAME_SIDE_ATTACK)); //AttackSide
+        idleAnimations.put(MoveDirection.UP, new AnimationChannel("attackZombie.png", FRAMES_PER_ROW_ATTACK, WIDTH, HEIGHT, idleDuration, START_FRAME_BACK_ATTACK, END_FRAME_BACK_ATTACK));    //AttackBack
+        walkAnimations.put(MoveDirection.DOWN, new AnimationChannel("walkZombie.png", FRAMES_PER_ROW_WALK, WIDTH, HEIGHT, walkDuration, 0, END_FRAME_FRONT_WALK));      //WalkFront
+        walkAnimations.put(MoveDirection.RIGHT, new AnimationChannel("walkZombie.png", FRAMES_PER_ROW_WALK, WIDTH, HEIGHT, walkDuration, START_FRAME_SIDE_WALK, END_FRAME_SIDE_WALK));     //WalkSide
+        walkAnimations.put(MoveDirection.UP, new AnimationChannel("walkZombie.png", FRAMES_PER_ROW_WALK, WIDTH, HEIGHT, walkDuration, START_FRAME_BACK_WALK, END_FRAME_BACK_WALK));       //WalkBack
     }
-
 }
