@@ -2,11 +2,15 @@ package it.unibo.goffo.fag;
 
 import com.almasb.fxgl.app.FXGL;
 import com.almasb.fxgl.app.GameApplication;
+import com.almasb.fxgl.entity.Entities;
 import com.almasb.fxgl.entity.Entity;
 import com.almasb.fxgl.extra.ai.pathfinding.AStarGrid;
+import com.almasb.fxgl.parser.tiled.TiledMap;
 import com.almasb.fxgl.settings.GameSettings;
+import it.unibo.goffo.fag.animation.PlayerAnimationImpl;
 import it.unibo.goffo.fag.entities.FagType;
 import it.unibo.goffo.fag.movement.EntityMovement;
+import it.unibo.goffo.fag.movement.MoveDirection;
 import it.unibo.goffo.fag.spawn.controller.SpawnControllerImpl;
 import it.unibo.goffo.fag.spawn.view.SpawnView;
 import it.unibo.goffo.fag.spawn.view.SpawnViewImpl;
@@ -19,7 +23,6 @@ import javafx.scene.input.KeyCode;
 import static it.unibo.goffo.fag.FagUtils.APPLICATION_NAME;
 import static it.unibo.goffo.fag.FagUtils.HEIGHT_SCREEN;
 import static it.unibo.goffo.fag.FagUtils.WIDTH_SCREEN;
-import static it.unibo.goffo.fag.FagUtils.TILE_SIZE;
 
 /**
  * Main class, used to launch FXGL.
@@ -60,8 +63,8 @@ public class FightAvengeGuerrillaApp extends GameApplication {
      */
     @Override
     protected void initSettings(final GameSettings settings) {
-        settings.setWidth(WIDTH_SCREEN * TILE_SIZE);
-        settings.setHeight(HEIGHT_SCREEN * TILE_SIZE);
+        settings.setWidth(WIDTH_SCREEN);
+        settings.setHeight(HEIGHT_SCREEN);
         settings.setTitle(APPLICATION_NAME);
     }
 
@@ -76,6 +79,7 @@ public class FightAvengeGuerrillaApp extends GameApplication {
             @Override
             protected void onAction() {
                 player.getComponent(EntityMovement.class).moveRight();
+                player.getComponent(PlayerAnimationImpl.class).playWalkAnimation(MoveDirection.RIGHT);
             }
         }, KeyCode.D);
 
@@ -83,6 +87,7 @@ public class FightAvengeGuerrillaApp extends GameApplication {
             @Override
             protected void onAction() {
                 player.getComponent(EntityMovement.class).moveLeft();
+                player.getComponent(PlayerAnimationImpl.class).playWalkAnimation(MoveDirection.LEFT);
             }
         }, KeyCode.A);
 
@@ -90,6 +95,7 @@ public class FightAvengeGuerrillaApp extends GameApplication {
             @Override
             protected void onAction() {
                 player.getComponent(EntityMovement.class).moveUp();
+                player.getComponent(PlayerAnimationImpl.class).playWalkAnimation(MoveDirection.UP);
             }
         }, KeyCode.W);
 
@@ -97,6 +103,7 @@ public class FightAvengeGuerrillaApp extends GameApplication {
             @Override
             protected void onAction() {
                 player.getComponent(EntityMovement.class).moveDown();
+                player.getComponent(PlayerAnimationImpl.class).playWalkAnimation(MoveDirection.DOWN);
             }
         }, KeyCode.S);
     }
@@ -111,13 +118,15 @@ public class FightAvengeGuerrillaApp extends GameApplication {
         spawnView.subscribeHandler(FXGL.getApp().getGameWorld()::addEntity);
 
         getGameWorld().addEntityFactory(new LevelFactory());
-        getGameWorld().setLevelFromMap("level0.json");
+        TiledMap map = getAssetLoader().loadJSON("level0.json", TiledMap.class);
+        getGameWorld().setLevelFromMap(map);
 
-        /*player = Entities.builder()
+        player = Entities.builder()
                 .type(FagType.PLAYER)
-                .at(400,300)
-                .with(new FagControl())
-                .buildAndAttach(getGameWorld());*/
+                .at(100,100)
+                .with(new EntityMovement(1))
+                .with(new PlayerAnimationImpl())
+                .buildAndAttach(getGameWorld());
     }
 
     /**

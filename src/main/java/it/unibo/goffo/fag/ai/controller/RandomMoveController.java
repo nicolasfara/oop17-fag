@@ -6,7 +6,9 @@ import com.almasb.fxgl.core.math.FXGLMath;
 import com.almasb.fxgl.entity.component.Component;
 import com.almasb.fxgl.time.LocalTimer;
 import it.unibo.goffo.fag.FightAvengeGuerrillaApp;
+import it.unibo.goffo.fag.animation.ZombieAnimationImpl;
 import it.unibo.goffo.fag.movement.EntityMovement;
+import it.unibo.goffo.fag.movement.MoveDirection;
 import javafx.util.Duration;
 
 /**
@@ -48,15 +50,19 @@ public class RandomMoveController extends Component {
         switch (moveDirection) {
             case UP:
                 getEntity().getComponentOptional(EntityMovement.class).ifPresent(EntityMovement::moveUp);
+                getEntity().getComponentOptional(ZombieAnimationImpl.class).ifPresent(anim -> anim.playWalkAnimation(moveDirection));
                 break;
             case DOWN:
                 getEntity().getComponentOptional(EntityMovement.class).ifPresent(EntityMovement::moveDown);
+                getEntity().getComponentOptional(ZombieAnimationImpl.class).ifPresent(anim -> anim.playWalkAnimation(moveDirection));
                 break;
             case LEFT:
                 getEntity().getComponentOptional(EntityMovement.class).ifPresent(EntityMovement::moveLeft);
+                getEntity().getComponentOptional(ZombieAnimationImpl.class).ifPresent(anim -> anim.playWalkAnimation(moveDirection));
                 break;
             case RIGHT:
                 getEntity().getComponentOptional(EntityMovement.class).ifPresent(EntityMovement::moveRight);
+                getEntity().getComponentOptional(ZombieAnimationImpl.class).ifPresent(anim -> anim.playWalkAnimation(moveDirection));
                 break;
                 default:
                     break;

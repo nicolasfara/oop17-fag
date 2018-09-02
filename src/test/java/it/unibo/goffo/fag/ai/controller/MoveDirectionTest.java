@@ -1,5 +1,6 @@
 package it.unibo.goffo.fag.ai.controller;
 
+import it.unibo.goffo.fag.movement.MoveDirection;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
