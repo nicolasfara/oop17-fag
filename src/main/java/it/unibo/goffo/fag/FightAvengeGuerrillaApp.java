@@ -15,14 +15,11 @@ import it.unibo.goffo.fag.spawn.controller.SpawnControllerImpl;
 import it.unibo.goffo.fag.spawn.view.SpawnView;
 import it.unibo.goffo.fag.spawn.view.SpawnViewImpl;
 
-import static it.unibo.goffo.fag.FagUtils.*;
 import com.almasb.fxgl.input.Input;
 import com.almasb.fxgl.input.UserAction;
 import javafx.scene.input.KeyCode;
 
-import static it.unibo.goffo.fag.FagUtils.APPLICATION_NAME;
-import static it.unibo.goffo.fag.FagUtils.HEIGHT_SCREEN;
-import static it.unibo.goffo.fag.FagUtils.WIDTH_SCREEN;
+import static it.unibo.goffo.fag.FagUtils.*;
 
 /**
  * Main class, used to launch FXGL.

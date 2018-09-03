@@ -26,20 +26,22 @@ public class PlayerAnimationImpl extends AbstractAnimation {
     private static final int END_FRAME_WALK_SIDE = 19;
     private static final int START_FRAME_WALK_BACK = 20;
     private static final int END_FRAME_WALK_BACK = 23;
+    private static final String ANIMATION_FILENAME = "shootFag.png";
     private final Duration walkDuration = Duration.millis(IDLE_DURATION);
     private final Duration idleDuration = Duration.millis(WALK_DURATION);
-    private final AnimationChannel shotFront = new AnimationChannel("shootFag.png", FRAMES_PER_ROW, WIDTH, HEIGHT, idleDuration, 0, END_FRAME_SHOT_FRONT);
-    private final AnimationChannel shotSide = new AnimationChannel("shootFag.png", FRAMES_PER_ROW, WIDTH, HEIGHT, idleDuration, START_FRAME_SHOT_SIDE, END_FRAME_SHOT_SIDE);
-    private final AnimationChannel shotBack = new AnimationChannel("shootFag.png", FRAMES_PER_ROW, WIDTH, HEIGHT, idleDuration, START_FRAME_SHOT_BACK, END_FRAME_SHOT_BACK);
-    private final AnimationChannel walkFront = new AnimationChannel("shootFag.png", FRAMES_PER_ROW, WIDTH, HEIGHT, walkDuration, START_FRAME_WALK_FRONT, END_FRAME_WALK_FRONT);
-    private final AnimationChannel walkSide = new AnimationChannel("shootFag.png", FRAMES_PER_ROW, WIDTH, HEIGHT, walkDuration, START_FRAME_WALK_SIDE, END_FRAME_WALK_SIDE);
-    private final AnimationChannel walkBack = new AnimationChannel("shootFag.png", FRAMES_PER_ROW, WIDTH, HEIGHT, walkDuration, START_FRAME_WALK_BACK, END_FRAME_WALK_BACK);
-    private AnimatedTexture texture;
+    private final AnimationChannel shotFront = new AnimationChannel(ANIMATION_FILENAME, FRAMES_PER_ROW, WIDTH, HEIGHT, idleDuration, 0, END_FRAME_SHOT_FRONT);
+    private final AnimationChannel shotSide = new AnimationChannel(ANIMATION_FILENAME, FRAMES_PER_ROW, WIDTH, HEIGHT, idleDuration, START_FRAME_SHOT_SIDE, END_FRAME_SHOT_SIDE);
+    private final AnimationChannel shotBack = new AnimationChannel(ANIMATION_FILENAME, FRAMES_PER_ROW, WIDTH, HEIGHT, idleDuration, START_FRAME_SHOT_BACK, END_FRAME_SHOT_BACK);
+    private final AnimationChannel walkFront = new AnimationChannel(ANIMATION_FILENAME, FRAMES_PER_ROW, WIDTH, HEIGHT, walkDuration, START_FRAME_WALK_FRONT, END_FRAME_WALK_FRONT);
+    private final AnimationChannel walkSide = new AnimationChannel(ANIMATION_FILENAME, FRAMES_PER_ROW, WIDTH, HEIGHT, walkDuration, START_FRAME_WALK_SIDE, END_FRAME_WALK_SIDE);
+    private final AnimationChannel walkBack = new AnimationChannel(ANIMATION_FILENAME, FRAMES_PER_ROW, WIDTH, HEIGHT, walkDuration, START_FRAME_WALK_BACK, END_FRAME_WALK_BACK);
+    private final AnimatedTexture texture;
 
     /**
      * Initialize texture for animation.
      */
     public PlayerAnimationImpl() {
+        super();
         texture = new AnimatedTexture(shotFront);
     }
 

@@ -7,13 +7,14 @@ import com.almasb.fxgl.entity.Entity;
  */
 public abstract class AbstractWeapon extends Entity {
 
-    private int damage;
+    private final int damage;
 
     /**
      * Build the object with the damage.
      * @param damage the damage.
      */
     public AbstractWeapon(final int damage) {
+        super();
         this.damage = damage;
     }
 

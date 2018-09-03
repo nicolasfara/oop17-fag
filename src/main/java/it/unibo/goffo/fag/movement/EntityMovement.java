@@ -48,7 +48,7 @@ public class EntityMovement extends AbstractMovement {
                     .collect(Collectors.toList());
         }
         velocity.set(deltaX, deltaY);
-        int length = FXGLMath.roundPositive(velocity.length());
+        final int length = FXGLMath.roundPositive(velocity.length());
         velocity.normalizeLocal();
 
         for (int i = 0; i < length; i++) {

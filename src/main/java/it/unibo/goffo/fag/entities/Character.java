@@ -9,13 +9,6 @@ import it.unibo.goffo.fag.movement.MoveDirection;
 public abstract class Character extends Entity {
 
     /**
-     * Default constructor.
-     */
-    public Character() {
-        super();
-    }
-
-    /**
      * Attack an entity.
      */
     public abstract void attack();
