@@ -2,6 +2,7 @@ package it.unibo.goffo.fag.spawn.view;
 
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
 import it.unibo.goffo.fag.entities.Character;
 import it.unibo.goffo.fag.spawn.controller.SpawnController;
 import io.reactivex.functions.Consumer;
@@ -26,7 +27,9 @@ public class SpawnViewImpl implements SpawnView {
      */
     @Override
     public void subscribeHandler(final Consumer<Character> consumer) {
-        Disposable disposable = spawnController.getObservable().subscribe(consumer);
+        Disposable disposable = spawnController.getObservable()
+                .observeOn(Schedulers.newThread())
+                .subscribe(consumer);
         final CompositeDisposable compositeDisposable = new CompositeDisposable();
         compositeDisposable.add(disposable);
     }
