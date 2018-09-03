@@ -56,19 +56,4 @@ public class FightAvengeGuerrillaApp extends GameApplication {
         super.initPhysics();
     }
 
-    @Override
-    protected void initUI() {
-        // 1. create a controller class that implements UIController
-        MainMenuController controller = new MainMenuController();
-
-        // 2. place fxml file in "assets/ui" and load it
-        UI fxmlUI = getAssetLoader().loadUI("mainMenu.fxml", controller);
-
-        // 3. controller instance now has its @FXML fields injected
-        /* controller.getLabelCount().textProperty().bind(count.asString("Count: [%d]")); */
-
-        // 4. add UI to game scene
-        getGameScene().addUI(fxmlUI);
-    }
-
 }
