@@ -12,30 +12,33 @@ public class PlayerAnimationImpl extends AbstractAnimation {
 
     private static final int IDLE_DURATION = 2800;
     private static final int WALK_DURATION = 1200;
-    private final Duration walkDuration = Duration.millis(IDLE_DURATION);
-    private final Duration idleDuration = Duration.millis(WALK_DURATION);
     private static final int WIDTH = 128;
     private static final int HEIGHT = 128;
-    private static final int FRAMES_PER_ROW_SHOT = 4;
-    private static final int FRAMES_PER_ROW_WALK = 4;
-    private static final int END_FRAME_FRONT_SHOT = 3;
-    private static final int START_FRAME_SIDE_SHOT = 12;
-    private static final int END_FRAME_SIDE_SHOT = 23;
-    private static final int START_FRAME_BACK_SHOT = 24;
-    private static final int END_FRAME_BACK_SHOT = 35;
-    private static final int END_FRAME_FRONT_WALK = 3;
-    private static final int START_FRAME_SIDE_WALK = 4;
-    private static final int END_FRAME_SIDE_WALK = 7;
-    private static final int START_FRAME_BACK_WALK = 8;
-    private static final int END_FRAME_BACK_WALK = 11;
-    private final AnimationChannel shotFront = new AnimationChannel("shootFag.png", 4, WIDTH, HEIGHT, idleDuration, 0, 3);
-    private final AnimationChannel shotSide = new AnimationChannel("shootFag.png", 4, WIDTH, HEIGHT, idleDuration, 4, 7);
-    private final AnimationChannel shotBack = new AnimationChannel("shootFag.png", 4, WIDTH, HEIGHT, idleDuration, 8, 11);
-    private final AnimationChannel walkFront = new AnimationChannel("shootFag.png", 4, WIDTH, HEIGHT, walkDuration, 12, 15);
-    private final AnimationChannel walkSide = new AnimationChannel("shootFag.png", 4, WIDTH, HEIGHT, walkDuration, 16, 19);
-    private final AnimationChannel walkBack = new AnimationChannel("shootFag.png", 4, WIDTH, HEIGHT, walkDuration, 20, 23);
+    private static final int FRAMES_PER_ROW = 4;
+    private static final int END_FRAME_SHOT_FRONT = 3;
+    private static final int START_FRAME_SHOT_SIDE = 4;
+    private static final int END_FRAME_SHOT_SIDE = 7;
+    private static final int START_FRAME_SHOT_BACK = 8;
+    private static final int END_FRAME_SHOT_BACK = 11;
+    private static final int START_FRAME_WALK_FRONT = 12;
+    private static final int END_FRAME_WALK_FRONT = 15;
+    private static final int START_FRAME_WALK_SIDE = 16;
+    private static final int END_FRAME_WALK_SIDE = 19;
+    private static final int START_FRAME_WALK_BACK = 20;
+    private static final int END_FRAME_WALK_BACK = 23;
+    private final Duration walkDuration = Duration.millis(IDLE_DURATION);
+    private final Duration idleDuration = Duration.millis(WALK_DURATION);
+    private final AnimationChannel shotFront = new AnimationChannel("shootFag.png", FRAMES_PER_ROW, WIDTH, HEIGHT, idleDuration, 0, END_FRAME_SHOT_FRONT);
+    private final AnimationChannel shotSide = new AnimationChannel("shootFag.png", FRAMES_PER_ROW, WIDTH, HEIGHT, idleDuration, START_FRAME_SHOT_SIDE, END_FRAME_SHOT_SIDE);
+    private final AnimationChannel shotBack = new AnimationChannel("shootFag.png", FRAMES_PER_ROW, WIDTH, HEIGHT, idleDuration, START_FRAME_SHOT_BACK, END_FRAME_SHOT_BACK);
+    private final AnimationChannel walkFront = new AnimationChannel("shootFag.png", FRAMES_PER_ROW, WIDTH, HEIGHT, walkDuration, START_FRAME_WALK_FRONT, END_FRAME_WALK_FRONT);
+    private final AnimationChannel walkSide = new AnimationChannel("shootFag.png", FRAMES_PER_ROW, WIDTH, HEIGHT, walkDuration, START_FRAME_WALK_SIDE, END_FRAME_WALK_SIDE);
+    private final AnimationChannel walkBack = new AnimationChannel("shootFag.png", FRAMES_PER_ROW, WIDTH, HEIGHT, walkDuration, START_FRAME_WALK_BACK, END_FRAME_WALK_BACK);
     private AnimatedTexture texture;
 
+    /**
+     * Initialize texture for animation.
+     */
     public PlayerAnimationImpl() {
         texture = new AnimatedTexture(shotFront);
     }

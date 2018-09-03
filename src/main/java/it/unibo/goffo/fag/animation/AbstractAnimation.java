@@ -24,5 +24,10 @@ public abstract class AbstractAnimation extends Component implements Animation {
         playAnimation(AnimationType.IDLE, direction);
     }
 
+    /**
+     * Play an animation with animation type and direction.
+     * @param animationType animation type.
+     * @param direction direction.
+     */
     protected abstract void playAnimation(AnimationType animationType, MoveDirection direction);
 }
