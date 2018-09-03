@@ -17,6 +17,7 @@ import it.unibo.goffo.fag.spawn.view.SpawnViewImpl;
 
 import com.almasb.fxgl.input.Input;
 import com.almasb.fxgl.input.UserAction;
+import javafx.application.Platform;
 import javafx.scene.input.KeyCode;
 
 import static it.unibo.goffo.fag.FagUtils.*;
@@ -148,7 +149,7 @@ public class FightAvengeGuerrillaApp extends GameApplication {
     protected void initGame() {
         grid = new AStarGrid(MAP_SIZE, MAP_SIZE);
         SpawnView spawnView = new SpawnViewImpl(SpawnControllerImpl.getInstance());
-        spawnView.subscribeHandler(FXGL.getApp().getGameWorld()::addEntity);
+        spawnView.subscribeHandler(e -> Platform.runLater(() -> FXGL.getApp().getGameWorld().addEntity(e)));
 
         getGameWorld().addEntityFactory(new LevelFactory());
         TiledMap map = getAssetLoader().loadJSON("level0.json", TiledMap.class);
