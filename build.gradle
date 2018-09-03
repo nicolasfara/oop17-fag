@@ -96,3 +96,10 @@ task fatJar(type: Jar) {
     from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
     with jar
 }
+
+//create a jar with Javadoc
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    baseName = project.name + '-goffo'
+    classifier = 'javadoc'
+    from javadoc.destinationDir
+}
