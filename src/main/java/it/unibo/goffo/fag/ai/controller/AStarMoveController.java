@@ -84,6 +84,17 @@ public class AStarMoveController extends Component implements MoveController {
         final double deltaX = nextX - position.getX();
         final double deltaY = nextY - position.getY();
 
+        if (deltaX > 0) {
+            getEntity().getComponentOptional(ZombieAnimationImpl.class).ifPresent(a -> a.playWalkAnimation(MoveDirection.RIGHT));
+        } else if (deltaX < 0) {
+            getEntity().getComponentOptional(ZombieAnimationImpl.class).ifPresent(a -> a.playWalkAnimation(MoveDirection.LEFT));
+        }
+
+        if (deltaY > 0) {
+            getEntity().getComponentOptional(ZombieAnimationImpl.class).ifPresent(a -> a.playWalkAnimation(MoveDirection.DOWN));
+        } else if (deltaY < 0) {
+            getEntity().getComponentOptional(ZombieAnimationImpl.class).ifPresent(a -> a.playWalkAnimation(MoveDirection.UP));
+        }
 
         if (Math.abs(deltaX) <= speed) {
             getEntity().getComponentOptional(EntityMovement.class).ifPresent(c -> c.setX(nextX));
