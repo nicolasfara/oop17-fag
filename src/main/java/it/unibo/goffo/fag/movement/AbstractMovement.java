@@ -51,8 +51,7 @@ public abstract class AbstractMovement extends Component implements Movement {
     }
 
     /**
-     *
-     * @param deltaX
+     * {@inheritDoc}
      */
     @Override
     public void translateX(final double deltaX) {
@@ -60,8 +59,7 @@ public abstract class AbstractMovement extends Component implements Movement {
     }
 
     /**
-     *
-     * @param deltaY
+     * {@inheritDoc}
      */
     @Override
     public void translateY(final double deltaY) {
@@ -69,8 +67,7 @@ public abstract class AbstractMovement extends Component implements Movement {
     }
 
     /**
-     *
-     * @param x
+     * {@inheritDoc}
      */
     @Override
     public void setX(final double x) {
@@ -78,8 +75,7 @@ public abstract class AbstractMovement extends Component implements Movement {
     }
 
     /**
-     *
-     * @param y
+     * {@inheritDoc}
      */
     @Override
     public void setY(final double y) {

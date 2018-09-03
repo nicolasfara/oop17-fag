@@ -29,7 +29,7 @@ public class ScoresViewController {
     private final ScoreView scoreView;
 
     /**
-     * Initialize the Gui controller with model & controller from score.
+     * Initialize the Gui controller with model and controller from score.
      */
     public ScoresViewController() {
         final ScoreController scoreController = ScoreControllerImpl.getInstance(new ScoreModelImpl());
