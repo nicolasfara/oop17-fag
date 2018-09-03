@@ -9,6 +9,8 @@ import com.almasb.fxgl.parser.tiled.TiledMap;
 import com.almasb.fxgl.settings.GameSettings;
 import it.unibo.goffo.fag.animation.PlayerAnimationImpl;
 import it.unibo.goffo.fag.entities.FagType;
+import it.unibo.goffo.fag.entities.Player;
+import it.unibo.goffo.fag.entities.builders.FagEntities;
 import it.unibo.goffo.fag.movement.EntityMovement;
 import it.unibo.goffo.fag.movement.MoveDirection;
 import it.unibo.goffo.fag.spawn.controller.SpawnControllerImpl;
@@ -29,7 +31,7 @@ public class FightAvengeGuerrillaApp extends GameApplication {
 
 
     private AStarGrid grid;
-    private Entity player;
+    private Player player;
 
 
     /**
@@ -155,9 +157,9 @@ public class FightAvengeGuerrillaApp extends GameApplication {
         TiledMap map = getAssetLoader().loadJSON("level0.json", TiledMap.class);
         getGameWorld().setLevelFromMap(map);
 
-        player = Entities.builder()
+        player = (Player) FagEntities.builder(Player.class)
                 .type(FagType.PLAYER)
-                .at(200,100)
+                .at(200, 200)
                 .with(new EntityMovement(1))
                 .with(new PlayerAnimationImpl())
                 .buildAndAttach(getGameWorld());
