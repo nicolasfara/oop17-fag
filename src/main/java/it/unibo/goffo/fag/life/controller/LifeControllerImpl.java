@@ -1,14 +1,14 @@
-package it.unibo.goffo.fag.life;
+package it.unibo.goffo.fag.life.controller;
 
 import com.almasb.fxgl.app.FXGL;
+import it.unibo.goffo.fag.exceptions.CharacterDiesException;
+import it.unibo.goffo.fag.life.model.LifeModelImpl;
 
 public class LifeControllerImpl extends AbsLifeController<Double> {
 
     private static final double MIN_LIFE = 0.0;
     private static final double MAX_LIFE = 1.0;
-    private static double LIFE_OFFSET = 0.1;
 
-    //@SuppressWarnings("unchecked")
     public LifeControllerImpl() {
         super(new LifeModelImpl.Builder()
                 .setMaxLife(MAX_LIFE)
@@ -16,25 +16,11 @@ public class LifeControllerImpl extends AbsLifeController<Double> {
                 .build());
     }
 
-    public void setLifeOffset(final double amount) {
-        if (Double.compare(amount, MAX_LIFE) > 0) {
-            LIFE_OFFSET = MAX_LIFE;
-        } else if (Double.compare(amount, MIN_LIFE) < 0) {
-            this.setLifeOffset(MIN_LIFE + LIFE_OFFSET);
-        }
-        LIFE_OFFSET = amount;
-    }
-
-    public double getLifeOffset() {
-        return LIFE_OFFSET;
-    }
-
-    public void autoIncrese() {
-        this.increaseOf(LIFE_OFFSET);
-    }
-
-    public void autoDecrease() throws CharacterDiesException {
-        this.decreaseOf(LIFE_OFFSET);
+    public LifeControllerImpl(final double startFrom) {
+        super(new LifeModelImpl.Builder()
+                .setMaxLife(MAX_LIFE)
+                .startFrom(startFrom)
+                .build());
     }
 
     @Override
@@ -54,8 +40,7 @@ public class LifeControllerImpl extends AbsLifeController<Double> {
         updateGameEngine();
     }
 
-
-    /* NON IMPLEMENTARE QUI */
+    /* NON IMPLEMENTARE QUI, ma nella vita del player */
     private void updateGameEngine() {
         FXGL.getApp().getGameState().setValue("playerLife", super.getLife());
 

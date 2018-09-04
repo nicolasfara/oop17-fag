@@ -16,8 +16,8 @@ import it.unibo.goffo.fag.movement.MoveDirection;
 import it.unibo.goffo.fag.spawn.controller.SpawnControllerImpl;
 import it.unibo.goffo.fag.spawn.view.SpawnView;
 import it.unibo.goffo.fag.spawn.view.SpawnViewImpl;
-import it.unibo.goffo.fag.life.LifeController;
-import it.unibo.goffo.fag.life.LifeControllerImpl;
+import it.unibo.goffo.fag.life.controller.LifeController;
+import it.unibo.goffo.fag.life.controller.LifeControllerImpl;
 import it.unibo.goffo.fag.ui.hud.HUDController;
 
 import com.almasb.fxgl.input.Input;

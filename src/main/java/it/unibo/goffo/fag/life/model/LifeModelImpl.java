@@ -1,4 +1,4 @@
-package it.unibo.goffo.fag.life;
+package it.unibo.goffo.fag.life.model;
 
 public class LifeModelImpl extends AbsLifeModel<Double> implements LifeModel<Double> {
 
@@ -28,8 +28,10 @@ public class LifeModelImpl extends AbsLifeModel<Double> implements LifeModel<Dou
             } else if (super.getMaxLife() == null) {
                 throw new IllegalStateException("Max Life in Builder must be assigned");
             }
+            if (Double.compare(super.getLife(), super.getMaxLife()) > 0) {
+                super.startFrom(super.getMaxLife());
+            }
             return new LifeModelImpl(super.getLife(), super.getMaxLife());
         }
     }
-
 }

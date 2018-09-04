@@ -1,4 +1,4 @@
-package it.unibo.goffo.fag.life;
+package it.unibo.goffo.fag.life.model;
 
 /**
  * Life manager.
