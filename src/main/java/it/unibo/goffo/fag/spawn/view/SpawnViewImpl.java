@@ -27,7 +27,7 @@ public class SpawnViewImpl implements SpawnView {
      */
     @Override
     public void subscribeHandler(final Consumer<Character> consumer) {
-        Disposable disposable = spawnController.getObservable()
+        final Disposable disposable = spawnController.getObservable()
                 .observeOn(Schedulers.newThread())
                 .subscribe(consumer);
         final CompositeDisposable compositeDisposable = new CompositeDisposable();
