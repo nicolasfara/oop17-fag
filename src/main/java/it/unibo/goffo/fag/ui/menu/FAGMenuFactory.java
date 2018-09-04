@@ -13,4 +13,9 @@ public class FAGMenuFactory extends SceneFactory {
     public FXGLMenu newMainMenu(final GameApplication app) {
         return new FAGMenu(app, MenuType.MAIN_MENU);
     }
+
+    @Override
+    public FXGLMenu newGameMenu(final GameApplication app) {
+        return new FAGMenu(app, MenuType.GAME_MENU);
+    }
 }
