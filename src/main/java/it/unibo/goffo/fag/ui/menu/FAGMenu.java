@@ -43,9 +43,13 @@ public class FAGMenu extends FXGLMenu {
             e.printStackTrace();
         }
 
+        this.fagMenu.setTranslateX(250);
+        this.fagMenu.setTranslateY(250);
+
+        FXGL.configure(FXGL.getApp());
+
         menuRoot.getChildren().add(fagMenu);
         contentRoot.getChildren().add(EMPTY);
-
 
         activeProperty().addListener((observable, wasActive, isActive) -> {
             if (!isActive) {
@@ -54,8 +58,34 @@ public class FAGMenu extends FXGLMenu {
             }
         });
 
+        switchMenuTo(this.fagMenu);
+        switchMenuContentTo(this.fagMenu);
+
+        /*
         final Stage stage = (Stage) menuRoot.getChildren().get(0).getScene().getWindow();
-        stage.setScene(new Scene(fagMenu, 800, 600));
+        stage.setScene(new Scene(fagMenu, 800, 600));*/
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    protected void switchMenuTo(final Node menuBox) {
+        super.switchMenuTo(menuBox);
+
+        Node oldMenu = menuRoot.getChildren().get(0);
+        menuBox.setOpacity(0);
+        menuRoot.getChildren().set(0, menuBox);
+        oldMenu.setOpacity(1);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    protected void switchMenuContentTo(final Node content) {
+        super.switchMenuContentTo(content);
+        contentRoot.getChildren().set(0, content);
     }
 
     @Override
