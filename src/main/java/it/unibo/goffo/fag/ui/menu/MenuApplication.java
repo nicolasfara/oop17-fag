@@ -21,6 +21,13 @@ public class MenuApplication extends GameApplication {
         settings.setMenuEnabled(true);
         settings.setSceneFactory(new FAGMenuFactory());
         settings.setApplicationMode(ApplicationMode.RELEASE);
+        settings.setCloseConfirmation(false);
+        getAudioPlayer().setGlobalMusicVolume(0.0);
+        getAudioPlayer().setGlobalSoundVolume(0.0);
+        /*settings.setSoundMenuBack("");
+        settings.setSoundMenuPress("");
+        settings.setSoundMenuSelect("");
+        settings.setSoundNotification("");*/
         /*
             Trying to disable profile selection on startup.
             settings.setEnabledMenuItems(EnumSet.of(MenuItem.EXTRA)); // NOT WORKING
