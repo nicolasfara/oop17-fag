@@ -2,7 +2,6 @@ package it.unibo.goffo.fag;
 
 import com.almasb.fxgl.app.FXGL;
 import com.almasb.fxgl.app.GameApplication;
-import com.almasb.fxgl.entity.Entities;
 import com.almasb.fxgl.entity.Entity;
 import com.almasb.fxgl.extra.ai.pathfinding.AStarGrid;
 import com.almasb.fxgl.parser.tiled.TiledMap;
@@ -22,7 +21,10 @@ import com.almasb.fxgl.input.UserAction;
 import javafx.application.Platform;
 import javafx.scene.input.KeyCode;
 
-import static it.unibo.goffo.fag.FagUtils.*;
+import static it.unibo.goffo.fag.FagUtils.APPLICATION_NAME;
+import static it.unibo.goffo.fag.FagUtils.HEIGHT_SCREEN;
+import static it.unibo.goffo.fag.FagUtils.WIDTH_SCREEN;
+import static it.unibo.goffo.fag.FagUtils.MAP_SIZE;
 
 /**
  * Main class, used to launch FXGL.
@@ -78,68 +80,68 @@ public class FightAvengeGuerrillaApp extends GameApplication {
         input.addAction(new UserAction("Move Right") {
             @Override
             protected void onActionBegin() {
-                player.getComponent(PlayerAnimationImpl.class).playWalkAnimation(MoveDirection.RIGHT);
+                player.playWalkAnimation(MoveDirection.RIGHT);
             }
 
             @Override
             protected void onAction() {
-                player.getComponent(EntityMovement.class).moveRight();
+                player.moveRight();
             }
 
             @Override
             protected void onActionEnd() {
-                player.getComponent(PlayerAnimationImpl.class).playIdleAnimation(MoveDirection.RIGHT);
+                player.playIdleAnimation(MoveDirection.RIGHT);
             }
         }, KeyCode.D);
 
         input.addAction(new UserAction("Move Left") {
             @Override
             protected void onActionBegin() {
-                player.getComponent(PlayerAnimationImpl.class).playWalkAnimation(MoveDirection.LEFT);
+                player.playWalkAnimation(MoveDirection.LEFT);
             }
 
             @Override
             protected void onAction() {
-                player.getComponent(EntityMovement.class).moveLeft();
+                player.moveLeft();
             }
 
             @Override
             protected void onActionEnd() {
-                player.getComponent(PlayerAnimationImpl.class).playIdleAnimation(MoveDirection.LEFT);
+                player.playIdleAnimation(MoveDirection.LEFT);
             }
         }, KeyCode.A);
 
         input.addAction(new UserAction("Move Up") {
             @Override
             protected void onActionBegin() {
-                player.getComponent(PlayerAnimationImpl.class).playWalkAnimation(MoveDirection.UP);
+                player.playWalkAnimation(MoveDirection.UP);
             }
 
             @Override
             protected void onAction() {
-                player.getComponent(EntityMovement.class).moveUp();
+                player.moveUp();
             }
 
             @Override
             protected void onActionEnd() {
-                player.getComponent(PlayerAnimationImpl.class).playIdleAnimation(MoveDirection.UP);
+                player.playIdleAnimation(MoveDirection.UP);
             }
         }, KeyCode.W);
 
         input.addAction(new UserAction("Move Down") {
             @Override
             protected void onActionBegin() {
-                player.getComponent(PlayerAnimationImpl.class).playWalkAnimation(MoveDirection.DOWN);
+                player.playWalkAnimation(MoveDirection.DOWN);
             }
 
             @Override
             protected void onAction() {
-                player.getComponent(EntityMovement.class).moveDown();
+                player.moveDown();
             }
 
             @Override
             protected void onActionEnd() {
-                player.getComponent(PlayerAnimationImpl.class).playIdleAnimation(MoveDirection.DOWN);
+                player.playIdleAnimation(MoveDirection.DOWN);
             }
         }, KeyCode.S);
     }
