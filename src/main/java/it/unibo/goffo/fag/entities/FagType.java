@@ -1,6 +1,7 @@
 package it.unibo.goffo.fag.entities;
 
 /**
+<<<<<<< HEAD
  * Enum that models all type of entities in the game.
  */
 public enum FagType {

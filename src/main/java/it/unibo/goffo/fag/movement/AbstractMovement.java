@@ -10,6 +10,7 @@ public abstract class AbstractMovement extends Component implements Movement {
     private float speed;
     private static final int SPEED_FACTOR = 2;
 
+
     /**
      * Default constructor (Access: package protected).
      */
