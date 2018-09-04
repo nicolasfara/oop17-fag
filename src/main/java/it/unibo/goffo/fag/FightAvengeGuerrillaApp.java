@@ -15,6 +15,10 @@ import it.unibo.goffo.fag.movement.MoveDirection;
 import it.unibo.goffo.fag.spawn.controller.SpawnControllerImpl;
 import it.unibo.goffo.fag.spawn.view.SpawnView;
 import it.unibo.goffo.fag.spawn.view.SpawnViewImpl;
+import com.almasb.fxgl.ui.UI;
+import it.unibo.goffo.fag.life.LifeController;
+import it.unibo.goffo.fag.life.LifeControllerImpl;
+import it.unibo.goffo.fag.ui.hud.HUDController;
 
 import com.almasb.fxgl.input.Input;
 import com.almasb.fxgl.input.UserAction;
@@ -26,15 +30,15 @@ import static it.unibo.goffo.fag.FagUtils.HEIGHT_SCREEN;
 import static it.unibo.goffo.fag.FagUtils.WIDTH_SCREEN;
 import static it.unibo.goffo.fag.FagUtils.MAP_SIZE;
 
+
 /**
  * Main class, used to launch FXGL.
  */
 public class FightAvengeGuerrillaApp extends GameApplication {
 
-
     private AStarGrid grid;
     private Player player;
-
+    private LifeController lifeController;
 
     /**
      * Main method launch the game engine.
@@ -68,6 +72,7 @@ public class FightAvengeGuerrillaApp extends GameApplication {
         settings.setWidth(WIDTH_SCREEN);
         settings.setHeight(HEIGHT_SCREEN);
         settings.setTitle(APPLICATION_NAME);
+        this.lifeController = new LifeControllerImpl();
     }
 
     /**
@@ -165,13 +170,36 @@ public class FightAvengeGuerrillaApp extends GameApplication {
                 .with(new EntityMovement(1))
                 .with(new PlayerAnimationImpl())
                 .buildAndAttach(getGameWorld());
+        /*lifeController.bindLife();*/
+        this.getGameState().setValue("playerLife", 1.0);
+    }
+
+    /**
+     * {@inheritDoc}Math.abs
+     */
+    @Override
+    protected void initPhysics() {
+        super.initPhysics();
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    protected void initPhysics() {
-        super.initPhysics();
+    protected void initUI() {
+        /*
+         * No need to use FXMLLoader. FXGL's AssetLoader does the job.
+         * Remember to not use 'fx:controller' attribute in your fxml file.
+         */
+        final HUDController hudController = new HUDController(getGameScene(), getGameState());
+        final UI hud = getAssetLoader().loadUI("hud.fxml", hudController);
+
+        /* NOT WORKING
+        hudController.getPlayerLife().progressProperty().bind(this.absLifeController.getLifeProperty());
+        */
+
+        hudController.getPlayerLife().progressProperty().bind(
+                this.getGameState().doubleProperty("playerLife"));
+        getGameScene().addUI(hud);
     }
 }
