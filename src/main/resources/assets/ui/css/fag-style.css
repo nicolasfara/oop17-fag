@@ -37,6 +37,13 @@
 .button {
     -fx-background-color: transparent;
     -fx-table-cell-border-color: transparent;
+    -fx-padding: 1em 0.5em;
+    -fx-alignment: center;
+    -fx-pref-width: 200px;
+}
+
+.button:hover {
+    -fx-background-color: #830421;
 }
 
 .label {
