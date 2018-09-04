@@ -113,3 +113,6 @@ local.properties
 
 # Code Recommenders
 .recommenders/
+
+# FXGL profile
+profiles/
