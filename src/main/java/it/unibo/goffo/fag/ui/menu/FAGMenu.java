@@ -8,11 +8,14 @@ import com.almasb.fxgl.ui.UI;
 import javafx.beans.binding.StringBinding;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 
@@ -20,7 +23,7 @@ public class FAGMenu extends FXGLMenu {
 
     private MainMenuController mainMenuController;
     private UI fxmlUI;
-    private Node fagMenu;
+    private Parent fagMenu;
 
     public FAGMenu(final GameApplication app, final MenuType type) {
         super(app, type);
@@ -35,13 +38,14 @@ public class FAGMenu extends FXGLMenu {
         app.getGameScene().addUI(fxmlUI);*/
 
         try {
-            fagMenu = FXMLLoader.load(getClass().getResource("/assets/ui/mainMenu.fxml"));
+            fagMenu = FXMLLoader.load(getClass().getResource("/assets/ui/fxml/mainMenu.fxml"));
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        menuRoot.getChildren().add(this.fagMenu);
+        menuRoot.getChildren().add(fagMenu);
         contentRoot.getChildren().add(EMPTY);
+
 
         activeProperty().addListener((observable, wasActive, isActive) -> {
             if (!isActive) {
@@ -49,6 +53,9 @@ public class FAGMenu extends FXGLMenu {
                 switchMenuContentTo(EMPTY);
             }
         });
+
+        final Stage stage = (Stage) menuRoot.getChildren().get(0).getScene().getWindow();
+        stage.setScene(new Scene(fagMenu, 800, 600));
     }
 
     @Override
@@ -67,7 +74,7 @@ public class FAGMenu extends FXGLMenu {
     @Override
     protected Node createBackground(final double width, final double height) {
         Rectangle bg = new Rectangle(width, height);
-        bg.setFill(Color.BLUE);
+        bg.setFill(Color.valueOf("#424242"));
         return bg;
     }
 
