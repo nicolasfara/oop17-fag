@@ -1,5 +1,6 @@
 package it.unibo.goffo.fag.entities;
 
+import it.unibo.goffo.fag.animation.PlayerAnimationImpl;
 import it.unibo.goffo.fag.movement.EntityMovement;
 import it.unibo.goffo.fag.movement.MoveDirection;
 
@@ -21,7 +22,7 @@ public class Player extends Character {
      */
     @Override
     public void playWalkAnimation(final MoveDirection direction) {
-
+        getComponentOptional(PlayerAnimationImpl.class).ifPresent(anim -> anim.playWalkAnimation(direction));
     }
 
     /**
@@ -29,7 +30,7 @@ public class Player extends Character {
      */
     @Override
     public void playIdleAnimation(final MoveDirection direction) {
-
+        getComponentOptional(PlayerAnimationImpl.class).ifPresent(anim -> anim.playIdleAnimation(direction));
     }
 
     /**

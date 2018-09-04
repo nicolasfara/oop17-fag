@@ -1,9 +1,10 @@
 package it.unibo.goffo.fag.entities;
 
+import it.unibo.goffo.fag.animation.ZombieAnimationImpl;
 import it.unibo.goffo.fag.movement.MoveDirection;
 
 /**
- * Defines all enemy {@code Character}s controlled by the game.
+ * Defines all enemy {@code Characters} controlled by the game.
  */
 public class Zombie extends Character {
     /**
@@ -19,7 +20,7 @@ public class Zombie extends Character {
      */
     @Override
     public void playWalkAnimation(final MoveDirection direction) {
-
+        getComponentOptional(ZombieAnimationImpl.class).ifPresent(anim -> anim.playWalkAnimation(direction));
     }
 
     /**
@@ -27,7 +28,7 @@ public class Zombie extends Character {
      */
     @Override
     public void playIdleAnimation(final MoveDirection direction) {
-
+        getComponentOptional(ZombieAnimationImpl.class).ifPresent(anim -> anim.playIdleAnimation(direction));
     }
 
     /**
