@@ -1,9 +1,12 @@
 package it.unibo.goffo.fag.ui.menu;
 
 import com.almasb.fxgl.app.GameApplication;
+import com.almasb.fxgl.core.logging.*;
 import com.almasb.fxgl.settings.GameSettings;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+
+import java.util.EnumSet;
 
 public class MenuApplication extends GameApplication {
     /**
@@ -16,6 +19,12 @@ public class MenuApplication extends GameApplication {
         settings.setTitle("Fight Avenge Guerrilla");
         settings.setMenuEnabled(true);
         settings.setSceneFactory(new FAGMenuFactory());
+        /*
+            Trying to disable profile selection on startup.
+            settings.setEnabledMenuItems(EnumSet.of(MenuItem.EXTRA)); // NOT WORKING
+         */
+
+        Logger.addOutput(new ConsoleOutput(), LoggerLevel.DEBUG);
     }
 
         @Override
