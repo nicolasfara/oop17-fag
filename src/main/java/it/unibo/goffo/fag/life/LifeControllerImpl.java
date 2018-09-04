@@ -8,7 +8,7 @@ public class LifeControllerImpl extends AbsLifeController<Double> {
     private static final double MAX_LIFE = 1.0;
     private static double LIFE_OFFSET = 0.1;
 
-    @SuppressWarnings("unchecked")
+    //@SuppressWarnings("unchecked")
     public LifeControllerImpl() {
         super(new LifeModelImpl.Builder()
                 .setMaxLife(MAX_LIFE)

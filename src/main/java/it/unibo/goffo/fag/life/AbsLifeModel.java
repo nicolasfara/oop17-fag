@@ -47,12 +47,12 @@ public abstract class AbsLifeModel<T extends Number> implements LifeModel<T> {
        private T life;
        private T maxLife;
 
-       public Builder setMaxLife(final T maxLife) {
+       public Builder<T> setMaxLife(final T maxLife) {
            this.maxLife = maxLife;
            return this;
        }
 
-       public Builder startFrom(final T value) {
+       public Builder<T> startFrom(final T value) {
            this.life = value;
            return this;
        }

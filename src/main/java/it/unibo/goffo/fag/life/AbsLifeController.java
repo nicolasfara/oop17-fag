@@ -4,7 +4,7 @@ public abstract class AbsLifeController<T extends Number> implements LifeControl
 
     private LifeModel<T> life;
 
-    @SuppressWarnings("unchecked")
+    //@SuppressWarnings("unchecked")
     AbsLifeController(final LifeModel<T> lifeModel) {
         this.life = lifeModel;
     }
