@@ -14,21 +14,18 @@ public abstract class Character extends Entity {
     public abstract void attack();
 
     /**
-
      * Play a work animation on the entity.
      * @param direction Movement direction.
      */
     public abstract void playWalkAnimation(MoveDirection direction);
 
     /**
-
      * Play an idle animation on the entity.
      * @param direction Movement direction.
      */
     public abstract void playIdleAnimation(MoveDirection direction);
 
     /**
-
      * Decrement the entity's life.
      * @param damage the damage.
      */

@@ -41,7 +41,6 @@ public final class ZombieFactory {
     }
 
     /**
-
      * Create an advanced zombie with path-finding AI to follow the player.
      * @return the zombie.
      */

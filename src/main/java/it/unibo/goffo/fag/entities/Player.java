@@ -5,7 +5,6 @@ import it.unibo.goffo.fag.movement.EntityMovement;
 import it.unibo.goffo.fag.movement.MoveDirection;
 
 /**
-
  * The {@code Character} controlled by the user.
  */
 public class Player extends Character {

@@ -81,6 +81,7 @@ public class PlayerAnimationImpl extends AbstractAnimation {
                 }
                 getEntity().setScaleX(1);
                 break;
+
                 default:
                     break;
         }
