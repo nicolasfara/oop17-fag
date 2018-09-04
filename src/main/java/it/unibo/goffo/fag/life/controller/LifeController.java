@@ -1,4 +1,6 @@
-package it.unibo.goffo.fag.life;
+package it.unibo.goffo.fag.life.controller;
+
+import it.unibo.goffo.fag.exceptions.CharacterDiesException;
 
 public interface LifeController<T> {
     T getLife();

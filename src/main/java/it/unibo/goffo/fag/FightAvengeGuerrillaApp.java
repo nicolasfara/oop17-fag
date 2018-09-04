@@ -3,9 +3,8 @@ package it.unibo.goffo.fag;
 import com.almasb.fxgl.app.GameApplication;
 import com.almasb.fxgl.settings.GameSettings;
 import com.almasb.fxgl.ui.UI;
-import it.unibo.goffo.fag.life.AbsLifeController;
-import it.unibo.goffo.fag.life.LifeController;
-import it.unibo.goffo.fag.life.LifeControllerImpl;
+import it.unibo.goffo.fag.life.controller.LifeController;
+import it.unibo.goffo.fag.life.controller.LifeControllerImpl;
 import it.unibo.goffo.fag.ui.hud.HUDController;
 
 /**

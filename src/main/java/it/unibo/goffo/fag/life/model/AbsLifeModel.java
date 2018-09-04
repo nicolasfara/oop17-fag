@@ -1,4 +1,6 @@
-package it.unibo.goffo.fag.life;
+package it.unibo.goffo.fag.life.model;
+
+import it.unibo.goffo.fag.life.model.LifeModel;
 
 /**
  * Simple implementation on life manager with Number data types.
