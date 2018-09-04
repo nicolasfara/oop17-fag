@@ -1,8 +1,23 @@
 package it.unibo.goffo.fag.entities;
 
 /**
- * Enum that model all type of entities in the game.
+ * Enum that models all type of entities in the game.
  */
 public enum FagType {
-    PLAYER, SIMPLE_ZOMBIE, ADVANCE_ZOMBIE
+    /**
+     * Player type.
+     */
+    PLAYER,
+    /**
+     * Wall type.
+     */
+    WALL,
+    /**
+     * Simple zombie type.
+     */
+    SIMPLE_ZOMBIE,
+    /**
+     * Advance zombie type.
+     */
+    ADVANCE_ZOMBIE
 }

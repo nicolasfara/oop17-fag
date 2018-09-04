@@ -7,6 +7,7 @@ import com.almasb.fxgl.entity.component.Component;
 import com.almasb.fxgl.time.LocalTimer;
 import it.unibo.goffo.fag.FightAvengeGuerrillaApp;
 import it.unibo.goffo.fag.movement.EntityMovement;
+import it.unibo.goffo.fag.movement.MoveDirection;
 import javafx.util.Duration;
 
 /**

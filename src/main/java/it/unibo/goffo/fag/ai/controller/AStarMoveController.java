@@ -9,7 +9,9 @@ import com.almasb.fxgl.entity.components.PositionComponent;
 import com.almasb.fxgl.extra.ai.pathfinding.AStarGrid;
 import com.almasb.fxgl.extra.ai.pathfinding.AStarNode;
 import it.unibo.goffo.fag.FightAvengeGuerrillaApp;
+import it.unibo.goffo.fag.entities.Zombie;
 import it.unibo.goffo.fag.movement.EntityMovement;
+import it.unibo.goffo.fag.movement.MoveDirection;
 import javafx.geometry.Point2D;
 
 import java.util.LinkedList;
@@ -28,6 +30,7 @@ public class AStarMoveController extends Component implements MoveController {
     private PositionComponent position;
     private static final Logger LOGGER = Logger.get(AStarMoveController.class);
     private static final int TPF_MULTIPLIER = 70;
+    private Zombie zombie;
 
     /**
      * {@inheritDoc}
@@ -69,6 +72,15 @@ public class AStarMoveController extends Component implements MoveController {
      * {@inheritDoc}
      */
     @Override
+    public void onAdded() {
+        super.onAdded();
+        zombie = (Zombie) getEntity();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public void onUpdate(final double tpf) {
         if (nodeList.isEmpty()) {
             LOGGER.info("No node find in the list, no movement");
@@ -85,15 +97,15 @@ public class AStarMoveController extends Component implements MoveController {
         final double deltaY = nextY - position.getY();
 
         if (deltaX > 0) {
-            getEntity().getComponentOptional(ZombieAnimationImpl.class).ifPresent(a -> a.playWalkAnimation(MoveDirection.RIGHT));
+            zombie.playWalkAnimation(MoveDirection.RIGHT);
         } else if (deltaX < 0) {
-            getEntity().getComponentOptional(ZombieAnimationImpl.class).ifPresent(a -> a.playWalkAnimation(MoveDirection.LEFT));
+            zombie.playWalkAnimation(MoveDirection.LEFT);
         }
 
         if (deltaY > 0) {
-            getEntity().getComponentOptional(ZombieAnimationImpl.class).ifPresent(a -> a.playWalkAnimation(MoveDirection.DOWN));
+            zombie.playWalkAnimation(MoveDirection.DOWN);
         } else if (deltaY < 0) {
-            getEntity().getComponentOptional(ZombieAnimationImpl.class).ifPresent(a -> a.playWalkAnimation(MoveDirection.UP));
+            zombie.playWalkAnimation(MoveDirection.UP);
         }
 
         if (Math.abs(deltaX) <= speed) {
