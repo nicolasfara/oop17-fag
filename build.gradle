@@ -27,7 +27,7 @@ dependencies {
     compile 'com.google.guava:guava:26.0-jre'
     compile 'com.esotericsoftware:kryo:5.0.0-RC1'
     compile 'com.google.code.gson:gson:2.8.5'
-    compile 'io.reactivex.rxjava2:rxjava:2.2.0'
+    compile 'io.reactivex.rxjava2:rxjava:2.2.1'
     // SpotBugs
     spotbugsPlugins 'com.h3xstream.findsecbugs:findsecbugs-plugin:1.7.1'
     compile 'com.github.spotbugs:spotbugs:3.1.6'
@@ -95,4 +95,11 @@ task fatJar(type: Jar) {
     baseName = project.name + '-goffo'
     from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
     with jar
+}
+
+//create a jar with Javadoc
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    baseName = project.name + '-goffo'
+    classifier = 'javadoc'
+    from javadoc.destinationDir
 }

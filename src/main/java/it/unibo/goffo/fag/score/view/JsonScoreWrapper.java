@@ -16,7 +16,11 @@ public class JsonScoreWrapper extends JsonScore {
     private final IntegerProperty score;
 
     /**
+<<<<<<< .merge_file_pm7uBP
      * Constructor wrap the {@link #JsonScore JsonScore}. Refer to it for detail.
+=======
+     * Constructor wrap the JsonScore. Refer to it for detail.
+>>>>>>> .merge_file_DzGFrP
      * @param username the username of the player.
      * @param score the score to save.
      */
