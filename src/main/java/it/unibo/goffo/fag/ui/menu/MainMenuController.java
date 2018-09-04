@@ -19,6 +19,8 @@ public class MainMenuController implements UIController {
     @FXML
     private Button btnScores;
 
+    @FXML Button btnCredits;
+
     @FXML Button btnExit;
 
     @FXML
@@ -41,6 +43,10 @@ public class MainMenuController implements UIController {
 
     @FXML
     private void showScores() {
+    }
+
+    @FXML
+    private void showCredits() {
     }
 
     @FXML
