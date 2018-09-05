@@ -1,6 +1,8 @@
 package it.unibo.goffo.fag.entities;
 
 import it.unibo.goffo.fag.animation.PlayerAnimationImpl;
+import it.unibo.goffo.fag.life.Damage;
+import it.unibo.goffo.fag.life.controller.LifeControllerImpl;
 import it.unibo.goffo.fag.movement.EntityMovement;
 import it.unibo.goffo.fag.movement.MoveDirection;
 
@@ -12,8 +14,8 @@ public class Player extends Character {
      * {@inheritDoc}
      */
     @Override
-    public void attack() {
-
+    public double getDamage() {
+        return getComponent(Damage.class).getDamage();
     }
 
     /**
@@ -36,8 +38,8 @@ public class Player extends Character {
      * {@inheritDoc}
      */
     @Override
-    public void decrementLife(final int damage) {
-
+    public void decrementLife(final double damage) {
+        getComponent(LifeControllerImpl.class).decreaseOf(damage);
     }
 
     /**

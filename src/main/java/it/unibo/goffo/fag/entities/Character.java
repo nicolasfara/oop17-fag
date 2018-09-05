@@ -18,7 +18,7 @@ public abstract class Character extends Entity {
     /**
      * Attack an entity.
      */
-    public abstract void attack();
+    public abstract double getDamage();
 
     /**
      * Play a work animation on the entity.
@@ -36,5 +36,5 @@ public abstract class Character extends Entity {
      * Decrement the entity's life.
      * @param damage the damage.
      */
-    public abstract void decrementLife(int damage);
+    public abstract void decrementLife(double damage);
 }
