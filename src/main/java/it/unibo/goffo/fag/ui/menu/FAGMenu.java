@@ -5,24 +5,21 @@ import com.almasb.fxgl.app.GameApplication;
 import com.almasb.fxgl.scene.FXGLMenu;
 import com.almasb.fxgl.scene.menu.MenuType;
 import com.almasb.fxgl.ui.UI;
+
 import javafx.beans.binding.StringBinding;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
 
 import java.io.IOException;
 
 public class FAGMenu extends FXGLMenu {
 
-    private MainMenuController mainMenuController;
-    private UI fxmlUI;
     private Parent fagMenu;
 
     public FAGMenu(final GameApplication app, final MenuType type) {
@@ -37,16 +34,11 @@ public class FAGMenu extends FXGLMenu {
         this.fxmlUI = FXGL.getAssetLoader().loadUI("mainMenu.fxml", this.mainMenuController);
         app.getGameScene().addUI(fxmlUI);*/
 
-        try {
-            fagMenu = FXMLLoader.load(getClass().getResource("/assets/ui/fxml/mainMenu.fxml"));
-        } catch (IOException e) {
-            e.printStackTrace();
+        if (type == MenuType.MAIN_MENU) {
+            this.makeMainMenu();
+        } else if (type == MenuType.GAME_MENU) {
+            this.makeGameMenu();
         }
-
-        this.fagMenu.setTranslateX(250);
-        this.fagMenu.setTranslateY(250);
-
-        FXGL.configure(FXGL.getApp());
 
         menuRoot.getChildren().add(fagMenu);
         contentRoot.getChildren().add(EMPTY);
@@ -58,12 +50,53 @@ public class FAGMenu extends FXGLMenu {
             }
         });
 
-        switchMenuTo(this.fagMenu);
-        switchMenuContentTo(this.fagMenu);
+        /*
+            NOT WORKING
+            i seguenti metodi sono chiamati nel costruttore, eseguito alla creazione del menù, ovvero della macchina a stati
+            ma in quel momento ancora non è stato renderizzato nulla, quindi per questo non va
+         */
+/*        if (FXGL.getApp().getStateMachine().getCurrentState().equals(FXGL.getApp().getStateMachine().getIntroState())) {
+            FXGL.getApp().getGameScene().getRoot().getChildren().add(this.fagMenu);
+        }*/
+
+/*        switchMenuTo(this.fagMenu);
+        switchMenuContentTo(this.fagMenu);*/
 
         /*
         final Stage stage = (Stage) menuRoot.getChildren().get(0).getScene().getWindow();
         stage.setScene(new Scene(fagMenu, 800, 600));*/
+    }
+
+    private void makeMainMenu() {
+        this.setFagMenu(this.readMenuFromFXML("/assets/ui/fxml/mainMenu.fxml"));
+    }
+
+    private void makeGameMenu() {
+        this.setFagMenu(this.readMenuFromFXML("/assets/ui/fxml/gameMenu.fxml"));
+    }
+
+    protected void setFagMenu(final Parent parent) {
+        this.fagMenu = parent;
+    }
+
+    protected void updateView() {
+        FXGL.getApp().getGameScene().addUINode(this.fagMenu);
+//        menuRoot.getChildren().set(0, this.fagMenu);
+    }
+
+    public void makeScoresMenu(final String scoresMenuFile) {
+        this.fagMenu = this.readMenuFromFXML(scoresMenuFile);
+        this.switchMenuContentTo(this.fagMenu);
+    }
+
+    protected Parent readMenuFromFXML(final String fileName) {
+        Parent tmp = null;
+        try {
+            tmp = FXMLLoader.load(getClass().getResource(fileName));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return tmp;
     }
 
     /**
@@ -103,9 +136,7 @@ public class FAGMenu extends FXGLMenu {
      */
     @Override
     protected Node createBackground(final double width, final double height) {
-        Rectangle bg = new Rectangle(width, height);
-        bg.setFill(Color.valueOf("#424242"));
-        return bg;
+        return new Rectangle(0,0);
     }
 
     /**
@@ -113,19 +144,7 @@ public class FAGMenu extends FXGLMenu {
      */
     @Override
     protected Node createTitleView(final String title) {
-
-        /*mainMenuController.setMenuTitle(title);
-        return mainMenuController.getMenuTitle();*/
-
-
-        Text text = FXGL.getUIFactory().newText(title, 50);
-
-        StackPane titleRoot = new StackPane();
-        titleRoot.getChildren().addAll(text);
-
-        titleRoot.setTranslateX(app.getWidth() / 2.0 - (text.getLayoutBounds().getWidth() + 20) / 2);
-        titleRoot.setTranslateY(50);
-        return titleRoot;
+        return FXGL.getUIFactory().newText(title, 0);
     }
 
     /**
@@ -133,9 +152,7 @@ public class FAGMenu extends FXGLMenu {
      */
     @Override
     protected Node createVersionView(String version) {
-        Text view = FXGL.getUIFactory().newText(version);
-/*        view.setTranslateY(app.getHeight() - 2);*/
-        return view;
+        return FXGL.getUIFactory().newText(version, 0);
     }
 
     /**
@@ -143,9 +160,6 @@ public class FAGMenu extends FXGLMenu {
      */
     @Override
     protected Node createProfileView(String profileName) {
-        Text view = FXGL.getUIFactory().newText(profileName);
-/*        view.setTranslateY(app.getHeight() - 2);
-        view.setTranslateX(app.getWidth() - view.getLayoutBounds().getWidth());*/
-        return view;
+        return FXGL.getUIFactory().newText(profileName, 0);
     }
 }

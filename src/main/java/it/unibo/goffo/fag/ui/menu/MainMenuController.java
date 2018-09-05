@@ -1,15 +1,12 @@
 package it.unibo.goffo.fag.ui.menu;
 
 import com.almasb.fxgl.app.FXGL;
-import com.almasb.fxgl.ui.UIController;
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -17,30 +14,15 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 
-public class MainMenuController implements UIController {
+public class MainMenuController {
 
-    FAGMenu mainMenu;
+    @FXML private Text menuTitle;
+    @FXML private Button btnStartGame;
+    @FXML private Button btnScores;
+    @FXML private Button btnCredits;
+    @FXML private Button btnExit;
 
-    @FXML
-    private Button btnStartGame;
-
-    @FXML
-    private Button btnScores;
-
-    @FXML Button btnCredits;
-
-    @FXML Button btnExit;
-
-    @FXML
-    private Text menuTitle;
-
-    public void setMenuTitle(final String text) {
-        this.menuTitle.setText(text);
-    }
-
-    public Text getMenuTitle() {
-        return this.menuTitle;
-    }
+    private FAGMenu mainMenu;
 
     @FXML
     private void startGame() {
@@ -71,7 +53,4 @@ public class MainMenuController implements UIController {
 
         FXGL.getApp().getMenuListener().onExit();
     }
-
-    @Override
-    public void init() { }
 }
