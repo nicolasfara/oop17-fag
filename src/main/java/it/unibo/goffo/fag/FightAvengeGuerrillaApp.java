@@ -148,6 +148,34 @@ public class FightAvengeGuerrillaApp extends GameApplication {
                 player.playIdleAnimation(MoveDirection.DOWN);
             }
         }, KeyCode.S);
+
+        input.addAction(new UserAction("Rotate Left") {
+            @Override
+            protected void onAction() {
+                player.rotateLeft();
+            }
+        }, KeyCode.LEFT);
+
+        input.addAction(new UserAction("Rotate Right") {
+            @Override
+            protected void onAction() {
+                player.rotateRight();
+            }
+        }, KeyCode.RIGHT);
+
+        input.addAction(new UserAction("Rotate Up") {
+            @Override
+            protected void onAction() {
+                player.rotateUp();
+            }
+        }, KeyCode.UP);
+
+        input.addAction(new UserAction("Rotate Down") {
+            @Override
+            protected void onAction() {
+                player.rotateDown();
+            }
+        }, KeyCode.DOWN);
     }
 
     /**

@@ -6,6 +6,7 @@ import it.unibo.goffo.fag.life.Damage;
 import it.unibo.goffo.fag.life.controller.LifeControllerImpl;
 import it.unibo.goffo.fag.movement.EntityMovement;
 import it.unibo.goffo.fag.movement.MoveDirection;
+import it.unibo.goffo.fag.rotation.EntityRotation;
 
 /**
  * The {@code Character} controlled by the user.
@@ -70,5 +71,32 @@ public class Player extends Character {
     public void moveRight() {
         getComponent(EntityMovement.class).moveRight();
     }
-}
 
+    /**
+     * Rotate the entity left
+     */
+    public void rotateLeft() {
+        getComponent(EntityRotation.class).rotateLeft();
+    }
+
+    /**
+     * Rotate the entity right
+     */
+    public void rotateRight() {
+        getComponent(EntityRotation.class).rotateRight();
+    }
+
+    /**
+     * Rotate the entity up
+     */
+    public void rotateUp() {
+        getComponent(EntityRotation.class).rotateUp();
+    }
+
+    /**
+     * Rotate the entity down
+     */
+    public void rotateDown() {
+        getComponent(EntityRotation.class).rotateDown();
+    }
+}
