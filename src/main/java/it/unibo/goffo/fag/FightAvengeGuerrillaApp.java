@@ -13,6 +13,7 @@ import it.unibo.goffo.fag.entities.Player;
 import it.unibo.goffo.fag.entities.builders.FagEntities;
 import it.unibo.goffo.fag.movement.EntityMovement;
 import it.unibo.goffo.fag.movement.MoveDirection;
+import it.unibo.goffo.fag.rotation.EntityRotation;
 import it.unibo.goffo.fag.spawn.controller.SpawnControllerImpl;
 import it.unibo.goffo.fag.spawn.view.SpawnView;
 import it.unibo.goffo.fag.spawn.view.SpawnViewImpl;
@@ -195,6 +196,7 @@ public class FightAvengeGuerrillaApp extends GameApplication {
                 .type(FagType.PLAYER)
                 .at(200, 200)
                 .with(new EntityMovement(1))
+                .with(new EntityRotation())
                 .with(new PlayerAnimationImpl())
                 .buildAndAttach(getGameWorld());
         /*lifeController.bindLife();*/
