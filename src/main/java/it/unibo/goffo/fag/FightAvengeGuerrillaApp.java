@@ -1,11 +1,19 @@
 package it.unibo.goffo.fag;
 
+import com.almasb.fxgl.app.FXGL;
 import com.almasb.fxgl.app.GameApplication;
+import com.almasb.fxgl.input.ActionType;
+import com.almasb.fxgl.input.InputMapping;
+import com.almasb.fxgl.input.OnUserAction;
 import com.almasb.fxgl.settings.GameSettings;
 import com.almasb.fxgl.ui.UI;
 import it.unibo.goffo.fag.life.controller.LifeController;
 import it.unibo.goffo.fag.life.controller.LifeControllerImpl;
 import it.unibo.goffo.fag.ui.hud.HUDController;
+import javafx.scene.input.KeyCode;
+import com.almasb.fxgl.ui.FXGLTextFlow;
+import javafx.scene.input.MouseButton;
+import javafx.scene.paint.Color;
 
 /**
  * Main class, used to launch FXGL.
@@ -54,7 +62,13 @@ public class FightAvengeGuerrillaApp extends GameApplication {
      */
     @Override
     protected void initInput() {
-        super.initInput();
+        getInput().addInputMapping(new InputMapping("Show Notification", KeyCode.F));
+    }
+
+    @OnUserAction(name = "Show Notification", type = ActionType.ON_ACTION_BEGIN)
+    public void showNotification() {
+        // 1. get notification service and push a message
+        getNotificationService().pushNotification("Some Message! Tick: " + getTick());
     }
 
     /**
@@ -91,5 +105,16 @@ public class FightAvengeGuerrillaApp extends GameApplication {
         hudController.getPlayerLife().progressProperty().bind(
                 this.getGameState().doubleProperty("playerLife"));
         getGameScene().addUI(hud);
+
+        FXGLTextFlow flow = FXGL.getUIFactory().newTextFlow()
+                .append("Press ", Color.BLACK, 18).append(KeyCode.A, Color.RED, 18).append(" to move left\n", Color.BLACK, 18)
+                .append("Press ", Color.BLACK, 18).append(KeyCode.D, Color.RED).append(" to move right\n", Color.BLACK)
+                .append("Press ", Color.BLACK).append(MouseButton.PRIMARY, Color.RED).append(" to shoot!", Color.BLACK);
+
+        flow.setTranslateX(getWidth() - flow.getBoundsInParent().getWidth());
+        flow.setTranslateY(0.0);
+
+        getGameScene().addUINode(flow);
+
     }
 }
