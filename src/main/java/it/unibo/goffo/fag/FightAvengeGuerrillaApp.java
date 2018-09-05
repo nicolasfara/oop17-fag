@@ -5,11 +5,17 @@ import com.almasb.fxgl.app.GameApplication;
 import com.almasb.fxgl.entity.Entity;
 import com.almasb.fxgl.extra.ai.pathfinding.AStarGrid;
 import com.almasb.fxgl.parser.tiled.TiledMap;
+import com.almasb.fxgl.physics.CollisionHandler;
 import com.almasb.fxgl.settings.GameSettings;
 import com.almasb.fxgl.ui.UI;
 import it.unibo.goffo.fag.animation.PlayerAnimationImpl;
+import it.unibo.goffo.fag.collision.BulletZombieCollision;
+import it.unibo.goffo.fag.collision.Collision;
+import it.unibo.goffo.fag.collision.PlayerZombieCollision;
+import it.unibo.goffo.fag.entities.Bullet;
 import it.unibo.goffo.fag.entities.FagType;
 import it.unibo.goffo.fag.entities.Player;
+import it.unibo.goffo.fag.entities.Zombie;
 import it.unibo.goffo.fag.entities.builders.FagEntities;
 import it.unibo.goffo.fag.movement.EntityMovement;
 import it.unibo.goffo.fag.movement.MoveDirection;
@@ -209,6 +215,21 @@ public class FightAvengeGuerrillaApp extends GameApplication {
     @Override
     protected void initPhysics() {
         super.initPhysics();
+        getPhysicsWorld().addCollisionHandler(
+                new CollisionHandler(Player.class, Zombie.class) {
+                    @Override
+                    protected void onCollisionBegin(Entity player, Entity zombie) {
+                    // call to player-zombie collision
+                    }
+                });
+
+        getPhysicsWorld().addCollisionHandler(
+                new CollisionHandler(Bullet.class, Zombie.class) {
+                    @Override
+                    protected void onCollisionBegin(Entity bullet, Entity zombie) {
+                        // call to bullet-zombie collision
+                    }
+                });
     }
 
     /**
