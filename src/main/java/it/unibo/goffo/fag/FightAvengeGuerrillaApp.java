@@ -3,9 +3,12 @@ package it.unibo.goffo.fag;
 import com.almasb.fxgl.app.FXGL;
 import com.almasb.fxgl.app.GameApplication;
 import com.almasb.fxgl.entity.Entity;
+import com.almasb.fxgl.entity.components.CollidableComponent;
 import com.almasb.fxgl.extra.ai.pathfinding.AStarGrid;
 import com.almasb.fxgl.parser.tiled.TiledMap;
+import com.almasb.fxgl.physics.BoundingShape;
 import com.almasb.fxgl.physics.CollisionHandler;
+import com.almasb.fxgl.physics.HitBox;
 import com.almasb.fxgl.settings.GameSettings;
 import com.almasb.fxgl.ui.UI;
 import it.unibo.goffo.fag.animation.PlayerAnimationImpl;
@@ -207,6 +210,8 @@ public class FightAvengeGuerrillaApp extends GameApplication {
                 .with(new EntityMovement(1))
                 .with(new EntityRotation())
                 .with(new PlayerAnimationImpl())
+                .bbox(new HitBox(BoundingShape.box(32,42)))
+                .with(new CollidableComponent(true))
                 .buildAndAttach(getGameWorld());
         /*lifeController.bindLife();*/
         this.getGameState().setValue("playerLife", 1.0);
