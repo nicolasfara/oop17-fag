@@ -1,10 +1,12 @@
 package it.unibo.goffo.fag.spawn.controller;
 
 import com.almasb.fxgl.app.FXGL;
+import com.almasb.fxgl.core.math.FXGLMath;
 import com.almasb.fxgl.time.TimerAction;
 import io.reactivex.Observable;
 import io.reactivex.subjects.PublishSubject;
 import it.unibo.goffo.fag.entities.Character;
+import it.unibo.goffo.fag.entities.Zombie;
 import it.unibo.goffo.fag.entities.builders.ZombieFactory;
 import it.unibo.goffo.fag.spawn.logic.SpawnLogic;
 import it.unibo.goffo.fag.spawn.logic.SpawnLogicImpl;
@@ -24,7 +26,7 @@ public final class SpawnControllerImpl implements SpawnController {
     private static SpawnController spawnController;
 
     private SpawnControllerImpl() {
-        timerAction = FXGL.getMasterTimer().runAtInterval(() -> Stream.generate(ZombieFactory::createSimpleZombie)
+        timerAction = FXGL.getMasterTimer().runAtInterval(() -> Stream.generate(this::getRandomZombieType)
                     .limit(spawnLogic.getNextCount())
                     .forEach(observable::onNext), Duration.seconds(TIMER_TICK));
     }
@@ -70,5 +72,16 @@ public final class SpawnControllerImpl implements SpawnController {
     @Override
     public Observable<Character> getObservable() {
         return observable;
+    }
+
+    private Zombie getRandomZombieType() {
+        switch (FXGLMath.random(0, 1)) {
+            case 0:
+                return ZombieFactory.createSimpleZombie();
+            case 1:
+                return ZombieFactory.createAdvancedZombie();
+                default:
+                    throw new IllegalStateException();
+        }
     }
 }
