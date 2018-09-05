@@ -46,6 +46,9 @@ public class FightAvengeGuerrillaApp extends GameApplication {
     private Player player;
     private LifeController lifeController;
 
+    PlayerZombieCollision t1 = new PlayerZombieCollision();
+    BulletZombieCollision t2 = new BulletZombieCollision();
+
     /**
      * Main method launch the game engine.
      * @param args Command line arguments.
@@ -218,16 +221,16 @@ public class FightAvengeGuerrillaApp extends GameApplication {
         getPhysicsWorld().addCollisionHandler(
                 new CollisionHandler(Player.class, Zombie.class) {
                     @Override
-                    protected void onCollisionBegin(Entity player, Entity zombie) {
-                    // call to player-zombie collision
+                    protected void onCollisionBegin(final Entity player, final Entity zombie) {
+                        t1.onCollision((Player) player, (Zombie) zombie);
                     }
                 });
 
         getPhysicsWorld().addCollisionHandler(
                 new CollisionHandler(Bullet.class, Zombie.class) {
                     @Override
-                    protected void onCollisionBegin(Entity bullet, Entity zombie) {
-                        // call to bullet-zombie collision
+                    protected void onCollisionBegin(final Entity bullet, final Entity zombie) {
+                        t2.onCollision((Bullet) bullet, (Zombie) zombie);
                     }
                 });
     }

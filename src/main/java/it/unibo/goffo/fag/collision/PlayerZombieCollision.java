@@ -9,7 +9,10 @@ import it.unibo.goffo.fag.exceptions.CharacterDiesException;
  */
 public class PlayerZombieCollision implements Collision<Player, Zombie> {
 
-    PlayerZombieCollision() {
+    /**
+     *
+     */
+    public PlayerZombieCollision() {
         super();
     }
 
