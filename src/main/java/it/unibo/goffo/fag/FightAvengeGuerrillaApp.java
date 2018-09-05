@@ -210,7 +210,7 @@ public class FightAvengeGuerrillaApp extends GameApplication {
                 .with(new EntityMovement(1))
                 .with(new EntityRotation())
                 .with(new PlayerAnimationImpl())
-                .bbox(new HitBox(BoundingShape.box(32,42)))
+                .bbox(new HitBox(BoundingShape.box(128,128)))
                 .with(new CollidableComponent(true))
                 .buildAndAttach(getGameWorld());
         /*lifeController.bindLife();*/
@@ -228,6 +228,7 @@ public class FightAvengeGuerrillaApp extends GameApplication {
                     @Override
                     protected void onCollisionBegin(final Entity player, final Entity zombie) {
                         t1.onCollision((Player) player, (Zombie) zombie);
+                        System.out.println("COLLISION DETECTED");
                     }
                 });
 
