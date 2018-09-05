@@ -1,6 +1,7 @@
 package it.unibo.goffo.fag.entities;
 
 import com.almasb.fxgl.entity.Entity;
+import it.unibo.goffo.fag.exceptions.CharacterDiesException;
 import it.unibo.goffo.fag.movement.MoveDirection;
 
 /**
@@ -11,7 +12,7 @@ public abstract class Character extends Entity {
     /**
      * Attack an entity.
      */
-    public abstract void attack();
+    public abstract double getDamage();
 
     /**
      * Play a work animation on the entity.
@@ -28,6 +29,7 @@ public abstract class Character extends Entity {
     /**
      * Decrement the entity's life.
      * @param damage the damage.
+     * @throws CharacterDiesException will thrown if the character die.
      */
-    public abstract void decrementLife(int damage);
+    public abstract void decrementLife(double damage) throws CharacterDiesException;
 }

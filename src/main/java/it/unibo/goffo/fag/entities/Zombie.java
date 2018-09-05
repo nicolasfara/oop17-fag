@@ -1,6 +1,9 @@
 package it.unibo.goffo.fag.entities;
 
 import it.unibo.goffo.fag.animation.ZombieAnimationImpl;
+import it.unibo.goffo.fag.exceptions.CharacterDiesException;
+import it.unibo.goffo.fag.life.Damage;
+import it.unibo.goffo.fag.life.controller.LifeControllerImpl;
 import it.unibo.goffo.fag.movement.MoveDirection;
 
 /**
@@ -11,8 +14,8 @@ public class Zombie extends Character {
      * {@inheritDoc}
      */
     @Override
-    public void attack() {
-
+    public double getDamage() {
+        return getComponent(Damage.class).getDamage();
     }
 
     /**
@@ -35,7 +38,7 @@ public class Zombie extends Character {
      * {@inheritDoc}
      */
     @Override
-    public void decrementLife(final int damage) {
-
+    public void decrementLife(final double damage) throws CharacterDiesException {
+        getComponent(LifeControllerImpl.class).decreaseOf(damage);
     }
 }

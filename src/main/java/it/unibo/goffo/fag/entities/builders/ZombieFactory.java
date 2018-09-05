@@ -1,5 +1,6 @@
 package it.unibo.goffo.fag.entities.builders;
 
+import it.unibo.goffo.fag.ai.controller.AStarMoveController;
 import it.unibo.goffo.fag.animation.ZombieAnimationImpl;
 import it.unibo.goffo.fag.entities.FagType;
 import it.unibo.goffo.fag.entities.Zombie;
@@ -12,6 +13,8 @@ import com.almasb.fxgl.extra.ai.pathfinding.AStarNode;
 import com.almasb.fxgl.extra.ai.pathfinding.NodeState;
 import it.unibo.goffo.fag.FightAvengeGuerrillaApp;
 import it.unibo.goffo.fag.ai.controller.RandomMoveController;
+import it.unibo.goffo.fag.life.Damage;
+import it.unibo.goffo.fag.life.controller.LifeControllerImpl;
 import it.unibo.goffo.fag.movement.EntityMovement;
 
 import java.util.List;
@@ -21,6 +24,9 @@ import java.util.stream.Collectors;
  * Factory for zombie creation.
  */
 public final class ZombieFactory {
+
+    private static final double SIMPLE_DAMAGE = 0.1;
+    private static final double ADVANCE_DAMAGE = 0.2;
 
     private ZombieFactory() { }
 
@@ -35,6 +41,8 @@ public final class ZombieFactory {
                 .with(new ZombieAnimationImpl())
                 .with(new CollidableComponent(true))
                 .with(new EntityMovement(1))
+                .with(new LifeControllerImpl(1))
+                .with(new Damage(SIMPLE_DAMAGE))
                 .with(new RandomMoveController())
                 .with(new AIControl("random.tree"))
                 .build();
@@ -49,6 +57,12 @@ public final class ZombieFactory {
                 .at(randomPoint())
                 .type(FagType.ADVANCE_ZOMBIE)
                 .with(new ZombieAnimationImpl())
+                .with(new CollidableComponent(true))
+                .with(new EntityMovement(1))
+                .with(new LifeControllerImpl(1))
+                .with(new Damage(ADVANCE_DAMAGE))
+                .with(new AStarMoveController())
+                .with(new AIControl("astar.tree"))
                 .build();
     }
 
