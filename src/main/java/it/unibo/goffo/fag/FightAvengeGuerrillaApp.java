@@ -197,6 +197,7 @@ public class FightAvengeGuerrillaApp extends GameApplication {
                 .at(200, 200)
                 .with(new EntityMovement(1))
                 .with(new EntityRotation())
+                .with(new LifeControllerImpl(1))
                 .with(new PlayerAnimationImpl())
                 .buildAndAttach(getGameWorld());
         /*lifeController.bindLife();*/
