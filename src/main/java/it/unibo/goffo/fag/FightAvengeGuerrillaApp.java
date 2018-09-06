@@ -236,7 +236,7 @@ public class FightAvengeGuerrillaApp extends GameApplication {
                         try {
                             t1.onCollision((Player) player, (Zombie) zombie);
                         } catch (GameOverException e1) {
-                            throw new CharacterDiesException();
+                            e1.printStackTrace();
                         }
                     }
                 });

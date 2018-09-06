@@ -21,7 +21,7 @@ public class PlayerZombieCollision implements Collision<Player, Zombie> {
      * {@inheritDoc}
      */
     @Override
-    public void onCollision(final Player p1, final Zombie z1) {
+    public void onCollision(final Player p1, final Zombie z1) throws GameOverException {
         try {
             p1.decrementLife(z1.getDamage());
         } catch (CharacterDiesException e1) {
