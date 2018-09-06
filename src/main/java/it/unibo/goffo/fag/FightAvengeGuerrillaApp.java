@@ -222,7 +222,6 @@ public class FightAvengeGuerrillaApp extends GameApplication {
         this.getGameState().setValue("playerLife", 1.0);
     }
 
-    private static final Logger LOGGER = Logger.get(FightAvengeGuerrillaApp.class);
     /**
      * {@inheritDoc}Math.abs
      */
@@ -245,7 +244,11 @@ public class FightAvengeGuerrillaApp extends GameApplication {
                 new CollisionHandler(FagType.PLAYER, FagType.ADVANCE_ZOMBIE) {
                     @Override
                     protected void onCollisionBegin(final Entity player, final Entity zombie) {
-                        t1.onCollision((Player) player, (Zombie) zombie);
+                        try {
+                            t1.onCollision((Player) player, (Zombie) zombie);
+                        } catch (GameOverException e2) {
+                            e2.printStackTrace();
+                        }
                     }
                 });
 
