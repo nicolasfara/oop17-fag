@@ -1,5 +1,6 @@
 package it.unibo.goffo.fag;
 
+import com.almasb.fxgl.app.DSLKt;
 import com.almasb.fxgl.app.FXGL;
 import com.almasb.fxgl.app.GameApplication;
 import com.almasb.fxgl.input.ActionType;
@@ -10,13 +11,17 @@ import com.almasb.fxgl.ui.UI;
 import it.unibo.goffo.fag.life.controller.LifeController;
 import it.unibo.goffo.fag.life.controller.LifeControllerImpl;
 import it.unibo.goffo.fag.ui.hud.HUDController;
+import javafx.animation.FadeTransition;
 import javafx.geometry.Insets;
+import javafx.scene.control.Button;
 import javafx.scene.input.KeyCode;
 import com.almasb.fxgl.ui.FXGLTextFlow;
 import javafx.scene.input.MouseButton;
+import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
+import javafx.util.Duration;
 
 /**
  * Main class, used to launch FXGL.
@@ -128,13 +133,32 @@ public class FightAvengeGuerrillaApp extends GameApplication {
          */
         Rectangle bgTutorial = new Rectangle();
         bgTutorial.setFill(new Color(0.41, 0.41, 0.41, 0.3));
-        bgTutorial.setWidth(flow.getBoundsInLocal().getWidth() + 40);
-        bgTutorial.setHeight(flow.getBoundsInLocal().getHeight() + 40);
-        bgTutorial.setTranslateX(getWidth() - bgTutorial.getBoundsInLocal().getWidth());
-        bgTutorial.setTranslateY(0);
+        bgTutorial.setWidth(flow.getBoundsInLocal().getWidth() + 30);
+        bgTutorial.setHeight(flow.getBoundsInLocal().getHeight() + 20);
+        bgTutorial.setTranslateX(getWidth() - bgTutorial.getBoundsInLocal().getWidth() - 10);
+        bgTutorial.setTranslateY(10);
 
-        getGameScene().addUINode(flow);
-        getGameScene().addUINode(bgTutorial);
+        Pane pane = new Pane();
+        pane.setStyle("-fx-background-color: rgba(41,41,41,0.5)");
+        pane.setStyle("-fx-pref-width: " + flow.getBoundsInLocal().getWidth() + 30 + "px");
+        pane.setStyle("-fx-pref-height:" + flow.getBoundsInLocal().getHeight() + 20 + "px");
+        pane.setTranslateX(getWidth() - bgTutorial.getBoundsInLocal().getWidth() - 10);
+        pane.setTranslateY(10);
+        getGameScene().addUINode(pane);
 
+/*        getGameScene().addUINode(flow);
+        getGameScene().addUINode(bgTutorial);*/
+
+        Button removeTutorial = new Button("Remove tutorial");
+        removeTutorial.setOnMouseClicked(c -> {
+/*                    DSLKt.fadeOut(bgTutorial, Duration.seconds(1));
+                    DSLKt.fadeOut(flow, Duration.seconds(1));*/
+//            getGameScene().removeUINodes(flow, bgTutorial);
+                }
+        );
+
+        removeTutorial.setTranslateX(100);
+        removeTutorial.setTranslateY(100);
+        getGameScene().addUINode(removeTutorial);
     }
 }
