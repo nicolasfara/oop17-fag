@@ -25,7 +25,7 @@ public class BulletZombieCollision implements Collision<Bullet, Zombie> {
             b1.removeFromWorld();
             z1.decrementLife(b1.getDamage());
         } catch (CharacterDiesException e1) {
-            System.out.println("Zombie dead");
+            z1.removeFromWorld();
         }
     }
 }

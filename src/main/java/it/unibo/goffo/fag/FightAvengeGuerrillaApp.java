@@ -2,6 +2,9 @@ package it.unibo.goffo.fag;
 
 import com.almasb.fxgl.app.FXGL;
 import com.almasb.fxgl.app.GameApplication;
+import com.almasb.fxgl.core.logging.ConsoleOutput;
+import com.almasb.fxgl.core.logging.Logger;
+import com.almasb.fxgl.core.logging.LoggerLevel;
 import com.almasb.fxgl.entity.Entity;
 import com.almasb.fxgl.entity.components.CollidableComponent;
 import com.almasb.fxgl.extra.ai.pathfinding.AStarGrid;
@@ -20,6 +23,8 @@ import it.unibo.goffo.fag.entities.FagType;
 import it.unibo.goffo.fag.entities.Player;
 import it.unibo.goffo.fag.entities.Zombie;
 import it.unibo.goffo.fag.entities.builders.FagEntities;
+import it.unibo.goffo.fag.exceptions.CharacterDiesException;
+import it.unibo.goffo.fag.exceptions.GameOverException;
 import it.unibo.goffo.fag.movement.EntityMovement;
 import it.unibo.goffo.fag.movement.MoveDirection;
 import it.unibo.goffo.fag.rotation.EntityRotation;
@@ -217,6 +222,7 @@ public class FightAvengeGuerrillaApp extends GameApplication {
         this.getGameState().setValue("playerLife", 1.0);
     }
 
+    private static final Logger LOGGER = Logger.get(FightAvengeGuerrillaApp.class);
     /**
      * {@inheritDoc}Math.abs
      */
@@ -224,16 +230,35 @@ public class FightAvengeGuerrillaApp extends GameApplication {
     protected void initPhysics() {
         super.initPhysics();
         getPhysicsWorld().addCollisionHandler(
-                new CollisionHandler(Player.class, Zombie.class) {
+        new CollisionHandler(FagType.PLAYER, FagType.SIMPLE_ZOMBIE) {
                     @Override
                     protected void onCollisionBegin(final Entity player, final Entity zombie) {
-                        t1.onCollision((Player) player, (Zombie) zombie);
-                        System.out.println("COLLISION DETECTED");
+                        try {
+                            t1.onCollision((Player) player, (Zombie) zombie);
+                        } catch (GameOverException e1) {
+                            throw new CharacterDiesException();
+                        }
                     }
                 });
 
         getPhysicsWorld().addCollisionHandler(
-                new CollisionHandler(Bullet.class, Zombie.class) {
+                new CollisionHandler(FagType.PLAYER, FagType.ADVANCE_ZOMBIE) {
+                    @Override
+                    protected void onCollisionBegin(final Entity player, final Entity zombie) {
+                        t1.onCollision((Player) player, (Zombie) zombie);
+                    }
+                });
+
+        getPhysicsWorld().addCollisionHandler(
+                new CollisionHandler(FagType.BULLET, FagType.SIMPLE_ZOMBIE) {
+                    @Override
+                    protected void onCollisionBegin(final Entity bullet, final Entity zombie) {
+                        t2.onCollision((Bullet) bullet, (Zombie) zombie);
+                    }
+                });
+
+        getPhysicsWorld().addCollisionHandler(
+                new CollisionHandler(FagType.BULLET, FagType.ADVANCE_ZOMBIE) {
                     @Override
                     protected void onCollisionBegin(final Entity bullet, final Entity zombie) {
                         t2.onCollision((Bullet) bullet, (Zombie) zombie);

@@ -3,6 +3,7 @@ package it.unibo.goffo.fag.collision;
 import it.unibo.goffo.fag.entities.Player;
 import it.unibo.goffo.fag.entities.Zombie;
 import it.unibo.goffo.fag.exceptions.CharacterDiesException;
+import it.unibo.goffo.fag.exceptions.GameOverException;
 
 /**
  * Basic class that handle collisions between player and zombie.
@@ -24,7 +25,7 @@ public class PlayerZombieCollision implements Collision<Player, Zombie> {
         try {
             p1.decrementLife(z1.getDamage());
         } catch (CharacterDiesException e1) {
-            System.out.println("Player dead");
+            throw new GameOverException();
         }
     }
 }
