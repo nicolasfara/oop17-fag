@@ -10,10 +10,13 @@ import com.almasb.fxgl.ui.UI;
 import it.unibo.goffo.fag.life.controller.LifeController;
 import it.unibo.goffo.fag.life.controller.LifeControllerImpl;
 import it.unibo.goffo.fag.ui.hud.HUDController;
+import javafx.geometry.Insets;
 import javafx.scene.input.KeyCode;
 import com.almasb.fxgl.ui.FXGLTextFlow;
 import javafx.scene.input.MouseButton;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
+import javafx.scene.shape.Rectangle;
 
 /**
  * Main class, used to launch FXGL.
@@ -22,19 +25,12 @@ public class FightAvengeGuerrillaApp extends GameApplication {
 
     private static final int WIDTH_SCREEN = 800;
     private static final int HEIGHT_SCREEN = 600;
-
-    /*
-        HUD-specific settings.
-        The view is fixed in the visible viewport and its coordinate system is always within 0,0 to width,height.
-        https://github.com/AlmasB/FXGL/wiki/Game-Scene#scene-graph---ui-view
-     */
-    private static final int HUD_START_X = 0;
-    private static final int HUD_START_Y = 0;
-    private static final int HUD_OFFSET_X = 50;
-    private static final int HUD_OFFSET_Y = 100;
-    private static final int HUD_LIFE_POS_X = HUD_START_X + HUD_OFFSET_X;
-    private static final int HUD_LIFE_POS_Y = HUD_START_Y + HUD_OFFSET_Y;
     private static final String APPLICATION_NAME = "Final Avenge Guerrilla";
+
+    private static final Color TUTORIAL_TEXT_COLOR = Color.BLACK;
+    private static final Color TUTORIAL_KEYCODE_COLOR = Color.RED;
+    private static final int TUTORIAL_TEXT_SIZE = 18;
+    private static final int TUTORIAL_KEYCODE_SIZE = 16;
 
     private LifeController lifeController;
 
@@ -107,12 +103,27 @@ public class FightAvengeGuerrillaApp extends GameApplication {
         getGameScene().addUI(hud);
 
         FXGLTextFlow flow = FXGL.getUIFactory().newTextFlow()
-                .append("Press ", Color.BLACK, 18).append(KeyCode.A, Color.RED, 18).append(" to move left\n", Color.BLACK, 18)
-                .append("Press ", Color.BLACK, 18).append(KeyCode.D, Color.RED).append(" to move right\n", Color.BLACK)
-                .append("Press ", Color.BLACK).append(MouseButton.PRIMARY, Color.RED).append(" to shoot!", Color.BLACK);
+                .append("Press ", TUTORIAL_TEXT_COLOR, TUTORIAL_TEXT_SIZE)
+                .append(KeyCode.W, TUTORIAL_KEYCODE_COLOR, TUTORIAL_KEYCODE_SIZE)
+                .append(KeyCode.A, TUTORIAL_KEYCODE_COLOR, TUTORIAL_TEXT_SIZE)
+                .append(KeyCode.S, TUTORIAL_KEYCODE_COLOR, TUTORIAL_TEXT_SIZE)
+                .append(KeyCode.D, TUTORIAL_KEYCODE_COLOR, TUTORIAL_TEXT_SIZE)
+                .append(" to move\n", TUTORIAL_TEXT_COLOR, TUTORIAL_TEXT_SIZE)
+                .append("Press ", TUTORIAL_TEXT_COLOR, TUTORIAL_TEXT_SIZE)
+                .append(KeyCode.LEFT, TUTORIAL_KEYCODE_COLOR, TUTORIAL_KEYCODE_SIZE)
+                .append(KeyCode.UP, TUTORIAL_KEYCODE_COLOR, TUTORIAL_KEYCODE_SIZE)
+                .append(KeyCode.RIGHT, TUTORIAL_KEYCODE_COLOR, TUTORIAL_KEYCODE_SIZE)
+                .append(KeyCode.DOWN, TUTORIAL_KEYCODE_COLOR, TUTORIAL_KEYCODE_SIZE)
+                .append(" to shoot\n", TUTORIAL_TEXT_COLOR, TUTORIAL_TEXT_SIZE)
+                .append("Press ", TUTORIAL_TEXT_COLOR, TUTORIAL_TEXT_SIZE)
+                .append("ESC", TUTORIAL_KEYCODE_COLOR, TUTORIAL_KEYCODE_SIZE)
+                .append(" to pause game", TUTORIAL_TEXT_COLOR, TUTORIAL_TEXT_SIZE);
 
-        flow.setTranslateX(getWidth() - flow.getBoundsInParent().getWidth());
-        flow.setTranslateY(0.0);
+        flow.setTranslateX(getWidth() - flow.getBoundsInLocal().getWidth() - 20);
+        flow.setTranslateY(20);
+
+        Rectangle bgTutorial = new Rectangle();
+        bgTutorial.setFill(new Color(41, 41, 41, 50));
 
         getGameScene().addUINode(flow);
 
