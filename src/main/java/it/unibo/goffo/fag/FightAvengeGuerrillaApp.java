@@ -122,10 +122,19 @@ public class FightAvengeGuerrillaApp extends GameApplication {
         flow.setTranslateX(getWidth() - flow.getBoundsInLocal().getWidth() - 20);
         flow.setTranslateY(20);
 
+        /*
+            TODO: do not use a Rectangle Object
+            TODO: DISAPPEAR AFTER X time
+         */
         Rectangle bgTutorial = new Rectangle();
-        bgTutorial.setFill(new Color(41, 41, 41, 50));
+        bgTutorial.setFill(new Color(0.41, 0.41, 0.41, 0.3));
+        bgTutorial.setWidth(flow.getBoundsInLocal().getWidth() + 40);
+        bgTutorial.setHeight(flow.getBoundsInLocal().getHeight() + 40);
+        bgTutorial.setTranslateX(getWidth() - bgTutorial.getBoundsInLocal().getWidth());
+        bgTutorial.setTranslateY(0);
 
         getGameScene().addUINode(flow);
+        getGameScene().addUINode(bgTutorial);
 
     }
 }
