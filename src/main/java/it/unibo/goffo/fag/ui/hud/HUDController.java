@@ -50,11 +50,6 @@ public class HUDController implements UIController {
         try {
             this.lifeController.decreaseOf(LIFE_OFFSET);
         } catch (CharacterDiesException e) {
-            /* ** non qui, perchè questo è il controller della view,
-                   ** ma immagino sia interessante farlo così
-            if (player) {
-                throw new GameOverException()
-            }*/
             e.printStackTrace();
             FXGL.getApp().stop();
             System.exit(0);
@@ -64,10 +59,6 @@ public class HUDController implements UIController {
         this.state.setValue("playerLife", this.lifeController.getLife());
         System.out.println("doubleProperty = " + this.state.getDouble("playerLife"));
         System.out.println("Progress = " + this.playerLife.getProgress());
-    }
-
-    @FXML
-    protected void initialize() {
     }
 
     @Override
