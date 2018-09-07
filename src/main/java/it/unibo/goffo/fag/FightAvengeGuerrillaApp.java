@@ -2,15 +2,29 @@ package it.unibo.goffo.fag;
 
 import com.almasb.fxgl.app.FXGL;
 import com.almasb.fxgl.app.GameApplication;
+import com.almasb.fxgl.core.logging.ConsoleOutput;
+import com.almasb.fxgl.core.logging.Logger;
+import com.almasb.fxgl.core.logging.LoggerLevel;
 import com.almasb.fxgl.entity.Entity;
+import com.almasb.fxgl.entity.components.CollidableComponent;
 import com.almasb.fxgl.extra.ai.pathfinding.AStarGrid;
 import com.almasb.fxgl.parser.tiled.TiledMap;
+import com.almasb.fxgl.physics.BoundingShape;
+import com.almasb.fxgl.physics.CollisionHandler;
+import com.almasb.fxgl.physics.HitBox;
 import com.almasb.fxgl.settings.GameSettings;
 import com.almasb.fxgl.ui.UI;
 import it.unibo.goffo.fag.animation.PlayerAnimationImpl;
+import it.unibo.goffo.fag.collision.BulletZombieCollision;
+import it.unibo.goffo.fag.collision.Collision;
+import it.unibo.goffo.fag.collision.PlayerZombieCollision;
+import it.unibo.goffo.fag.entities.Bullet;
 import it.unibo.goffo.fag.entities.FagType;
 import it.unibo.goffo.fag.entities.Player;
+import it.unibo.goffo.fag.entities.Zombie;
 import it.unibo.goffo.fag.entities.builders.FagEntities;
+import it.unibo.goffo.fag.exceptions.CharacterDiesException;
+import it.unibo.goffo.fag.exceptions.GameOverException;
 import it.unibo.goffo.fag.movement.EntityMovement;
 import it.unibo.goffo.fag.movement.MoveDirection;
 import it.unibo.goffo.fag.rotation.EntityRotation;
@@ -39,6 +53,9 @@ public class FightAvengeGuerrillaApp extends GameApplication {
     private AStarGrid grid;
     private Player player;
     private LifeController lifeController;
+
+    PlayerZombieCollision t1 = new PlayerZombieCollision();
+    BulletZombieCollision t2 = new BulletZombieCollision();
 
     /**
      * Main method launch the game engine.
@@ -199,6 +216,8 @@ public class FightAvengeGuerrillaApp extends GameApplication {
                 .with(new EntityRotation())
                 .with(new LifeControllerImpl(1))
                 .with(new PlayerAnimationImpl())
+                .bbox(new HitBox(BoundingShape.box(128,128)))
+                .with(new CollidableComponent(true))
                 .buildAndAttach(getGameWorld());
         /*lifeController.bindLife();*/
         this.getGameState().setValue("playerLife", 1.0);
@@ -210,6 +229,45 @@ public class FightAvengeGuerrillaApp extends GameApplication {
     @Override
     protected void initPhysics() {
         super.initPhysics();
+        getPhysicsWorld().addCollisionHandler(
+        new CollisionHandler(FagType.PLAYER, FagType.SIMPLE_ZOMBIE) {
+                    @Override
+                    protected void onCollisionBegin(final Entity player, final Entity zombie) {
+                        try {
+                            t1.onCollision((Player) player, (Zombie) zombie);
+                        } catch (GameOverException e1) {
+                            e1.printStackTrace();
+                        }
+                    }
+                });
+
+        getPhysicsWorld().addCollisionHandler(
+                new CollisionHandler(FagType.PLAYER, FagType.ADVANCE_ZOMBIE) {
+                    @Override
+                    protected void onCollisionBegin(final Entity player, final Entity zombie) {
+                        try {
+                            t1.onCollision((Player) player, (Zombie) zombie);
+                        } catch (GameOverException e2) {
+                            e2.printStackTrace();
+                        }
+                    }
+                });
+
+        getPhysicsWorld().addCollisionHandler(
+                new CollisionHandler(FagType.BULLET, FagType.SIMPLE_ZOMBIE) {
+                    @Override
+                    protected void onCollisionBegin(final Entity bullet, final Entity zombie) {
+                        t2.onCollision((Bullet) bullet, (Zombie) zombie);
+                    }
+                });
+
+        getPhysicsWorld().addCollisionHandler(
+                new CollisionHandler(FagType.BULLET, FagType.ADVANCE_ZOMBIE) {
+                    @Override
+                    protected void onCollisionBegin(final Entity bullet, final Entity zombie) {
+                        t2.onCollision((Bullet) bullet, (Zombie) zombie);
+                    }
+                });
     }
 
     /**

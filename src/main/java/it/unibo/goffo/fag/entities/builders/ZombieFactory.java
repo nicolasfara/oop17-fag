@@ -1,5 +1,7 @@
 package it.unibo.goffo.fag.entities.builders;
 
+import com.almasb.fxgl.physics.BoundingShape;
+import com.almasb.fxgl.physics.HitBox;
 import it.unibo.goffo.fag.ai.controller.AStarMoveController;
 import it.unibo.goffo.fag.animation.ZombieAnimationImpl;
 import it.unibo.goffo.fag.entities.FagType;
@@ -40,6 +42,7 @@ public final class ZombieFactory {
                 .type(FagType.SIMPLE_ZOMBIE)
                 .with(new ZombieAnimationImpl())
                 .with(new CollidableComponent(true))
+                .bbox(new HitBox(BoundingShape.box(32, 42)))
                 .with(new EntityMovement(1))
                 .with(new LifeControllerImpl(1))
                 .with(new Damage(SIMPLE_DAMAGE))
@@ -58,6 +61,7 @@ public final class ZombieFactory {
                 .type(FagType.ADVANCE_ZOMBIE)
                 .with(new ZombieAnimationImpl())
                 .with(new CollidableComponent(true))
+                .bbox(new HitBox(BoundingShape.box(128, 128)))
                 .with(new EntityMovement(1))
                 .with(new LifeControllerImpl(1))
                 .with(new Damage(ADVANCE_DAMAGE))

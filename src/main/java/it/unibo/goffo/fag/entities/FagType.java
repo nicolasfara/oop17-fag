@@ -19,5 +19,9 @@ public enum FagType {
     /**
      * Advance zombie type.
      */
-    ADVANCE_ZOMBIE
+    ADVANCE_ZOMBIE,
+    /**
+     * Bullet type.
+      */
+    BULLET
 }
