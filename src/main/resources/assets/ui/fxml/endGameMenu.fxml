@@ -23,7 +23,7 @@
          <TilePane prefWidth="200.0">
             <children>
                <Button fx:id="btnRestart" onAction="#restartGame" text="RESTART" textAlignment="CENTER" />
-               <Button fx:id="btnMainMenu" onAction="#backToMainMenu" text="MAIN MENU" textAlignment="CENTER" />
+               <!--<Button fx:id="btnMainMenu" onAction="#backToMainMenu" text="MAIN MENU" textAlignment="CENTER" />-->
                <Button fx:id="btnExit" onAction="#onExit" text="EXIT" />
             </children>
          </TilePane>
