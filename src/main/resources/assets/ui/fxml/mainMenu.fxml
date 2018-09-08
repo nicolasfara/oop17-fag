@@ -19,9 +19,14 @@
         xmlns:fx="http://javafx.com/fxml/1"
         fx:controller="it.unibo.goffo.fag.ui.menu.MainMenuController"
         fx:id="gridPane">
+    <!-- With a new Object of FAGConfig class
     <prefHeight><FAGConfig fx:constant="DISP_HEIGHT" /></prefHeight>
-    <prefWidth><FAGConfig fx:constant="DISP_WIDTH" /></prefWidth>
-   <Pane prefHeight="${gridPane.prefHeight}" prefWidth="${gridPane.prefWidth}">
+    <prefWidth><FAGConfig fx:constant="DISP_WIDTH" /></prefWidth>-->
+    <!-- With define and factory directive-->
+    <fx:define>
+        <FAGConfig fx:factory="getConfig" fx:id="config" />
+    </fx:define>
+   <Pane prefHeight="${config.dispHeight}" prefWidth="${config.dispWidth}">
          <VBox layoutX="309.0" layoutY="243.0" prefHeight="200.0" prefWidth="100.0">
                    <FlowPane alignment="CENTER" prefHeight="200.0" prefWidth="200.0">
                         <TilePane prefWidth="200.0">
