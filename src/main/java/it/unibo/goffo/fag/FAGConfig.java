@@ -2,10 +2,18 @@ package it.unibo.goffo.fag;
 
 public class FAGConfig {
 
-    public static final int DISP_WIDTH = 800;
-    public static final int DISP_HEIGHT = 800;
+    private static double DISP_WIDTH = 800.0;
+    private static double DISP_HEIGHT = 600.0;
 
-    public int getDispWidth() {
+    public static FAGConfig getConfig() {
+        return new FAGConfig();
+    }
+
+    public double getDispWidth() {
         return DISP_WIDTH;
+    }
+
+    public double getDispHeight() {
+        return DISP_HEIGHT;
     }
 }
