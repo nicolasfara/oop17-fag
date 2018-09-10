@@ -8,6 +8,8 @@ public final class FagUtils {
      * Tile size, used for fit the level map.
      */
     public static final int TILE_SIZE = 64;
+    public static final int WIDTH_SCREEN = 50;
+    public static final int HEIGHT_SCREEN = 30;
 
     /**
      * Block size for AI grid.
@@ -42,7 +44,7 @@ public final class FagUtils {
     /**
      * Width screen.
      */
-    static final int WIDTH_SCREEN = MAP_SIZE;
+    //static final int WIDTH_SCREEN = MAP_SIZE;
 
     /**
      * Application name.
@@ -52,7 +54,7 @@ public final class FagUtils {
     /**
      * Height screen.
      */
-    static final int HEIGHT_SCREEN = MAP_SIZE;
+    //static final int HEIGHT_SCREEN = MAP_SIZE;
 
     private FagUtils() { }
 }

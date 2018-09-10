@@ -2,12 +2,11 @@ package it.unibo.goffo.fag;
 
 import com.almasb.fxgl.app.FXGL;
 import com.almasb.fxgl.app.GameApplication;
-import com.almasb.fxgl.core.logging.ConsoleOutput;
-import com.almasb.fxgl.core.logging.Logger;
-import com.almasb.fxgl.core.logging.LoggerLevel;
 import com.almasb.fxgl.entity.Entity;
 import com.almasb.fxgl.entity.components.CollidableComponent;
 import com.almasb.fxgl.extra.ai.pathfinding.AStarGrid;
+import com.almasb.fxgl.input.Input;
+import com.almasb.fxgl.input.UserAction;
 import com.almasb.fxgl.parser.tiled.TiledMap;
 import com.almasb.fxgl.physics.BoundingShape;
 import com.almasb.fxgl.physics.CollisionHandler;
@@ -16,34 +15,26 @@ import com.almasb.fxgl.settings.GameSettings;
 import com.almasb.fxgl.ui.UI;
 import it.unibo.goffo.fag.animation.PlayerAnimationImpl;
 import it.unibo.goffo.fag.collision.BulletZombieCollision;
-import it.unibo.goffo.fag.collision.Collision;
 import it.unibo.goffo.fag.collision.PlayerZombieCollision;
 import it.unibo.goffo.fag.entities.Bullet;
 import it.unibo.goffo.fag.entities.FagType;
 import it.unibo.goffo.fag.entities.Player;
 import it.unibo.goffo.fag.entities.Zombie;
 import it.unibo.goffo.fag.entities.builders.FagEntities;
-import it.unibo.goffo.fag.exceptions.CharacterDiesException;
 import it.unibo.goffo.fag.exceptions.GameOverException;
+import it.unibo.goffo.fag.life.controller.LifeController;
+import it.unibo.goffo.fag.life.controller.LifeControllerImpl;
 import it.unibo.goffo.fag.movement.EntityMovement;
 import it.unibo.goffo.fag.movement.MoveDirection;
 import it.unibo.goffo.fag.rotation.EntityRotation;
 import it.unibo.goffo.fag.spawn.controller.SpawnControllerImpl;
 import it.unibo.goffo.fag.spawn.view.SpawnView;
 import it.unibo.goffo.fag.spawn.view.SpawnViewImpl;
-import it.unibo.goffo.fag.life.controller.LifeController;
-import it.unibo.goffo.fag.life.controller.LifeControllerImpl;
 import it.unibo.goffo.fag.ui.hud.HUDController;
-
-import com.almasb.fxgl.input.Input;
-import com.almasb.fxgl.input.UserAction;
 import javafx.application.Platform;
 import javafx.scene.input.KeyCode;
 
-import static it.unibo.goffo.fag.FagUtils.APPLICATION_NAME;
-import static it.unibo.goffo.fag.FagUtils.HEIGHT_SCREEN;
-import static it.unibo.goffo.fag.FagUtils.WIDTH_SCREEN;
-import static it.unibo.goffo.fag.FagUtils.MAP_SIZE;
+import static it.unibo.goffo.fag.FagUtils.*;
 
 /**
  * Main class, used to launch FXGL.
@@ -86,8 +77,8 @@ public class FightAvengeGuerrillaApp extends GameApplication {
      */
     @Override
     protected void initSettings(final GameSettings settings) {
-        settings.setWidth(WIDTH_SCREEN);
-        settings.setHeight(HEIGHT_SCREEN);
+        settings.setWidth(WIDTH_SCREEN * TILE_SIZE);
+        settings.setHeight(HEIGHT_SCREEN * TILE_SIZE);
         settings.setTitle(APPLICATION_NAME);
         this.lifeController = new LifeControllerImpl();
     }
