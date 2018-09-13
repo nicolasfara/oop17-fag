@@ -22,7 +22,7 @@ public final class SpawnControllerImpl implements SpawnController {
     private final TimerAction timerAction;
     private final PublishSubject<Character> observable = PublishSubject.create();
     private final SpawnLogic spawnLogic = new SpawnLogicImpl();
-    private static final int TIMER_TICK = 100;
+    private static final int TIMER_TICK = 5;
     private static SpawnController spawnController;
 
     private SpawnControllerImpl() {

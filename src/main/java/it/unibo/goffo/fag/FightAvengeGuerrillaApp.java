@@ -207,7 +207,7 @@ public class FightAvengeGuerrillaApp extends GameApplication {
                 .with(new EntityRotation())
                 .with(new LifeControllerImpl(1))
                 .with(new PlayerAnimationImpl())
-                .bbox(new HitBox(BoundingShape.box(128,128)))
+                .bbox(new HitBox(BoundingShape.box(64, 64)))
                 .with(new CollidableComponent(true))
                 .buildAndAttach(getGameWorld());
         player.setScaleX(0.5);
