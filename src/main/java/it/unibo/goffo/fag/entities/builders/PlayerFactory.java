@@ -9,7 +9,6 @@ import it.unibo.goffo.fag.entities.FagType;
 import it.unibo.goffo.fag.entities.Player;
 import it.unibo.goffo.fag.life.controller.LifeControllerImpl;
 import it.unibo.goffo.fag.movement.EntityMovement;
-import it.unibo.goffo.fag.rotation.EntityRotation;
 
 import static it.unibo.goffo.fag.FagUtils.PLAYER_SIZE_X;
 import static it.unibo.goffo.fag.FagUtils.PLAYER_SIZE_Y;
@@ -22,7 +21,6 @@ public final class PlayerFactory {
                 .type(FagType.PLAYER)
                 .at(200, 200)
                 .with(new EntityMovement(1))
-                .with(new EntityRotation())
                 .with(new LifeControllerImpl(1))
                 .with(new PlayerAnimationImpl())
                 .bbox(new HitBox(BoundingShape.box(PLAYER_SIZE_X, PLAYER_SIZE_Y)))
