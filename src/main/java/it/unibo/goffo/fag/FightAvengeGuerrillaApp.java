@@ -11,6 +11,7 @@ import com.almasb.fxgl.parser.tiled.TiledMap;
 import com.almasb.fxgl.physics.BoundingShape;
 import com.almasb.fxgl.physics.CollisionHandler;
 import com.almasb.fxgl.physics.HitBox;
+import com.almasb.fxgl.physics.PhysicsComponent;
 import com.almasb.fxgl.settings.GameSettings;
 import com.almasb.fxgl.ui.UI;
 import it.unibo.goffo.fag.animation.PlayerAnimationImpl;
@@ -20,6 +21,7 @@ import it.unibo.goffo.fag.entities.Bullet;
 import it.unibo.goffo.fag.entities.FagType;
 import it.unibo.goffo.fag.entities.Player;
 import it.unibo.goffo.fag.entities.Zombie;
+import it.unibo.goffo.fag.entities.builders.BulletFactory;
 import it.unibo.goffo.fag.entities.builders.FagEntities;
 import it.unibo.goffo.fag.exceptions.GameOverException;
 import it.unibo.goffo.fag.life.controller.LifeController;
@@ -163,6 +165,14 @@ public class FightAvengeGuerrillaApp extends GameApplication {
             @Override
             protected void onActionBegin() {
                 player.playWalkAnimation(MoveDirection.LEFT);
+            }
+
+            @Override
+            protected void onAction() {
+                Bullet bul = BulletFactory.createBullet();
+                bul.getComponent(PhysicsComponent.class).setLinearVelocity(100, 0);
+                // createBullet(damage)
+                // bullet.moveDirection( speed a bomba)
             }
 
             @Override
