@@ -26,4 +26,8 @@ public class FAGMenuFactory extends SceneFactory {
     public FXGLMenu newEndGameMenu(final GameApplication app) {
        return new FAGEndGameMenu(app, MenuType.GAME_MENU);
     }
+
+    public FXGLMenu newScoresMenu(final GameApplication app) {
+        return new FAGScoreMenu(app, MenuType.MAIN_MENU);
+    }
 }

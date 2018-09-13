@@ -67,7 +67,8 @@ public class MenuApplication extends GameApplication {
         );*/
 
         btnEndGame.setOnMouseClicked(
-                e -> new FAGMenuFactory().newEndGameMenu(this)
+//                e -> new FAGMenuFactory().newEndGameMenu(this)
+                e -> new FAGMenuFactory().newScoresMenu(this)
         );
 
         /*
@@ -81,8 +82,8 @@ public class MenuApplication extends GameApplication {
             getGameScene().addUI(fxmlUI);
             }
         );
-        */
 
+e
 /*        btnEndGame.setOnMouseClicked(e -> {
             try {
                 getGameScene().addUINode(FXMLLoader.load(getClass().getResource("/assets/ui/fxml/endGameMenu.fxml")));

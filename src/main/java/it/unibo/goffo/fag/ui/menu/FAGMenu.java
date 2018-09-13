@@ -50,6 +50,10 @@ public class FAGMenu extends FXGLMenu {
             }
         });
 
+        /*        final Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        final Parent scene = FXMLLoader.load(getClass().getResource("/assets/ui/fxml/ScoresView.fxml"));
+        stage.setScene(new Scene(scene, 800, 600));*/
+
         /*
             NOT WORKING
             i seguenti metodi sono chiamati nel costruttore, eseguito alla creazione del menù, ovvero della macchina a stati

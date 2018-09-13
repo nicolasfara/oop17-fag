@@ -11,9 +11,10 @@
 <?import javafx.geometry.Insets?>
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="it.unibo.goffo.fag.score.view.ScoresViewController"
             prefHeight="600.0" prefWidth="800.0"
-            stylesheets="@../css/fag-style.css">
+            stylesheets="@../css/fag-style.css"
+            fx:controller="it.unibo.goffo.fag.score.view.ScoresViewController"
+            styleClass="root">
 
     <top>
 
