@@ -22,6 +22,9 @@ import it.unibo.goffo.fag.movement.EntityMovement;
 import java.util.List;
 import java.util.stream.Collectors;
 
+
+import static it.unibo.goffo.fag.FagUtils.ZOMBIE_SIZE_X;
+import static it.unibo.goffo.fag.FagUtils.ZOMBIE_SIZE_Y;
 /**
  * Factory for zombie creation.
  */
@@ -42,7 +45,7 @@ public final class ZombieFactory {
                 .type(FagType.SIMPLE_ZOMBIE)
                 .with(new ZombieAnimationImpl())
                 .with(new CollidableComponent(true))
-                .bbox(new HitBox(BoundingShape.box(32, 42)))
+                .bbox(new HitBox(BoundingShape.box(ZOMBIE_SIZE_X, ZOMBIE_SIZE_Y)))
                 .with(new EntityMovement(1))
                 .with(new LifeControllerImpl(1))
                 .with(new Damage(SIMPLE_DAMAGE))

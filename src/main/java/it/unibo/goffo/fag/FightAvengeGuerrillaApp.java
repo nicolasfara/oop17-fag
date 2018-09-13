@@ -45,6 +45,8 @@ import static it.unibo.goffo.fag.FagUtils.HEIGHT_SCREEN;
 import static it.unibo.goffo.fag.FagUtils.WIDTH_SCREEN;
 import static it.unibo.goffo.fag.FagUtils.MAP_SIZE;
 
+import static it.unibo.goffo.fag.FagUtils.PLAYER_SIZE_X;
+import static it.unibo.goffo.fag.FagUtils.PLAYER_SIZE_Y;
 /**
  * Main class, used to launch FXGL.
  */
@@ -215,7 +217,7 @@ public class FightAvengeGuerrillaApp extends GameApplication {
                 .with(new EntityMovement(1))
                 .with(new EntityRotation())
                 .with(new PlayerAnimationImpl())
-                .bbox(new HitBox(BoundingShape.box(128,128)))
+                .bbox(new HitBox(BoundingShape.box(PLAYER_SIZE_X, PLAYER_SIZE_Y)))
                 .with(new CollidableComponent(true))
                 .buildAndAttach(getGameWorld());
         /*lifeController.bindLife();*/
