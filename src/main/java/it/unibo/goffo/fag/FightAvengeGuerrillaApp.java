@@ -36,6 +36,8 @@ import javafx.scene.input.KeyCode;
 
 import static it.unibo.goffo.fag.FagUtils.*;
 
+import static it.unibo.goffo.fag.FagUtils.PLAYER_SIZE_X;
+import static it.unibo.goffo.fag.FagUtils.PLAYER_SIZE_Y;
 /**
  * Main class, used to launch FXGL.
  */
@@ -207,7 +209,7 @@ public class FightAvengeGuerrillaApp extends GameApplication {
                 .with(new EntityRotation())
                 .with(new LifeControllerImpl(1))
                 .with(new PlayerAnimationImpl())
-                .bbox(new HitBox(BoundingShape.box(64, 64)))
+                .bbox(new HitBox(BoundingShape.box(PLAYER_SIZE_X, PLAYER_SIZE_Y)))
                 .with(new CollidableComponent(true))
                 .buildAndAttach(getGameWorld());
         player.setScaleX(0.5);
