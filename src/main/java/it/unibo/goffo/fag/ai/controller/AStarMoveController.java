@@ -18,7 +18,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 
-import static it.unibo.goffo.fag.FagUtils.BLOCK_SIZE;
+import static it.unibo.goffo.fag.FagUtils.AI_BLOCK;
 import static it.unibo.goffo.fag.FagUtils.ZOMBIE_SIZE_X;
 import static it.unibo.goffo.fag.FagUtils.ZOMBIE_SIZE_Y;
 
@@ -54,10 +54,10 @@ public class AStarMoveController extends Component implements MoveController {
 
         final AStarGrid grid = ((FightAvengeGuerrillaApp) FXGL.getApp()).getGrid();
 
-        final int startX = FXGLMath.round(position.getX() / BLOCK_SIZE);
-        final int startY = FXGLMath.round(position.getY() / BLOCK_SIZE);
-        final int targetX = FXGLMath.round((destination.getX() + ZOMBIE_SIZE_X) / BLOCK_SIZE);
-        final int targetY = FXGLMath.round((destination.getY() + ZOMBIE_SIZE_Y) / BLOCK_SIZE);
+        final int startX = FXGLMath.round(position.getX() / AI_BLOCK);
+        final int startY = FXGLMath.round(position.getY() / AI_BLOCK);
+        final int targetX = FXGLMath.round((destination.getX() + ZOMBIE_SIZE_X) / AI_BLOCK);
+        final int targetY = FXGLMath.round((destination.getY() + ZOMBIE_SIZE_Y) / AI_BLOCK);
 
         nodeList.clear();
         final Async<List<AStarNode>> getPathTask = FXGL.getApp().getExecutor().async(() -> {
@@ -91,8 +91,8 @@ public class AStarMoveController extends Component implements MoveController {
         // No try/catch needed because we check empty queue before
         final AStarNode node = nodeList.remove();
 
-        final int nextX = node.getX() * BLOCK_SIZE;
-        final int nextY = node.getY() * BLOCK_SIZE;
+        final int nextX = node.getX() * AI_BLOCK;
+        final int nextY = node.getY() * AI_BLOCK;
         final double deltaX = nextX - position.getX();
         final double deltaY = nextY - position.getY();
 

@@ -12,7 +12,7 @@ import com.almasb.fxgl.physics.PhysicsComponent;
 //@SetEntityFactory
 public class LevelFactory implements EntityFactory {
 
-    @Spawns("collidable")
+    @Spawns("wall")
     public Entity newCollidable(final SpawnData data) {
         return Entities.builder()
                 .from(data)

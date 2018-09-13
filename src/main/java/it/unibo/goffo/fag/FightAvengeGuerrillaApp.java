@@ -197,7 +197,7 @@ public class FightAvengeGuerrillaApp extends GameApplication {
         spawnView.subscribeHandler(e -> Platform.runLater(() -> FXGL.getApp().getGameWorld().addEntity(e)));
 
         getGameWorld().addEntityFactory(new LevelFactory());
-        TiledMap map = getAssetLoader().loadJSON("level0.json", TiledMap.class);
+        TiledMap map = getAssetLoader().loadJSON("800x600.json", TiledMap.class);
         getGameWorld().setLevelFromMap(map);
 
         player = (Player) FagEntities.builder(Player.class)
