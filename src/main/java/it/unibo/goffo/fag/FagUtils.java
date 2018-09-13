@@ -5,16 +5,24 @@ package it.unibo.goffo.fag;
  */
 public final class FagUtils {
     /**
-     * Tile size, used for fit the level map.
+     * Map details.
+     * TILE_SIZE: a square (tile) of X by X pixels.
+     * MAP_WIDTH: how many tiles is the map in width.
+     * MAP_HEIGHT: how many tiles is the map in height.
      */
-    public static final int TILE_SIZE = 64;
-    public static final int WIDTH_SCREEN = 50;
-    public static final int HEIGHT_SCREEN = 30;
+    public static final int TILE_SIZE = 40;
+    public static final int MAP_WIDTH = 20;
+    public static final int MAP_HEIGHT = 15;
 
     /**
-     * Block size for AI grid.
+     * Map details for AI.
+     * BLOCK_SIZE: block size for AI grid.
+     * AI_WIDTH: width of the AI grid.
+     * AI_HEIGHT: height of the AI grid.
      */
-    public static final int BLOCK_SIZE = 40;
+    public static final int AI_BLOCK = 40;
+    public static final int AI_WIDTH = MAP_WIDTH * AI_BLOCK;
+    public static final int AI_HEIGHT = MAP_HEIGHT * AI_BLOCK;
 
     /**
      * X size for zombie entity.
@@ -35,11 +43,6 @@ public final class FagUtils {
      * Y size for player entity.
      */
     public static final int PLAYER_SIZE_Y = 20;
-
-    /**
-     * Map size for AI.
-     */
-    static final int MAP_SIZE = 600;
 
     /**
      * Width screen.

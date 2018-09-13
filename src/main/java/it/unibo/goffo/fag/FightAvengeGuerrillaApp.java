@@ -77,8 +77,8 @@ public class FightAvengeGuerrillaApp extends GameApplication {
      */
     @Override
     protected void initSettings(final GameSettings settings) {
-        settings.setWidth(WIDTH_SCREEN * TILE_SIZE);
-        settings.setHeight(HEIGHT_SCREEN * TILE_SIZE);
+        settings.setWidth(MAP_WIDTH * TILE_SIZE);
+        settings.setHeight(MAP_HEIGHT * TILE_SIZE);
         settings.setTitle(APPLICATION_NAME);
         this.lifeController = new LifeControllerImpl();
     }
@@ -192,7 +192,7 @@ public class FightAvengeGuerrillaApp extends GameApplication {
      */
     @Override
     protected void initGame() {
-        grid = new AStarGrid(MAP_SIZE, MAP_SIZE);
+        grid = new AStarGrid(AI_WIDTH, AI_HEIGHT);
         SpawnView spawnView = new SpawnViewImpl(SpawnControllerImpl.getInstance());
         spawnView.subscribeHandler(e -> Platform.runLater(() -> FXGL.getApp().getGameWorld().addEntity(e)));
 

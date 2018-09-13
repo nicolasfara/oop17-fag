@@ -12,7 +12,7 @@ import it.unibo.goffo.fag.FightAvengeGuerrillaApp;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static it.unibo.goffo.fag.FagUtils.BLOCK_SIZE;
+import static it.unibo.goffo.fag.FagUtils.AI_BLOCK;
 
 /**
  * This class is used to move an entity.
@@ -57,10 +57,10 @@ public class EntityMovement extends AbstractMovement {
             for (final AStarNode block : blocks) {
                 if (DoubleMath.fuzzyEquals(block.getX(), getEntity().getPositionComponent().getX(), TOLERANCE)
                         && DoubleMath.fuzzyEquals(block.getY(), getEntity().getPositionComponent().getY(), TOLERANCE)
-                        || DoubleMath.fuzzyEquals(block.getX(), getEntity().getPositionComponent().getX() + BLOCK_SIZE, TOLERANCE)
+                        || DoubleMath.fuzzyEquals(block.getX(), getEntity().getPositionComponent().getX() + AI_BLOCK, TOLERANCE)
                         && DoubleMath.fuzzyEquals(block.getY(), getEntity().getPositionComponent().getY(), TOLERANCE)
                         || DoubleMath.fuzzyEquals(block.getX(), getEntity().getPositionComponent().getX(), TOLERANCE)
-                        && DoubleMath.fuzzyEquals(block.getY(), getEntity().getPositionComponent().getY() + (double) BLOCK_SIZE * 3 / 2, TOLERANCE)) {
+                        && DoubleMath.fuzzyEquals(block.getY(), getEntity().getPositionComponent().getY() + (double) AI_BLOCK * 3 / 2, TOLERANCE)) {
 
                     collision = true;
                     break;
