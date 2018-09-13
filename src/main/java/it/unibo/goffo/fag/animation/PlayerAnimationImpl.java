@@ -71,7 +71,7 @@ public class PlayerAnimationImpl extends AbstractAnimation {
                 } else {
                     texture.loopAnimationChannel(shotSide);
                 }
-                getEntity().setScaleX(-1);
+                getEntity().setScaleX(-0.5);
                 break;
             case RIGHT:
                 if (animationType == AnimationType.WALKING) {
@@ -79,7 +79,7 @@ public class PlayerAnimationImpl extends AbstractAnimation {
                 } else {
                     texture.loopAnimationChannel(shotSide);
                 }
-                getEntity().setScaleX(1);
+                getEntity().setScaleX(0.5);
                 break;
 
                 default:
