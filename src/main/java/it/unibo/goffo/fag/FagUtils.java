@@ -21,8 +21,8 @@ public final class FagUtils {
      * AI_HEIGHT: height of the AI grid.
      */
     public static final int AI_BLOCK = 40;
-    public static final int AI_WIDTH = MAP_WIDTH * AI_BLOCK;
-    public static final int AI_HEIGHT = MAP_HEIGHT * AI_BLOCK;
+    public static final int AI_WIDTH = 800;
+    public static final int AI_HEIGHT = 600;
 
     /**
      * X size for zombie entity.

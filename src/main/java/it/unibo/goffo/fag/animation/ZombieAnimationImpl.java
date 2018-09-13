@@ -14,16 +14,11 @@ public class ZombieAnimationImpl extends AbstractAnimation {
     private final Duration walkDuration = Duration.millis(IDLE_DURATION);
     private static final int WIDTH = 128;
     private static final int HEIGHT = 128;
-    private static final int FRAMES_PER_ROW = 6;
-    private static final int END_WALK_FRONT = 11;
-    private static final int START_WALK_SIDE = 12;
-    private static final int END_WALK_SIDE = 23;
-    private static final int START_WALK_BACK = 24;
-    private static final int END_WALK_BACK = 35;
-    private static final String ANIMATION_FILENAME = "attackZombie.png";
-    private final AnimationChannel walkFront = new AnimationChannel(ANIMATION_FILENAME, FRAMES_PER_ROW, WIDTH, HEIGHT, walkDuration, 0, END_WALK_FRONT);
-    private final AnimationChannel walkSide = new AnimationChannel(ANIMATION_FILENAME, FRAMES_PER_ROW, WIDTH, HEIGHT, walkDuration, START_WALK_SIDE, END_WALK_SIDE);
-    private final AnimationChannel walkBack = new AnimationChannel(ANIMATION_FILENAME, FRAMES_PER_ROW, WIDTH, HEIGHT, walkDuration, START_WALK_BACK, END_WALK_BACK);
+    private static final int FRAMES_PER_ROW = 4;
+    private static final String ANIMATION_FILENAME = "walkZombie.png";
+    private final AnimationChannel walkFront = new AnimationChannel(ANIMATION_FILENAME, FRAMES_PER_ROW, WIDTH, HEIGHT, walkDuration, 0, 3);
+    private final AnimationChannel walkSide = new AnimationChannel(ANIMATION_FILENAME, FRAMES_PER_ROW, WIDTH, HEIGHT, walkDuration, 4, 7);
+    private final AnimationChannel walkBack = new AnimationChannel(ANIMATION_FILENAME, FRAMES_PER_ROW, WIDTH, HEIGHT, walkDuration, 8, 11);
     private final AnimatedTexture texture;
 
     /**
@@ -48,11 +43,11 @@ public class ZombieAnimationImpl extends AbstractAnimation {
                 break;
             case LEFT:
                 texture.loopAnimationChannel(walkSide);
-                getEntity().setScaleX(-1);
+                getEntity().setScaleX(-0.5);
                 break;
             case RIGHT:
                 texture.loopAnimationChannel(walkSide);
-                getEntity().setScaleX(1);
+                getEntity().setScaleX(0.5);
                 break;
                 default:
                     break;

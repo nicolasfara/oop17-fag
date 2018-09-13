@@ -37,7 +37,7 @@ public final class ZombieFactory {
      * @return the zombie.
      */
     public static Zombie createSimpleZombie() {
-        return (Zombie) FagEntities.builder(Zombie.class)
+        Zombie zombie = (Zombie) FagEntities.builder(Zombie.class)
                 .at(randomPoint())
                 .type(FagType.SIMPLE_ZOMBIE)
                 .with(new ZombieAnimationImpl())
@@ -49,6 +49,9 @@ public final class ZombieFactory {
                 .with(new RandomMoveController())
                 .with(new AIControl("random.tree"))
                 .build();
+        zombie.setScaleX(0.5);
+        zombie.setScaleY(0.5);
+        return zombie;
     }
 
     /**
@@ -56,7 +59,7 @@ public final class ZombieFactory {
      * @return the zombie.
      */
     public static Zombie createAdvancedZombie() {
-        return (Zombie) FagEntities.builder(Zombie.class)
+        Zombie zombie = (Zombie) FagEntities.builder(Zombie.class)
                 .at(randomPoint())
                 .type(FagType.ADVANCE_ZOMBIE)
                 .with(new ZombieAnimationImpl())
@@ -68,6 +71,9 @@ public final class ZombieFactory {
                 .with(new AStarMoveController())
                 .with(new AIControl("astar.tree"))
                 .build();
+        zombie.setScaleX(0.5);
+        zombie.setScaleY(0.5);
+        return zombie;
     }
 
     /**

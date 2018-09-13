@@ -26,9 +26,11 @@ public final class SpawnControllerImpl implements SpawnController {
     private static SpawnController spawnController;
 
     private SpawnControllerImpl() {
-        timerAction = FXGL.getMasterTimer().runAtInterval(() -> Stream.generate(this::getRandomZombieType)
-                    .limit(spawnLogic.getNextCount())
-                    .forEach(observable::onNext), Duration.seconds(TIMER_TICK));
+        timerAction = FXGL.getMasterTimer().runAtInterval(() -> {
+            Stream.generate(this::getRandomZombieType)
+                        .limit(spawnLogic.getNextCount())
+                        .forEach(observable::onNext);
+        }, Duration.seconds(TIMER_TICK));
     }
 
     /**
