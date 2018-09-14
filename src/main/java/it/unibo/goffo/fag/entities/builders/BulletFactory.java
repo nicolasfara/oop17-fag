@@ -32,11 +32,11 @@ public final class BulletFactory {
                 .at(PLAYER.getCenter().getX(), PLAYER.getCenter().getY())
                 .type(FagType.BULLET)
                 .with(new ProjectileComponent(newDirection, SPEED))
-                .with(new Damage(BULLET_DAMAGE))
                 .with(new CollidableComponent(true))
                 .viewFromNodeWithBBox(new Circle(10, Color.GREEN))
                 .buildAndAttach(FXGL.getApp().getGameWorld());
         bullet.setScaleX(0.5);
         bullet.setScaleY(0.5);
+        bullet.setDamage(BULLET_DAMAGE);
     }
 }

@@ -26,7 +26,7 @@ public abstract class AbstractWeapon extends Entity {
 
     /**
      *
-      * @param newDamage
+      * @param newDamage Damage of the weapon
      */
     public void setDamage(final double newDamage) {
         this.damage = newDamage;
