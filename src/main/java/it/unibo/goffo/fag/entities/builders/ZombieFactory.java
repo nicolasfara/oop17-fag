@@ -23,6 +23,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 
+import static it.unibo.goffo.fag.FagUtils.TILE_SIZE;
 import static it.unibo.goffo.fag.FagUtils.ZOMBIE_SIZE_X;
 import static it.unibo.goffo.fag.FagUtils.ZOMBIE_SIZE_Y;
 /**
@@ -87,7 +88,7 @@ public final class ZombieFactory {
         final List<AStarNode> aStarNodes = FXGL.<FightAvengeGuerrillaApp>getAppCast().getGrid().getNodes().stream()
                 .filter(e -> e.getState() == NodeState.WALKABLE)
                 .collect(Collectors.toList());
-        return new Point2D(FXGLMath.random(aStarNodes).get().getX(), FXGLMath.random(aStarNodes).get().getY());
+        return new Point2D(FXGLMath.random(aStarNodes).get().getX()*TILE_SIZE, FXGLMath.random(aStarNodes).get().getY()*TILE_SIZE);
     }
 }
 
