@@ -67,7 +67,7 @@ public final class ZombieFactory {
                 .type(FagType.ADVANCE_ZOMBIE)
                 .with(new ZombieAnimationImpl())
                 .with(new CollidableComponent(true))
-                .bbox(new HitBox(BoundingShape.box(64, 64)))
+                .bbox(new HitBox(BoundingShape.box(ZOMBIE_SIZE_X, ZOMBIE_SIZE_Y)))
                 .with(new EntityMovement(1))
                 .with(new LifeControllerImpl(1))
                 .with(new Damage(ADVANCE_DAMAGE))
