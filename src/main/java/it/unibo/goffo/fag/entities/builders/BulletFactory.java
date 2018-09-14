@@ -7,7 +7,6 @@ import it.unibo.goffo.fag.FightAvengeGuerrillaApp;
 import it.unibo.goffo.fag.entities.Bullet;
 import it.unibo.goffo.fag.entities.FagType;
 import com.almasb.fxgl.entity.components.CollidableComponent;
-import it.unibo.goffo.fag.life.Damage;
 import javafx.geometry.Point2D;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
