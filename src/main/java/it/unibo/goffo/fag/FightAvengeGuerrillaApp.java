@@ -4,6 +4,7 @@ import com.almasb.fxgl.app.FXGL;
 import com.almasb.fxgl.app.GameApplication;
 import com.almasb.fxgl.entity.Entity;
 import com.almasb.fxgl.extra.ai.pathfinding.AStarGrid;
+import com.almasb.fxgl.extra.ai.pathfinding.NodeState;
 import com.almasb.fxgl.input.Input;
 import com.almasb.fxgl.input.UserAction;
 import com.almasb.fxgl.parser.tiled.TiledMap;
@@ -26,7 +27,11 @@ import it.unibo.goffo.fag.spawn.view.SpawnView;
 import it.unibo.goffo.fag.spawn.view.SpawnViewImpl;
 import it.unibo.goffo.fag.ui.hud.HUDController;
 import javafx.application.Platform;
+import javafx.geometry.Point2D;
 import javafx.scene.input.KeyCode;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static it.unibo.goffo.fag.FagUtils.*;
 /**
@@ -206,13 +211,35 @@ public class FightAvengeGuerrillaApp extends GameApplication {
      */
     @Override
     protected void initGame() {
-        grid = new AStarGrid(AI_WIDTH, AI_HEIGHT);
+        grid = new AStarGrid(MAP_WIDTH, MAP_HEIGHT);
         SpawnView spawnView = new SpawnViewImpl(SpawnControllerImpl.getInstance());
         spawnView.subscribeHandler(e -> Platform.runLater(() -> FXGL.getApp().getGameWorld().addEntity(e)));
 
         getGameWorld().addEntityFactory(new LevelFactory());
         TiledMap map = getAssetLoader().loadJSON("800x600.json", TiledMap.class);
         getGameWorld().setLevelFromMap(map);
+
+        List<Entity> walls = new ArrayList<>(getGameWorld().getEntitiesByType(FagType.WALL));
+        for (Entity wall : walls) {
+            Point2D point = wall.getPosition();
+
+            int x = (int) point.getX() / TILE_SIZE;
+            int y = (int) point.getY() / TILE_SIZE;
+
+            grid.setNodeState(x, y, NodeState.NOT_WALKABLE);
+        }
+
+
+//        getGameWorld().getEntitiesByType(FagType.WALL)
+//                .stream()
+//                .map(Entity::getPosition)
+//                .forEach(point -> {
+//                    int x = (int) point.getX() / AI_BLOCK;
+//                    int y = (int) point.getY() / AI_BLOCK;
+//
+//                    grid.setNodeState(x, y, NodeState.NOT_WALKABLE);
+//                });
+
 
         player = PlayerFactory.createPlayer();
         this.getGameState().setValue("playerLife", 1.0);
