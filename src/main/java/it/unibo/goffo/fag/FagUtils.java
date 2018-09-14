@@ -27,37 +27,27 @@ public final class FagUtils {
     /**
      * X size for zombie entity.
      */
-    public static final int ZOMBIE_SIZE_X = 20;
+    public static final int ZOMBIE_SIZE_X = 64;
 
     /**
      * Y size for zombie entity.
      */
-    public static final int ZOMBIE_SIZE_Y = 20;
+    public static final int ZOMBIE_SIZE_Y = 64;
 
     /**
      * X size for player entity.
      */
-    public static final int PLAYER_SIZE_X = 20;
+    public static final int PLAYER_SIZE_X = 64;
 
     /**
      * Y size for player entity.
      */
-    public static final int PLAYER_SIZE_Y = 20;
-
-    /**
-     * Width screen.
-     */
-    //static final int WIDTH_SCREEN = MAP_SIZE;
+    public static final int PLAYER_SIZE_Y = 64;
 
     /**
      * Application name.
      */
     static final String APPLICATION_NAME = "Final Avenge Guerrilla";
-
-    /**
-     * Height screen.
-     */
-    //static final int HEIGHT_SCREEN = MAP_SIZE;
 
     private FagUtils() { }
 }

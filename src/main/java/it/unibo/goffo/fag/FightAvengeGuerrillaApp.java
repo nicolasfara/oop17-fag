@@ -3,18 +3,15 @@ package it.unibo.goffo.fag;
 import com.almasb.fxgl.app.FXGL;
 import com.almasb.fxgl.app.GameApplication;
 import com.almasb.fxgl.entity.Entity;
-import com.almasb.fxgl.entity.components.CollidableComponent;
 import com.almasb.fxgl.extra.ai.pathfinding.AStarGrid;
 import com.almasb.fxgl.input.Input;
 import com.almasb.fxgl.input.UserAction;
 import com.almasb.fxgl.parser.tiled.TiledMap;
-import com.almasb.fxgl.physics.BoundingShape;
 import com.almasb.fxgl.physics.CollisionHandler;
 import com.almasb.fxgl.physics.HitBox;
 import com.almasb.fxgl.physics.PhysicsComponent;
 import com.almasb.fxgl.settings.GameSettings;
 import com.almasb.fxgl.ui.UI;
-import it.unibo.goffo.fag.animation.PlayerAnimationImpl;
 import it.unibo.goffo.fag.collision.BulletZombieCollision;
 import it.unibo.goffo.fag.collision.PlayerZombieCollision;
 import it.unibo.goffo.fag.entities.Bullet;
@@ -23,10 +20,10 @@ import it.unibo.goffo.fag.entities.Player;
 import it.unibo.goffo.fag.entities.Zombie;
 import it.unibo.goffo.fag.entities.builders.BulletFactory;
 import it.unibo.goffo.fag.entities.builders.FagEntities;
+import it.unibo.goffo.fag.entities.builders.PlayerFactory;
 import it.unibo.goffo.fag.exceptions.GameOverException;
 import it.unibo.goffo.fag.life.controller.LifeController;
 import it.unibo.goffo.fag.life.controller.LifeControllerImpl;
-import it.unibo.goffo.fag.movement.EntityMovement;
 import it.unibo.goffo.fag.movement.MoveDirection;
 import it.unibo.goffo.fag.spawn.controller.SpawnControllerImpl;
 import it.unibo.goffo.fag.spawn.view.SpawnView;
@@ -37,9 +34,6 @@ import javafx.geometry.Point2D;
 import javafx.scene.input.KeyCode;
 
 import static it.unibo.goffo.fag.FagUtils.*;
-
-import static it.unibo.goffo.fag.FagUtils.PLAYER_SIZE_X;
-import static it.unibo.goffo.fag.FagUtils.PLAYER_SIZE_Y;
 /**
  * Main class, used to launch FXGL.
  */
@@ -245,18 +239,7 @@ public class FightAvengeGuerrillaApp extends GameApplication {
         TiledMap map = getAssetLoader().loadJSON("800x600.json", TiledMap.class);
         getGameWorld().setLevelFromMap(map);
 
-        player = (Player) FagEntities.builder(Player.class)
-                .type(FagType.PLAYER)
-                .at(200, 200)
-                .with(new EntityMovement(1))
-                .with(new LifeControllerImpl(1))
-                .with(new PlayerAnimationImpl())
-                .bbox(new HitBox(BoundingShape.box(PLAYER_SIZE_X, PLAYER_SIZE_Y)))
-                .with(new CollidableComponent(true))
-                .buildAndAttach(getGameWorld());
-        player.setScaleX(0.5);
-        player.setScaleY(0.5);
-        /*lifeController.bindLife();*/
+        player = PlayerFactory.createPlayer();
         this.getGameState().setValue("playerLife", 1.0);
     }
 
