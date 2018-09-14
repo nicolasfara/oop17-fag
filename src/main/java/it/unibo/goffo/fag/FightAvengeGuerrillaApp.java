@@ -33,6 +33,7 @@ import it.unibo.goffo.fag.spawn.view.SpawnView;
 import it.unibo.goffo.fag.spawn.view.SpawnViewImpl;
 import it.unibo.goffo.fag.ui.hud.HUDController;
 import javafx.application.Platform;
+import javafx.geometry.Point2D;
 import javafx.scene.input.KeyCode;
 
 import static it.unibo.goffo.fag.FagUtils.*;
@@ -169,10 +170,7 @@ public class FightAvengeGuerrillaApp extends GameApplication {
 
             @Override
             protected void onAction() {
-                Bullet bul = BulletFactory.createBullet();
-                bul.getComponent(PhysicsComponent.class).setLinearVelocity(100, 0);
-                // createBullet(damage)
-                // bullet.moveDirection( speed a bomba)
+                BulletFactory.createBullet(new Point2D(-1,0));
             }
 
             @Override
@@ -189,6 +187,11 @@ public class FightAvengeGuerrillaApp extends GameApplication {
             }
 
             @Override
+            protected void onAction() {
+                BulletFactory.createBullet(new Point2D(1,0));
+            }
+
+            @Override
             protected void onActionEnd() {
                 player.playIdleAnimation(MoveDirection.RIGHT);
             }
@@ -201,6 +204,11 @@ public class FightAvengeGuerrillaApp extends GameApplication {
             }
 
             @Override
+            protected void onAction() {
+                BulletFactory.createBullet(new Point2D(0,-1));
+            }
+
+            @Override
             protected void onActionEnd() {
                 player.playIdleAnimation(MoveDirection.UP);
             }
@@ -210,6 +218,11 @@ public class FightAvengeGuerrillaApp extends GameApplication {
             @Override
             protected void onActionBegin() {
                 player.playWalkAnimation(MoveDirection.DOWN);
+            }
+
+            @Override
+            protected void onAction() {
+                BulletFactory.createBullet(new Point2D(0,1));
             }
 
             @Override
