@@ -1,35 +1,21 @@
 package it.unibo.goffo.fag.score.view;
 
-import com.almasb.fxgl.app.FXGL;
-import com.almasb.fxgl.scene.FXGLMenu;
-import com.almasb.fxgl.ui.UI;
-import com.almasb.fxgl.ui.UIController;
 import it.unibo.goffo.fag.score.controller.ScoreController;
 import it.unibo.goffo.fag.score.controller.ScoreControllerImpl;
 import it.unibo.goffo.fag.score.model.ScoreModelImpl;
-import it.unibo.goffo.fag.ui.menu.FAGMenuFactory;
-import it.unibo.goffo.fag.ui.menu.MainMenuController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
-import java.io.IOException;
-
-
 /**
  * View Controller for view binding component.
  */
-public class ScoresViewController implements UIController {
+public class ScoresViewController {
 
-    @FXML private Button backButton;
     @FXML private TableView<JsonScoreWrapper> scoreTableView;
     @FXML private TableColumn<JsonScoreWrapper, String> usernameColumn;
     @FXML private TableColumn<JsonScoreWrapper, Integer> scoreColumn;
@@ -58,27 +44,8 @@ public class ScoresViewController implements UIController {
     }
 
     @FXML
-    private void goBackHandler(final ActionEvent event) throws IOException {
-/*        final UI mainMenuUI = FXGL.getAssetLoader().loadUI("/fxml/mainMenu.fxml", new MainMenuController());
-        FXGL.getApp().getGameScene().addUI();*/
-
-//        final UI thisUI = FXGL.getAssetLoader().loadUI("fxml/ScoresView.fxml", new ScoresViewController());
-
-/*        final Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        final Parent scene = FXMLLoader.load(getClass().getResource("/assets/ui/fxml/mainMenu.fxml"));
-        stage.setScene(new Scene(scene, 800, 600));*/
-
-//        FXGL.getApp().getGameScene().getContentRoot().getChildren().remove(1);
-
-        final Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.close();
-//        stage.setScene();
-
-//        FXGL.getApp().getGameScene().getRoot().getChildren().remove(0);
-
-/*        final Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        final Parent scene = FXMLLoader.load(getClass().getResource("/assets/ui/fxml/mainMenu.fxml"));
-        FXGL.getApp().getGameScene().getContentRoot().setVisible(false);*/
+    private void goBackHandler(final ActionEvent event) {
+        ((Stage) ((Node) event.getSource()).getScene().getWindow()).close();
     }
 
     private void tableViewGraphicalSetup(final TableView<?> tableView) {
@@ -88,7 +55,4 @@ public class ScoresViewController implements UIController {
     private void columnGraphicalSetup(final TableColumn<?, ?> column) {
         column.setSortable(false);
     }
-
-    @Override
-    public void init() { }
 }

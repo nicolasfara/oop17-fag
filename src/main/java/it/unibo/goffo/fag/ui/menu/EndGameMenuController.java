@@ -1,13 +1,7 @@
 package it.unibo.goffo.fag.ui.menu;
 
 import com.almasb.fxgl.app.FXGL;
-import com.almasb.fxgl.app.SubState;
-import com.almasb.fxgl.ui.UIController;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import org.checkerframework.checker.units.qual.A;
 
 public class EndGameMenuController {
 
@@ -22,7 +16,7 @@ public class EndGameMenuController {
     }
 
     @FXML
-    private void onExit() {
+    private void btnExit() {
         FXGL.getApp().getMenuListener().onExit();
     }
 }

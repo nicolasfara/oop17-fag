@@ -8,7 +8,13 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<GridPane alignment="CENTER" styleClass="root" stylesheets="@../css/fag-style.css" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.unibo.goffo.fag.ui.menu.EndGameMenuController" >
+<GridPane
+        alignment="CENTER"
+        styleClass="root"
+        stylesheets="@../css/fag-style.css"
+        xmlns="http://javafx.com/javafx/8.0.121"
+        xmlns:fx="http://javafx.com/fxml/1"
+        fx:controller="it.unibo.goffo.fag.ui.menu.EndGameMenuController">
    <FlowPane alignment="CENTER" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
       <children>
          <StackPane>
@@ -23,8 +29,8 @@
          <TilePane prefWidth="200.0">
             <children>
                <Button fx:id="btnRestart" onAction="#restartGame" text="RESTART" textAlignment="CENTER" />
-               <!--<Button fx:id="btnMainMenu" onAction="#backToMainMenu" text="MAIN MENU" textAlignment="CENTER" />-->
-               <Button fx:id="btnExit" onAction="#onExit" text="EXIT" />
+               <Button fx:id="btnMainMenu" onAction="#backToMainMenu" text="MAIN MENU" textAlignment="CENTER" />
+               <Button fx:id="btnExit" onAction="#btnExit" text="EXIT" />
             </children>
          </TilePane>
       </children>

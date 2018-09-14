@@ -2,6 +2,7 @@ package it.unibo.goffo.fag.ui.menu;
 
 import com.almasb.fxgl.app.GameApplication;
 import com.almasb.fxgl.scene.menu.MenuType;
+import it.unibo.goffo.fag.FAGConfig;
 
 public class FAGEndGameMenu extends FAGMenu {
     public FAGEndGameMenu(final GameApplication app, final MenuType type) {
@@ -10,7 +11,7 @@ public class FAGEndGameMenu extends FAGMenu {
     }
 
     private void makeEndGameMenu() {
-        super.setFagMenu(super.readMenuFromFXML("/assets/ui/fxml/endGameMenu.fxml"));
+        super.setFagMenu(FAGConfig.END_GAME_MENU_PATH);
         super.updateView();
     }
 }
