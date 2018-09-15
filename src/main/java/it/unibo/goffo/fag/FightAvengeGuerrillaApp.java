@@ -193,7 +193,7 @@ public class FightAvengeGuerrillaApp extends GameApplication {
 
         input.addAction(new UserAction("Rotate Down") {
             @Override
-            protected void onAction() {
+            protected void onActionBegin() {
                 BulletFactory.createBullet(new Point2D(0, 1));
                 player.playWalkAnimation(MoveDirection.DOWN);
             }
