@@ -240,46 +240,41 @@ public class FightAvengeGuerrillaApp extends GameApplication {
      */
     @Override
     protected void initPhysics() {
-        super.initPhysics();
-        getPhysicsWorld().addCollisionHandler(
-        new CollisionHandler(FagType.PLAYER, FagType.SIMPLE_ZOMBIE) {
-                    @Override
-                    protected void onCollisionBegin(final Entity player, final Entity zombie) {
-                        try {
-                            pzCollision.onCollision((Player) player, (Zombie) zombie);
-                        } catch (GameOverException e1) {
-                            e1.printStackTrace();
-                        }
-                    }
-                });
+        getPhysicsWorld().addCollisionHandler(new CollisionHandler(FagType.PLAYER, FagType.SIMPLE_ZOMBIE) {
+            @Override
+            protected void onCollisionBegin(final Entity player, final Entity zombie) {
+                try {
+                    pzCollision.onCollision((Player) player, (Zombie) zombie);
+                } catch (GameOverException e1) {
+                    e1.printStackTrace();
+                }
+            }
+        });
 
-        getPhysicsWorld().addCollisionHandler(
-                new CollisionHandler(FagType.PLAYER, FagType.ADVANCE_ZOMBIE) {
-                    @Override
-                    protected void onCollisionBegin(final Entity player, final Entity zombie) {
-                        try {
-                            pzCollision.onCollision((Player) player, (Zombie) zombie);
-                        } catch (GameOverException e2) {
-                            e2.printStackTrace();
-                        }
-                    }
-                });
+        getPhysicsWorld().addCollisionHandler(new CollisionHandler(FagType.PLAYER, FagType.ADVANCE_ZOMBIE) {
+            @Override
+            protected void onCollisionBegin(final Entity player, final Entity zombie) {
+                try {
+                    pzCollision.onCollision((Player) player, (Zombie) zombie);
+                } catch (GameOverException e2) {
+                    e2.printStackTrace();
+                }
+            }
+        });
 
-        getPhysicsWorld().addCollisionHandler(
-                new CollisionHandler(FagType.BULLET, FagType.SIMPLE_ZOMBIE) {
-                    @Override
-                    protected void onCollisionBegin(final Entity bullet, final Entity zombie) {
-                        bzCollision.onCollision((Bullet) bullet, (Zombie) zombie);
-                    }
-                });
+        getPhysicsWorld().addCollisionHandler(new CollisionHandler(FagType.BULLET, FagType.SIMPLE_ZOMBIE) {
+            @Override
+            protected void onCollisionBegin(final Entity bullet, final Entity zombie) {
+                bzCollision.onCollision((Bullet) bullet, (Zombie) zombie);
+            }
+        });
 
-        getPhysicsWorld().addCollisionHandler(
-                new CollisionHandler(FagType.BULLET, FagType.ADVANCE_ZOMBIE) {
-                    @Override
-                    protected void onCollisionBegin(final Entity bullet, final Entity zombie) {
-                        bzCollision.onCollision((Bullet) bullet, (Zombie) zombie);
-                    }
-                });
+        getPhysicsWorld().addCollisionHandler(new CollisionHandler(FagType.BULLET, FagType.ADVANCE_ZOMBIE) {
+            @Override
+            protected void onCollisionBegin(final Entity bullet, final Entity zombie) {
+                bzCollision.onCollision((Bullet) bullet, (Zombie) zombie);
+            }
+        });
     }
 
     /**
