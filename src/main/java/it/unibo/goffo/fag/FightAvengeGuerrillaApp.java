@@ -9,8 +9,6 @@ import com.almasb.fxgl.input.Input;
 import com.almasb.fxgl.input.UserAction;
 import com.almasb.fxgl.parser.tiled.TiledMap;
 import com.almasb.fxgl.physics.CollisionHandler;
-import com.almasb.fxgl.physics.HitBox;
-import com.almasb.fxgl.physics.PhysicsComponent;
 import com.almasb.fxgl.settings.GameSettings;
 import com.almasb.fxgl.ui.UI;
 import it.unibo.goffo.fag.collision.BulletZombieCollision;
@@ -20,7 +18,6 @@ import it.unibo.goffo.fag.entities.FagType;
 import it.unibo.goffo.fag.entities.Player;
 import it.unibo.goffo.fag.entities.Zombie;
 import it.unibo.goffo.fag.entities.builders.BulletFactory;
-import it.unibo.goffo.fag.entities.builders.FagEntities;
 import it.unibo.goffo.fag.entities.builders.PlayerFactory;
 import it.unibo.goffo.fag.exceptions.GameOverException;
 import it.unibo.goffo.fag.life.controller.LifeController;
@@ -34,7 +31,11 @@ import javafx.application.Platform;
 import javafx.geometry.Point2D;
 import javafx.scene.input.KeyCode;
 
-import static it.unibo.goffo.fag.FagUtils.*;
+import static it.unibo.goffo.fag.FagUtils.MAP_HEIGHT;
+import static it.unibo.goffo.fag.FagUtils.MAP_WIDTH;
+import static it.unibo.goffo.fag.FagUtils.TILE_SIZE;
+import static it.unibo.goffo.fag.FagUtils.APPLICATION_NAME;
+
 /**
  * Main class, used to launch FXGL.
  */
@@ -160,12 +161,8 @@ public class FightAvengeGuerrillaApp extends GameApplication {
         input.addAction(new UserAction("Rotate Left") {
             @Override
             protected void onActionBegin() {
-                player.playWalkAnimation(MoveDirection.LEFT);
-            }
-
-            @Override
-            protected void onAction() {
                 BulletFactory.createBullet(new Point2D(-1,0));
+                player.playWalkAnimation(MoveDirection.LEFT);
             }
 
             @Override
@@ -178,12 +175,8 @@ public class FightAvengeGuerrillaApp extends GameApplication {
 
             @Override
             protected void onActionBegin() {
-                player.playWalkAnimation(MoveDirection.RIGHT);
-            }
-
-            @Override
-            protected void onAction() {
                 BulletFactory.createBullet(new Point2D(1,0));
+                player.playWalkAnimation(MoveDirection.RIGHT);
             }
 
             @Override
@@ -195,12 +188,8 @@ public class FightAvengeGuerrillaApp extends GameApplication {
         input.addAction(new UserAction("Rotate Up") {
             @Override
             protected void onActionBegin() {
-                player.playWalkAnimation(MoveDirection.UP);
-            }
-
-            @Override
-            protected void onAction() {
                 BulletFactory.createBullet(new Point2D(0,-1));
+                player.playWalkAnimation(MoveDirection.UP);
             }
 
             @Override
@@ -212,12 +201,8 @@ public class FightAvengeGuerrillaApp extends GameApplication {
         input.addAction(new UserAction("Rotate Down") {
             @Override
             protected void onActionBegin() {
-                player.playWalkAnimation(MoveDirection.DOWN);
-            }
-
-            @Override
-            protected void onAction() {
                 BulletFactory.createBullet(new Point2D(0,1));
+                player.playWalkAnimation(MoveDirection.DOWN);
             }
 
             @Override
