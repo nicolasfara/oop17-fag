@@ -1,8 +1,9 @@
-package it.unibo.goffo.fag.ui.menu;
+package it.unibo.goffo.fag.ui.menu.score;
 
 import com.almasb.fxgl.app.GameApplication;
 import com.almasb.fxgl.scene.menu.MenuType;
 import it.unibo.goffo.fag.FAGConfig;
+import it.unibo.goffo.fag.ui.menu.FAGMenu;
 
 public class FAGScoreMenu extends FAGMenu {
 

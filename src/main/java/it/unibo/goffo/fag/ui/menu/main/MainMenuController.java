@@ -1,6 +1,7 @@
-package it.unibo.goffo.fag.ui.menu;
+package it.unibo.goffo.fag.ui.menu.main;
 
 import com.almasb.fxgl.app.FXGL;
+import it.unibo.goffo.fag.ui.menu.FAGMenuFactory;
 import javafx.fxml.FXML;
 
 public class MainMenuController {
@@ -8,6 +9,8 @@ public class MainMenuController {
     @FXML
     private void startGame() {
         FXGL.getApp().getMenuListener().onNewGame();
+/*        FXGL.getApp().getMenuListener().getSaveLoadManager().loadLastModifiedSaveFileTask().onSuccess(() ->
+                )*/
     }
 
     @FXML

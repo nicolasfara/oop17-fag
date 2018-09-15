@@ -20,9 +20,12 @@ import java.io.IOException;
 public class FAGMenu extends FXGLMenu {
 
     private Parent fagMenu;
+    private GameApplication app;
 
     public FAGMenu(final GameApplication app, final MenuType type) {
         super(app, type);
+
+        this.app = app;
 
         if (type == MenuType.MAIN_MENU) {
             this.makeMainMenu();
@@ -55,7 +58,7 @@ public class FAGMenu extends FXGLMenu {
     }
 
     protected void updateView() {
-        FXGL.getApp().getGameScene().addUINode(this.fagMenu);
+        app.getGameScene().addUINode(this.fagMenu);
 //        menuRoot.getChildren().set(0, this.fagMenu);
     }
 

@@ -1,4 +1,4 @@
-package it.unibo.goffo.fag.ui.menu;
+package it.unibo.goffo.fag.ui.menu.endgame;
 
 import com.almasb.fxgl.app.FXGL;
 import javafx.fxml.FXML;
