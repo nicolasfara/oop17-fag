@@ -29,10 +29,7 @@ import javafx.application.Platform;
 import javafx.geometry.Point2D;
 import javafx.scene.input.KeyCode;
 
-import static it.unibo.goffo.fag.FagUtils.MAP_HEIGHT;
-import static it.unibo.goffo.fag.FagUtils.MAP_WIDTH;
-import static it.unibo.goffo.fag.FagUtils.TILE_SIZE;
-import static it.unibo.goffo.fag.FagUtils.APPLICATION_NAME;
+import static it.unibo.goffo.fag.FagUtils.*;
 
 /**
  * Main class, used to launch FXGL.
@@ -196,7 +193,7 @@ public class FightAvengeGuerrillaApp extends GameApplication {
 
         input.addAction(new UserAction("Rotate Down") {
             @Override
-            protected void onActionBegin() {
+            protected void onAction() {
                 BulletFactory.createBullet(new Point2D(0, 1));
                 player.playWalkAnimation(MoveDirection.DOWN);
             }
@@ -273,6 +270,13 @@ public class FightAvengeGuerrillaApp extends GameApplication {
             @Override
             protected void onCollisionBegin(final Entity bullet, final Entity zombie) {
                 bzCollision.onCollision((Bullet) bullet, (Zombie) zombie);
+            }
+        });
+
+        getPhysicsWorld().addCollisionHandler(new CollisionHandler(FagType.BULLET, FagType.BORDER) {
+            @Override
+            protected void onCollisionBegin(final Entity bullet, final Entity border) {
+                bullet.removeFromWorld();
             }
         });
     }

@@ -22,6 +22,10 @@ public enum FagType {
     ADVANCE_ZOMBIE,
     /**
      * Bullet type.
-      */
-    BULLET
+     */
+    BULLET,
+    /**
+     * Border type.
+     */
+    BORDER
 }
