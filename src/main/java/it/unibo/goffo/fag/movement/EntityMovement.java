@@ -16,7 +16,6 @@ public class EntityMovement extends AbstractMovement {
 
     private List<Entity> blocks;
     private final Vec2 velocity = new Vec2();
-    private static final double TOLERANCE = 0.00001;
     private static final Logger LOGGER = Logger.get(EntityMovement.class);
 
     /**

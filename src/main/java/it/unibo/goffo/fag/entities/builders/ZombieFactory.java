@@ -22,10 +22,10 @@ import it.unibo.goffo.fag.movement.EntityMovement;
 import java.util.List;
 import java.util.stream.Collectors;
 
-
 import static it.unibo.goffo.fag.FagUtils.TILE_SIZE;
 import static it.unibo.goffo.fag.FagUtils.ZOMBIE_SIZE_X;
 import static it.unibo.goffo.fag.FagUtils.ZOMBIE_SIZE_Y;
+
 /**
  * Factory for zombie creation.
  */
@@ -74,10 +74,6 @@ public final class ZombieFactory {
                 .build();
     }
 
-    /**
-     *
-     * @return
-     */
     private static Point2D randomPoint() {
         final List<AStarNode> aStarNodes = FXGL.<FightAvengeGuerrillaApp>getAppCast().getGrid().getNodes().stream()
                 .filter(e -> e.getState() == NodeState.WALKABLE)

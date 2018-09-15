@@ -27,7 +27,7 @@ public final class FagUtils {
     /**
      * X size for zombie entity.
      */
-    public static final int ZOMBIE_SIZE_X = 32;
+    public static final int ZOMBIE_SIZE_X = 64;
 
     /**
      * Y size for zombie entity.
@@ -37,7 +37,7 @@ public final class FagUtils {
     /**
      * X size for player entity.
      */
-    public static final int PLAYER_SIZE_X = 32;
+    public static final int PLAYER_SIZE_X = 64;
 
     /**
      * Y size for player entity.

@@ -14,12 +14,15 @@ import static it.unibo.goffo.fag.FagUtils.PLAYER_SIZE_X;
 import static it.unibo.goffo.fag.FagUtils.PLAYER_SIZE_Y;
 
 /**
- *
+ * Factory for player creation.
  */
 public final class PlayerFactory {
+
+    private PlayerFactory() { }
+
     /**
-     *
-     * @return
+     * Creates the player.
+     * @return the player.
      */
     public static Player createPlayer() {
         return (Player) FagEntities.builder(Player.class)
