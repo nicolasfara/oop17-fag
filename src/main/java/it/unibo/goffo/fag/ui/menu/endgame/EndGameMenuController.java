@@ -1,25 +1,10 @@
 package it.unibo.goffo.fag.ui.menu.endgame;
 
 import com.almasb.fxgl.app.FXGL;
+import it.unibo.goffo.fag.ui.menu.AbsMenuController;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 
-public class EndGameMenuController {
-
-    @FXML private Button btnRestart;
-    @FXML private Button btnMainMenu;
-    @FXML private Button btnExit;
-
-    public void initialize() {
-        bindDefaultButtonProperty(this.btnRestart);
-        bindDefaultButtonProperty(this.btnMainMenu);
-        bindDefaultButtonProperty(this.btnExit);
-    }
-
-    private void bindDefaultButtonProperty(final Button btn) {
-        btn.defaultButtonProperty().bind(btn.focusedProperty());
-    }
-
+public class EndGameMenuController extends AbsMenuController {
     @FXML
     private void restartGame() {
         FXGL.getApp().getMenuListener().onNewGame();

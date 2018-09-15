@@ -19,9 +19,6 @@ public class AbsMenuController {
                 .map(b -> (Button)b)
                 .peek(this::bindDefaultButtonProperty)
                 .collect(Collectors.toList());
-/*        bindDefaultButtonProperty(this.btnStartGame);
-        bindDefaultButtonProperty(this.btnScores);
-        bindDefaultButtonProperty(this.btnExit);*/
     }
 
     private void bindDefaultButtonProperty(final Button btn) {

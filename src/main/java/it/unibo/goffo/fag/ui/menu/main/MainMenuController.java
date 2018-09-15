@@ -4,35 +4,8 @@ import com.almasb.fxgl.app.FXGL;
 import it.unibo.goffo.fag.ui.menu.AbsMenuController;
 import it.unibo.goffo.fag.ui.menu.FAGMenuFactory;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.layout.TilePane;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
-public class MainMenuController {
-
-/*    @FXML private Button btnStartGame;
-    @FXML private Button btnScores;
-    @FXML private Button btnExit;*/
-
-    @FXML
-    private TilePane buttons;
-
-    private List<Button> btns;
-
-    public void initialize() {
-        this.btns = buttons.getChildren().stream()
-                .filter(b -> b instanceof Button)
-                .map(b -> (Button)b)
-                .peek(this::bindDefaultButtonProperty)
-                .collect(Collectors.toList());
-    }
-
-    private void bindDefaultButtonProperty(final Button btn) {
-        btn.defaultButtonProperty().bind(btn.focusedProperty());
-    }
-
+public class MainMenuController extends AbsMenuController {
     @FXML
     private void startGame() {
             FXGL.getApp().getMenuListener().onNewGame();
