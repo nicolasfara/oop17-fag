@@ -50,7 +50,7 @@ public class SpawnLogicImpl implements SpawnLogic {
     }
 
     private void switchMode(final SpawnMode mode) {
-        if (currentMode == SpawnMode.LINEAR && mode == SpawnMode.EXPONENTIAL) {
+        if (currentMode == SpawnMode.LINEAR && mode == SpawnMode.EXPONENTIAL && linearCount != 0) {
             quadraticCount = FXGLMath.round(FXGLMath.log(EXPONENTIAL_BASE, linearCount));
         } else if (currentMode == SpawnMode.EXPONENTIAL && mode == SpawnMode.LINEAR) {
             linearCount = quadraticCount;
