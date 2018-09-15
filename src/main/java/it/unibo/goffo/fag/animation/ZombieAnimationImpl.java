@@ -12,10 +12,10 @@ public class ZombieAnimationImpl extends AbstractAnimation {
 
     private static final int IDLE_DURATION = 1200;
     private final Duration walkDuration = Duration.millis(IDLE_DURATION);
-    private static final int WIDTH = 128;
-    private static final int HEIGHT = 128;
+    private static final int WIDTH = 64;
+    private static final int HEIGHT = 64;
     private static final int FRAMES_PER_ROW = 4;
-    private static final String ANIMATION_FILENAME = "walkZombie.png";
+    private static final String ANIMATION_FILENAME = "walkZombie64.png";
     private final AnimationChannel walkFront = new AnimationChannel(ANIMATION_FILENAME, FRAMES_PER_ROW, WIDTH, HEIGHT, walkDuration, 0, 3);
     private final AnimationChannel walkSide = new AnimationChannel(ANIMATION_FILENAME, FRAMES_PER_ROW, WIDTH, HEIGHT, walkDuration, 4, 7);
     private final AnimationChannel walkBack = new AnimationChannel(ANIMATION_FILENAME, FRAMES_PER_ROW, WIDTH, HEIGHT, walkDuration, 8, 11);
@@ -43,11 +43,11 @@ public class ZombieAnimationImpl extends AbstractAnimation {
                 break;
             case LEFT:
                 texture.loopAnimationChannel(walkSide);
-                getEntity().setScaleX(-0.5);
+                getEntity().setScaleX(-1);
                 break;
             case RIGHT:
                 texture.loopAnimationChannel(walkSide);
-                getEntity().setScaleX(0.5);
+                getEntity().setScaleX(1);
                 break;
                 default:
                     break;

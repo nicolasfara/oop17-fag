@@ -12,8 +12,8 @@ public class PlayerAnimationImpl extends AbstractAnimation {
 
     private static final int IDLE_DURATION = 2800;
     private static final int WALK_DURATION = 1200;
-    private static final int WIDTH = 128;
-    private static final int HEIGHT = 128;
+    private static final int WIDTH = 64;
+    private static final int HEIGHT = 64;
     private static final int FRAMES_PER_ROW = 4;
     private static final int END_FRAME_SHOT_FRONT = 3;
     private static final int START_FRAME_SHOT_SIDE = 4;
@@ -26,7 +26,7 @@ public class PlayerAnimationImpl extends AbstractAnimation {
     private static final int END_FRAME_WALK_SIDE = 19;
     private static final int START_FRAME_WALK_BACK = 20;
     private static final int END_FRAME_WALK_BACK = 23;
-    private static final String ANIMATION_FILENAME = "shootFag.png";
+    private static final String ANIMATION_FILENAME = "shootFag64.png";
     private final Duration walkDuration = Duration.millis(IDLE_DURATION);
     private final Duration idleDuration = Duration.millis(WALK_DURATION);
     private final AnimationChannel shotFront = new AnimationChannel(ANIMATION_FILENAME, FRAMES_PER_ROW, WIDTH, HEIGHT, idleDuration, 0, END_FRAME_SHOT_FRONT);
@@ -71,7 +71,7 @@ public class PlayerAnimationImpl extends AbstractAnimation {
                 } else {
                     texture.loopAnimationChannel(shotSide);
                 }
-                getEntity().setScaleX(-0.5);
+                getEntity().setScaleX(-1);
                 break;
             case RIGHT:
                 if (animationType == AnimationType.WALKING) {
@@ -79,7 +79,7 @@ public class PlayerAnimationImpl extends AbstractAnimation {
                 } else {
                     texture.loopAnimationChannel(shotSide);
                 }
-                getEntity().setScaleX(0.5);
+                getEntity().setScaleX(1);
                 break;
 
                 default:

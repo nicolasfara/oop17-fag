@@ -13,21 +13,23 @@ import it.unibo.goffo.fag.movement.EntityMovement;
 import static it.unibo.goffo.fag.FagUtils.PLAYER_SIZE_X;
 import static it.unibo.goffo.fag.FagUtils.PLAYER_SIZE_Y;
 
+/**
+ *
+ */
 public final class PlayerFactory {
-
-
+    /**
+     *
+     * @return
+     */
     public static Player createPlayer() {
-        Player player = (Player) FagEntities.builder(Player.class)
+        return (Player) FagEntities.builder(Player.class)
                 .type(FagType.PLAYER)
-                .at(200, 200)
+                .at(100, 100)
                 .with(new EntityMovement(1))
                 .with(new LifeControllerImpl(1))
                 .with(new PlayerAnimationImpl())
                 .bbox(new HitBox(BoundingShape.box(PLAYER_SIZE_X, PLAYER_SIZE_Y)))
                 .with(new CollidableComponent(true))
                 .buildAndAttach(FXGL.getApp().getGameWorld());
-        player.setScaleX(0.5);
-        player.setScaleY(0.5);
-        return player;
     }
 }
