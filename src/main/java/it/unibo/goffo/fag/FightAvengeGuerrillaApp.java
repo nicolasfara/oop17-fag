@@ -9,6 +9,8 @@ import com.almasb.fxgl.input.Input;
 import com.almasb.fxgl.input.UserAction;
 import com.almasb.fxgl.parser.tiled.TiledMap;
 import com.almasb.fxgl.physics.CollisionHandler;
+import com.almasb.fxgl.physics.HitBox;
+import com.almasb.fxgl.physics.PhysicsComponent;
 import com.almasb.fxgl.settings.GameSettings;
 import com.almasb.fxgl.ui.UI;
 import it.unibo.goffo.fag.collision.BulletZombieCollision;
@@ -17,6 +19,8 @@ import it.unibo.goffo.fag.entities.Bullet;
 import it.unibo.goffo.fag.entities.FagType;
 import it.unibo.goffo.fag.entities.Player;
 import it.unibo.goffo.fag.entities.Zombie;
+import it.unibo.goffo.fag.entities.builders.BulletFactory;
+import it.unibo.goffo.fag.entities.builders.FagEntities;
 import it.unibo.goffo.fag.entities.builders.PlayerFactory;
 import it.unibo.goffo.fag.exceptions.GameOverException;
 import it.unibo.goffo.fag.life.controller.LifeController;
@@ -27,6 +31,7 @@ import it.unibo.goffo.fag.spawn.view.SpawnView;
 import it.unibo.goffo.fag.spawn.view.SpawnViewImpl;
 import it.unibo.goffo.fag.ui.hud.HUDController;
 import javafx.application.Platform;
+import javafx.geometry.Point2D;
 import javafx.scene.input.KeyCode;
 
 import static it.unibo.goffo.fag.FagUtils.*;
@@ -39,8 +44,8 @@ public class FightAvengeGuerrillaApp extends GameApplication {
     private Player player;
     private LifeController lifeController;
 
-    PlayerZombieCollision t1 = new PlayerZombieCollision();
-    BulletZombieCollision t2 = new BulletZombieCollision();
+    private PlayerZombieCollision pzCollision = new PlayerZombieCollision();
+    private BulletZombieCollision bzCollision = new BulletZombieCollision();
 
     /**
      * Main method launch the game engine.
@@ -159,6 +164,11 @@ public class FightAvengeGuerrillaApp extends GameApplication {
             }
 
             @Override
+            protected void onAction() {
+                BulletFactory.createBullet(new Point2D(-1,0));
+            }
+
+            @Override
             protected void onActionEnd() {
                 player.playIdleAnimation(MoveDirection.LEFT);
             }
@@ -169,6 +179,11 @@ public class FightAvengeGuerrillaApp extends GameApplication {
             @Override
             protected void onActionBegin() {
                 player.playWalkAnimation(MoveDirection.RIGHT);
+            }
+
+            @Override
+            protected void onAction() {
+                BulletFactory.createBullet(new Point2D(1,0));
             }
 
             @Override
@@ -184,6 +199,11 @@ public class FightAvengeGuerrillaApp extends GameApplication {
             }
 
             @Override
+            protected void onAction() {
+                BulletFactory.createBullet(new Point2D(0,-1));
+            }
+
+            @Override
             protected void onActionEnd() {
                 player.playIdleAnimation(MoveDirection.UP);
             }
@@ -193,6 +213,11 @@ public class FightAvengeGuerrillaApp extends GameApplication {
             @Override
             protected void onActionBegin() {
                 player.playWalkAnimation(MoveDirection.DOWN);
+            }
+
+            @Override
+            protected void onAction() {
+                BulletFactory.createBullet(new Point2D(0,1));
             }
 
             @Override
@@ -240,7 +265,7 @@ public class FightAvengeGuerrillaApp extends GameApplication {
                     @Override
                     protected void onCollisionBegin(final Entity player, final Entity zombie) {
                         try {
-                            t1.onCollision((Player) player, (Zombie) zombie);
+                            pzCollision.onCollision((Player) player, (Zombie) zombie);
                         } catch (GameOverException e1) {
                             e1.printStackTrace();
                         }
@@ -252,7 +277,7 @@ public class FightAvengeGuerrillaApp extends GameApplication {
                     @Override
                     protected void onCollisionBegin(final Entity player, final Entity zombie) {
                         try {
-                            t1.onCollision((Player) player, (Zombie) zombie);
+                            pzCollision.onCollision((Player) player, (Zombie) zombie);
                         } catch (GameOverException e2) {
                             e2.printStackTrace();
                         }
@@ -263,7 +288,7 @@ public class FightAvengeGuerrillaApp extends GameApplication {
                 new CollisionHandler(FagType.BULLET, FagType.SIMPLE_ZOMBIE) {
                     @Override
                     protected void onCollisionBegin(final Entity bullet, final Entity zombie) {
-                        t2.onCollision((Bullet) bullet, (Zombie) zombie);
+                        bzCollision.onCollision((Bullet) bullet, (Zombie) zombie);
                     }
                 });
 
@@ -271,7 +296,7 @@ public class FightAvengeGuerrillaApp extends GameApplication {
                 new CollisionHandler(FagType.BULLET, FagType.ADVANCE_ZOMBIE) {
                     @Override
                     protected void onCollisionBegin(final Entity bullet, final Entity zombie) {
-                        t2.onCollision((Bullet) bullet, (Zombie) zombie);
+                        bzCollision.onCollision((Bullet) bullet, (Zombie) zombie);
                     }
                 });
     }
