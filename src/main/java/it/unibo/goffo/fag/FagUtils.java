@@ -5,24 +5,19 @@ package it.unibo.goffo.fag;
  */
 public final class FagUtils {
     /**
-     * Map details.
      * TILE_SIZE: a square (tile) of X by X pixels.
-     * MAP_WIDTH: how many tiles is the map in width.
-     * MAP_HEIGHT: how many tiles is the map in height.
      */
     public static final int TILE_SIZE = 40;
-    public static final int MAP_WIDTH = 20;
-    public static final int MAP_HEIGHT = 15;
 
     /**
-     * Map details for AI.
-     * BLOCK_SIZE: block size for AI grid.
-     * AI_WIDTH: width of the AI grid.
-     * AI_HEIGHT: height of the AI grid.
+     * MAP_WIDTH: how many tiles is the map in width.
      */
-    public static final int AI_BLOCK = 40;
-    public static final int AI_WIDTH = 800;
-    public static final int AI_HEIGHT = 600;
+    public static final int MAP_WIDTH = 20;
+
+    /**
+     * MAP_HEIGHT: how many tiles is the map in height.
+     */
+    public static final int MAP_HEIGHT = 15;
 
     /**
      * X size for zombie entity.

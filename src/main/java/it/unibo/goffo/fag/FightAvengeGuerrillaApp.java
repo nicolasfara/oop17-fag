@@ -42,8 +42,8 @@ public class FightAvengeGuerrillaApp extends GameApplication {
     private AStarGrid grid;
     private Player player;
 
-    private PlayerZombieCollision pzCollision = new PlayerZombieCollision();
-    private BulletZombieCollision bzCollision = new BulletZombieCollision();
+    private final PlayerZombieCollision pzCollision = new PlayerZombieCollision();
+    private final BulletZombieCollision bzCollision = new BulletZombieCollision();
 
     /**
      * Main method launch the game engine.
@@ -84,7 +84,7 @@ public class FightAvengeGuerrillaApp extends GameApplication {
      */
     @Override
     protected void initInput() {
-        Input input = getInput();
+        final Input input = getInput();
 
         input.addAction(new UserAction("Move Right") {
             @Override
@@ -214,19 +214,19 @@ public class FightAvengeGuerrillaApp extends GameApplication {
     @Override
     protected void initGame() {
         grid = new AStarGrid(MAP_WIDTH, MAP_HEIGHT);
-        SpawnView spawnView = new SpawnViewImpl(SpawnControllerImpl.getInstance());
+        final SpawnView spawnView = new SpawnViewImpl(SpawnControllerImpl.getInstance());
         spawnView.subscribeHandler(e -> Platform.runLater(() -> FXGL.getApp().getGameWorld().addEntity(e)));
 
         getGameWorld().addEntityFactory(new LevelFactory());
-        TiledMap map = getAssetLoader().loadJSON("level1.json", TiledMap.class);
+        final TiledMap map = getAssetLoader().loadJSON("level1.json", TiledMap.class);
         getGameWorld().setLevelFromMap(map);
 
         getGameWorld().getEntitiesByType(FagType.WALL)
                 .stream()
                 .map(Entity::getPosition)
                 .forEach(point -> {
-                    int x = (int) point.getX() / TILE_SIZE;
-                    int y = (int) point.getY() / TILE_SIZE;
+                    final int x = (int) point.getX() / TILE_SIZE;
+                    final int y = (int) point.getY() / TILE_SIZE;
 
                     grid.setNodeState(x, y, NodeState.NOT_WALKABLE);
                 });
