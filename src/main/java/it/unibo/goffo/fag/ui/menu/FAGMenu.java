@@ -43,7 +43,7 @@ public class FAGMenu extends FXGLMenu {
                 switchMenuContentTo(EMPTY);
             }
         });*/
-}
+    }
 
     private void makeMainMenu() {
         this.setFagMenu(FAGConfig.MAIN_MENU_PATH);

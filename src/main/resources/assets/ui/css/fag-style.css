@@ -46,7 +46,11 @@
     -fx-font-size: 23px;
 }
 
-.button:hover {
+/*.button:hover {
+    -fx-background-color: #830421;
+}*/
+
+.button:focused {
     -fx-background-color: #830421;
 }
 

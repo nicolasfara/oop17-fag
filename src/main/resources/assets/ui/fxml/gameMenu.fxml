@@ -27,7 +27,7 @@
          <VBox layoutX="309.0" layoutY="243.0" prefHeight="200.0" prefWidth="100.0">
                    <FlowPane alignment="CENTER" prefHeight="200.0" prefWidth="200.0">
                         <TilePane prefWidth="200.0">
-                           <Button fx:id="btnResume" onAction="#resumePlay" text="RESUME" />
+                           <Button fx:id="btnResume" onAction="#resumePlay" text="RESUME" defaultButton="true"/>
                            <Button fx:id="btnRestart" onAction="#restartGame" text="RESTART" textAlignment="CENTER" />
                            <Button fx:id="btnMainMenu" onAction="#backToMainMenu" text="MAIN MENU" textAlignment="CENTER" />
                            <Button fx:id="btnExit" onAction="#btnExit" text="EXIT" />
