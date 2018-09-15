@@ -27,11 +27,7 @@ import it.unibo.goffo.fag.spawn.view.SpawnView;
 import it.unibo.goffo.fag.spawn.view.SpawnViewImpl;
 import it.unibo.goffo.fag.ui.hud.HUDController;
 import javafx.application.Platform;
-import javafx.geometry.Point2D;
 import javafx.scene.input.KeyCode;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import static it.unibo.goffo.fag.FagUtils.*;
 /**
@@ -219,27 +215,15 @@ public class FightAvengeGuerrillaApp extends GameApplication {
         TiledMap map = getAssetLoader().loadJSON("level1.json", TiledMap.class);
         getGameWorld().setLevelFromMap(map);
 
-        List<Entity> walls = new ArrayList<>(getGameWorld().getEntitiesByType(FagType.WALL));
-        for (Entity wall : walls) {
-            Point2D point = wall.getPosition();
+        getGameWorld().getEntitiesByType(FagType.WALL)
+                .stream()
+                .map(Entity::getPosition)
+                .forEach(point -> {
+                    int x = (int) point.getX() / TILE_SIZE;
+                    int y = (int) point.getY() / TILE_SIZE;
 
-            int x = (int) point.getX() / TILE_SIZE;
-            int y = (int) point.getY() / TILE_SIZE;
-
-            grid.setNodeState(x, y, NodeState.NOT_WALKABLE);
-        }
-
-
-//        getGameWorld().getEntitiesByType(FagType.WALL)
-//                .stream()
-//                .map(Entity::getPosition)
-//                .forEach(point -> {
-//                    int x = (int) point.getX() / AI_BLOCK;
-//                    int y = (int) point.getY() / AI_BLOCK;
-//
-//                    grid.setNodeState(x, y, NodeState.NOT_WALKABLE);
-//                });
-
+                    grid.setNodeState(x, y, NodeState.NOT_WALKABLE);
+                });
 
         player = PlayerFactory.createPlayer();
         this.getGameState().setValue("playerLife", 1.0);

@@ -41,7 +41,7 @@ public final class ZombieFactory {
      * @return the zombie.
      */
     public static Zombie createSimpleZombie() {
-        Zombie zombie = (Zombie) FagEntities.builder(Zombie.class)
+        return (Zombie) FagEntities.builder(Zombie.class)
                 .at(randomPoint())
                 .type(FagType.SIMPLE_ZOMBIE)
                 .with(new ZombieAnimationImpl())
@@ -53,9 +53,6 @@ public final class ZombieFactory {
                 .with(new RandomMoveController())
                 .with(new AIControl("random.tree"))
                 .build();
-        zombie.setScaleX(0.5);
-        zombie.setScaleY(0.5);
-        return zombie;
     }
 
     /**
@@ -63,21 +60,18 @@ public final class ZombieFactory {
      * @return the zombie.
      */
     public static Zombie createAdvancedZombie() {
-        Zombie zombie = (Zombie) FagEntities.builder(Zombie.class)
+        return (Zombie) FagEntities.builder(Zombie.class)
                 .at(randomPoint())
                 .type(FagType.ADVANCE_ZOMBIE)
                 .with(new ZombieAnimationImpl())
                 .with(new CollidableComponent(true))
-                .bbox(new HitBox(BoundingShape.box(64, 64)))
+                .bbox(new HitBox(BoundingShape.box(ZOMBIE_SIZE_X, ZOMBIE_SIZE_Y)))
                 .with(new EntityMovement(1))
                 .with(new LifeControllerImpl(1))
                 .with(new Damage(ADVANCE_DAMAGE))
                 .with(new AStarMoveController())
                 .with(new AIControl("astar.tree"))
                 .build();
-        zombie.setScaleX(0.5);
-        zombie.setScaleY(0.5);
-        return zombie;
     }
 
     /**
@@ -88,7 +82,7 @@ public final class ZombieFactory {
         final List<AStarNode> aStarNodes = FXGL.<FightAvengeGuerrillaApp>getAppCast().getGrid().getNodes().stream()
                 .filter(e -> e.getState() == NodeState.WALKABLE)
                 .collect(Collectors.toList());
-        return new Point2D(FXGLMath.random(aStarNodes).get().getX()*TILE_SIZE, FXGLMath.random(aStarNodes).get().getY()*TILE_SIZE);
+        return new Point2D(FXGLMath.random(aStarNodes).get().getX() * TILE_SIZE, FXGLMath.random(aStarNodes).get().getY() * TILE_SIZE);
     }
 }
 
