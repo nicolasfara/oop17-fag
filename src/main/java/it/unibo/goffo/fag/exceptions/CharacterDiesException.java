@@ -1,4 +1,7 @@
 package it.unibo.goffo.fag.exceptions;
 
-public class CharacterDiesException extends Throwable {
+/**
+ * Thrown when a character dies.
+ */
+public class CharacterDiesException extends Exception {
 }

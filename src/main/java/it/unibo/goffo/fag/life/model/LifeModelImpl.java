@@ -1,26 +1,37 @@
 package it.unibo.goffo.fag.life.model;
 
-public class LifeModelImpl extends AbsLifeModel<Double> implements LifeModel<Double> {
+/**
+ * Concrete implementation of {@link AbsLifeModel}.
+ * Only manages upper bound value: if it reaches limit, life amount is set to maximum value.
+ */
+public class LifeModelImpl extends AbsLifeModel<Double> {
 
     private LifeModelImpl(final double start, final double maxLife) {
         super(start, maxLife);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void setLife(final Double amount) {
-        super.setLife(amount);
-        if (Double.compare(super.getLife(), super.getMaxLife()) > 0) {
+        if (Double.compare(amount, super.getMaxLife()) > 0) {
             super.setLife(super.getMaxLife());
+        } else {
+            super.setLife(amount);
         }
     }
 
+    /**
+     * Concrete {@link AbsLifeModel.Builder} implementation.
+     * All parameters are needed to get {@code build()} work successfully.
+     */
     public static class Builder extends AbsLifeModel.Builder<Double> {
-
         /**
-         * aaa.
-         * @return LifeMel the life model.
-         * @throws IllegalStateException aaa edee.
-         *
+         * Concretely build a new {@link LifeModel} instance.
+         * Note: if life is greater than maxLife, it is set to that value.
+         * @return a new {@link LifeModel} instance, with given parameters.
+         * @throws IllegalStateException if {@code life} or {@code maxLife} are {@code null}.
          */
         public LifeModel<Double> build() throws IllegalStateException {
             if (super.getLife() == null) {
