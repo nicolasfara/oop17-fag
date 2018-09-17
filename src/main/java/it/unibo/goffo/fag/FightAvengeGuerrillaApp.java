@@ -21,7 +21,6 @@ import it.unibo.goffo.fag.entities.FagType;
 import it.unibo.goffo.fag.entities.Player;
 import it.unibo.goffo.fag.entities.Zombie;
 import it.unibo.goffo.fag.entities.builders.BulletFactory;
-import it.unibo.goffo.fag.entities.builders.FagEntities;
 import it.unibo.goffo.fag.entities.builders.PlayerFactory;
 import it.unibo.goffo.fag.exceptions.GameOverException;
 import it.unibo.goffo.fag.movement.MoveDirection;
@@ -264,6 +263,7 @@ public class FightAvengeGuerrillaApp extends GameApplication {
         player = PlayerFactory.createPlayer();
         this.getGameState().setValue("playerLife", 1.0);
         this.getGameState().setValue("round", "1");
+        this.getGameState().setValue("points", "0");
     }
 
     /**
@@ -277,6 +277,7 @@ public class FightAvengeGuerrillaApp extends GameApplication {
                 try {
                     pzCollision.onCollision((Player) player, (Zombie) zombie);
                 } catch (GameOverException e) {
+//                    FAGMenuFactory.newScoresMenu(FXGL.getApp());
                     FAGMenuFactory.newEndGameMenu(FXGL.getApp());
                 }
             }
@@ -288,6 +289,7 @@ public class FightAvengeGuerrillaApp extends GameApplication {
                 try {
                     pzCollision.onCollision((Player) player, (Zombie) zombie);
                 } catch (GameOverException e) {
+//                    FAGMenuFactory.newScoresMenu(FXGL.getApp());
                     FAGMenuFactory.newEndGameMenu(FXGL.getApp());
                 }
             }
@@ -336,8 +338,10 @@ public class FightAvengeGuerrillaApp extends GameApplication {
          */
         hudController.getProgressProperty().bind(
                 this.getGameState().doubleProperty("playerLife"));
-        hudController.getRound().bind(
+        hudController.getRoundProperty().bind(
                 this.getGameState().stringProperty("round"));
+        hudController.getPointsProperty().bind(
+                this.getGameState().stringProperty("points"));
 
         /*
          * Adding tutorial.

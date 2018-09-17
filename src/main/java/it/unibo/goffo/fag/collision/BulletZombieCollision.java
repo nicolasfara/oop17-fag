@@ -1,5 +1,6 @@
 package it.unibo.goffo.fag.collision;
 
+import com.almasb.fxgl.app.FXGL;
 import it.unibo.goffo.fag.entities.Bullet;
 import it.unibo.goffo.fag.entities.Zombie;
 import it.unibo.goffo.fag.exceptions.CharacterDiesException;
@@ -26,6 +27,8 @@ public class BulletZombieCollision implements Collision<Bullet, Zombie> {
             z1.decrementLife(b1.getDamage());
         } catch (CharacterDiesException e1) {
             z1.removeFromWorld();
+            FXGL.getApp().getGameState().setValue("points",
+                    String.valueOf(Integer.valueOf(FXGL.getApp().getGameState().getString("round")) + 1));
         }
     }
 }
