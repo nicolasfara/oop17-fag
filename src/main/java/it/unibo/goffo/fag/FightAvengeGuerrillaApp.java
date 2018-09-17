@@ -13,6 +13,7 @@ import it.unibo.goffo.fag.life.view.LifeViewController;
 import it.unibo.goffo.fag.ui.hud.HUDController;
 import javafx.beans.property.IntegerProperty;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.input.KeyCode;
 import com.almasb.fxgl.ui.FXGLTextFlow;
@@ -96,7 +97,7 @@ public class FightAvengeGuerrillaApp extends GameApplication {
          * Adding HUD.
          */
         final HUDController hudController = new HUDController();
-        final UI hud = getAssetLoader().loadUI("hud.fxml", hudController);
+        final UI hud = getAssetLoader().loadUI("/fxml/hud.fxml", hudController);
         getGameScene().addUI(hud);
 
         /*
@@ -114,6 +115,17 @@ public class FightAvengeGuerrillaApp extends GameApplication {
         /*
          * Adding tutorial.
          */
+
+        Node tutorial = null;
+        try {
+            tutorial = FXMLLoader.load(getClass().getResource("/assets/ui/fxml/tutorial.fxml"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        tutorial.setTranslateX(150);
+        tutorial.setTranslateY(150);
+        getGameScene().addUINode(tutorial);
+
         FXGLTextFlow flow = FXGL.getUIFactory().newTextFlow()
                 .append("Press ", TUTORIAL_TEXT_COLOR, TUTORIAL_TEXT_SIZE)
                 .append(KeyCode.W, TUTORIAL_KEYCODE_COLOR, TUTORIAL_KEYCODE_SIZE)

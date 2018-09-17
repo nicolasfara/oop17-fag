@@ -3,15 +3,16 @@
 <?import javafx.scene.layout.*?>
 
 <?import javafx.scene.text.Text?>
-<?import javafx.scene.input.KeyCode?>
+<?import it.unibo.goffo.fag.FAGConfig?>
+<?import java.lang.String?>
+<?import java.lang.Double?>
 <AnchorPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             prefHeight="400.0" prefWidth="600.0">
 
     <fx:define>
-
-        <KeyCode fx:id="KeyCode" />
+        <FAGConfig fx:factory="getConfig" fx:id="config" />
     </fx:define>
 
-    <Text text="Press ${KeyCode. " />
+    <Text text="Press ${config.MovUp}" />
 </AnchorPane>

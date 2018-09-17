@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.TilePane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+
+<?import it.unibo.goffo.fag.FAGConfig?>
+
+<GridPane
+        xmlns="http://javafx.com/javafx/8.0.121"
+        xmlns:fx="http://javafx.com/fxml/1"
+        fx:controller="it.unibo.goffo.fag.ui.menu.main.MainMenuController"
+        alignment="CENTER"
+        styleClass="root"
+        stylesheets="@../css/fag-style.css">
+
+    <!-- With a new Object of FAGConfig class
+    <prefHeight><FAGConfig fx:constant="DISP_HEIGHT" /></prefHeight>
+    <prefWidth><FAGConfig fx:constant="DISP_WIDTH" /></prefWidth>-->
+    <!-- With define and factory directive-->
+
+<!--    <fx:include source="root.fxml" fx:id="fagconfig" />-->
+
+    <fx:define>
+        <FAGConfig fx:factory="getConfig" fx:id="config" />
+    </fx:define>
+
+   <Pane prefHeight="${config.dispHeight}" prefWidth="${config.dispWidth}">
+         <VBox layoutX="309.0" layoutY="243.0" prefHeight="200.0" prefWidth="100.0">
+                   <FlowPane alignment="CENTER" prefHeight="200.0" prefWidth="200.0">
+                        <TilePane prefWidth="200.0" fx:id="buttons">
+                              <Button fx:id="btnStartGame" onAction="#startGame" text="START GAME" defaultButton="true"/>
+                              <Button fx:id="btnScores" onAction="#showScores" text="SCORES" textAlignment="CENTER"  />
+                              <Button fx:id="btnCredits" onAction="#showCredits" text="CREDITS" textAlignment="CENTER" />
+                              <Button fx:id="btnExit" onAction="#onExit" text="EXIT" />
+                        </TilePane>
+               </FlowPane>
+         </VBox>
+         <StackPane layoutX="143.0" layoutY="192.0">
+            <Text fx:id="menuTitle" text="Fight Avenge Guerrilla" />
+         </StackPane>
+   </Pane>
+</GridPane>
