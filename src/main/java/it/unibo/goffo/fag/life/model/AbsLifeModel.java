@@ -1,16 +1,26 @@
 package it.unibo.goffo.fag.life.model;
 
-import it.unibo.goffo.fag.life.model.LifeModel;
-
 /**
- * Simple implementation on life manager with Number data types.
- * @param <T> A Number data type.
+ * Abstract implementation of {@link LifeModel}
+ * @param <T> Preferred data type where to store life amount.
  */
-public abstract class AbsLifeModel<T extends Number> implements LifeModel<T> {
+abstract class AbsLifeModel<T> implements LifeModel<T> {
 
+    /**
+     * Current life value.
+     */
     private T life;
+
+    /**
+     * Maximum life value.
+     */
     private T maxLife;
 
+    /**
+     * Set values for {@param life} and {@maxLife}.
+     * @param start Starting life value.
+     * @param maxLife Maximum life value.
+     */
     AbsLifeModel(final T start, final T maxLife) {
         this.life = start;
         this.maxLife = maxLife;
@@ -33,18 +43,18 @@ public abstract class AbsLifeModel<T extends Number> implements LifeModel<T> {
    }
 
     /**
-     * aaa.
-     * @return aaa.
+     * Get maximum life value.
+     * @return Maximum life amount.
      */
    T getMaxLife() {
        return this.maxLife;
    }
 
     /**
-     * Simple builder to get a new life stored value in number way.
-     * @param <T>
+     * Abstract Builder used to get a new stored life value.
+     * @param <T> Preferred data type where to store life amount.
      */
-   public abstract static class Builder<T extends Number> {
+   public abstract static class Builder<T> {
 
        private T life;
        private T maxLife;
@@ -69,5 +79,4 @@ public abstract class AbsLifeModel<T extends Number> implements LifeModel<T> {
 
        public abstract LifeModel<T> build() throws IllegalStateException;
    }
-
 }

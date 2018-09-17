@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.text.Text?>
+<?import it.unibo.goffo.fag.FAGConfig?>
+<?import java.lang.String?>
+<?import java.lang.Double?>
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            prefHeight="400.0" prefWidth="600.0">
+
+    <fx:define>
+        <FAGConfig fx:factory="getConfig" fx:id="config" />
+    </fx:define>
+
+    <Text text="Press ${config.MovUp}" />
+</AnchorPane>
