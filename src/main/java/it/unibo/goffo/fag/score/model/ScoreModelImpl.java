@@ -1,6 +1,5 @@
 package it.unibo.goffo.fag.score.model;
 
-import com.almasb.fxgl.app.FXGL;
 import it.unibo.goffo.fag.score.Score;
 import it.unibo.goffo.fag.score.builder.JsonScoreBuilder;
 
@@ -10,6 +9,7 @@ import java.util.List;
 import java.util.Optional;
 
 import static com.almasb.fxgl.app.DSLKt.geti;
+import static com.almasb.fxgl.app.DSLKt.gets;
 
 /**
  * Implementation of the business logic for score.
@@ -25,7 +25,7 @@ public class ScoreModelImpl implements ScoreModel {
     @Override
     public List<Score<String, Integer>> updatedScoreList() {
         final Integer userScore = geti(PROPERTY_NAME);
-        final String username = FXGL.getApp().getMenuListener().profileNameProperty().getName();
+        final String username = gets("profileName");
         final Optional<Score<String, Integer>> optionalScore = scoreList.stream()
                 .filter(score -> score.getUsername().equals(username))
                 .findFirst();
