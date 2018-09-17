@@ -23,4 +23,9 @@ public interface SpawnLogic {
      * @param mode the spawn mode.
      */
     void setSpawnType(SpawnMode mode);
+
+    /**
+     * Reset all count.
+     */
+    void reset();
 }
