@@ -1,5 +1,6 @@
 package it.unibo.goffo.fag;
 
+import com.almasb.fxgl.app.ApplicationMode;
 import com.almasb.fxgl.app.FXGL;
 import com.almasb.fxgl.app.GameApplication;
 import com.almasb.fxgl.entity.Entity;
@@ -25,6 +26,7 @@ import it.unibo.goffo.fag.spawn.controller.SpawnControllerImpl;
 import it.unibo.goffo.fag.spawn.view.SpawnView;
 import it.unibo.goffo.fag.spawn.view.SpawnViewImpl;
 import it.unibo.goffo.fag.ui.hud.HUDController;
+import it.unibo.goffo.fag.ui.menu.FAGMenuFactory;
 import javafx.application.Platform;
 import javafx.geometry.Point2D;
 import javafx.scene.input.KeyCode;
@@ -74,6 +76,16 @@ public class FightAvengeGuerrillaApp extends GameApplication {
         settings.setWidth(MAP_WIDTH * TILE_SIZE);
         settings.setHeight(MAP_HEIGHT * TILE_SIZE);
         settings.setTitle(APPLICATION_NAME);
+        settings.setMenuEnabled(true);
+        settings.setSceneFactory(new FAGMenuFactory());
+        settings.setApplicationMode(ApplicationMode.RELEASE);
+
+
+        /*
+         * Trying to disable sound
+         */
+        getAudioPlayer().setGlobalMusicVolume(0.0);
+        getAudioPlayer().setGlobalSoundVolume(0.0);
     }
 
     /**
@@ -243,7 +255,7 @@ public class FightAvengeGuerrillaApp extends GameApplication {
                 try {
                     pzCollision.onCollision((Player) player, (Zombie) zombie);
                 } catch (GameOverException e1) {
-                    e1.printStackTrace();
+                    FAGMenuFactory.newEndGameMenu(FXGL.getApp());
                 }
             }
         });
@@ -254,7 +266,7 @@ public class FightAvengeGuerrillaApp extends GameApplication {
                 try {
                     pzCollision.onCollision((Player) player, (Zombie) zombie);
                 } catch (GameOverException e2) {
-                    e2.printStackTrace();
+                    FAGMenuFactory.newEndGameMenu(FXGL.getApp());
                 }
             }
         });

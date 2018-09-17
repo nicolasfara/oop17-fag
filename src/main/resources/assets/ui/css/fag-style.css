@@ -39,10 +39,18 @@
     -fx-table-cell-border-color: transparent;
     -fx-padding: 1em 0.5em;
     -fx-alignment: center;
-    -fx-pref-width: 200px;
+    -fx-pref-width: 300px;
 }
 
-.button:hover {
+.button > .text {
+    -fx-font-size: 23px;
+}
+
+/*.button:hover {
+    -fx-background-color: #830421;
+}*/
+
+.button:focused {
     -fx-background-color: #830421;
 }
 
@@ -51,7 +59,12 @@
     -fx-font-size: 32px;
 }
 
-.text {
+.text, #menuTitle  {
     -fx-fill: white;
     -fx-font-family: 'Retro Computer';
+}
+
+#menuTitle {
+    -fx-font-size: 32px;
+    -fx-padding: 2em;
 }

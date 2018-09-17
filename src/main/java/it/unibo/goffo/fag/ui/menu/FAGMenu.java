@@ -4,58 +4,93 @@ import com.almasb.fxgl.app.FXGL;
 import com.almasb.fxgl.app.GameApplication;
 import com.almasb.fxgl.scene.FXGLMenu;
 import com.almasb.fxgl.scene.menu.MenuType;
-import com.almasb.fxgl.ui.UI;
+
+import it.unibo.goffo.fag.FAGConfig;
 import javafx.beans.binding.StringBinding;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.layout.StackPane;
-import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 
 public class FAGMenu extends FXGLMenu {
 
-    private MainMenuController mainMenuController;
-    private UI fxmlUI;
     private Parent fagMenu;
+    private GameApplication app;
 
     public FAGMenu(final GameApplication app, final MenuType type) {
         super(app, type);
 
-        /*
-            Questo approccio pare non funzionare:
-                non quando si va a chiamare createTitleView dà nullPointerException
-                su mainMenuController
-         */
-/*        this.mainMenuController = newImpl MainMenuController();
-        this.fxmlUI = FXGL.getAssetLoader().loadUI("mainMenu.fxml", this.mainMenuController);
-        app.getGameScene().addUI(fxmlUI);*/
+        this.app = app;
 
-        try {
-            fagMenu = FXMLLoader.load(getClass().getResource("/assets/ui/fxml/mainMenu.fxml"));
-        } catch (IOException e) {
-            e.printStackTrace();
+        if (type == MenuType.MAIN_MENU) {
+            this.makeMainMenu();
+        } else if (type == MenuType.GAME_MENU) {
+            this.makeGameMenu();
         }
 
-        menuRoot.getChildren().add(fagMenu);
+        menuRoot.getChildren().add(this.fagMenu);
         contentRoot.getChildren().add(EMPTY);
 
-
-        activeProperty().addListener((observable, wasActive, isActive) -> {
+        // USELESS ?
+/*        activeProperty().addListener((observable, wasActive, isActive) -> {
             if (!isActive) {
                 switchMenuTo(this.fagMenu);
                 switchMenuContentTo(EMPTY);
             }
-        });
+        });*/
+    }
 
-        final Stage stage = (Stage) menuRoot.getChildren().get(0).getScene().getWindow();
-        stage.setScene(new Scene(fagMenu, 800, 600));
+    private void makeMainMenu() {
+        this.setFagMenu(FAGConfig.MAIN_MENU_PATH);
+    }
+
+    private void makeGameMenu() {
+        this.setFagMenu(FAGConfig.GAME_MENU_PATH);
+    }
+
+    protected void setFagMenu(final String menuFile) {
+        this.fagMenu = this.readMenuFromFXML(menuFile);
+    }
+
+    protected void updateView() {
+        app.getGameScene().addUINode(this.fagMenu);
+//        menuRoot.getChildren().set(0, this.fagMenu);
+    }
+
+    protected Parent readMenuFromFXML(final String fileName) {
+        Parent tmp = null;
+        try {
+            tmp = FXMLLoader.load(getClass().getResource(fileName));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return tmp;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    protected void switchMenuTo(final Node menuBox) {
+        super.switchMenuTo(menuBox);
+
+        final Stage newStage = new Stage();
+        newStage.setScene(new Scene((Parent)menuBox));
+        newStage.show();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    protected void switchMenuContentTo(final Node content) {
+        super.switchMenuContentTo(content);
+//        contentRoot.getChildren().set(0, content);
     }
 
     @Override
@@ -73,9 +108,7 @@ public class FAGMenu extends FXGLMenu {
      */
     @Override
     protected Node createBackground(final double width, final double height) {
-        Rectangle bg = new Rectangle(width, height);
-        bg.setFill(Color.valueOf("#424242"));
-        return bg;
+        return new Rectangle(0,0);
     }
 
     /**
@@ -83,19 +116,7 @@ public class FAGMenu extends FXGLMenu {
      */
     @Override
     protected Node createTitleView(final String title) {
-
-        /*mainMenuController.setMenuTitle(title);
-        return mainMenuController.getMenuTitle();*/
-
-
-        Text text = FXGL.getUIFactory().newText(title, 50);
-
-        StackPane titleRoot = new StackPane();
-        titleRoot.getChildren().addAll(text);
-
-        titleRoot.setTranslateX(app.getWidth() / 2.0 - (text.getLayoutBounds().getWidth() + 20) / 2);
-        titleRoot.setTranslateY(50);
-        return titleRoot;
+        return FXGL.getUIFactory().newText(title, 0);
     }
 
     /**
@@ -103,9 +124,7 @@ public class FAGMenu extends FXGLMenu {
      */
     @Override
     protected Node createVersionView(String version) {
-        Text view = FXGL.getUIFactory().newText(version);
-/*        view.setTranslateY(app.getHeight() - 2);*/
-        return view;
+        return FXGL.getUIFactory().newText(version, 0);
     }
 
     /**
@@ -113,9 +132,6 @@ public class FAGMenu extends FXGLMenu {
      */
     @Override
     protected Node createProfileView(String profileName) {
-        Text view = FXGL.getUIFactory().newText(profileName);
-/*        view.setTranslateY(app.getHeight() - 2);
-        view.setTranslateX(app.getWidth() - view.getLayoutBounds().getWidth());*/
-        return view;
+        return FXGL.getUIFactory().newText(profileName, 0);
     }
 }

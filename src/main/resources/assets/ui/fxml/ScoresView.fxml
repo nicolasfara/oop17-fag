@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
@@ -11,16 +8,17 @@
 <?import javafx.geometry.Insets?>
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="it.unibo.goffo.fag.score.view.ScoresViewController"
             prefHeight="600.0" prefWidth="800.0"
-            stylesheets="@../css/fag-style.css">
+            stylesheets="@../css/fag-style.css"
+            fx:controller="it.unibo.goffo.fag.score.view.ScoresViewController"
+            styleClass="root">
 
     <top>
 
         <BorderPane>
             <padding><Insets top="20" bottom="20" left="20" right="20"/></padding>
             <top>
-                <Button fx:id="backButton" onAction="#goBackHandler">
+                <Button fx:id="backButton" onAction="#goBackHandler" defaultButton="true">
                     <graphic>
                         <ImageView fitWidth="40" fitHeight="40" pickOnBounds="true" preserveRatio="true">
                             <Image url="/assets/ui/graphics/left-arrows.png" />
@@ -33,9 +31,6 @@
                 <Label text="Ranking" />
             </center>
         </BorderPane>
-
-
-
     </top>
 
     <center>
