@@ -11,8 +11,6 @@ import com.almasb.fxgl.input.InputMapping;
 import com.almasb.fxgl.input.UserAction;
 import com.almasb.fxgl.parser.tiled.TiledMap;
 import com.almasb.fxgl.physics.CollisionHandler;
-import com.almasb.fxgl.scene.FXGLScene;
-import com.almasb.fxgl.scene.menu.FXGLDefaultMenu;
 import com.almasb.fxgl.settings.GameSettings;
 import com.almasb.fxgl.ui.FXGLTextFlow;
 import com.almasb.fxgl.ui.UI;
@@ -33,16 +31,11 @@ import it.unibo.goffo.fag.spawn.view.SpawnViewImpl;
 import it.unibo.goffo.fag.ui.hud.HUDController;
 import it.unibo.goffo.fag.ui.menu.FAGMenuFactory;
 import javafx.application.Platform;
-import javafx.fxml.FXMLLoader;
 import javafx.geometry.Point2D;
-import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.input.KeyCode;
-import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
-
-import java.io.IOException;
 
 import static it.unibo.goffo.fag.FagUtils.*;
 
@@ -98,7 +91,7 @@ public class FightAvengeGuerrillaApp extends GameApplication {
         settings.setTitle(APPLICATION_NAME);
         settings.setMenuEnabled(true);
         settings.setSceneFactory(new FAGMenuFactory());
-        settings.setApplicationMode(ApplicationMode.RELEASE);
+//        settings.setApplicationMode(ApplicationMode.RELEASE);
 
         /*
          * Trying to disable sound
@@ -278,14 +271,9 @@ public class FightAvengeGuerrillaApp extends GameApplication {
             @Override
             protected void onCollisionBegin(final Entity player, final Entity zombie) {
                 try {
-                    // TODO: onEndGame() ? could be a good way.
                     pzCollision.onCollision((Player) player, (Zombie) zombie);
                 } catch (GameOverException e) {
-                    spawnController.stopSpawn();
-                    FXGL.getApp().getGameWorld().getEntitiesByType(FagType.SIMPLE_ZOMBIE).forEach(Entity::removeFromWorld);
-                    FXGL.getApp().getGameWorld().getEntitiesByType(FagType.ADVANCE_ZOMBIE).forEach(Entity::removeFromWorld);
-                    FAGMenuFactory.newEndGameMenu(FXGL.getApp());
-                    FAGMenuFactory.newScoresMenu(FXGL.getApp());
+                    onEndGame();
                 }
             }
         });
@@ -296,11 +284,7 @@ public class FightAvengeGuerrillaApp extends GameApplication {
                 try {
                     pzCollision.onCollision((Player) player, (Zombie) zombie);
                 } catch (GameOverException e) {
-                    spawnController.stopSpawn();
-                    FXGL.getApp().getGameWorld().getEntitiesByType(FagType.SIMPLE_ZOMBIE).forEach(Entity::removeFromWorld);
-                    FXGL.getApp().getGameWorld().getEntitiesByType(FagType.ADVANCE_ZOMBIE).forEach(Entity::removeFromWorld);
-                    FAGMenuFactory.newEndGameMenu(FXGL.getApp());
-                    FAGMenuFactory.newScoresMenu(FXGL.getApp());
+                    onEndGame();
                 }
             }
         });
@@ -357,7 +341,7 @@ public class FightAvengeGuerrillaApp extends GameApplication {
          * Adding tutorial.
          */
 
-        Node tutorial = null;
+/*        Node tutorial = null;
         try {
             tutorial = FXMLLoader.load(getClass().getResource("/assets/ui/fxml/tutorial.fxml"));
         } catch (IOException e) {
@@ -365,7 +349,7 @@ public class FightAvengeGuerrillaApp extends GameApplication {
         }
         tutorial.setTranslateX(150);
         tutorial.setTranslateY(150);
-        getGameScene().addUINode(tutorial);
+        getGameScene().addUINode(tutorial);*/
 
         FXGLTextFlow flow = FXGL.getUIFactory().newTextFlow()
                 .append("Press ", TUTORIAL_TEXT_COLOR, TUTORIAL_TEXT_SIZE)
@@ -424,5 +408,22 @@ public class FightAvengeGuerrillaApp extends GameApplication {
         addRound.setTranslateX(300);
         addRound.setTranslateY(300);
 //        getGameScene().addUINode(addRound);
+    }
+
+    /**
+     * Called when game is over:
+     * <ul>
+     *     <li>Stop zombie spawn</li>
+     *     <li>Remove zombies from map</li>
+     *     <li>Open score view</li>
+     *     <li>Open end game menu</li>
+     * </ul>
+     */
+    protected void onEndGame() {
+        spawnController.stopSpawn();
+        FXGL.getApp().getGameWorld().getEntitiesByType(FagType.SIMPLE_ZOMBIE).forEach(Entity::removeFromWorld);
+        FXGL.getApp().getGameWorld().getEntitiesByType(FagType.ADVANCE_ZOMBIE).forEach(Entity::removeFromWorld);
+        FAGMenuFactory.newEndGameMenu(FXGL.getApp());
+        FAGMenuFactory.newScoresMenu(FXGL.getApp());
     }
 }
