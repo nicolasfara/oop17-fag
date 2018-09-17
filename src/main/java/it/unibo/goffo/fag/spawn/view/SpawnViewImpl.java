@@ -2,10 +2,10 @@ package it.unibo.goffo.fag.spawn.view;
 
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 import it.unibo.goffo.fag.entities.Character;
 import it.unibo.goffo.fag.spawn.controller.SpawnController;
-import io.reactivex.functions.Consumer;
 
 /**
  * Concrete class used to show the entity into the game world.

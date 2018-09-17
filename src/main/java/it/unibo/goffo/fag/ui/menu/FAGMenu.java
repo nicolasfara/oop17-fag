@@ -4,7 +4,6 @@ import com.almasb.fxgl.app.FXGL;
 import com.almasb.fxgl.app.GameApplication;
 import com.almasb.fxgl.scene.FXGLMenu;
 import com.almasb.fxgl.scene.menu.MenuType;
-
 import it.unibo.goffo.fag.FAGConfig;
 import javafx.beans.binding.StringBinding;
 import javafx.fxml.FXMLLoader;

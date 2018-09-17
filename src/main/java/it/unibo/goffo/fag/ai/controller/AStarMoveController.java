@@ -18,9 +18,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 
-import static it.unibo.goffo.fag.FagUtils.TILE_SIZE;
-import static it.unibo.goffo.fag.FagUtils.ZOMBIE_SIZE_X;
-import static it.unibo.goffo.fag.FagUtils.ZOMBIE_SIZE_Y;
+import static it.unibo.goffo.fag.FagUtils.*;
 
 
 /**

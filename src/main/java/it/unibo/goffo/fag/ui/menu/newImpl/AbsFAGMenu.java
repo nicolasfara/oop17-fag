@@ -1,7 +1,6 @@
 package it.unibo.goffo.fag.ui.menu.newImpl;
 
 import com.almasb.fxgl.app.FXGL;
-import javafx.fxml.FXML;
 
 public abstract class AbsFAGMenu implements FAGMenu {
 

@@ -6,7 +6,9 @@ import com.almasb.fxgl.app.GameApplication;
 import com.almasb.fxgl.entity.Entity;
 import com.almasb.fxgl.extra.ai.pathfinding.AStarGrid;
 import com.almasb.fxgl.extra.ai.pathfinding.NodeState;
-import com.almasb.fxgl.input.*;
+import com.almasb.fxgl.input.Input;
+import com.almasb.fxgl.input.InputMapping;
+import com.almasb.fxgl.input.UserAction;
 import com.almasb.fxgl.parser.tiled.TiledMap;
 import com.almasb.fxgl.physics.CollisionHandler;
 import com.almasb.fxgl.settings.GameSettings;
@@ -19,10 +21,8 @@ import it.unibo.goffo.fag.entities.FagType;
 import it.unibo.goffo.fag.entities.Player;
 import it.unibo.goffo.fag.entities.Zombie;
 import it.unibo.goffo.fag.entities.builders.BulletFactory;
-import it.unibo.goffo.fag.entities.builders.FagEntities;
 import it.unibo.goffo.fag.entities.builders.PlayerFactory;
 import it.unibo.goffo.fag.exceptions.GameOverException;
-import it.unibo.goffo.fag.life.controller.LifeController;
 import it.unibo.goffo.fag.movement.MoveDirection;
 import it.unibo.goffo.fag.spawn.controller.SpawnController;
 import it.unibo.goffo.fag.spawn.controller.SpawnControllerImpl;
@@ -265,6 +265,7 @@ public class FightAvengeGuerrillaApp extends GameApplication {
         this.getGameState().setValue("round", "1");
         this.getGameState().setValue("score", 0);
         this.getGameState().setValue("profileName", getMenuListener().profileNameProperty().getValue());
+        this.getGameState().setValue("points", "0");
     }
 
     /**
@@ -278,6 +279,7 @@ public class FightAvengeGuerrillaApp extends GameApplication {
                 try {
                     pzCollision.onCollision((Player) player, (Zombie) zombie);
                 } catch (GameOverException e) {
+//                    FAGMenuFactory.newScoresMenu(FXGL.getApp());
                     FAGMenuFactory.newEndGameMenu(FXGL.getApp());
                 }
             }
@@ -289,6 +291,7 @@ public class FightAvengeGuerrillaApp extends GameApplication {
                 try {
                     pzCollision.onCollision((Player) player, (Zombie) zombie);
                 } catch (GameOverException e) {
+//                    FAGMenuFactory.newScoresMenu(FXGL.getApp());
                     FAGMenuFactory.newEndGameMenu(FXGL.getApp());
                 }
             }
@@ -337,8 +340,10 @@ public class FightAvengeGuerrillaApp extends GameApplication {
          */
         hudController.getProgressProperty().bind(
                 this.getGameState().doubleProperty("playerLife"));
-        hudController.getRound().bind(
+        hudController.getRoundProperty().bind(
                 this.getGameState().stringProperty("round"));
+        hudController.getPointsProperty().bind(
+                this.getGameState().stringProperty("points"));
 
         /*
          * Adding tutorial.

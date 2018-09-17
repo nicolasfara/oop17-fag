@@ -12,17 +12,22 @@ public class HUDController implements UIController {
     @FXML
     private ProgressBar playerLife;
 
+    @FXML private Label round;
+
     @FXML
     private Label lblPoints;
 
-    @FXML private Label round;
 
     public DoubleProperty getProgressProperty() {
         return this.playerLife.progressProperty();
     }
 
-    public StringProperty getRound() {
+    public StringProperty getRoundProperty() {
         return this.round.textProperty();
+    }
+
+    public StringProperty getPointsProperty() {
+        return this.lblPoints.textProperty();
     }
 
     @Override
