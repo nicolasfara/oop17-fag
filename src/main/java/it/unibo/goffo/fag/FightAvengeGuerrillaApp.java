@@ -254,7 +254,7 @@ public class FightAvengeGuerrillaApp extends GameApplication {
             protected void onCollisionBegin(final Entity player, final Entity zombie) {
                 try {
                     pzCollision.onCollision((Player) player, (Zombie) zombie);
-                } catch (GameOverException e1) {
+                } catch (GameOverException e) {
                     FAGMenuFactory.newEndGameMenu(FXGL.getApp());
                 }
             }
@@ -265,7 +265,7 @@ public class FightAvengeGuerrillaApp extends GameApplication {
             protected void onCollisionBegin(final Entity player, final Entity zombie) {
                 try {
                     pzCollision.onCollision((Player) player, (Zombie) zombie);
-                } catch (GameOverException e2) {
+                } catch (GameOverException e) {
                     FAGMenuFactory.newEndGameMenu(FXGL.getApp());
                 }
             }

@@ -1,6 +1,5 @@
 package it.unibo.goffo.fag.life.controller;
 
-import com.almasb.fxgl.app.FXGL;
 import it.unibo.goffo.fag.exceptions.CharacterDiesException;
 import it.unibo.goffo.fag.life.model.LifeModelImpl;
 
@@ -31,18 +30,10 @@ public class LifeControllerImpl extends AbsLifeController<Double> {
             throw new CharacterDiesException();
         }
         super.setLife(newLife);
-        updateGameEngine();
     }
 
     @Override
     public void increaseOf(final Double amount) {
         super.setLife(super.getLife() + Math.abs(amount));
-        updateGameEngine();
-    }
-
-    /* NON IMPLEMENTARE QUI, ma nella vita del player */
-    private void updateGameEngine() {
-        FXGL.getApp().getGameState().setValue("playerLife", super.getLife());
-
     }
 }
