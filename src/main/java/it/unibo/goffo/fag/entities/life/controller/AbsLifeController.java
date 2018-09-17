@@ -6,7 +6,7 @@ import it.unibo.goffo.fag.entities.life.model.LifeModel;
 
 /**
  * Abstract implementation of {@link LifeController}.
- * Extends {@link Component} to be used in {@link Entity} builder.
+ * Extends {@link Component} to be used in {@link com.almasb.fxgl.entity.Entity} builder.
  * @param <T> Data type used to store life amount.
  */
 abstract class AbsLifeController<T> extends Component implements LifeController<T> {
@@ -52,4 +52,39 @@ abstract class AbsLifeController<T> extends Component implements LifeController<
      */
     @Override
     public abstract void increaseOf(T amount);
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String toString() {
+        return "AbsLifeController{"
+               + "life=" + life
+               + "} " + super.toString();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public boolean equals(final Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+
+        AbsLifeController<?> that = (AbsLifeController<?>) o;
+
+        return getLife().equals(that.getLife());
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public int hashCode() {
+        return getLife().hashCode();
+    }
 }
