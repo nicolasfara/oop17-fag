@@ -1,6 +1,5 @@
 package it.unibo.goffo.fag;
 
-import com.almasb.fxgl.app.DSLKt;
 import com.almasb.fxgl.app.FXGL;
 import com.almasb.fxgl.app.GameApplication;
 import com.almasb.fxgl.input.ActionType;
@@ -10,18 +9,18 @@ import com.almasb.fxgl.settings.GameSettings;
 import com.almasb.fxgl.ui.UI;
 import it.unibo.goffo.fag.life.controller.LifeController;
 import it.unibo.goffo.fag.life.controller.LifeControllerImpl;
+import it.unibo.goffo.fag.life.view.LifeViewController;
 import it.unibo.goffo.fag.ui.hud.HUDController;
-import javafx.animation.FadeTransition;
-import javafx.geometry.Insets;
+import javafx.beans.property.IntegerProperty;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.input.KeyCode;
 import com.almasb.fxgl.ui.FXGLTextFlow;
-import javafx.scene.input.MouseButton;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
-import javafx.util.Duration;
+
+import java.io.IOException;
 
 /**
  * Main class, used to launch FXGL.
@@ -80,6 +79,7 @@ public class FightAvengeGuerrillaApp extends GameApplication {
         super.initGame();
         /*lifeController.bindLife();*/
         this.getGameState().setValue("playerLife", 1.0);
+        this.getGameState().setValue("round", "1");
     }
 
     /**
@@ -93,20 +93,27 @@ public class FightAvengeGuerrillaApp extends GameApplication {
     @Override
     protected void initUI() {
         /*
-         * No need to use FXMLLoader. FXGL's AssetLoader does the job.
-         * Remember to not use 'fx:controller' attribute in your fxml file.
+         * Adding HUD.
          */
-        final HUDController hudController = new HUDController(getGameScene(), getGameState());
+        final HUDController hudController = new HUDController();
         final UI hud = getAssetLoader().loadUI("hud.fxml", hudController);
-
-        /* NOT WORKING
-        hudController.getPlayerLife().progressProperty().bind(this.absLifeController.getLifeProperty());
-        */
-
-        hudController.getPlayerLife().progressProperty().bind(
-                this.getGameState().doubleProperty("playerLife"));
         getGameScene().addUI(hud);
 
+        /*
+         * Adding life bar.
+         * No need to use FXMLLoader. FXGL's AssetLoader does the job.
+         * Remember to not use 'fx:controller' attribute in your fxml file.
+         * NOT WORKING
+               hudController.getPlayerLife().progressProperty().bind(this.absLifeController.getLifeProperty());
+         */
+        hudController.getProgressProperty().bind(
+                this.getGameState().doubleProperty("playerLife"));
+        hudController.getRound().bind(
+                this.getGameState().stringProperty("round"));
+
+        /*
+         * Adding tutorial.
+         */
         FXGLTextFlow flow = FXGL.getUIFactory().newTextFlow()
                 .append("Press ", TUTORIAL_TEXT_COLOR, TUTORIAL_TEXT_SIZE)
                 .append(KeyCode.W, TUTORIAL_KEYCODE_COLOR, TUTORIAL_KEYCODE_SIZE)
@@ -146,8 +153,8 @@ public class FightAvengeGuerrillaApp extends GameApplication {
         pane.setTranslateY(10);
         getGameScene().addUINode(pane);
 
-/*        getGameScene().addUINode(flow);
-        getGameScene().addUINode(bgTutorial);*/
+        getGameScene().addUINode(flow);
+        getGameScene().addUINode(bgTutorial);
 
         Button removeTutorial = new Button("Remove tutorial");
         removeTutorial.setOnMouseClicked(c -> {
@@ -160,5 +167,16 @@ public class FightAvengeGuerrillaApp extends GameApplication {
         removeTutorial.setTranslateX(100);
         removeTutorial.setTranslateY(100);
         getGameScene().addUINode(removeTutorial);
+
+
+        Button addRound = new Button("Add Round");
+        addRound.setOnMouseClicked(c -> {
+            getGameState().setValue("round",
+                    String.valueOf(Integer.valueOf(getGameState().getString("round")) + 1));
+        });
+
+        addRound.setTranslateX(300);
+        addRound.setTranslateY(300);
+        getGameScene().addUINode(addRound);
     }
 }
