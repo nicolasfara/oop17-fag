@@ -49,12 +49,6 @@ public class FightAvengeGuerrillaApp extends GameApplication {
 
     private final PlayerZombieCollision pzCollision = new PlayerZombieCollision();
     private final BulletZombieCollision bzCollision = new BulletZombieCollision();
-
-    private static final Color TUTORIAL_TEXT_COLOR = Color.BLACK;
-    private static final Color TUTORIAL_KEYCODE_COLOR = Color.RED;
-    private static final int TUTORIAL_TEXT_SIZE = 18;
-    private static final int TUTORIAL_KEYCODE_SIZE = 16;
-
     private final SpawnController spawnController = new SpawnControllerImpl();
 
     /**

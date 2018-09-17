@@ -7,7 +7,7 @@ import com.almasb.fxgl.physics.HitBox;
 import it.unibo.goffo.fag.animation.PlayerAnimationImpl;
 import it.unibo.goffo.fag.entities.FagType;
 import it.unibo.goffo.fag.entities.Player;
-import it.unibo.goffo.fag.life.controller.LifeControllerImpl;
+import it.unibo.goffo.fag.entities.life.controller.LifeControllerImpl;
 import it.unibo.goffo.fag.movement.EntityMovement;
 
 import static it.unibo.goffo.fag.FagUtils.PLAYER_SIZE_X;

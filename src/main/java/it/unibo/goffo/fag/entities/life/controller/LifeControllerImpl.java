@@ -1,7 +1,7 @@
-package it.unibo.goffo.fag.life.controller;
+package it.unibo.goffo.fag.entities.life.controller;
 
 import it.unibo.goffo.fag.exceptions.CharacterDiesException;
-import it.unibo.goffo.fag.life.model.LifeModelImpl;
+import it.unibo.goffo.fag.entities.life.model.LifeModelImpl;
 
 /**
  * Concrete implementation of {@link AbsLifeController} using {@link Double} data type.

@@ -1,4 +1,4 @@
-package it.unibo.goffo.fag.life.model;
+package it.unibo.goffo.fag.entities.life.model;
 
 /**
  * Life amount storage.

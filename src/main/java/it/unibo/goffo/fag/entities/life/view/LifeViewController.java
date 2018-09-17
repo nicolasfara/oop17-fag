@@ -1,4 +1,4 @@
-package it.unibo.goffo.fag.life.view;
+package it.unibo.goffo.fag.entities.life.view;
 
 import javafx.beans.property.DoubleProperty;
 import javafx.fxml.FXML;

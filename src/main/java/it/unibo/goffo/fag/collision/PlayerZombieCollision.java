@@ -5,7 +5,7 @@ import it.unibo.goffo.fag.entities.Player;
 import it.unibo.goffo.fag.entities.Zombie;
 import it.unibo.goffo.fag.exceptions.CharacterDiesException;
 import it.unibo.goffo.fag.exceptions.GameOverException;
-import it.unibo.goffo.fag.life.controller.LifeControllerImpl;
+import it.unibo.goffo.fag.entities.life.controller.LifeControllerImpl;
 import it.unibo.goffo.fag.score.controller.ScoreController;
 import it.unibo.goffo.fag.score.controller.ScoreControllerImpl;
 import it.unibo.goffo.fag.score.model.ScoreModelImpl;

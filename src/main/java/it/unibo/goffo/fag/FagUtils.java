@@ -1,5 +1,7 @@
 package it.unibo.goffo.fag;
 
+import javafx.scene.paint.Color;
+
 /**
  * Utility class.
  */
@@ -43,6 +45,26 @@ public final class FagUtils {
      * Application name.
      */
     static final String APPLICATION_NAME = "Final Avenge Guerrilla";
+
+    /**
+     * Tutorial text color.
+     */
+    static final Color TUTORIAL_TEXT_COLOR = Color.BLACK;
+
+    /**
+     * Tutorial Keycode color.
+     */
+    static final Color TUTORIAL_KEYCODE_COLOR = Color.RED;
+
+    /**
+     * Tutorial text size.
+     */
+    static final int TUTORIAL_TEXT_SIZE = 18;
+
+    /**
+     * Tutorial Keycode size.
+     */
+    static final int TUTORIAL_KEYCODE_SIZE = 16;
 
     private FagUtils() { }
 }

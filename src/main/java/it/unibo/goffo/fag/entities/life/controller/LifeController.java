@@ -1,4 +1,4 @@
-package it.unibo.goffo.fag.life.controller;
+package it.unibo.goffo.fag.entities.life.controller;
 
 import it.unibo.goffo.fag.exceptions.CharacterDiesException;
 

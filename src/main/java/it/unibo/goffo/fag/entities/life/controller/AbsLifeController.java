@@ -1,8 +1,8 @@
-package it.unibo.goffo.fag.life.controller;
+package it.unibo.goffo.fag.entities.life.controller;
 
 import com.almasb.fxgl.entity.component.Component;
 import it.unibo.goffo.fag.exceptions.CharacterDiesException;
-import it.unibo.goffo.fag.life.model.LifeModel;
+import it.unibo.goffo.fag.entities.life.model.LifeModel;
 
 /**
  * Abstract implementation of {@link LifeController}.
