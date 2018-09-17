@@ -278,6 +278,7 @@ public class FightAvengeGuerrillaApp extends GameApplication {
             @Override
             protected void onCollisionBegin(final Entity player, final Entity zombie) {
                 try {
+                    // TODO: onEndGame() ? could be a good way.
                     pzCollision.onCollision((Player) player, (Zombie) zombie);
                 } catch (GameOverException e) {
                     spawnController.stopSpawn();
