@@ -1,30 +1,28 @@
 package it.unibo.goffo.fag.entities.builders;
 
-import com.almasb.fxgl.physics.BoundingShape;
-import com.almasb.fxgl.physics.HitBox;
-import it.unibo.goffo.fag.ai.controller.AStarMoveController;
-import it.unibo.goffo.fag.animation.ZombieAnimationImpl;
-import it.unibo.goffo.fag.entities.FagType;
-import it.unibo.goffo.fag.entities.Zombie;
-import javafx.geometry.Point2D;
 import com.almasb.fxgl.ai.AIControl;
 import com.almasb.fxgl.app.FXGL;
 import com.almasb.fxgl.core.math.FXGLMath;
 import com.almasb.fxgl.entity.components.CollidableComponent;
 import com.almasb.fxgl.extra.ai.pathfinding.AStarNode;
 import com.almasb.fxgl.extra.ai.pathfinding.NodeState;
+import com.almasb.fxgl.physics.BoundingShape;
+import com.almasb.fxgl.physics.HitBox;
 import it.unibo.goffo.fag.FightAvengeGuerrillaApp;
+import it.unibo.goffo.fag.ai.controller.AStarMoveController;
 import it.unibo.goffo.fag.ai.controller.RandomMoveController;
+import it.unibo.goffo.fag.animation.ZombieAnimationImpl;
+import it.unibo.goffo.fag.entities.FagType;
+import it.unibo.goffo.fag.entities.Zombie;
 import it.unibo.goffo.fag.life.Damage;
 import it.unibo.goffo.fag.life.controller.LifeControllerImpl;
 import it.unibo.goffo.fag.movement.EntityMovement;
+import javafx.geometry.Point2D;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static it.unibo.goffo.fag.FagUtils.TILE_SIZE;
-import static it.unibo.goffo.fag.FagUtils.ZOMBIE_SIZE_X;
-import static it.unibo.goffo.fag.FagUtils.ZOMBIE_SIZE_Y;
+import static it.unibo.goffo.fag.FagUtils.*;
 
 /**
  * Factory for zombie creation.
