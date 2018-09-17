@@ -263,6 +263,8 @@ public class FightAvengeGuerrillaApp extends GameApplication {
         player = PlayerFactory.createPlayer();
         this.getGameState().setValue("playerLife", 1.0);
         this.getGameState().setValue("round", "1");
+        this.getGameState().setValue("score", 0);
+        this.getGameState().setValue("profileName", getMenuListener().profileNameProperty().getValue());
         this.getGameState().setValue("points", "0");
     }
 
