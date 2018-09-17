@@ -19,36 +19,21 @@ import java.util.stream.Stream;
  */
 public final class SpawnControllerImpl implements SpawnController {
 
-    private final TimerAction timerAction;
+    private TimerAction timerAction;
     private final PublishSubject<Character> observable = PublishSubject.create();
     private final SpawnLogic spawnLogic = new SpawnLogicImpl();
-    private static final int TIMER_TICK = 20;
-    private static SpawnController spawnController;
-
-    private SpawnControllerImpl() {
-        timerAction = FXGL.getMasterTimer().runAtInterval(() -> {
-            Stream.generate(this::getRandomZombieType)
-                        .limit(spawnLogic.getNextCount())
-                        .forEach(observable::onNext);
-        }, Duration.seconds(TIMER_TICK));
-    }
-
-    /**
-     * Return the same instance. In the application must be present only one spawn controller.
-     * @return SpawnController instance.
-     */
-    public static synchronized SpawnController getInstance() {
-        if (spawnController == null) {
-            spawnController = new SpawnControllerImpl();
-        }
-        return spawnController;
-    }
+    private static final int TIMER_TICK = 10;
 
     /**
      * {@inheritDoc}
      */
     @Override
     public void startSpawn() {
+        timerAction = FXGL.getMasterTimer().runAtInterval(() -> {
+            Stream.generate(this::getRandomZombieType)
+                        .limit(spawnLogic.getNextCount())
+                        .forEach(observable::onNext);
+        }, Duration.seconds(TIMER_TICK));
        timerAction.resume();
     }
 
@@ -66,6 +51,14 @@ public final class SpawnControllerImpl implements SpawnController {
     @Override
     public void disposeTimer() {
         timerAction.expire();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void reset() {
+        spawnLogic.reset();
     }
 
     /**

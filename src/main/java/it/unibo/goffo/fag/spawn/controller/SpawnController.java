@@ -23,6 +23,11 @@ public interface SpawnController {
     void disposeTimer();
 
     /**
+     * Reset the timer and all the property.
+     */
+    void reset();
+
+    /**
      * Return an observable Character. Used by the view.
      * @return The observable entities.
      */

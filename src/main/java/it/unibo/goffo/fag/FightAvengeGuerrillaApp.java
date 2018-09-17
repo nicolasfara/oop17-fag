@@ -21,9 +21,11 @@ import it.unibo.goffo.fag.entities.FagType;
 import it.unibo.goffo.fag.entities.Player;
 import it.unibo.goffo.fag.entities.Zombie;
 import it.unibo.goffo.fag.entities.builders.BulletFactory;
+import it.unibo.goffo.fag.entities.builders.FagEntities;
 import it.unibo.goffo.fag.entities.builders.PlayerFactory;
 import it.unibo.goffo.fag.exceptions.GameOverException;
 import it.unibo.goffo.fag.movement.MoveDirection;
+import it.unibo.goffo.fag.spawn.controller.SpawnController;
 import it.unibo.goffo.fag.spawn.controller.SpawnControllerImpl;
 import it.unibo.goffo.fag.spawn.view.SpawnView;
 import it.unibo.goffo.fag.spawn.view.SpawnViewImpl;
@@ -239,7 +241,10 @@ public class FightAvengeGuerrillaApp extends GameApplication {
     @Override
     protected void initGame() {
         grid = new AStarGrid(MAP_WIDTH, MAP_HEIGHT);
-        final SpawnView spawnView = new SpawnViewImpl(SpawnControllerImpl.getInstance());
+        final SpawnController spawnController = new SpawnControllerImpl();
+        spawnController.reset();
+        spawnController.startSpawn();
+        final SpawnView spawnView = new SpawnViewImpl(spawnController);
         spawnView.subscribeHandler(e -> Platform.runLater(() -> FXGL.getApp().getGameWorld().addEntity(e)));
 
         getGameWorld().addEntityFactory(new LevelFactory());

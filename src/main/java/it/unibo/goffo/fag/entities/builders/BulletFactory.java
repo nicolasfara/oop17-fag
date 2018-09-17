@@ -16,7 +16,6 @@ import javafx.scene.shape.Circle;
  */
 public final class BulletFactory {
 
-    private static final Entity PLAYER = ((FightAvengeGuerrillaApp) FXGL.getApp()).getPlayer();
     private static final double BULLET_DAMAGE = 1.0;
     private static final int SPEED = 500;
 
@@ -27,12 +26,13 @@ public final class BulletFactory {
      * @param newDirection direction of the bullet
      */
     public static void createBullet(final Point2D newDirection) {
+        final Entity player = ((FightAvengeGuerrillaApp) FXGL.getApp()).getPlayer();
         Bullet bullet = (Bullet) FagEntities.builder(Bullet.class)
-                .at(PLAYER.getCenter().getX(), PLAYER.getCenter().getY())
+                .at(player.getCenter().getX(), player.getCenter().getY())
                 .type(FagType.BULLET)
                 .with(new ProjectileComponent(newDirection, SPEED))
                 .with(new CollidableComponent(true))
-                .viewFromNodeWithBBox(new Circle(10, Color.GREEN))
+                .viewFromNodeWithBBox(new Circle(10, Color.BLACK))
                 .buildAndAttach(FXGL.getApp().getGameWorld());
         bullet.setScaleX(0.5);
         bullet.setScaleY(0.5);
