@@ -11,6 +11,8 @@ import com.almasb.fxgl.input.InputMapping;
 import com.almasb.fxgl.input.UserAction;
 import com.almasb.fxgl.parser.tiled.TiledMap;
 import com.almasb.fxgl.physics.CollisionHandler;
+import com.almasb.fxgl.scene.FXGLScene;
+import com.almasb.fxgl.scene.menu.FXGLDefaultMenu;
 import com.almasb.fxgl.settings.GameSettings;
 import com.almasb.fxgl.ui.FXGLTextFlow;
 import com.almasb.fxgl.ui.UI;
@@ -60,6 +62,7 @@ public class FightAvengeGuerrillaApp extends GameApplication {
     private static final int TUTORIAL_TEXT_SIZE = 18;
     private static final int TUTORIAL_KEYCODE_SIZE = 16;
 
+    private final SpawnController spawnController = new SpawnControllerImpl();
 
     /**
      * Main method launch the game engine.
@@ -240,7 +243,6 @@ public class FightAvengeGuerrillaApp extends GameApplication {
     @Override
     protected void initGame() {
         grid = new AStarGrid(MAP_WIDTH, MAP_HEIGHT);
-        final SpawnController spawnController = new SpawnControllerImpl();
         spawnController.reset();
         spawnController.startSpawn();
         final SpawnView spawnView = new SpawnViewImpl(spawnController);
@@ -262,10 +264,9 @@ public class FightAvengeGuerrillaApp extends GameApplication {
 
         player = PlayerFactory.createPlayer();
         this.getGameState().setValue("playerLife", 1.0);
-        this.getGameState().setValue("round", "1");
+        this.getGameState().setValue("round", 1);
         this.getGameState().setValue("score", 0);
         this.getGameState().setValue("profileName", getMenuListener().profileNameProperty().getValue());
-        this.getGameState().setValue("points", "0");
     }
 
     /**
@@ -279,8 +280,11 @@ public class FightAvengeGuerrillaApp extends GameApplication {
                 try {
                     pzCollision.onCollision((Player) player, (Zombie) zombie);
                 } catch (GameOverException e) {
-//                    FAGMenuFactory.newScoresMenu(FXGL.getApp());
+                    spawnController.stopSpawn();
+                    FXGL.getApp().getGameWorld().getEntitiesByType(FagType.SIMPLE_ZOMBIE).forEach(Entity::removeFromWorld);
+                    FXGL.getApp().getGameWorld().getEntitiesByType(FagType.ADVANCE_ZOMBIE).forEach(Entity::removeFromWorld);
                     FAGMenuFactory.newEndGameMenu(FXGL.getApp());
+                    FAGMenuFactory.newScoresMenu(FXGL.getApp());
                 }
             }
         });
@@ -291,8 +295,11 @@ public class FightAvengeGuerrillaApp extends GameApplication {
                 try {
                     pzCollision.onCollision((Player) player, (Zombie) zombie);
                 } catch (GameOverException e) {
-//                    FAGMenuFactory.newScoresMenu(FXGL.getApp());
+                    spawnController.stopSpawn();
+                    FXGL.getApp().getGameWorld().getEntitiesByType(FagType.SIMPLE_ZOMBIE).forEach(Entity::removeFromWorld);
+                    FXGL.getApp().getGameWorld().getEntitiesByType(FagType.ADVANCE_ZOMBIE).forEach(Entity::removeFromWorld);
                     FAGMenuFactory.newEndGameMenu(FXGL.getApp());
+                    FAGMenuFactory.newScoresMenu(FXGL.getApp());
                 }
             }
         });
@@ -341,9 +348,9 @@ public class FightAvengeGuerrillaApp extends GameApplication {
         hudController.getProgressProperty().bind(
                 this.getGameState().doubleProperty("playerLife"));
         hudController.getRoundProperty().bind(
-                this.getGameState().stringProperty("round"));
+                this.getGameState().intProperty("round").asString());
         hudController.getPointsProperty().bind(
-                this.getGameState().stringProperty("points"));
+                this.getGameState().intProperty("score").asString());
 
         /*
          * Adding tutorial.
@@ -382,6 +389,7 @@ public class FightAvengeGuerrillaApp extends GameApplication {
         /*
             TODO: do not use a Rectangle Object
             TODO: DISAPPEAR AFTER X time
+            TODO: increment round
          */
         Rectangle bgTutorial = new Rectangle();
         bgTutorial.setFill(new Color(0.41, 0.41, 0.41, 0.3));
@@ -389,14 +397,6 @@ public class FightAvengeGuerrillaApp extends GameApplication {
         bgTutorial.setHeight(flow.getBoundsInLocal().getHeight() + 20);
         bgTutorial.setTranslateX(getWidth() - bgTutorial.getBoundsInLocal().getWidth() - 10);
         bgTutorial.setTranslateY(10);
-
-        Pane pane = new Pane();
-        pane.setStyle("-fx-background-color: rgba(41,41,41,0.5)");
-        pane.setStyle("-fx-pref-width: " + flow.getBoundsInLocal().getWidth() + 30 + "px");
-        pane.setStyle("-fx-pref-height:" + flow.getBoundsInLocal().getHeight() + 20 + "px");
-        pane.setTranslateX(getWidth() - bgTutorial.getBoundsInLocal().getWidth() - 10);
-        pane.setTranslateY(10);
-//        getGameScene().addUINode(pane);
 
         getGameScene().addUINode(flow);
         getGameScene().addUINode(bgTutorial);

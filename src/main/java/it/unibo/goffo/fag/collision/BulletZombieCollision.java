@@ -27,9 +27,8 @@ public class BulletZombieCollision implements Collision<Bullet, Zombie> {
             z1.decrementLife(b1.getDamage());
         } catch (CharacterDiesException e1) {
             z1.removeFromWorld();
-            FXGL.getApp().getGameState().setValue("score", FXGL.getApp().getGameState().getInt("score") + 1);
-            FXGL.getApp().getGameState().setValue("points",
-                    String.valueOf(Integer.valueOf(FXGL.getApp().getGameState().getString("points")) + 1));
+            FXGL.getApp().getGameState().setValue("score",
+                    FXGL.getApp().getGameState().getInt("score") + 1);
         }
     }
 }
