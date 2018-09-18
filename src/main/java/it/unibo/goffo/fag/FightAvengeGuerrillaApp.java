@@ -314,7 +314,7 @@ public class FightAvengeGuerrillaApp extends GameApplication {
          * Adding HUD.
          */
         final HUDController hudController = new HUDController();
-        final UI hud = getAssetLoader().loadUI("/fxml/hud.fxml", hudController);
+        final UI hud = getAssetLoader().loadUI("fxml/hud.fxml", hudController);
         getGameScene().addUI(hud);
 
         /*
