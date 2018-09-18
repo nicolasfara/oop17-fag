@@ -14,6 +14,7 @@ import it.unibo.goffo.fag.entities.movement.EntityMovement;
 import it.unibo.goffo.fag.entities.movement.MoveDirection;
 import javafx.geometry.Point2D;
 
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
@@ -61,7 +62,11 @@ public class AStarMoveController extends Component implements MoveController {
         nodeList.clear();
         final Async<List<AStarNode>> getPathTask = FXGL.getApp().getExecutor().async(() -> {
             LOGGER.infof("AStart path finding at work", Thread.currentThread());
-            return grid.getPath(startX, startY, targetX, targetY);
+            try {
+                return grid.getPath(startX, startY, targetX, targetY);
+            } catch (NullPointerException ex) {
+                return Collections.emptyList();
+            }
         });
         nodeList.addAll(getPathTask.await());
         getEntity().getComponentOptional(EntityMovement.class).ifPresent(EntityMovement::resume);
