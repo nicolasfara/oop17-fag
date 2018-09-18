@@ -1,5 +1,6 @@
 package it.unibo.goffo.fag.score.view;
 
+import com.almasb.fxgl.app.FXGL;
 import it.unibo.goffo.fag.score.controller.ScoreController;
 import it.unibo.goffo.fag.score.controller.ScoreControllerImpl;
 import it.unibo.goffo.fag.score.model.ScoreModelImpl;
@@ -45,6 +46,8 @@ public class ScoresViewController {
 
     @FXML
     private void goBackHandler(final ActionEvent event) {
+        final Stage fxglStage = (Stage) (FXGL.getApp().getGameScene().getRoot().getScene().getWindow());
+        fxglStage.show();
         ((Stage) ((Node) event.getSource()).getScene().getWindow()).close();
     }
 

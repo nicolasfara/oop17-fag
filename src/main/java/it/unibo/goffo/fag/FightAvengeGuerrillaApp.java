@@ -49,7 +49,7 @@ public class FightAvengeGuerrillaApp extends GameApplication {
 
     private final PlayerZombieCollision pzCollision = new PlayerZombieCollision();
     private final BulletZombieCollision bzCollision = new BulletZombieCollision();
-    private final SpawnController spawnController = new SpawnControllerImpl();
+    private SpawnController spawnController = new SpawnControllerImpl();
 
     /**
      * Main method launch the game engine.
@@ -230,6 +230,7 @@ public class FightAvengeGuerrillaApp extends GameApplication {
     @Override
     protected void initGame() {
         grid = new AStarGrid(MAP_WIDTH, MAP_HEIGHT);
+        spawnController = new SpawnControllerImpl();
         spawnController.reset();
         spawnController.startSpawn();
         final SpawnView spawnView = new SpawnViewImpl(spawnController);
