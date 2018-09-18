@@ -27,6 +27,7 @@ import static it.unibo.goffo.fag.FagUtils.*;
 public class AStarMoveController extends Component implements MoveController {
     private final Queue<AStarNode> nodeList = new LinkedList<>();
     private PositionComponent position;
+    private final AStarGrid grid = ((FightAvengeGuerrillaApp) FXGL.getApp()).getGrid();
     private static final Logger LOGGER = Logger.get(AStarMoveController.class);
     private static final int TPF_MULTIPLIER = 70;
     private Zombie zombie;
@@ -50,8 +51,6 @@ public class AStarMoveController extends Component implements MoveController {
             LOGGER.info(getEntity().toString() + " is already in: " + destination);
             return;
         }
-
-        final AStarGrid grid = ((FightAvengeGuerrillaApp) FXGL.getApp()).getGrid();
 
         final int startX = FXGLMath.round(position.getX() / TILE_SIZE);
         final int startY = FXGLMath.round(position.getY() / TILE_SIZE);

@@ -10,13 +10,6 @@ public abstract class AbstractWeapon extends Entity {
     private double damage;
 
     /**
-     * Build the object with the damage.
-     */
-    public AbstractWeapon() {
-        super();
-    }
-
-    /**
      * Get the damage of this weapon.
      * @return the damage.
      */
