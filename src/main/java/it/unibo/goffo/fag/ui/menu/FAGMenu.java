@@ -77,8 +77,12 @@ public class FAGMenu extends FXGLMenu {
     @Override
     protected void switchMenuTo(final Node menuBox) {
         super.switchMenuTo(menuBox);
-        final Stage curStage = (Stage) (FXGL.getApp().getGameScene().getRoot().getScene().getWindow());
-        curStage.close();
+        try {
+            final Stage curStage = (Stage) (FXGL.getApp().getGameScene().getRoot().getScene().getWindow());
+            curStage.close();
+        } catch (NullPointerException ex) {
+            //do something
+        }
         final Stage newStage = new Stage();
         newStage.setScene(new Scene((Parent)menuBox));
         newStage.show();
