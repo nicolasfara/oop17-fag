@@ -27,7 +27,7 @@ public final class BulletFactory {
      * @param newDirection direction of the bullet
      */
     public static void createBullet(final Point2D newDirection) {
-        Bullet bullet = (Bullet) FagEntities.builder(Bullet.class)
+        final Bullet bullet = (Bullet) FagEntities.builder(Bullet.class)
                 .at(PLAYER.getCenter().getX(), PLAYER.getCenter().getY())
                 .type(FagType.BULLET)
                 .with(new ProjectileComponent(newDirection, SPEED))
