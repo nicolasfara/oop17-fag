@@ -21,20 +21,20 @@ import it.unibo.goffo.fag.entities.Player;
 import it.unibo.goffo.fag.entities.Zombie;
 import it.unibo.goffo.fag.entities.builders.BulletFactory;
 import it.unibo.goffo.fag.entities.builders.PlayerFactory;
-import it.unibo.goffo.fag.exceptions.GameOverException;
 import it.unibo.goffo.fag.entities.movement.MoveDirection;
 import it.unibo.goffo.fag.entities.spawn.controller.SpawnController;
 import it.unibo.goffo.fag.entities.spawn.controller.SpawnControllerImpl;
 import it.unibo.goffo.fag.entities.spawn.view.SpawnView;
 import it.unibo.goffo.fag.entities.spawn.view.SpawnViewImpl;
+import it.unibo.goffo.fag.exceptions.GameOverException;
 import it.unibo.goffo.fag.ui.hud.HUDController;
 import it.unibo.goffo.fag.ui.menu.FAGMenuFactory;
 import javafx.application.Platform;
 import javafx.geometry.Point2D;
-import javafx.scene.control.Button;
 import javafx.scene.input.KeyCode;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import javafx.util.Duration;
 
 import static it.unibo.goffo.fag.FagUtils.*;
 
@@ -380,28 +380,10 @@ public class FightAvengeGuerrillaApp extends GameApplication {
         getGameScene().addUINode(flow);
         getGameScene().addUINode(bgTutorial);
 
-        Button removeTutorial = new Button("Remove tutorial");
-        removeTutorial.setOnMouseClicked(c -> {
-/*                    DSLKt.fadeOut(bgTutorial, Duration.seconds(1));
-                    DSLKt.fadeOut(flow, Duration.seconds(1));*/
-//            getGameScene().removeUINodes(flow, bgTutorial);
-                }
-        );
-
-        removeTutorial.setTranslateX(100);
-        removeTutorial.setTranslateY(100);
-//        getGameScene().addUINode(removeTutorial);
-
-
-        Button addRound = new Button("Add Round");
-        addRound.setOnMouseClicked(c -> {
-            getGameState().setValue("round",
-                    String.valueOf(Integer.valueOf(getGameState().getString("round")) + 1));
-        });
-
-        addRound.setTranslateX(300);
-        addRound.setTranslateY(300);
-//        getGameScene().addUINode(addRound);
+        getMasterTimer().runOnceAfter(() -> {
+            getGameScene().removeUINode(flow);
+            getGameScene().removeUINode(bgTutorial);
+        }, Duration.seconds(15));
     }
 
     /**
