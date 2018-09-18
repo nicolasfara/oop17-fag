@@ -2,7 +2,7 @@ package it.unibo.goffo.fag.entities;
 
 import com.almasb.fxgl.entity.Entity;
 import it.unibo.goffo.fag.exceptions.CharacterDiesException;
-import it.unibo.goffo.fag.movement.MoveDirection;
+import it.unibo.goffo.fag.entities.movement.MoveDirection;
 
 /**
  * Specific {@code Entity} that has a life and can move.

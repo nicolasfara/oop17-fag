@@ -1,4 +1,4 @@
-package it.unibo.goffo.fag.movement;
+package it.unibo.goffo.fag.entities.movement;
 
 import com.almasb.fxgl.entity.component.Component;
 

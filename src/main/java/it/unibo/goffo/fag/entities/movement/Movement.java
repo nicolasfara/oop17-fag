@@ -1,4 +1,4 @@
-package it.unibo.goffo.fag.movement;
+package it.unibo.goffo.fag.entities.movement;
 
 /**
  * Interface used to generate a movement assignable to an entity.

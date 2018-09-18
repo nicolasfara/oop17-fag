@@ -2,7 +2,7 @@ package it.unibo.goffo.fag.animation;
 
 import com.almasb.fxgl.texture.AnimatedTexture;
 import com.almasb.fxgl.texture.AnimationChannel;
-import it.unibo.goffo.fag.movement.MoveDirection;
+import it.unibo.goffo.fag.entities.movement.MoveDirection;
 import javafx.util.Duration;
 
 /**

@@ -1,7 +1,7 @@
 package it.unibo.goffo.fag.animation;
 
 import com.almasb.fxgl.entity.component.Component;
-import it.unibo.goffo.fag.movement.MoveDirection;
+import it.unibo.goffo.fag.entities.movement.MoveDirection;
 
 /**
  * Abstract animation.

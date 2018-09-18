@@ -1,4 +1,4 @@
-package it.unibo.goffo.fag.spawn.controller;
+package it.unibo.goffo.fag.entities.spawn.controller;
 
 import io.reactivex.Observable;
 import it.unibo.goffo.fag.entities.Character;

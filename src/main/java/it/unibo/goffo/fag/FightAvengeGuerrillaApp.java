@@ -1,6 +1,5 @@
 package it.unibo.goffo.fag;
 
-import com.almasb.fxgl.app.ApplicationMode;
 import com.almasb.fxgl.app.FXGL;
 import com.almasb.fxgl.app.GameApplication;
 import com.almasb.fxgl.entity.Entity;
@@ -23,11 +22,11 @@ import it.unibo.goffo.fag.entities.Zombie;
 import it.unibo.goffo.fag.entities.builders.BulletFactory;
 import it.unibo.goffo.fag.entities.builders.PlayerFactory;
 import it.unibo.goffo.fag.exceptions.GameOverException;
-import it.unibo.goffo.fag.movement.MoveDirection;
-import it.unibo.goffo.fag.spawn.controller.SpawnController;
-import it.unibo.goffo.fag.spawn.controller.SpawnControllerImpl;
-import it.unibo.goffo.fag.spawn.view.SpawnView;
-import it.unibo.goffo.fag.spawn.view.SpawnViewImpl;
+import it.unibo.goffo.fag.entities.movement.MoveDirection;
+import it.unibo.goffo.fag.entities.spawn.controller.SpawnController;
+import it.unibo.goffo.fag.entities.spawn.controller.SpawnControllerImpl;
+import it.unibo.goffo.fag.entities.spawn.view.SpawnView;
+import it.unibo.goffo.fag.entities.spawn.view.SpawnViewImpl;
 import it.unibo.goffo.fag.ui.hud.HUDController;
 import it.unibo.goffo.fag.ui.menu.FAGMenuFactory;
 import javafx.application.Platform;

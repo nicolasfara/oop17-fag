@@ -16,7 +16,7 @@ import it.unibo.goffo.fag.entities.FagType;
 import it.unibo.goffo.fag.entities.Zombie;
 import it.unibo.goffo.fag.entities.life.Damage;
 import it.unibo.goffo.fag.entities.life.controller.LifeControllerImpl;
-import it.unibo.goffo.fag.movement.EntityMovement;
+import it.unibo.goffo.fag.entities.movement.EntityMovement;
 import javafx.geometry.Point2D;
 
 import java.util.List;

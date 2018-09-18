@@ -10,8 +10,8 @@ import com.almasb.fxgl.extra.ai.pathfinding.AStarGrid;
 import com.almasb.fxgl.extra.ai.pathfinding.AStarNode;
 import it.unibo.goffo.fag.FightAvengeGuerrillaApp;
 import it.unibo.goffo.fag.entities.Zombie;
-import it.unibo.goffo.fag.movement.EntityMovement;
-import it.unibo.goffo.fag.movement.MoveDirection;
+import it.unibo.goffo.fag.entities.movement.EntityMovement;
+import it.unibo.goffo.fag.entities.movement.MoveDirection;
 import javafx.geometry.Point2D;
 
 import java.util.LinkedList;

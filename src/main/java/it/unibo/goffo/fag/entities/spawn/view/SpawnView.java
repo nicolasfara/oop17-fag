@@ -1,4 +1,4 @@
-package it.unibo.goffo.fag.spawn.view;
+package it.unibo.goffo.fag.entities.spawn.view;
 
 import io.reactivex.functions.Consumer;
 import it.unibo.goffo.fag.entities.Character;

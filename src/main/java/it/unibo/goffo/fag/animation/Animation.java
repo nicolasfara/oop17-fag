@@ -1,6 +1,6 @@
 package it.unibo.goffo.fag.animation;
 
-import it.unibo.goffo.fag.movement.MoveDirection;
+import it.unibo.goffo.fag.entities.movement.MoveDirection;
 
 /**
  * Interface that allows to play animations.
