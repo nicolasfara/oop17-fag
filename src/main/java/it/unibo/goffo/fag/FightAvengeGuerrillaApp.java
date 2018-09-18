@@ -251,7 +251,7 @@ public class FightAvengeGuerrillaApp extends GameApplication {
 
         player = PlayerFactory.createPlayer();
         this.getGameState().setValue("playerLife", 1.0);
-        this.getGameState().setValue("round", 1);
+        this.getGameState().setValue("round", 0);
         this.getGameState().setValue("score", 0);
         this.getGameState().setValue("profileName", getMenuListener().profileNameProperty().getValue());
     }
@@ -418,6 +418,5 @@ public class FightAvengeGuerrillaApp extends GameApplication {
         FXGL.getApp().getGameWorld().getEntitiesByType(FagType.SIMPLE_ZOMBIE).forEach(Entity::removeFromWorld);
         FXGL.getApp().getGameWorld().getEntitiesByType(FagType.ADVANCE_ZOMBIE).forEach(Entity::removeFromWorld);
         FAGMenuFactory.newEndGameMenu(FXGL.getApp());
-        FAGMenuFactory.newScoresMenu(FXGL.getApp());
     }
 }
