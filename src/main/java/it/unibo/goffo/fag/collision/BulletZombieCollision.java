@@ -10,13 +10,6 @@ import it.unibo.goffo.fag.exceptions.CharacterDiesException;
 public class BulletZombieCollision implements Collision<Bullet, Zombie> {
 
     /**
-     *
-     */
-    public BulletZombieCollision() {
-        super();
-    }
-
-    /**
      * {@inheritDoc}
      */
     @Override

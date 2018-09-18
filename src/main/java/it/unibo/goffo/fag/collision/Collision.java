@@ -7,7 +7,7 @@ import it.unibo.goffo.fag.exceptions.GameOverException;
  * @param <T> First entity
  * @param <U> Second entity
  */
-public interface Collision<T,U> {
+public interface Collision<T, U> {
 
     /**
      * {@inheritDoc}

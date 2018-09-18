@@ -11,13 +11,6 @@ import it.unibo.goffo.fag.exceptions.GameOverException;
 public class PlayerZombieCollision implements Collision<Player, Zombie> {
 
     /**
-     *
-     */
-    public PlayerZombieCollision() {
-        super();
-    }
-
-    /**
      * {@inheritDoc}
      */
     @Override
