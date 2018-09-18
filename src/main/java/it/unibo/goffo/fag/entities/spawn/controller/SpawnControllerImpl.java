@@ -33,6 +33,7 @@ public final class SpawnControllerImpl implements SpawnController {
             Stream.generate(this::getRandomZombieType)
                         .limit(spawnLogic.getNextCount())
                         .forEach(observable::onNext);
+            FXGL.getApp().getGameState().increment("round", 1);
         }, Duration.seconds(TIMER_TICK));
        timerAction.resume();
     }
