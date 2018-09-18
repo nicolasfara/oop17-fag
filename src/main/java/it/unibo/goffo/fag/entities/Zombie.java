@@ -1,10 +1,10 @@
 package it.unibo.goffo.fag.entities;
 
 import it.unibo.goffo.fag.animation.ZombieAnimationImpl;
-import it.unibo.goffo.fag.exceptions.CharacterDiesException;
 import it.unibo.goffo.fag.entities.life.Damage;
 import it.unibo.goffo.fag.entities.life.controller.LifeControllerImpl;
 import it.unibo.goffo.fag.entities.movement.MoveDirection;
+import it.unibo.goffo.fag.exceptions.CharacterDiesException;
 
 /**
  * Defines all enemy {@code Characters} controlled by the game.

@@ -1,11 +1,11 @@
 package it.unibo.goffo.fag.entities;
 
 import it.unibo.goffo.fag.animation.PlayerAnimationImpl;
-import it.unibo.goffo.fag.exceptions.CharacterDiesException;
 import it.unibo.goffo.fag.entities.life.Damage;
 import it.unibo.goffo.fag.entities.life.controller.LifeControllerImpl;
 import it.unibo.goffo.fag.entities.movement.EntityMovement;
 import it.unibo.goffo.fag.entities.movement.MoveDirection;
+import it.unibo.goffo.fag.exceptions.CharacterDiesException;
 
 /**
  * The {@code Character} controlled by the user.
