@@ -18,13 +18,6 @@ public class PlayerZombieCollision implements Collision<Player, Zombie> {
     final ScoreController scoreController = ScoreControllerImpl.getInstance(new ScoreModelImpl());
 
     /**
-     *
-     */
-    public PlayerZombieCollision() {
-        super();
-    }
-
-    /**
      * {@inheritDoc}
      */
     @Override
