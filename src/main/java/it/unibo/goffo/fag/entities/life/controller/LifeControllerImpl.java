@@ -19,20 +19,22 @@ public final class LifeControllerImpl extends AbsLifeController<Double> {
      */
     private static final double MAX_LIFE = 1.0;
 
+    public LifeControllerImpl(final double minLife, final double maxLife, final double startFrom) throws IllegalStateException {
+        super(new LifeModelImpl.Builder()
+                .setMinLife(minLife)
+                .setMaxLife(maxLife)
+                .startFrom(startFrom)
+                .build());
+    }
+
     /**
      * Creates a new instance of {@link LifeController} using maximum default value ({@value MAX_LIFE}).
      * Starting life amount is given in input.
      * @param startFrom Starting amount of life.
-     * @throws IllegalArgumentException if {@param startFrom} is less than minimum life value ({@value MIN_LIFE}).
+     * @throws IllegalStateException from {@code build} of {@link LifeModelImpl.Builder}.
      */
-    public LifeControllerImpl(final double startFrom) throws IllegalArgumentException {
-        if (Double.compare(startFrom, MIN_LIFE) < 0) {
-            throw new IllegalArgumentException();
-        }
-        super.setLifeModel(new LifeModelImpl.Builder()
-                .setMaxLife(MAX_LIFE)
-                .startFrom(startFrom)
-                .build());
+    public LifeControllerImpl(final double startFrom) throws IllegalStateException {
+        this(MIN_LIFE, MAX_LIFE, startFrom);
     }
 
     /**
@@ -49,12 +51,7 @@ public final class LifeControllerImpl extends AbsLifeController<Double> {
      */
     @Override
     public void decreaseOf(final Double amount) throws CharacterDiesException {
-        final double newLife = super.getLife() - Math.abs(amount);
-        if (Double.compare(newLife, MIN_LIFE) < 0) {
-            super.setLife(MIN_LIFE);
-            throw new CharacterDiesException();
-        }
-        super.setLife(newLife);
+        super.setLife(super.getLife() - Math.abs(amount));
     }
 
     /**
@@ -62,6 +59,10 @@ public final class LifeControllerImpl extends AbsLifeController<Double> {
      */
     @Override
     public void increaseOf(final Double amount) {
-        super.setLife(super.getLife() + Math.abs(amount));
+        try {
+            super.setLife(super.getLife() + Math.abs(amount));
+        } catch (CharacterDiesException e) {
+            // No way
+        }
     }
 }

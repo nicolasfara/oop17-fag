@@ -3,6 +3,7 @@ package it.unibo.goffo.fag.entities.life.controller;
 import com.almasb.fxgl.entity.component.Component;
 import it.unibo.goffo.fag.entities.life.model.LifeModel;
 import it.unibo.goffo.fag.exceptions.CharacterDiesException;
+import it.unibo.goffo.fag.exceptions.LifeIsOverException;
 
 /**
  * Abstract implementation of {@link LifeController}.
@@ -21,7 +22,7 @@ abstract class AbsLifeController<T> extends Component implements LifeController<
      * Assign the given instance of {@link LifeModel} from concrete class.
      * @param lifeModel A {@link LifeModel} instance
      */
-    protected void setLifeModel(final LifeModel<T> lifeModel) {
+    AbsLifeController(final LifeModel<T> lifeModel) {
         this.life = lifeModel;
     }
 
@@ -37,8 +38,12 @@ abstract class AbsLifeController<T> extends Component implements LifeController<
      * {@inheritDoc}
      */
     @Override
-    public void setLife(final T amount) {
-        this.life.setLife(amount);
+    public void setLife(final T amount) throws CharacterDiesException {
+        try {
+            this.life.setLife(amount);
+        } catch (LifeIsOverException e) {
+            throw new CharacterDiesException();
+        }
     }
 
     /**
@@ -52,39 +57,4 @@ abstract class AbsLifeController<T> extends Component implements LifeController<
      */
     @Override
     public abstract void increaseOf(T amount);
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public String toString() {
-        return "AbsLifeController{"
-               + "life=" + life
-               + "} " + super.toString();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public boolean equals(final Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-
-        AbsLifeController<?> that = (AbsLifeController<?>) o;
-
-        return getLife().equals(that.getLife());
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public int hashCode() {
-        return getLife().hashCode();
-    }
 }

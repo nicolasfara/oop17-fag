@@ -16,8 +16,9 @@ public interface LifeController<T> {
     /**
      * Set life amount to a given value.
      * @param amount Amount of life replacing current life value.
+     * @throws CharacterDiesException If life amount goes under a minimum value: indicates that Character is dead.
      */
-    void setLife(T amount);
+    void setLife(T amount) throws CharacterDiesException;
 
     /**
      * Increase life amount of a given value.
