@@ -18,17 +18,17 @@ Tutti i preport generati sono nella cartella `build/reports`
 
 ### CheckStyle task
 
-`./gradlew checkstyleMain` genera il report su `build/reports/checkstyle/main.html`
+`./gradlew checkstyleMain` genera il report su `build/reports/checkstyle/main.html`<br/>
 `./gradlew checkstyleTest` genera il report su `build/reports/checkstyle/test.html`
 
 ### PMD task
 
-`./gradlew pmdMain` genera il report su `build/reports/main.html`
+`./gradlew pmdMain` genera il report su `build/reports/main.html`<br/>
 `./gradlew pmdTest` genera il report su `build/reports/test.html`
 
 ### SpotBugs task
 
-`./gradlew spotbugsMain` genera il report su `build/reports/main.html`
+`./gradlew spotbugsMain` genera il report su `build/reports/main.html`<br/>
 `./gradlew spotbugsTest` genera il report su `build/reports/test.html`
 
 ## Generazione del JAR
@@ -37,5 +37,5 @@ Tutti i preport generati sono nella cartella `build/reports`
 
 ## Testing
 
-`./gradlew test` per il running degli Unit test
+`./gradlew test` per il running degli Unit test <br/>
 `./gradlew check` per tutti i check (test inclusi)
