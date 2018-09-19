@@ -1,4 +1,4 @@
-package it.unibo.goffo.fag.ai.controller;
+package it.unibo.goffo.fag.entities.ai.controller;
 
 import javafx.geometry.Point2D;
 

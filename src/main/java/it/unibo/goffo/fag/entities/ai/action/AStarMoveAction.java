@@ -1,4 +1,4 @@
-package it.unibo.goffo.fag.ai.action;
+package it.unibo.goffo.fag.entities.ai.action;
 
 import com.almasb.fxgl.ai.GoalAction;
 import com.almasb.fxgl.app.FXGL;
@@ -7,7 +7,7 @@ import com.almasb.fxgl.core.logging.Logger;
 import com.almasb.fxgl.entity.Entity;
 import com.almasb.fxgl.entity.components.PositionComponent;
 import it.unibo.goffo.fag.FightAvengeGuerrillaApp;
-import it.unibo.goffo.fag.ai.controller.AStarMoveController;
+import it.unibo.goffo.fag.entities.ai.controller.AStarMoveController;
 
 
 /**

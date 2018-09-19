@@ -1,4 +1,4 @@
-package it.unibo.goffo.fag.entities.spawn.logic;
+package it.unibo.goffo.fag.spawn.logic;
 
 /**
  * Interface used to realize the spawn logic.

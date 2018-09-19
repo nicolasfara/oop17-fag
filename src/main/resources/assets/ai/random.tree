@@ -7,7 +7,7 @@
 # Conditions
 
 # Actions
-import randomMove : "it.unibo.goffo.fag.ai.action.RandomMoveAction"
+import randomMove : "it.unibo.goffo.fag.entities.ai.action.RandomMoveAction"
 
 # Tree definition (note that root is optional)
 root

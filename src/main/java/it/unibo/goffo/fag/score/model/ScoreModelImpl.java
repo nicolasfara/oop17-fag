@@ -6,7 +6,6 @@ import it.unibo.goffo.fag.score.builder.JsonScoreBuilder;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import static com.almasb.fxgl.app.DSLKt.geti;
 import static com.almasb.fxgl.app.DSLKt.gets;
@@ -23,7 +22,7 @@ public class ScoreModelImpl implements ScoreModel {
      * {@inheritDoc}
      */
     @Override
-    public List<Score<String, Integer>> updatedScoreList() {
+    public List<Score<String, Integer>> insertNewScore() {
         final Integer userScore = geti(PROPERTY_NAME);
         final String username = gets("profileName");
         final Score<String, Integer> score = new JsonScoreBuilder()

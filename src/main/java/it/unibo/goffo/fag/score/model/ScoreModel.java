@@ -12,7 +12,7 @@ public interface ScoreModel {
      * Return a list with all update score.
      * @return update list score.
      */
-    List<Score<String, Integer>> updatedScoreList();
+    List<Score<String, Integer>> insertNewScore();
 
     /**
      * Initialize the score with the given list.

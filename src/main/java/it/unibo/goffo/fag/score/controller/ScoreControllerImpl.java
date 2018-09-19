@@ -59,7 +59,7 @@ public final class ScoreControllerImpl implements ScoreController {
      */
     @Override
     public void saveScoreToFile() {
-        final String jsonString = formatManager.formatter(scoreModel.updatedScoreList());
+        final String jsonString = formatManager.formatter(scoreModel.insertNewScore());
         try {
             loadStore.saveToFile(filePath.toString(), jsonString, String.class);
         } catch (IOException ex) {

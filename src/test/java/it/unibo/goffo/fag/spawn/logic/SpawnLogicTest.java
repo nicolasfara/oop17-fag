@@ -1,4 +1,4 @@
-package it.unibo.goffo.fag.entities.spawn.logic;
+package it.unibo.goffo.fag.spawn.logic;
 
 import org.junit.Test;
 import static com.google.common.truth.Truth.assertThat;

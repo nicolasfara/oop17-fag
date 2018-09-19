@@ -1,4 +1,4 @@
-package it.unibo.goffo.fag.entities.spawn.controller;
+package it.unibo.goffo.fag.spawn.controller;
 
 import com.almasb.fxgl.app.FXGL;
 import com.almasb.fxgl.core.math.FXGLMath;
@@ -8,8 +8,8 @@ import io.reactivex.subjects.PublishSubject;
 import it.unibo.goffo.fag.entities.Character;
 import it.unibo.goffo.fag.entities.Zombie;
 import it.unibo.goffo.fag.entities.builders.ZombieFactory;
-import it.unibo.goffo.fag.entities.spawn.logic.SpawnLogic;
-import it.unibo.goffo.fag.entities.spawn.logic.SpawnLogicImpl;
+import it.unibo.goffo.fag.spawn.logic.SpawnLogic;
+import it.unibo.goffo.fag.spawn.logic.SpawnLogicImpl;
 import javafx.util.Duration;
 
 import java.util.stream.Stream;
