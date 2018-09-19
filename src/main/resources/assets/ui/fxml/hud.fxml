@@ -8,7 +8,8 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane style="-fx-background-color: rgba(41,41,41,0.2)" prefHeight="99.0" prefWidth="152.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane style="-fx-background-color: rgba(41,41,41,0.2)" prefHeight="99.0" prefWidth="152.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1"
+            stylesheets="/assets/ui/css/fag-style.css">
    <VBox layoutX="12.0" layoutY="10.0" prefHeight="79.0" prefWidth="129.0">
       <children>
           <ProgressBar fx:id="playerLife" prefHeight="20.0" prefWidth="137.0" progress="1.0" styleClass="playerLifeBar" />

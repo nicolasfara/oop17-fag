@@ -68,3 +68,7 @@
     -fx-font-size: 32px;
     -fx-padding: 2em;
 }
+
+.progress-bar .bar {
+    -fx-background-color: red;
+}
