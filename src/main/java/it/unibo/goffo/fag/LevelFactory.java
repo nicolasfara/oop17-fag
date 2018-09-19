@@ -18,7 +18,7 @@ public class LevelFactory implements EntityFactory {
      * @return an entity.
      */
     @Spawns("border")
-    public Entity newBorder(final SpawnData data) {
+    public Entity createBorder(final SpawnData data) {
         return Entities.builder()
                 .type(FagType.BORDER)
                 .from(data)
@@ -35,7 +35,7 @@ public class LevelFactory implements EntityFactory {
      * @return an entity.
      */
     @Spawns("wall")
-    public Entity newWall(final SpawnData data) {
+    public Entity crateWall(final SpawnData data) {
         return Entities.builder()
                 .type(FagType.WALL)
                 .from(data)
