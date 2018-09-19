@@ -10,7 +10,8 @@ import it.unibo.goffo.fag.exceptions.CharacterDiesException;
 public abstract class Character extends Entity {
 
     /**
-     * Attack an entity.
+     * Get the damage.
+     * @return return the damage.
      */
     public abstract double getDamage();
 

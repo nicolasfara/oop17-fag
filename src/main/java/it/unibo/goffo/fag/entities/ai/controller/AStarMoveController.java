@@ -8,6 +8,7 @@ import com.almasb.fxgl.entity.component.Component;
 import com.almasb.fxgl.entity.components.PositionComponent;
 import com.almasb.fxgl.extra.ai.pathfinding.AStarGrid;
 import com.almasb.fxgl.extra.ai.pathfinding.AStarNode;
+import it.unibo.goffo.fag.FagUtils;
 import it.unibo.goffo.fag.FightAvengeGuerrillaApp;
 import it.unibo.goffo.fag.entities.Zombie;
 import it.unibo.goffo.fag.entities.movement.EntityMovement;
@@ -19,7 +20,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 
-import static it.unibo.goffo.fag.FagUtils.*;
 
 /**
  * Controller class for moving an Ai with A* logic.
@@ -52,10 +52,10 @@ public class AStarMoveController extends Component implements MoveController {
             return;
         }
 
-        final int startX = FXGLMath.round(position.getX() / TILE_SIZE);
-        final int startY = FXGLMath.round(position.getY() / TILE_SIZE);
-        final int targetX = FXGLMath.round((destination.getX() + ZOMBIE_SIZE_X) / TILE_SIZE);
-        final int targetY = FXGLMath.round((destination.getY() + ZOMBIE_SIZE_Y) / TILE_SIZE);
+        final int startX = FXGLMath.round(position.getX() / FagUtils.TILE_SIZE);
+        final int startY = FXGLMath.round(position.getY() / FagUtils.TILE_SIZE);
+        final int targetX = FXGLMath.round((destination.getX() + FagUtils.ZOMBIE_SIZE_X) / FagUtils.TILE_SIZE);
+        final int targetY = FXGLMath.round((destination.getY() + FagUtils.ZOMBIE_SIZE_Y) / FagUtils.TILE_SIZE);
 
         nodeList.clear();
         final Async<List<AStarNode>> getPathTask = FXGL.getApp().getExecutor().async(() -> {
@@ -93,8 +93,8 @@ public class AStarMoveController extends Component implements MoveController {
         // No try/catch needed because we check empty queue before
         final AStarNode node = nodeList.remove();
 
-        final int nextX = node.getX() * TILE_SIZE;
-        final int nextY = node.getY() * TILE_SIZE;
+        final int nextX = node.getX() * FagUtils.TILE_SIZE;
+        final int nextY = node.getY() * FagUtils.TILE_SIZE;
         final double deltaX = nextX - position.getX();
         final double deltaY = nextY - position.getY();
 
