@@ -8,6 +8,7 @@ import com.almasb.fxgl.extra.ai.pathfinding.AStarNode;
 import com.almasb.fxgl.extra.ai.pathfinding.NodeState;
 import com.almasb.fxgl.physics.BoundingShape;
 import com.almasb.fxgl.physics.HitBox;
+import it.unibo.goffo.fag.FagUtils;
 import it.unibo.goffo.fag.FightAvengeGuerrillaApp;
 import it.unibo.goffo.fag.entities.ai.controller.AStarMoveController;
 import it.unibo.goffo.fag.entities.ai.controller.RandomMoveController;
@@ -22,7 +23,6 @@ import javafx.geometry.Point2D;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static it.unibo.goffo.fag.FagUtils.*;
 
 /**
  * Factory for zombie creation.
@@ -44,7 +44,7 @@ public final class ZombieFactory {
                 .type(FagType.SIMPLE_ZOMBIE)
                 .with(new ZombieAnimationImpl())
                 .with(new CollidableComponent(true))
-                .bbox(new HitBox(BoundingShape.box(ZOMBIE_SIZE_X, ZOMBIE_SIZE_Y)))
+                .bbox(new HitBox(BoundingShape.box(FagUtils.ZOMBIE_SIZE_X, FagUtils.ZOMBIE_SIZE_Y)))
                 .with(new EntityMovement(1))
                 .with(new LifeControllerImpl(1))
                 .with(new Damage(SIMPLE_DAMAGE))
@@ -63,7 +63,7 @@ public final class ZombieFactory {
                 .type(FagType.ADVANCE_ZOMBIE)
                 .with(new ZombieAnimationImpl())
                 .with(new CollidableComponent(true))
-                .bbox(new HitBox(BoundingShape.box(ZOMBIE_SIZE_X, ZOMBIE_SIZE_Y)))
+                .bbox(new HitBox(BoundingShape.box(FagUtils.ZOMBIE_SIZE_X, FagUtils.ZOMBIE_SIZE_Y)))
                 .with(new EntityMovement(1))
                 .with(new LifeControllerImpl(1))
                 .with(new Damage(ADVANCE_DAMAGE))
@@ -76,7 +76,7 @@ public final class ZombieFactory {
         final List<AStarNode> aStarNodes = FXGL.<FightAvengeGuerrillaApp>getAppCast().getGrid().getNodes().stream()
                 .filter(e -> e.getState() == NodeState.WALKABLE)
                 .collect(Collectors.toList());
-        return new Point2D(FXGLMath.random(aStarNodes).get().getX() * TILE_SIZE, FXGLMath.random(aStarNodes).get().getY() * TILE_SIZE);
+        return new Point2D(FXGLMath.random(aStarNodes).get().getX() * FagUtils.TILE_SIZE, FXGLMath.random(aStarNodes).get().getY() * FagUtils.TILE_SIZE);
     }
 }
 
