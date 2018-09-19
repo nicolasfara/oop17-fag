@@ -26,24 +26,12 @@ public class ScoreModelImpl implements ScoreModel {
     public List<Score<String, Integer>> updatedScoreList() {
         final Integer userScore = geti(PROPERTY_NAME);
         final String username = gets("profileName");
-        final Optional<Score<String, Integer>> optionalScore = scoreList.stream()
-                .filter(score -> score.getUsername().equals(username))
-                .findFirst();
-
-        //Using >Java9 all this line can be replaced with method ifPresentOrElse() directly into the stream
-        if (optionalScore.isPresent()) {
-            if (optionalScore.get().getScore() < userScore) {
-                optionalScore.get().setScore(userScore);
-                optionalScore.get().setDate(LocalDate.now());
-            }
-        } else {
-            final Score<String, Integer> score = new JsonScoreBuilder()
-                    .setUsername(username)
-                    .setScore(userScore)
-                    .setDate(LocalDate.now())
-                    .build();
-            scoreList.add(score);
-        }
+        final Score<String, Integer> score = new JsonScoreBuilder()
+                .setUsername(username)
+                .setScore(userScore)
+                .setDate(LocalDate.now())
+                .build();
+        scoreList.add(score);
         return scoreList;
     }
 
