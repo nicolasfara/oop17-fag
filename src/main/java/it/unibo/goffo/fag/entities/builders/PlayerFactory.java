@@ -28,7 +28,7 @@ public final class PlayerFactory {
         return (Player) FagEntities.builder(Player.class)
                 .type(FagType.PLAYER)
                 .at(100, 100)
-                .with(new EntityMovement(1))
+                .with(new EntityMovement(2))
                 .with(new LifeControllerImpl(1))
                 .with(new PlayerAnimationImpl())
                 .bbox(new HitBox(BoundingShape.box(PLAYER_SIZE_X, PLAYER_SIZE_Y)))

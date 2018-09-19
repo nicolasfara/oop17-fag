@@ -46,8 +46,8 @@ public class ScoresViewController {
 
     @FXML
     private void goBackHandler(final ActionEvent event) {
-        final Stage fxglStage = (Stage) (FXGL.getApp().getGameScene().getRoot().getScene().getWindow());
-        fxglStage.show();
+/*        final Stage fxglStage = (Stage) (FXGL.getApp().getGameScene().getRoot().getScene().getWindow());
+        fxglStage.show();*/
         ((Stage) ((Node) event.getSource()).getScene().getWindow()).close();
     }
 

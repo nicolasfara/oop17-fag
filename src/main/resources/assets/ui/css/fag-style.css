@@ -69,6 +69,10 @@
     -fx-padding: 2em;
 }
 
-#hud {
-    -fx-font-size: 12;
+#hud > .label {
+    -fx-font-size: 14;
+}
+
+.progress-bar .bar {
+    -fx-background-color: red;
 }
