@@ -68,3 +68,7 @@
     -fx-font-size: 32px;
     -fx-padding: 2em;
 }
+
+#hud {
+    -fx-font-size: 12;
+}

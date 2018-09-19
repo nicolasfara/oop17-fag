@@ -12,7 +12,7 @@
    <VBox layoutX="12.0" layoutY="10.0" prefHeight="79.0" prefWidth="129.0">
       <children>
           <ProgressBar fx:id="playerLife" prefHeight="20.0" prefWidth="137.0" progress="1.0" styleClass="playerLifeBar" />
-         <GridPane>
+         <GridPane fx:id="hud">
            <columnConstraints>
              <ColumnConstraints hgrow="SOMETIMES" maxWidth="136.0" minWidth="10.0" prefWidth="120.0" />
              <ColumnConstraints hgrow="SOMETIMES" maxWidth="150.0" minWidth="10.0" prefWidth="80.0" />
