@@ -66,5 +66,59 @@ public final class FagUtils {
      */
     static final int TUTORIAL_KEYCODE_SIZE = 16;
 
+    /**
+     *
+     */
+    public static final String MAIN_MENU_PATH = "/assets/ui/fxml/mainMenu.fxml";
+
+    /**
+     *
+     */
+    public static final String GAME_MENU_PATH = "/assets/ui/fxml/gameMenu.fxml";
+
+    /**
+     *
+     */
+    public static final String SCORE_MENU_PATH = "/assets/ui/fxml/ScoresView.fxml";
+
+    /**
+     *
+     */
+    public static final String END_GAME_MENU_PATH = "/assets/ui/fxml/endGameMenu.fxml";
+
+    /**
+     *
+     */
+    private static final double DISP_WIDTH = 800.0;
+
+    /**
+     *
+     */
+    private static final double DISP_HEIGHT = 600.0;
+
+    /**
+     *
+     * @return
+     */
+    public double getDispWidth() {
+        return DISP_WIDTH;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public double getDispHeight() {
+        return DISP_HEIGHT;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public static FagUtils getConfig() {
+        return new FagUtils();
+    }
+
     private FagUtils() { }
 }

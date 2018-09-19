@@ -9,8 +9,8 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<?import it.unibo.goffo.fag.FAGConfig?>
 
+<?import it.unibo.goffo.fag.FagUtils?>
 <GridPane
         xmlns="http://javafx.com/javafx/8.0.121"
         xmlns:fx="http://javafx.com/fxml/1"
@@ -27,7 +27,7 @@
 <!--    <fx:include source="root.fxml" fx:id="fagconfig" />-->
 
     <fx:define>
-        <FAGConfig fx:factory="getConfig" fx:id="config" />
+        <FagUtils fx:factory="getConfig" fx:id="config" />
     </fx:define>
 
    <Pane prefHeight="${config.dispHeight}" prefWidth="${config.dispWidth}">

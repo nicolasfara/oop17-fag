@@ -4,7 +4,7 @@ import com.almasb.fxgl.app.FXGL;
 import com.almasb.fxgl.app.GameApplication;
 import com.almasb.fxgl.scene.FXGLMenu;
 import com.almasb.fxgl.scene.menu.MenuType;
-import it.unibo.goffo.fag.FAGConfig;
+import it.unibo.goffo.fag.FagUtils;
 import javafx.beans.binding.StringBinding;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -45,11 +45,11 @@ public class FAGMenu extends FXGLMenu {
     }
 
     private void makeMainMenu() {
-        this.setFagMenu(FAGConfig.MAIN_MENU_PATH);
+        this.setFagMenu(FagUtils.MAIN_MENU_PATH);
     }
 
     private void makeGameMenu() {
-        this.setFagMenu(FAGConfig.GAME_MENU_PATH);
+        this.setFagMenu(FagUtils.GAME_MENU_PATH);
     }
 
     protected void setFagMenu(final String menuFile) {

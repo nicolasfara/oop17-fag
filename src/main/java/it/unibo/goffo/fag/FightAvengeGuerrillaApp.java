@@ -36,8 +36,6 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 
-import static it.unibo.goffo.fag.FagUtils.*;
-
 /**
  * Main class, used to launch FXGL.
  */
@@ -79,9 +77,9 @@ public class FightAvengeGuerrillaApp extends GameApplication {
      */
     @Override
     protected void initSettings(final GameSettings settings) {
-        settings.setWidth(MAP_WIDTH * TILE_SIZE);
-        settings.setHeight(MAP_HEIGHT * TILE_SIZE);
-        settings.setTitle(APPLICATION_NAME);
+        settings.setWidth(FagUtils.MAP_WIDTH * FagUtils.TILE_SIZE);
+        settings.setHeight(FagUtils.MAP_HEIGHT * FagUtils.TILE_SIZE);
+        settings.setTitle(FagUtils.APPLICATION_NAME);
         settings.setMenuEnabled(true);
         settings.setSceneFactory(new FAGMenuFactory());
 //        settings.setApplicationMode(ApplicationMode.RELEASE);
@@ -228,7 +226,7 @@ public class FightAvengeGuerrillaApp extends GameApplication {
      */
     @Override
     protected void initGame() {
-        grid = new AStarGrid(MAP_WIDTH, MAP_HEIGHT);
+        grid = new AStarGrid(FagUtils.MAP_WIDTH, FagUtils.MAP_HEIGHT);
         spawnController = new SpawnControllerImpl();
         spawnController.reset();
         spawnController.startSpawn();
@@ -243,8 +241,8 @@ public class FightAvengeGuerrillaApp extends GameApplication {
                 .stream()
                 .map(Entity::getPosition)
                 .forEach(point -> {
-                    final int x = (int) point.getX() / TILE_SIZE;
-                    final int y = (int) point.getY() / TILE_SIZE;
+                    final int x = (int) point.getX() / FagUtils.TILE_SIZE;
+                    final int y = (int) point.getY() / FagUtils.TILE_SIZE;
 
                     grid.setNodeState(x, y, NodeState.NOT_WALKABLE);
                 });
@@ -346,21 +344,21 @@ public class FightAvengeGuerrillaApp extends GameApplication {
         getGameScene().addUINode(tutorial);*/
 
         FXGLTextFlow flow = FXGL.getUIFactory().newTextFlow()
-                .append("Press ", TUTORIAL_TEXT_COLOR, TUTORIAL_TEXT_SIZE)
-                .append(KeyCode.W, TUTORIAL_KEYCODE_COLOR, TUTORIAL_KEYCODE_SIZE)
-                .append(KeyCode.A, TUTORIAL_KEYCODE_COLOR, TUTORIAL_TEXT_SIZE)
-                .append(KeyCode.S, TUTORIAL_KEYCODE_COLOR, TUTORIAL_TEXT_SIZE)
-                .append(KeyCode.D, TUTORIAL_KEYCODE_COLOR, TUTORIAL_TEXT_SIZE)
-                .append(" to move\n", TUTORIAL_TEXT_COLOR, TUTORIAL_TEXT_SIZE)
-                .append("Press ", TUTORIAL_TEXT_COLOR, TUTORIAL_TEXT_SIZE)
-                .append(KeyCode.LEFT, TUTORIAL_KEYCODE_COLOR, TUTORIAL_KEYCODE_SIZE)
-                .append(KeyCode.UP, TUTORIAL_KEYCODE_COLOR, TUTORIAL_KEYCODE_SIZE)
-                .append(KeyCode.RIGHT, TUTORIAL_KEYCODE_COLOR, TUTORIAL_KEYCODE_SIZE)
-                .append(KeyCode.DOWN, TUTORIAL_KEYCODE_COLOR, TUTORIAL_KEYCODE_SIZE)
-                .append(" to shoot\n", TUTORIAL_TEXT_COLOR, TUTORIAL_TEXT_SIZE)
-                .append("Press ", TUTORIAL_TEXT_COLOR, TUTORIAL_TEXT_SIZE)
-                .append("ESC", TUTORIAL_KEYCODE_COLOR, TUTORIAL_KEYCODE_SIZE)
-                .append(" to pause game", TUTORIAL_TEXT_COLOR, TUTORIAL_TEXT_SIZE);
+                .append("Press ", FagUtils.TUTORIAL_TEXT_COLOR, FagUtils.TUTORIAL_TEXT_SIZE)
+                .append(KeyCode.W, FagUtils.TUTORIAL_KEYCODE_COLOR, FagUtils.TUTORIAL_KEYCODE_SIZE)
+                .append(KeyCode.A, FagUtils.TUTORIAL_KEYCODE_COLOR, FagUtils.TUTORIAL_TEXT_SIZE)
+                .append(KeyCode.S, FagUtils.TUTORIAL_KEYCODE_COLOR, FagUtils.TUTORIAL_TEXT_SIZE)
+                .append(KeyCode.D, FagUtils.TUTORIAL_KEYCODE_COLOR, FagUtils.TUTORIAL_TEXT_SIZE)
+                .append(" to move\n", FagUtils.TUTORIAL_TEXT_COLOR, FagUtils.TUTORIAL_TEXT_SIZE)
+                .append("Press ", FagUtils.TUTORIAL_TEXT_COLOR, FagUtils.TUTORIAL_TEXT_SIZE)
+                .append(KeyCode.LEFT, FagUtils.TUTORIAL_KEYCODE_COLOR, FagUtils.TUTORIAL_KEYCODE_SIZE)
+                .append(KeyCode.UP, FagUtils.TUTORIAL_KEYCODE_COLOR, FagUtils.TUTORIAL_KEYCODE_SIZE)
+                .append(KeyCode.RIGHT, FagUtils.TUTORIAL_KEYCODE_COLOR, FagUtils.TUTORIAL_KEYCODE_SIZE)
+                .append(KeyCode.DOWN, FagUtils.TUTORIAL_KEYCODE_COLOR, FagUtils.TUTORIAL_KEYCODE_SIZE)
+                .append(" to shoot\n", FagUtils.TUTORIAL_TEXT_COLOR, FagUtils.TUTORIAL_TEXT_SIZE)
+                .append("Press ", FagUtils.TUTORIAL_TEXT_COLOR, FagUtils.TUTORIAL_TEXT_SIZE)
+                .append("ESC", FagUtils.TUTORIAL_KEYCODE_COLOR, FagUtils.TUTORIAL_KEYCODE_SIZE)
+                .append(" to pause game", FagUtils.TUTORIAL_TEXT_COLOR, FagUtils.TUTORIAL_TEXT_SIZE);
 
         flow.setTranslateX(getWidth() - flow.getBoundsInLocal().getWidth() - 20);
         flow.setTranslateY(20);
@@ -387,7 +385,7 @@ public class FightAvengeGuerrillaApp extends GameApplication {
     }
 
     /**
-     * Called when game is over:
+     * Called when game is over.
      * <ul>
      *     <li>Stop zombie spawn</li>
      *     <li>Remove zombies from map</li>
@@ -395,7 +393,7 @@ public class FightAvengeGuerrillaApp extends GameApplication {
      *     <li>Open end game menu</li>
      * </ul>
      */
-    protected void onEndGame() {
+    private void onEndGame() {
         spawnController.stopSpawn();
         FXGL.getApp().getGameWorld().getEntitiesByType(FagType.SIMPLE_ZOMBIE).forEach(Entity::removeFromWorld);
         FXGL.getApp().getGameWorld().getEntitiesByType(FagType.ADVANCE_ZOMBIE).forEach(Entity::removeFromWorld);
