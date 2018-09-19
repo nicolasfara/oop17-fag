@@ -29,9 +29,13 @@ import it.unibo.goffo.fag.spawn.view.SpawnViewImpl;
 import it.unibo.goffo.fag.exceptions.GameOverException;
 import it.unibo.goffo.fag.ui.hud.HUDController;
 import it.unibo.goffo.fag.ui.menu.FAGMenuFactory;
+import it.unibo.goffo.fag.ui.menu.TutorialController;
 import javafx.application.Platform;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Point2D;
+import javafx.scene.Node;
 import javafx.scene.input.KeyCode;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
@@ -329,59 +333,14 @@ public class FightAvengeGuerrillaApp extends GameApplication {
         hudController.getPointsProperty().bind(
                 this.getGameState().intProperty("score").asString());
 
-        /*
-         * Adding tutorial.
-         */
+        hud.getRoot().setTranslateY(hud.getRoot().getBoundsInLocal().getWidth());
 
-/*        Node tutorial = null;
-        try {
-            tutorial = FXMLLoader.load(getClass().getResource("/assets/ui/fxml/tutorial.fxml"));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        tutorial.setTranslateX(150);
-        tutorial.setTranslateY(150);
-        getGameScene().addUINode(tutorial);*/
+        final UI tutorial = getAssetLoader().loadUI("fxml/tutorial.fxml", new TutorialController());
+        getGameScene().addUI(tutorial);
+        tutorial.getRoot().setTranslateX(getWidth() - 220);
+        tutorial.getRoot().setTranslateY(10);
 
-        FXGLTextFlow flow = FXGL.getUIFactory().newTextFlow()
-                .append("Press ", FagUtils.TUTORIAL_TEXT_COLOR, FagUtils.TUTORIAL_TEXT_SIZE)
-                .append(KeyCode.W, FagUtils.TUTORIAL_KEYCODE_COLOR, FagUtils.TUTORIAL_KEYCODE_SIZE)
-                .append(KeyCode.A, FagUtils.TUTORIAL_KEYCODE_COLOR, FagUtils.TUTORIAL_TEXT_SIZE)
-                .append(KeyCode.S, FagUtils.TUTORIAL_KEYCODE_COLOR, FagUtils.TUTORIAL_TEXT_SIZE)
-                .append(KeyCode.D, FagUtils.TUTORIAL_KEYCODE_COLOR, FagUtils.TUTORIAL_TEXT_SIZE)
-                .append(" to move\n", FagUtils.TUTORIAL_TEXT_COLOR, FagUtils.TUTORIAL_TEXT_SIZE)
-                .append("Press ", FagUtils.TUTORIAL_TEXT_COLOR, FagUtils.TUTORIAL_TEXT_SIZE)
-                .append(KeyCode.LEFT, FagUtils.TUTORIAL_KEYCODE_COLOR, FagUtils.TUTORIAL_KEYCODE_SIZE)
-                .append(KeyCode.UP, FagUtils.TUTORIAL_KEYCODE_COLOR, FagUtils.TUTORIAL_KEYCODE_SIZE)
-                .append(KeyCode.RIGHT, FagUtils.TUTORIAL_KEYCODE_COLOR, FagUtils.TUTORIAL_KEYCODE_SIZE)
-                .append(KeyCode.DOWN, FagUtils.TUTORIAL_KEYCODE_COLOR, FagUtils.TUTORIAL_KEYCODE_SIZE)
-                .append(" to shoot\n", FagUtils.TUTORIAL_TEXT_COLOR, FagUtils.TUTORIAL_TEXT_SIZE)
-                .append("Press ", FagUtils.TUTORIAL_TEXT_COLOR, FagUtils.TUTORIAL_TEXT_SIZE)
-                .append("ESC", FagUtils.TUTORIAL_KEYCODE_COLOR, FagUtils.TUTORIAL_KEYCODE_SIZE)
-                .append(" to pause game", FagUtils.TUTORIAL_TEXT_COLOR, FagUtils.TUTORIAL_TEXT_SIZE);
-
-        flow.setTranslateX(getWidth() - flow.getBoundsInLocal().getWidth() - 20);
-        flow.setTranslateY(20);
-
-        /*
-            TODO: do not use a Rectangle Object
-            TODO: DISAPPEAR AFTER X time
-            TODO: increment round
-         */
-        Rectangle bgTutorial = new Rectangle();
-        bgTutorial.setFill(new Color(0.41, 0.41, 0.41, 0.3));
-        bgTutorial.setWidth(flow.getBoundsInLocal().getWidth() + 30);
-        bgTutorial.setHeight(flow.getBoundsInLocal().getHeight() + 20);
-        bgTutorial.setTranslateX(getWidth() - bgTutorial.getBoundsInLocal().getWidth() - 10);
-        bgTutorial.setTranslateY(10);
-
-        getGameScene().addUINode(flow);
-        getGameScene().addUINode(bgTutorial);
-
-        getMasterTimer().runOnceAfter(() -> {
-            getGameScene().removeUINode(flow);
-            getGameScene().removeUINode(bgTutorial);
-        }, Duration.seconds(15));
+        getMasterTimer().runOnceAfter(() -> getGameScene().removeUI(tutorial), Duration.seconds(15));
     }
 
     /**

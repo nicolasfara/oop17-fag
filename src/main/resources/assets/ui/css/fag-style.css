@@ -59,7 +59,7 @@
     -fx-font-size: 32px;
 }
 
-.text, #menuTitle  {
+.text, #menuTitle, #tutorial  {
     -fx-fill: white;
     -fx-font-family: 'Retro Computer';
 }
@@ -69,10 +69,12 @@
     -fx-padding: 2em;
 }
 
-#hud > .label {
+#hud > .label, #tutorial > .label {
     -fx-font-size: 14;
 }
 
 .progress-bar .bar {
     -fx-background-color: red;
 }
+
+
