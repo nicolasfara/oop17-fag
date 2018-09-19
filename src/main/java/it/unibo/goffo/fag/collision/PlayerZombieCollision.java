@@ -15,7 +15,7 @@ import it.unibo.goffo.fag.score.model.ScoreModelImpl;
  */
 public class PlayerZombieCollision implements Collision<Player, Zombie> {
 
-    final ScoreController scoreController = ScoreControllerImpl.getInstance(new ScoreModelImpl());
+    private final ScoreController scoreController = ScoreControllerImpl.getInstance(new ScoreModelImpl());
 
     /**
      * {@inheritDoc}
