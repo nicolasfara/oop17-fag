@@ -4,21 +4,21 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.layout.TilePane;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
+/**
+ *
+ */
 public class AbsMenuController {
     @FXML
     private TilePane buttons;
 
-    private List<Button> btns;
-
+    /**
+     *
+     */
     public void initialize() {
-        this.btns = buttons.getChildren().stream()
+        buttons.getChildren().stream()
                 .filter(b -> b instanceof Button)
-                .map(b -> (Button)b)
-                .peek(this::bindDefaultButtonProperty)
-                .collect(Collectors.toList());
+                .map(b -> (Button) b)
+                .forEach(this::bindDefaultButtonProperty);
     }
 
     private void bindDefaultButtonProperty(final Button btn) {
