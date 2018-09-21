@@ -62,7 +62,9 @@ abstract class AbsLifeModel<T> implements LifeModel<T> {
      * Get minimum life value.
      * @return Minimum life amount.
      */
-   T getMinLife() { return this.minLife; }
+   T getMinLife() {
+       return this.minLife;
+   }
 
     /**
      * Abstract Builder used to get a new stored life value.
@@ -97,7 +99,9 @@ abstract class AbsLifeModel<T> implements LifeModel<T> {
            return this.maxLife;
        }
 
-       T getMinLife() { return this.minLife; }
+       T getMinLife() {
+           return this.minLife;
+       }
 
        public abstract LifeModel<T> build() throws IllegalStateException;
    }

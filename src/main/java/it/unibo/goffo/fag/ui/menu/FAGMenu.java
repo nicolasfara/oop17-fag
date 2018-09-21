@@ -16,11 +16,20 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+/**
+ * An extension of {@link FXGLMenu} which creates main and game menu.
+ * Also sets empty elements like profile, background, version and title view.
+ */
 public class FAGMenu extends FXGLMenu {
 
     private Parent fagMenu;
     private GameApplication app;
 
+    /**
+     * Creates the menu based on {@link MenuType}.
+     * @param app to get menu associated with.
+     * @param type menu type used by the game
+     */
     public FAGMenu(final GameApplication app, final MenuType type) {
         super(app, type);
 
@@ -52,15 +61,27 @@ public class FAGMenu extends FXGLMenu {
         this.setFagMenu(FagUtils.GAME_MENU_PATH);
     }
 
+    /**
+     * Change current menu node by reading it from FXML file.
+     * @param menuFile FXML file where to get menu.
+     */
     protected void setFagMenu(final String menuFile) {
         this.fagMenu = this.readMenuFromFXML(menuFile);
     }
 
+    /**
+     * Updates {@link com.almasb.fxgl.scene.GameScene} by adding a new node.
+     */
     protected void updateView() {
-        app.getGameScene().addUINode(this.fagMenu);
+        this.app.getGameScene().addUINode(this.fagMenu);
 //        menuRoot.getChildren().set(0, this.fagMenu);
     }
 
+    /**
+     * Read a FXML file containing a menu.
+     * @param fileName where to get menu.
+     * @return loaded menu object
+     */
     protected Parent readMenuFromFXML(final String fileName) {
         Parent tmp = null;
         try {
@@ -84,7 +105,7 @@ public class FAGMenu extends FXGLMenu {
             //do something
         }*/
         final Stage newStage = new Stage();
-        newStage.setScene(new Scene((Parent)menuBox));
+        newStage.setScene(new Scene((Parent) menuBox));
         newStage.show();
     }
 
@@ -97,13 +118,19 @@ public class FAGMenu extends FXGLMenu {
 //        contentRoot.getChildren().set(0, content);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    protected Button createActionButton(String name, Runnable action) {
+    protected Button createActionButton(final String name, final Runnable action) {
         return null;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    protected Button createActionButton(StringBinding name, Runnable action) {
+    protected Button createActionButton(final StringBinding name, final Runnable action) {
         return null;
     }
 
@@ -112,7 +139,7 @@ public class FAGMenu extends FXGLMenu {
      */
     @Override
     protected Node createBackground(final double width, final double height) {
-        return new Rectangle(0,0);
+        return new Rectangle(0, 0);
     }
 
     /**
@@ -127,7 +154,7 @@ public class FAGMenu extends FXGLMenu {
      * {@inheritDoc}
      */
     @Override
-    protected Node createVersionView(String version) {
+    protected Node createVersionView(final String version) {
         return FXGL.getUIFactory().newText(version, 0);
     }
 
@@ -135,7 +162,7 @@ public class FAGMenu extends FXGLMenu {
      * {@inheritDoc}
      */
     @Override
-    protected Node createProfileView(String profileName) {
+    protected Node createProfileView(final String profileName) {
         return FXGL.getUIFactory().newText(profileName, 0);
     }
 }

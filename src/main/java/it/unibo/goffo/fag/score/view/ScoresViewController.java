@@ -1,6 +1,5 @@
 package it.unibo.goffo.fag.score.view;
 
-import com.almasb.fxgl.app.FXGL;
 import it.unibo.goffo.fag.score.controller.ScoreController;
 import it.unibo.goffo.fag.score.controller.ScoreControllerImpl;
 import it.unibo.goffo.fag.score.model.ScoreModelImpl;

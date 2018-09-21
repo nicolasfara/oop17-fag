@@ -1,7 +1,5 @@
 package it.unibo.goffo.fag;
 
-import javafx.scene.paint.Color;
-
 /**
  * Utility class.
  */
@@ -47,74 +45,60 @@ public final class FagUtils {
     static final String APPLICATION_NAME = "Final Avenge Guerrilla";
 
     /**
-     * Tutorial text color.
-     */
-    static final Color TUTORIAL_TEXT_COLOR = Color.BLACK;
-
-    /**
-     * Tutorial Keycode color.
-     */
-    static final Color TUTORIAL_KEYCODE_COLOR = Color.RED;
-
-    /**
-     * Tutorial text size.
-     */
-    static final int TUTORIAL_TEXT_SIZE = 18;
-
-    /**
-     * Tutorial Keycode size.
-     */
-    static final int TUTORIAL_KEYCODE_SIZE = 16;
-
-    /**
-     *
+     * Main Menu FXML file path.
      */
     public static final String MAIN_MENU_PATH = "/assets/ui/fxml/mainMenu.fxml";
 
     /**
-     *
+     * Game Menu FXML file path.
      */
     public static final String GAME_MENU_PATH = "/assets/ui/fxml/gameMenu.fxml";
 
     /**
-     *
+     * Score Menu FXML file path.
      */
     public static final String SCORE_MENU_PATH = "/assets/ui/fxml/ScoresView.fxml";
 
     /**
-     *
+     * End Game Menu FXML file path.
      */
     public static final String END_GAME_MENU_PATH = "/assets/ui/fxml/endGameMenu.fxml";
 
     /**
-     *
+     * Tutorial duration in View.
      */
-    private static final double DISP_WIDTH = 800.0;
+    public static final int TUTORIAL_DURATION = 15;
 
     /**
-     *
+     * Window Display Width.
      */
-    private static final double DISP_HEIGHT = 600.0;
+    private static final double DISP_WIDTH = MAP_WIDTH * TILE_SIZE;
 
     /**
-     *
-     * @return
+     * Window Display Height.
+     */
+    private static final double DISP_HEIGHT = MAP_HEIGHT * TILE_SIZE;
+
+    /**
+     * Get window display width.
+     * @return window display width.
      */
     public double getDispWidth() {
         return DISP_WIDTH;
     }
 
     /**
-     *
-     * @return
+     * Get window display height.
+     * @return window display height.
      */
     public double getDispHeight() {
         return DISP_HEIGHT;
     }
 
     /**
-     *
-     * @return
+     * Get current game configuration.
+     * Mostly used by FXML files to get dynamic window size.
+     * @return configuration.
      */
     public static FagUtils getConfig() {
         return new FagUtils();

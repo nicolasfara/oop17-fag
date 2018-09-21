@@ -5,6 +5,10 @@ import it.unibo.goffo.fag.ui.menu.AbsMenuController;
 import it.unibo.goffo.fag.ui.menu.FAGMenuFactory;
 import javafx.fxml.FXML;
 
+/**
+ * Main Menu Controller.
+ * Manages actions taken by user by clicking on menu entries: start game, scores, exit.
+ */
 public class MainMenuController extends AbsMenuController {
     @FXML
     private void startGame() {
@@ -15,11 +19,7 @@ public class MainMenuController extends AbsMenuController {
 
     @FXML
     private void showScores() {
-        FAGMenuFactory.newScoresMenu(FXGL.getApp());
-    }
-
-    @FXML
-    private void showCredits() {
+        ((FAGMenuFactory) FXGL.getApp().getSettings().getSceneFactory()).newScoresMenu(FXGL.getApp());
     }
 
     @FXML

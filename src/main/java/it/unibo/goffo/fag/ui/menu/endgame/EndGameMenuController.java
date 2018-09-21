@@ -5,6 +5,10 @@ import it.unibo.goffo.fag.ui.menu.AbsMenuController;
 import it.unibo.goffo.fag.ui.menu.FAGMenuFactory;
 import javafx.fxml.FXML;
 
+/**
+ * End Game Menu Controller.
+ * Manages actions taken by user by clicking on menu entries: restart, main menu, scores, exit.
+ */
 public class EndGameMenuController extends AbsMenuController {
     @FXML
     private void restartGame() {
@@ -18,7 +22,7 @@ public class EndGameMenuController extends AbsMenuController {
 
     @FXML
     private void showScores() {
-        FAGMenuFactory.newScoresMenu(FXGL.getApp());
+        ((FAGMenuFactory) (FXGL.getApp().getSettings().getSceneFactory())).newScoresMenu(FXGL.getApp());
     }
 
     @FXML

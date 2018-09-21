@@ -18,14 +18,6 @@
         alignment="CENTER"
         styleClass="root"
         stylesheets="@../css/fag-style.css">
-
-    <!-- With a new Object of FAGConfig class
-    <prefHeight><FAGConfig fx:constant="DISP_HEIGHT" /></prefHeight>
-    <prefWidth><FAGConfig fx:constant="DISP_WIDTH" /></prefWidth>-->
-    <!-- With define and factory directive-->
-
-<!--    <fx:include source="root.fxml" fx:id="fagconfig" />-->
-
     <fx:define>
         <FagUtils fx:factory="getConfig" fx:id="config" />
     </fx:define>
@@ -36,7 +28,6 @@
                         <TilePane prefWidth="200.0" fx:id="buttons">
                               <Button fx:id="btnStartGame" onAction="#startGame" text="START GAME" defaultButton="true"/>
                               <Button fx:id="btnScores" onAction="#showScores" text="SCORES" textAlignment="CENTER"  />
-                              <Button fx:id="btnCredits" onAction="#showCredits" text="CREDITS" textAlignment="CENTER" />
                               <Button fx:id="btnExit" onAction="#onExit" text="EXIT" />
                         </TilePane>
                </FlowPane>

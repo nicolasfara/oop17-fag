@@ -28,7 +28,7 @@ import it.unibo.goffo.fag.spawn.view.SpawnViewImpl;
 import it.unibo.goffo.fag.exceptions.GameOverException;
 import it.unibo.goffo.fag.ui.hud.HUDController;
 import it.unibo.goffo.fag.ui.menu.FAGMenuFactory;
-import it.unibo.goffo.fag.ui.menu.TutorialController;
+import it.unibo.goffo.fag.ui.tutorial.TutorialController;
 import javafx.application.Platform;
 import javafx.geometry.Point2D;
 import javafx.scene.input.KeyCode;
@@ -308,19 +308,15 @@ public class FightAvengeGuerrillaApp extends GameApplication {
     protected void initUI() {
         /*
          * Adding HUD.
+         * No need to use FXMLLoader. FXGL's AssetLoader does the job.
+         * Remember to not use 'fx:controller' attribute in your fxml file.
          */
         final HUDController hudController = new HUDController();
         final UI hud = getAssetLoader().loadUI("fxml/hud.fxml", hudController);
         getGameScene().addUI(hud);
 
-        /*
-         * Adding life bar.
-         * No need to use FXMLLoader. FXGL's AssetLoader does the job.
-         * Remember to not use 'fx:controller' attribute in your fxml file.
-         * NOT WORKING
-               hudController.getPlayerLife().progressProperty().bind(this.absLifeController.getLifeProperty());
-         */
-        hudController.getProgressProperty().bind(
+        // Binding FXGL GameState properties with GUI properties
+        hudController.getLifeProgressProperty().bind(
                 this.getGameState().doubleProperty("playerLife"));
         hudController.getRoundProperty().bind(
                 this.getGameState().intProperty("round").asString());
@@ -329,12 +325,13 @@ public class FightAvengeGuerrillaApp extends GameApplication {
 
         hud.getRoot().setTranslateY(hud.getRoot().getBoundsInLocal().getWidth());
 
+        // Adding tutorial
         final UI tutorial = getAssetLoader().loadUI("fxml/tutorial.fxml", new TutorialController());
         getGameScene().addUI(tutorial);
         tutorial.getRoot().setTranslateX(getWidth() - 220);
         tutorial.getRoot().setTranslateY(10);
-
-        getMasterTimer().runOnceAfter(() -> getGameScene().removeUI(tutorial), Duration.seconds(15));
+        // Removing tutorial
+        getMasterTimer().runOnceAfter(() -> getGameScene().removeUI(tutorial), Duration.seconds(FagUtils.TUTORIAL_DURATION));
     }
 
     /**
@@ -350,6 +347,6 @@ public class FightAvengeGuerrillaApp extends GameApplication {
         spawnController.stopSpawn();
         FXGL.getApp().getGameWorld().getEntitiesByType(FagType.SIMPLE_ZOMBIE).forEach(Entity::removeFromWorld);
         FXGL.getApp().getGameWorld().getEntitiesByType(FagType.ADVANCE_ZOMBIE).forEach(Entity::removeFromWorld);
-        FAGMenuFactory.newEndGameMenu(FXGL.getApp());
+        ((FAGMenuFactory) getSettings().getSceneFactory()).newEndGameMenu(FXGL.getApp());
     }
 }

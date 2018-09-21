@@ -5,8 +5,16 @@ import com.almasb.fxgl.scene.menu.MenuType;
 import it.unibo.goffo.fag.FagUtils;
 import it.unibo.goffo.fag.ui.menu.FAGMenu;
 
+/**
+ * Scores Menu.
+ */
 public class FAGScoreMenu extends FAGMenu {
 
+    /**
+     * Creates scores menu by extending {@link FAGMenu}.
+     * @param app game application.
+     * @param type menu type.
+     */
     public FAGScoreMenu(final GameApplication app, final MenuType type) {
         super(app, type);
         this.makeScoresMenu();

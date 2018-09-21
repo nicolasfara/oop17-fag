@@ -6,6 +6,7 @@ import it.unibo.goffo.fag.exceptions.LifeIsOverException;
  * Concrete implementation of {@link AbsLifeModel}.
  * Only manages upper bound value: if it reaches limit, life amount is set to maximum value.
  */
+@SuppressWarnings("FinalClass")
 public class LifeModelImpl extends AbsLifeModel<Double> {
 
     private LifeModelImpl(final double start, final double minLife, final double maxLife) {

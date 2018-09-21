@@ -19,6 +19,13 @@ public final class LifeControllerImpl extends AbsLifeController<Double> {
      */
     private static final double MAX_LIFE = 1.0;
 
+    /**
+     * Creates a new instance of {@link LifeController} with given values for minimum, maximum and current life.
+     * @param minLife Minimum life.
+     * @param maxLife Maximum life.
+     * @param startFrom Current life.
+     * @throws IllegalStateException if values are null or {@param startFrom} is less than {@param minLife}.
+     */
     public LifeControllerImpl(final double minLife, final double maxLife, final double startFrom) throws IllegalStateException {
         super(new LifeModelImpl.Builder()
                 .setMinLife(minLife)
