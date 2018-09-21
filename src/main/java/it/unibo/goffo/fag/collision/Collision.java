@@ -12,5 +12,5 @@ public interface Collision<T, U> {
     /**
      * {@inheritDoc}
      */
-    void onCollision(T p1, U z1) throws GameOverException;
+    void onCollision(T e1, U e2) throws GameOverException;
 }
