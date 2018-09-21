@@ -33,7 +33,7 @@ public class AStarMoveAction extends GoalAction {
         final PositionComponent positionComponent = getEntity().getPositionComponent();
         LOGGER.info("Start method AStartMoveAction, entity start at: " + positionComponent.toString());
 
-        final Entity player = ((FightAvengeGuerrillaApp) FXGL.getApp()).getPlayer();
+        final Entity player = FXGL.<FightAvengeGuerrillaApp>getAppCast().getPlayer();
 
         final Async<Void> moving = FXGL.getExecutor().async(() -> getEntity().getComponent(AStarMoveController.class).moveTo(player.getPositionComponent().getValue()));
 
