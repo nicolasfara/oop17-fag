@@ -11,7 +11,6 @@ import com.almasb.fxgl.input.UserAction;
 import com.almasb.fxgl.parser.tiled.TiledMap;
 import com.almasb.fxgl.physics.CollisionHandler;
 import com.almasb.fxgl.settings.GameSettings;
-import com.almasb.fxgl.ui.FXGLTextFlow;
 import com.almasb.fxgl.ui.UI;
 import it.unibo.goffo.fag.collision.BulletZombieCollision;
 import it.unibo.goffo.fag.collision.PlayerZombieCollision;
@@ -31,13 +30,8 @@ import it.unibo.goffo.fag.ui.hud.HUDController;
 import it.unibo.goffo.fag.ui.menu.FAGMenuFactory;
 import it.unibo.goffo.fag.ui.menu.TutorialController;
 import javafx.application.Platform;
-import javafx.fxml.FXMLLoader;
 import javafx.geometry.Point2D;
-import javafx.scene.Node;
 import javafx.scene.input.KeyCode;
-import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 
 /**
