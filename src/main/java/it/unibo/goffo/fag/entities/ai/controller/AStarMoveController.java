@@ -43,6 +43,7 @@ public class AStarMoveController extends Component implements MoveController {
     /**
      * {@inheritDoc}
      */
+    @SuppressWarnings("PMD.AvoidCatchingNPE") //Motivation: NPE is thrown inside the library used. I cannot fix it in my code
     @Override
     public void moveTo(final Point2D destination) {
         position = getEntity().getPositionComponent();
