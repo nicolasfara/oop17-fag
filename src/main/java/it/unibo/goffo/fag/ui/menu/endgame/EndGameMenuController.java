@@ -9,7 +9,9 @@ import javafx.fxml.FXML;
  * End Game Menu Controller.
  * Manages actions taken by user by clicking on menu entries: restart, main menu, scores, exit.
  */
+@SuppressWarnings("PMD.UnusedPrivateMethod") // Bound with FXML.
 public class EndGameMenuController extends AbsMenuController {
+
     @FXML
     private void restartGame() {
         FXGL.getApp().getMenuListener().onNewGame();

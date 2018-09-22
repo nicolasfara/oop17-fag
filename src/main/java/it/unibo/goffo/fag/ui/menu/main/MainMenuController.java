@@ -10,16 +10,19 @@ import javafx.fxml.FXML;
  * Manages actions taken by user by clicking on menu entries: start game, scores, exit.
  */
 public class MainMenuController extends AbsMenuController {
+    @SuppressWarnings("PMD.UnusedPrivateMethod") // Bound with FXML.
     @FXML
     private void startGame() {
             FXGL.getApp().getMenuListener().onNewGame();
     }
 
+    @SuppressWarnings("PMD.UnusedPrivateMethod") // Bound with FXML.
     @FXML
     private void showScores() {
         ((FAGMenuFactory) FXGL.getApp().getSettings().getSceneFactory()).newScoresMenu(FXGL.getApp());
     }
 
+    @SuppressWarnings("PMD.UnusedPrivateMethod") // Bound with FXML.
     @FXML
     private void onExit() {
         FXGL.getApp().getMenuListener().onExit();

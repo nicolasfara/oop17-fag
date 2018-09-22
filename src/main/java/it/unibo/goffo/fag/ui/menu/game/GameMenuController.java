@@ -10,6 +10,7 @@ import javafx.fxml.FXML;
  */
 public class GameMenuController extends EndGameMenuController {
 
+    @SuppressWarnings("PMD.UnusedPrivateMethod") // Bound with FXML.
     @FXML
     private void resumePlay() {
         FXGL.getApp().getMenuListener().onResume();
