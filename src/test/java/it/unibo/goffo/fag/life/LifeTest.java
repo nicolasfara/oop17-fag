@@ -8,6 +8,7 @@ import org.junit.Test;
 
 import static com.google.common.truth.Truth.assertThat;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.fail;
 
 public class LifeTest {
@@ -31,7 +32,7 @@ public class LifeTest {
             lifeController.decreaseOf(lifeController.getLife() + 1);
             fail("Decrease should throw an exception while decreasing a too high value.");
         } catch (CharacterDiesException e) {
-            assertThat(e).hasMessageThat().ignoringCase();
+            assertNotNull("Exception message should not be null", e.getMessage());
         }
     }
 
@@ -41,7 +42,7 @@ public class LifeTest {
             lifeController.decreaseOf(lifeController.getLife());
             fail("Decrease should throw an exception while decreasing all available life.");
         } catch (CharacterDiesException e) {
-            assertThat(e).hasMessageThat().ignoringCase();
+            assertNotNull("Exception message should not be null", e.getMessage());
         }
     }
 
