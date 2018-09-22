@@ -18,9 +18,10 @@ public class LifeTest {
         // Decreasing an amount less than maxValue
         try {
             lifeController.decreaseOf(0.1);
-            assertEquals(lifeController.getLife(), FagUtils.MAX_LIFE - 0.1, 0.1);
+            assertEquals("Decrease not working properly.",
+                    lifeController.getLife(), FagUtils.MAX_LIFE - 0.1, 0.1);
         } catch (CharacterDiesException e){
-            fail();
+            fail("Exception " + e.toString() + " should not be thrown while decreasing a legitimate value.");
         }
     }
 
@@ -28,7 +29,7 @@ public class LifeTest {
     public void testDecreaseGreaterThanMaxLife() {
         try {
             lifeController.decreaseOf(lifeController.getLife() + 1);
-            fail();
+            fail("Decrease should throw an exception while decreasing a too high value.");
         } catch (CharacterDiesException e) {
             e.printStackTrace();
         }
@@ -38,7 +39,7 @@ public class LifeTest {
     public void testDecreaseAllLife() {
         try {
             lifeController.decreaseOf(lifeController.getLife());
-            fail();
+            fail("Decrease should throw an exception while decreasing all available life.");
         } catch (CharacterDiesException e) {
             e.printStackTrace();
         }
@@ -47,13 +48,15 @@ public class LifeTest {
     @Test
     public void testMaxLife() {
         lifeController.increaseOf(2.0);
-        assertEquals(lifeController.getLife(), FagUtils.MAX_LIFE, 0.1);
+        assertEquals("Increase should drop exceeding value.",
+                lifeController.getLife(), FagUtils.MAX_LIFE, 0.1);
     }
 
     @Test
     public void testSetLife() {
         lifeController = new LifeControllerImpl(0.7);
-        assertEquals(lifeController.getLife(), 0.7, 0.1);
+        assertEquals("Constructor should create an object with given life value.",
+                lifeController.getLife(), 0.7, 0.1);
     }
 
     @Test(expected = IllegalStateException.class)
@@ -64,7 +67,8 @@ public class LifeTest {
     @Test
     public void testBuildOnMaxLife() {
         lifeController = new LifeControllerImpl(Double.POSITIVE_INFINITY);
-        assertEquals(lifeController.getLife(), FagUtils.MAX_LIFE, 0.1);
+        assertEquals("Constructor should create an object with dropped life value.",
+                lifeController.getLife(), FagUtils.MAX_LIFE, 0.1);
     }
 
     @Test(expected = IllegalStateException.class)

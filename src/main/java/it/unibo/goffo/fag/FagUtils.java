@@ -52,7 +52,7 @@ public final class FagUtils {
     /**
      * Application name.
      */
-    static final String APPLICATION_NAME = "Final Avenge Guerrilla";
+    public static final String APPLICATION_NAME = "Final Avenge Guerrilla";
 
     /**
      * Main Menu FXML file path.

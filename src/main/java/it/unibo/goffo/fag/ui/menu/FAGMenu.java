@@ -22,7 +22,7 @@ import java.io.IOException;
  */
 public class FAGMenu extends FXGLMenu {
 
-    private Parent fagMenu;
+    private Parent menu;
     private final GameApplication app;
 
     /**
@@ -41,13 +41,13 @@ public class FAGMenu extends FXGLMenu {
             this.makeGameMenu();
         }
 
-        menuRoot.getChildren().add(this.fagMenu);
+        menuRoot.getChildren().add(this.menu);
         contentRoot.getChildren().add(EMPTY);
 
         // USELESS ?
 /*        activeProperty().addListener((observable, wasActive, isActive) -> {
             if (!isActive) {
-                switchMenuTo(this.fagMenu);
+                switchMenuTo(this.menu);
                 switchMenuContentTo(EMPTY);
             }
         });*/
@@ -66,15 +66,15 @@ public class FAGMenu extends FXGLMenu {
      * @param menuFile FXML file where to get menu.
      */
     protected final void setFagMenu(final String menuFile) {
-        this.fagMenu = this.readMenuFromFXML(menuFile);
+        this.menu = this.readMenuFromFXML(menuFile);
     }
 
     /**
      * Updates {@link com.almasb.fxgl.scene.GameScene} by adding a new node.
      */
     protected void updateView() {
-        this.app.getGameScene().addUINode(this.fagMenu);
-//        menuRoot.getChildren().set(0, this.fagMenu);
+        this.app.getGameScene().addUINode(this.menu);
+//        menuRoot.getChildren().set(0, this.menu);
     }
 
     /**
