@@ -13,8 +13,6 @@ public class MainMenuController extends AbsMenuController {
     @FXML
     private void startGame() {
             FXGL.getApp().getMenuListener().onNewGame();
-/*        FXGL.getApp().getMenuListener().getSaveLoadManager().loadLastModifiedSaveFileTask().onSuccess(() ->
-                )*/
     }
 
     @FXML
