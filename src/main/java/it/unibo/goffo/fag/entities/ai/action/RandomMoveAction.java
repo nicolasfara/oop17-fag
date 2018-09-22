@@ -6,7 +6,7 @@ import com.almasb.fxgl.entity.component.Component;
 import it.unibo.goffo.fag.entities.ai.controller.RandomMoveController;
 
 /**
- *
+ * Action to be taken by random AI.
  */
 public class RandomMoveAction extends GoalAction {
 

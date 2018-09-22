@@ -76,7 +76,7 @@ public class FAGMenu extends FXGLMenu {
     protected final Parent readMenuFromFXML(final String fileName) {
         Parent tmp = null;
         try {
-            tmp = FXMLLoader.load(getClass().getResource(fileName));
+            tmp = FXMLLoader.load(FAGMenu.class.getResource(fileName));
         } catch (IOException e) {
             e.printStackTrace();
         }
