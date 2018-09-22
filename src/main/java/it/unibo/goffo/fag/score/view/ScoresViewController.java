@@ -29,6 +29,7 @@ public class ScoresViewController {
         scoreView = new ScoreViewImpl(scoreController);
     }
 
+    @SuppressWarnings("PMD.UnusedPrivateMethod") //This method is bind with FXML annotation to his handler
     @FXML
     private void initialize() {
         usernameColumn.setCellValueFactory(new PropertyValueFactory<>("username"));
@@ -43,10 +44,9 @@ public class ScoresViewController {
         tableViewGraphicalSetup(scoreTableView);
     }
 
+    @SuppressWarnings("PMD.UnusedPrivateMethod") //This method is bind with FXML annotation to his handler
     @FXML
     private void goBackHandler(final ActionEvent event) {
-/*        final Stage fxglStage = (Stage) (FXGL.getApp().getGameScene().getRoot().getScene().getWindow());
-        fxglStage.show();*/
         ((Stage) ((Node) event.getSource()).getScene().getWindow()).close();
     }
 
