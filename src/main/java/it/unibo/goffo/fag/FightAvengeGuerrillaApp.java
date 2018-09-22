@@ -311,6 +311,7 @@ public class FightAvengeGuerrillaApp extends GameApplication {
          * No need to use FXMLLoader. FXGL's AssetLoader does the job.
          * Remember to not use 'fx:controller' attribute in your fxml file.
          */
+        final int xOffset = 220;
         final HUDController hudController = new HUDController();
         final UI hud = getAssetLoader().loadUI("fxml/hud.fxml", hudController);
         getGameScene().addUI(hud);
@@ -328,7 +329,7 @@ public class FightAvengeGuerrillaApp extends GameApplication {
         // Adding tutorial
         final UI tutorial = getAssetLoader().loadUI("fxml/tutorial.fxml", new TutorialController());
         getGameScene().addUI(tutorial);
-        tutorial.getRoot().setTranslateX(getWidth() - 220);
+        tutorial.getRoot().setTranslateX(getWidth() - xOffset);
         tutorial.getRoot().setTranslateY(10);
         // Removing tutorial
         getMasterTimer().runOnceAfter(() -> getGameScene().removeUI(tutorial), Duration.seconds(FagUtils.TUTORIAL_DURATION));
