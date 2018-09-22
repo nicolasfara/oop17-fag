@@ -6,6 +6,7 @@ import it.unibo.goffo.fag.entities.life.controller.LifeControllerImpl;
 import it.unibo.goffo.fag.exceptions.CharacterDiesException;
 import org.junit.Test;
 
+import static com.google.common.truth.Truth.assertThat;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
@@ -15,7 +16,6 @@ public class LifeTest {
 
     @Test
     public void testDecrease() {
-        // Decreasing an amount less than maxValue
         try {
             lifeController.decreaseOf(0.1);
             assertEquals("Decrease not working properly.",
@@ -31,7 +31,7 @@ public class LifeTest {
             lifeController.decreaseOf(lifeController.getLife() + 1);
             fail("Decrease should throw an exception while decreasing a too high value.");
         } catch (CharacterDiesException e) {
-            e.printStackTrace();
+            assertThat(e).hasMessageThat().ignoringCase();
         }
     }
 
@@ -41,7 +41,7 @@ public class LifeTest {
             lifeController.decreaseOf(lifeController.getLife());
             fail("Decrease should throw an exception while decreasing all available life.");
         } catch (CharacterDiesException e) {
-            e.printStackTrace();
+            assertThat(e).hasMessageThat().ignoringCase();
         }
     }
 
