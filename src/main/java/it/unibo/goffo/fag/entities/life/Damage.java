@@ -6,29 +6,30 @@ import com.almasb.fxgl.entity.component.Component;
  * Damage component.
  */
 public class Damage extends Component {
-    private double damage;
+    private double dmg;
 
     /**
-     * Build the damage object with a damage.
-     * @param damage the damage.
+     * Build the dmg object with a dmg.
+     * @param damage the dmg.
      */
     public Damage(final double damage) {
-        this.damage = damage;
+        super();
+        this.dmg = damage;
     }
 
     /**
-     * Get the damage.
-     * @return the damage.
+     * Get the dmg.
+     * @return the dmg.
      */
     public double getDamage() {
-        return damage;
+        return dmg;
     }
 
     /**
-     * Set a new damage.
-     * @param newDamage the new damage.
+     * Set a new dmg.
+     * @param newDamage the new dmg.
      */
     public void setDamage(final double newDamage) {
-        this.damage = newDamage;
+        this.dmg = newDamage;
     }
 }
