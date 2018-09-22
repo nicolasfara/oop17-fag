@@ -20,7 +20,7 @@ public class LifeModelImpl extends AbsLifeModel<Double> {
     public void setLife(final Double amount) throws LifeIsOverException {
         if (Double.compare(amount, super.getMaxLife()) > 0) {
             super.setLife(super.getMaxLife());
-        } else if (Double.compare(amount, super.getMinLife()) < 0) {
+        } else if (Double.compare(amount, super.getMinLife()) <= 0 || Double.compare(amount, super.getLife()) >= 0) {
             super.setLife(super.getMinLife());
             throw new LifeIsOverException();
         } else {
@@ -40,6 +40,7 @@ public class LifeModelImpl extends AbsLifeModel<Double> {
          * @throws IllegalStateException if {@code life} or {@code maxLife} are {@code null} or if
          *  {@code life} is less than {@code minLife}.
          */
+        @Override
         public LifeModel<Double> build() throws IllegalStateException {
             if (super.getLife() == null) {
                 throw new IllegalStateException("Life in Builder must be assigned.");
@@ -48,7 +49,7 @@ public class LifeModelImpl extends AbsLifeModel<Double> {
             } else if (super.getMinLife() == null) {
                 throw new IllegalStateException("Min Life in Builder must be assigned.");
             } else if (Double.compare(super.getLife(), super.getMinLife()) < 0) {
-                throw new IllegalStateException("Min Life cannot be less than start life value.");
+                throw new IllegalStateException("Min Life cannot be greater than start life value.");
             }
             if (Double.compare(super.getLife(), super.getMaxLife()) > 0) {
                 super.startFrom(super.getMaxLife());

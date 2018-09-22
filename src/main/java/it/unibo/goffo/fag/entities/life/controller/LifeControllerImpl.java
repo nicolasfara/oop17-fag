@@ -3,21 +3,14 @@ package it.unibo.goffo.fag.entities.life.controller;
 import it.unibo.goffo.fag.entities.life.model.LifeModelImpl;
 import it.unibo.goffo.fag.exceptions.CharacterDiesException;
 
+import static it.unibo.goffo.fag.FagUtils.MIN_LIFE;
+import static it.unibo.goffo.fag.FagUtils.MAX_LIFE;
+
 /**
  * Concrete implementation of {@link AbsLifeController} using {@link Double} data type.
- * Life amount is being maintained between {@value MIN_LIFE} and {@value MAX_LIFE}.
+ * Life amount is being maintained between values set in {@link it.unibo.goffo.fag.FagUtils}
  */
 public final class LifeControllerImpl extends AbsLifeController<Double> {
-
-    /**
-     * Minimum life amount admitted.
-     */
-    private static final double MIN_LIFE = 0.0;
-
-    /**
-     * Maximum life amount admitted.
-     */
-    private static final double MAX_LIFE = 1.0;
 
     /**
      * Creates a new instance of {@link LifeController} with given values for minimum, maximum and current life.
@@ -35,7 +28,7 @@ public final class LifeControllerImpl extends AbsLifeController<Double> {
     }
 
     /**
-     * Creates a new instance of {@link LifeController} using maximum default value ({@value MAX_LIFE}).
+     * Creates a new instance of {@link LifeController} using maximum default value.
      * Starting life amount is given in input.
      * @param startFrom Starting amount of life.
      * @throws IllegalStateException from {@code build} of {@link LifeModelImpl.Builder}.
@@ -45,9 +38,7 @@ public final class LifeControllerImpl extends AbsLifeController<Double> {
     }
 
     /**
-     * Creates a new instance of {@link LifeController} using default values and starting from maximum life amount
-     * ({@value MAX_LIFE}).
-     * Minimum life: {@value MIN_LIFE}; Maximum life: {@value MAX_LIFE}.
+     * Creates a new instance of {@link LifeController} using default values and starting from maximum life amount.
      */
     public LifeControllerImpl() {
         this(MAX_LIFE);
@@ -58,7 +49,7 @@ public final class LifeControllerImpl extends AbsLifeController<Double> {
      */
     @Override
     public void decreaseOf(final Double amount) throws CharacterDiesException {
-        super.setLife(super.getLife() - Math.abs(amount));
+        super.setLife(Double.sum(super.getLife(), -Math.abs(amount)));
     }
 
     /**
@@ -67,9 +58,9 @@ public final class LifeControllerImpl extends AbsLifeController<Double> {
     @Override
     public void increaseOf(final Double amount) {
         try {
-            super.setLife(super.getLife() + Math.abs(amount));
+            super.setLife(Double.sum(super.getLife(), Math.abs(amount)));
         } catch (CharacterDiesException e) {
-            // No way
+            e.printStackTrace();
         }
     }
 }

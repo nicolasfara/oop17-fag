@@ -23,7 +23,7 @@ import java.io.IOException;
 public class FAGMenu extends FXGLMenu {
 
     private Parent fagMenu;
-    private GameApplication app;
+    private final GameApplication app;
 
     /**
      * Creates the menu based on {@link MenuType}.
@@ -65,7 +65,7 @@ public class FAGMenu extends FXGLMenu {
      * Change current menu node by reading it from FXML file.
      * @param menuFile FXML file where to get menu.
      */
-    protected void setFagMenu(final String menuFile) {
+    protected final void setFagMenu(final String menuFile) {
         this.fagMenu = this.readMenuFromFXML(menuFile);
     }
 
@@ -82,7 +82,7 @@ public class FAGMenu extends FXGLMenu {
      * @param fileName where to get menu.
      * @return loaded menu object
      */
-    protected Parent readMenuFromFXML(final String fileName) {
+    protected final Parent readMenuFromFXML(final String fileName) {
         Parent tmp = null;
         try {
             tmp = FXMLLoader.load(getClass().getResource(fileName));
@@ -107,15 +107,6 @@ public class FAGMenu extends FXGLMenu {
         final Stage newStage = new Stage();
         newStage.setScene(new Scene((Parent) menuBox));
         newStage.show();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    protected void switchMenuContentTo(final Node content) {
-        super.switchMenuContentTo(content);
-//        contentRoot.getChildren().set(0, content);
     }
 
     /**

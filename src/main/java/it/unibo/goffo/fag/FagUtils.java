@@ -40,6 +40,16 @@ public final class FagUtils {
     public static final int PLAYER_SIZE_Y = 64;
 
     /**
+     * Minimum life amount.
+     */
+    public static final double MIN_LIFE = 0.0;
+
+    /**
+     * Maximum life amount.
+     */
+    public static final double MAX_LIFE = 1.0;
+
+    /**
      * Application name.
      */
     static final String APPLICATION_NAME = "Final Avenge Guerrilla";

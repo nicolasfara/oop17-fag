@@ -16,13 +16,14 @@ abstract class AbsLifeController<T> extends Component implements LifeController<
      * Wrapper of the chosen data type.
      * @see LifeModel
      */
-    private LifeModel<T> life;
+    private final LifeModel<T> life;
 
     /**
      * Assign the given instance of {@link LifeModel} from concrete class.
      * @param lifeModel A {@link LifeModel} instance
      */
     AbsLifeController(final LifeModel<T> lifeModel) {
+        super();
         this.life = lifeModel;
     }
 

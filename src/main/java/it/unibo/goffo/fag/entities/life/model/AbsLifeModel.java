@@ -16,12 +16,12 @@ abstract class AbsLifeModel<T> implements LifeModel<T> {
     /**
      * Maximum life value.
      */
-    private T maxLife;
+    private final T maxLife;
 
     /**
      * Minimum life value.
      */
-    private T minLife;
+    private final T minLife;
 
     /**
      * Set values for {@param life} and {@param maxLife}.
@@ -54,7 +54,7 @@ abstract class AbsLifeModel<T> implements LifeModel<T> {
      * Get maximum life value.
      * @return Maximum life amount.
      */
-   T getMaxLife() {
+    protected T getMaxLife() {
        return this.maxLife;
    }
 
@@ -62,7 +62,7 @@ abstract class AbsLifeModel<T> implements LifeModel<T> {
      * Get minimum life value.
      * @return Minimum life amount.
      */
-   T getMinLife() {
+    protected T getMinLife() {
        return this.minLife;
    }
 
@@ -91,15 +91,15 @@ abstract class AbsLifeModel<T> implements LifeModel<T> {
            return this;
        }
 
-       T getLife() {
+       protected T getLife() {
            return this.life;
        }
 
-       T getMaxLife() {
+       protected T getMaxLife() {
            return this.maxLife;
        }
 
-       T getMinLife() {
+       protected T getMinLife() {
            return this.minLife;
        }
 
