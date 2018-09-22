@@ -28,7 +28,7 @@ public class EndGameMenuController extends AbsMenuController {
     }
 
     @FXML
-    private void btnExit() {
+    private void exit() {
         FXGL.getApp().getMenuListener().onExit();
     }
 }
