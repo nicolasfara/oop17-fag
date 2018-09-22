@@ -17,7 +17,7 @@ public final class LifeControllerImpl extends AbsLifeController<Double> {
      * @param minLife Minimum life.
      * @param maxLife Maximum life.
      * @param startFrom Current life.
-     * @throws IllegalStateException if values are null or {@param startFrom} is less than {@param minLife}.
+     * @throws IllegalStateException if values are null or startFrom is less than minLife.
      */
     public LifeControllerImpl(final double minLife, final double maxLife, final double startFrom) throws IllegalStateException {
         super(new LifeModelImpl.Builder()
