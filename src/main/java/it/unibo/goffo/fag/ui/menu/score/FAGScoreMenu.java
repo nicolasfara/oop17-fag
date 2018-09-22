@@ -22,7 +22,5 @@ public class FAGScoreMenu extends FAGMenu {
 
     private void makeScoresMenu() {
         super.switchMenuTo(super.readMenuFromFXML(FagUtils.SCORE_MENU_PATH));
-/*        super.setFagMenu(FAGConfig.SCORE_MENU_PATH);
-        super.updateView();*/
     }
 }

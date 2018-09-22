@@ -15,6 +15,7 @@ public class AbsMenuController {
 
     /**
      * Executed after loading "@FXML" tagged properties.
+     * Makes "ENTER" work in menus by mapping focused property to "default button" (JavaFX behaviour).
      */
     public void initialize() {
         buttons.getChildren().stream()

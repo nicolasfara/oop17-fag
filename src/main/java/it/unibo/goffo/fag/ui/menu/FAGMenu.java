@@ -43,14 +43,6 @@ public class FAGMenu extends FXGLMenu {
 
         menuRoot.getChildren().add(this.menu);
         contentRoot.getChildren().add(EMPTY);
-
-        // USELESS ?
-/*        activeProperty().addListener((observable, wasActive, isActive) -> {
-            if (!isActive) {
-                switchMenuTo(this.menu);
-                switchMenuContentTo(EMPTY);
-            }
-        });*/
     }
 
     private void makeMainMenu() {
@@ -74,7 +66,6 @@ public class FAGMenu extends FXGLMenu {
      */
     protected void updateView() {
         this.app.getGameScene().addUINode(this.menu);
-//        menuRoot.getChildren().set(0, this.menu);
     }
 
     /**
@@ -98,12 +89,6 @@ public class FAGMenu extends FXGLMenu {
     @Override
     protected void switchMenuTo(final Node menuBox) {
         super.switchMenuTo(menuBox);
-/*        try {
-            final Stage curStage = (Stage) (FXGL.getApp().getGameScene().getRoot().getScene().getWindow());
-            curStage.close();
-        } catch (NullPointerException ex) {
-            //do something
-        }*/
         final Stage newStage = new Stage();
         newStage.setScene(new Scene((Parent) menuBox));
         newStage.show();
