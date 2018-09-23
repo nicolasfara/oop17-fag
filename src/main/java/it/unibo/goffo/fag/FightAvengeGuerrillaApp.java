@@ -1,5 +1,6 @@
 package it.unibo.goffo.fag;
 
+import com.almasb.fxgl.app.ApplicationMode;
 import com.almasb.fxgl.app.FXGL;
 import com.almasb.fxgl.app.GameApplication;
 import com.almasb.fxgl.entity.Entity;
@@ -80,7 +81,7 @@ public class FightAvengeGuerrillaApp extends GameApplication {
         settings.setTitle(FagUtils.APPLICATION_NAME);
         settings.setMenuEnabled(true);
         settings.setSceneFactory(new FAGMenuFactory());
-//        settings.setApplicationMode(ApplicationMode.RELEASE);
+        settings.setApplicationMode(ApplicationMode.RELEASE);
 
         /*
          * Trying to disable sound
