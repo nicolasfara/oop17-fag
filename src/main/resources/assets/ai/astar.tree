@@ -1,0 +1,16 @@
+#
+# Zombie enemy using A* pathfinding
+# The path is updated only when agent reaches its previous target node
+# so that player has some chance of survival
+#
+
+# Alias definitions
+
+# Conditions
+
+# Actions
+import astarMove : "it.unibo.goffo.fag.entities.ai.action.AStarMoveAction"
+
+# Tree definition (note that root is optional)
+root
+astarMove
