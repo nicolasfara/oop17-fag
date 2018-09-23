@@ -30,7 +30,7 @@
                            <Button fx:id="btnResume" onAction="#resumePlay" text="RESUME" defaultButton="true"/>
                            <Button fx:id="btnRestart" onAction="#restartGame" text="RESTART" textAlignment="CENTER" />
                            <Button fx:id="btnMainMenu" onAction="#backToMainMenu" text="MAIN MENU" textAlignment="CENTER" />
-                           <Button fx:id="btnExit" onAction="#btnExit" text="EXIT" />
+                           <Button fx:id="btnExit" onAction="#exit" text="EXIT" />
                         </TilePane>
                </FlowPane>
          </VBox>
