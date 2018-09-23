@@ -6,7 +6,7 @@ import it.unibo.goffo.fag.exceptions.LifeIsOverException;
  * Concrete implementation of {@link AbsLifeModel}.
  * Only manages upper bound value: if it reaches limit, life amount is set to maximum value.
  */
-@SuppressWarnings("FinalClass")
+@SuppressWarnings({"FinalClass", "PMD.MissingStaticMethodInNonInstantiatableClass"})
 public class LifeModelImpl extends AbsLifeModel<Double> {
 
     private LifeModelImpl(final double start, final double minLife, final double maxLife) {
@@ -50,6 +50,8 @@ public class LifeModelImpl extends AbsLifeModel<Double> {
                 throw new IllegalStateException("Min Life in Builder must be assigned.");
             } else if (Double.compare(super.getLife(), super.getMinLife()) < 0) {
                 throw new IllegalStateException("Min Life cannot be greater than start life value.");
+            } else if (Double.compare(super.getMinLife(), super.getMaxLife()) > 0) {
+                throw new IllegalStateException("Min Life cannot be greater than maximum life value.");
             }
             if (Double.compare(super.getLife(), super.getMaxLife()) > 0) {
                 super.startFrom(super.getMaxLife());
