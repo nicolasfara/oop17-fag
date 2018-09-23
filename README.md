@@ -42,3 +42,8 @@ Eseguire il jar: `java -Dquantum.multithreaded=false -jar fag-goffo-0.1.0.jar`
 
 `./gradlew test` per il running degli Unit test  
 `./gradlew check` per tutti i check (test inclusi)
+
+## Known bugs
+
+* Su MAC utilizzando Oracle JDK10, si riscontra una NullPointerException in fase di lancio, ciò è causato da un bug noto
+corretto su OpenJDK ma a quanto pare non su OracleJDK. Si sconsiglia di testare su Mac con OracleJDK 10 [https://bugs.openjdk.java.net/browse/JDK-8204604]
