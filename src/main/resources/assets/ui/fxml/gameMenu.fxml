@@ -34,7 +34,7 @@
                         </TilePane>
                </FlowPane>
          </VBox>
-         <StackPane layoutX="143.0" layoutY="192.0">
+         <StackPane layoutX="340" layoutY="192.0">
              <Text fx:id="menuTitle" text="PAUSE">
                  <font>
                      <Font size="50.0" />
