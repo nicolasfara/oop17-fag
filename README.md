@@ -16,11 +16,12 @@ Sono stati adottati tutti i plugin (CheckStyle, PMD, SpotBugs) e per ogni plugin
 
 Tutti i report generati sono nella cartella `build/reports`
 
-## Esecuzione
+## Creazione ed esecuzione JAR
 
 Generare il JAR mediante il comando: `./gradlew fatJar`. Il JAR verrà esportato in `build/libs/fag-goffo-0.1.0.jar`
 Se durante la fase di gioco si sperimenta una velocità troppo elevata, questo può essere causato da un bug nel framework
-__quantum__. Eseguire il jar: `java -Dquantum.multithreaded=false -jar fag-goffo-0.1.0.jar`
+__quantum__ (su schede video NVidia questa problematica non è stata riscontrata).  
+Eseguire il jar: `java -Dquantum.multithreaded=false -jar fag-goffo-0.1.0.jar`
 
 ### CheckStyle task
 
