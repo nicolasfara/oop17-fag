@@ -1,0 +1,80 @@
+@font-face {
+    font-family: 'Retro Computer';
+    src: url('fonts/pixel-font.ttf');
+}
+
+.root {
+    -fx-background-color: #424242;
+}
+
+.table-view {
+    -fx-background-color: transparent;
+    -fx-table-cell-border-color: transparent;
+}
+
+.table-row-cell {
+    -fx-background-color: transparent;
+    -fx-cell-size: 50px;
+}
+
+.table-view .column-header-background {
+    -fx-background-color: transparent;
+}
+
+.table-view .column-header {
+    -fx-font-size: 32px;
+}
+
+.table-column {
+    -fx-alignment: center;
+    -fx-background-color: transparent;
+}
+
+.table-view .column-header .label {
+    -fx-font-size: 24px;
+}
+
+.button {
+    -fx-background-color: transparent;
+    -fx-table-cell-border-color: transparent;
+    -fx-padding: 1em 0.5em;
+    -fx-alignment: center;
+    -fx-pref-width: 300px;
+}
+
+.button > .text {
+    -fx-font-size: 23px;
+}
+
+/*.button:hover {
+    -fx-background-color: #830421;
+}*/
+
+.button:focused {
+    -fx-background-color: #830421;
+}
+
+.label {
+    -fx-font-family: 'Retro Computer';
+    -fx-font-size: 32px;
+}
+
+.text, #menuTitle, #tutorial  {
+    -fx-fill: white;
+    -fx-font-family: 'Retro Computer';
+}
+
+#menuTitle {
+    -fx-font-size: 32px;
+    -fx-padding: 2em;
+}
+
+#hud > .label, #tutorial > .label {
+    -fx-font-size: 14;
+}
+
+.progress-bar .bar {
+    -fx-background-color: red;
+}
+
+

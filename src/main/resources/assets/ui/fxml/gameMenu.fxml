@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.TilePane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import it.unibo.goffo.fag.FagUtils?>
+<GridPane
+        xmlns="http://javafx.com/javafx/8.0.121"
+        xmlns:fx="http://javafx.com/fxml/1"
+        fx:controller="it.unibo.goffo.fag.ui.menu.game.GameMenuController"
+        alignment="CENTER"
+        styleClass="root"
+        stylesheets="@../css/fag-style.css">
+
+    <fx:define>
+        <FagUtils fx:factory="getConfig" fx:id="config" />
+    </fx:define>
+
+   <Pane prefHeight="${config.dispHeight}" prefWidth="${config.dispWidth}">
+         <VBox layoutX="309.0" layoutY="243.0" prefHeight="200.0" prefWidth="100.0">
+                   <FlowPane alignment="CENTER" prefHeight="200.0" prefWidth="200.0">
+                        <TilePane prefWidth="200.0" fx:id="buttons">
+                           <Button fx:id="btnResume" onAction="#resumePlay" text="RESUME" defaultButton="true"/>
+                           <Button fx:id="btnRestart" onAction="#restartGame" text="RESTART" textAlignment="CENTER" />
+                           <Button fx:id="btnMainMenu" onAction="#backToMainMenu" text="MAIN MENU" textAlignment="CENTER" />
+                           <Button fx:id="btnExit" onAction="#exit" text="EXIT" />
+                        </TilePane>
+               </FlowPane>
+         </VBox>
+         <StackPane layoutX="340" layoutY="192.0">
+             <Text fx:id="menuTitle" text="PAUSE">
+                 <font>
+                     <Font size="50.0" />
+                 </font>
+             </Text>
+         </StackPane>
+   </Pane>
+</GridPane>
