@@ -16,6 +16,12 @@ Sono stati adottati tutti i plugin (CheckStyle, PMD, SpotBugs) e per ogni plugin
 
 Tutti i preport generati sono nella cartella `build/reports`
 
+## Esecuzione
+
+Generare il JAR: `./gradlew fatJar`. Il JAR verrà esportato in `build/libs/fag-goffo-0.1.0.jar`
+Se durante la fase di gioco si sperimenta una velocità troppo elevata, questo può essere causato da un bug nel framework
+__quantum__. Eseguire il jar: `java -Dquantum.multithreaded=false -jar fag-goffo-0.1.0.jar`
+
 ### CheckStyle task
 
 `./gradlew checkstyleMain` genera il report su `build/reports/checkstyle/main.html`  
@@ -38,5 +44,5 @@ Tutti i preport generati sono nella cartella `build/reports`
 
 ## Testing
 
-`./gradlew test` per il running degli Unit test <br/>
+`./gradlew test` per il running degli Unit test  
 `./gradlew check` per tutti i check (test inclusi)
