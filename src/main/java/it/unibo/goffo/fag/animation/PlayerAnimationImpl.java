@@ -10,8 +10,8 @@ import javafx.util.Duration;
  */
 public class PlayerAnimationImpl extends AbstractAnimation {
 
-    private static final int IDLE_DURATION = 2800;
-    private static final int WALK_DURATION = 1200;
+    private static final int IDLE_DURATION = 600;
+    private static final int WALK_DURATION = 600;
     private static final int WIDTH = 64;
     private static final int HEIGHT = 64;
     private static final int FRAMES_PER_ROW = 4;
