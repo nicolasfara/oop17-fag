@@ -25,7 +25,7 @@ public final class PlayerFactory {
      * @return the player.
      */
     public static Player createPlayer() {
-        return (Player) FagEntities.builder(Player.class)
+        return FagEntities.builder(Player.class)
                 .type(FagType.PLAYER)
                 .at(100, 100)
                 .with(new EntityMovement(2))

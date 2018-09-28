@@ -27,7 +27,7 @@ public final class BulletFactory {
      */
     public static void createBullet(final Point2D newDirection) {
         final Entity player = FXGL.<FightAvengeGuerrillaApp>getAppCast().getPlayer();
-        final Bullet bullet = (Bullet) FagEntities.builder(Bullet.class)
+        final Bullet bullet = FagEntities.builder(Bullet.class)
                 .at(player.getCenter().getX(), player.getCenter().getY())
                 .type(FagType.BULLET)
                 .with(new ProjectileComponent(newDirection, SPEED))

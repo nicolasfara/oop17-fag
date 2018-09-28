@@ -22,7 +22,7 @@ public class JsonFormatter implements Formatter<String, String, Integer> {
      */
     public JsonFormatter() {
         final GsonBuilder gsonBuilder = new GsonBuilder();
-        gsonBuilder.registerTypeAdapter(Score.class, (JsonDeserializer) (json, typeOf, context) -> context.deserialize(json, JsonScore.class));
+        gsonBuilder.registerTypeAdapter(Score.class, (JsonDeserializer<?>) (json, typeOf, context) -> context.deserialize(json, JsonScore.class));
         gson = gsonBuilder.create();
     }
 

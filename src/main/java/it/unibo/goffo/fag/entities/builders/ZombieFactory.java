@@ -39,7 +39,7 @@ public final class ZombieFactory {
      * @return the zombie.
      */
     public static Zombie createSimpleZombie() {
-        return (Zombie) FagEntities.builder(Zombie.class)
+        return FagEntities.builder(Zombie.class)
                 .at(randomPoint())
                 .type(FagType.SIMPLE_ZOMBIE)
                 .with(new ZombieAnimationImpl())
@@ -58,7 +58,7 @@ public final class ZombieFactory {
      * @return the zombie.
      */
     public static Zombie createAdvancedZombie() {
-        return (Zombie) FagEntities.builder(Zombie.class)
+        return FagEntities.builder(Zombie.class)
                 .at(randomPoint())
                 .type(FagType.ADVANCE_ZOMBIE)
                 .with(new ZombieAnimationImpl())

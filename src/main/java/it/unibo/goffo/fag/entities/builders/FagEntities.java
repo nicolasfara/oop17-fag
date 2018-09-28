@@ -65,7 +65,7 @@ public final class FagEntities {
          * @param type the entity type.
          * @return instance class.
          */
-        public EntityBuilder type(final Enum type) {
+        public EntityBuilder<U> type(final Enum<?> type) {
             player.setType(type);
             return this;
         }
@@ -76,7 +76,7 @@ public final class FagEntities {
          * @param y y coordinate
          * @return instance class.
          */
-        public EntityBuilder at(final double x, final double y) {
+        public EntityBuilder<U> at(final double x, final double y) {
             player.setPosition(x, y);
             return this;
         }
@@ -86,7 +86,7 @@ public final class FagEntities {
          * @param position position.
          * @return instance class.
          */
-        public EntityBuilder at(final Point2D position) {
+        public EntityBuilder<U> at(final Point2D position) {
             at(position.getX(), position.getY());
             return this;
         }
@@ -96,7 +96,7 @@ public final class FagEntities {
          * @param position position.
          * @return instance class.
          */
-        public EntityBuilder at(final Vec2 position) {
+        public EntityBuilder<U> at(final Vec2 position) {
             at(position.x, position.y);
             return this;
         }
@@ -106,7 +106,7 @@ public final class FagEntities {
          * @param angle the angle to rotate.
          * @return instance class.
          */
-        public EntityBuilder rotate(final double angle) {
+        public EntityBuilder<U> rotate(final double angle) {
             player.setRotation(angle);
             return this;
         }
@@ -116,7 +116,7 @@ public final class FagEntities {
          * @param box the bounding box.
          * @return instance class.
          */
-        public EntityBuilder bbox(final HitBox box) {
+        public EntityBuilder<U> bbox(final HitBox box) {
             player.getBoundingBoxComponent().addHitBox(box);
             return this;
         }
@@ -126,7 +126,7 @@ public final class FagEntities {
          * @param view the node view.
          * @return instance class.
          */
-        public EntityBuilder viewFromNode(final Node view) {
+        public EntityBuilder<U> viewFromNode(final Node view) {
             player.getViewComponent().setView(view);
             return this;
         }
@@ -136,7 +136,7 @@ public final class FagEntities {
          * @param view the node.
          * @return instance class.
          */
-        public EntityBuilder viewFromNodeWithBBox(final Node view) {
+        public EntityBuilder<U> viewFromNodeWithBBox(final Node view) {
             player.getViewComponent().setView(view, true);
             return this;
         }
@@ -146,7 +146,7 @@ public final class FagEntities {
          * @param textureName texture name (in resources folder).
          * @return instance class.
          */
-        public EntityBuilder viewFromTexture(final String textureName) {
+        public EntityBuilder<U> viewFromTexture(final String textureName) {
             player.getViewComponent().setTexture(textureName);
             return this;
         }
@@ -156,7 +156,7 @@ public final class FagEntities {
          * @param textureName texture name.
          * @return instance class.
          */
-        public EntityBuilder viewFromTextureWithBBox(final String textureName) {
+        public EntityBuilder<U> viewFromTextureWithBBox(final String textureName) {
             player.getViewComponent().setTexture(textureName, true);
             return this;
         }
@@ -166,7 +166,7 @@ public final class FagEntities {
          * @param texture texture object.
          * @return instance class.
          */
-        public EntityBuilder viewFromAnimatedTexture(final AnimatedTexture texture) {
+        public EntityBuilder<U> viewFromAnimatedTexture(final AnimatedTexture texture) {
             player.getViewComponent().setAnimatedTexture(texture, true, false);
             return this;
         }
@@ -177,7 +177,7 @@ public final class FagEntities {
          * @param loop loop mode, true loop the animation, otherwise static texture is used.
          * @return instance class.
          */
-        public EntityBuilder viewFromAnimatedTexture(final AnimatedTexture texture, final boolean loop) {
+        public EntityBuilder<U> viewFromAnimatedTexture(final AnimatedTexture texture, final boolean loop) {
             player.getViewComponent().setAnimatedTexture(texture, loop, false);
             return this;
         }
@@ -189,7 +189,7 @@ public final class FagEntities {
          * @param removeEntityOnFinish true if on finish the entity will removed, false otherwise.
          * @return instance class.
          */
-        public EntityBuilder viewFromAnimatedTexture(final AnimatedTexture texture, final boolean loop, final boolean removeEntityOnFinish) {
+        public EntityBuilder<U> viewFromAnimatedTexture(final AnimatedTexture texture, final boolean loop, final boolean removeEntityOnFinish) {
             player.getViewComponent().setAnimatedTexture(texture, loop, removeEntityOnFinish);
             return this;
         }
@@ -201,7 +201,7 @@ public final class FagEntities {
          * @param duration duration of the animation.
          * @return instance class.
          */
-        public EntityBuilder viewFromAnimatedTexture(final String textureName, final int numFrames, final Duration duration) {
+        public EntityBuilder<U> viewFromAnimatedTexture(final String textureName, final int numFrames, final Duration duration) {
             player.getViewComponent().setAnimatedTexture(textureName, numFrames, duration, true, false);
             return this;
         }
@@ -214,7 +214,7 @@ public final class FagEntities {
          * @param loop true for loop animation, false otherwise.
          * @return instance class.
          */
-        public EntityBuilder viewFromAnimatedTexture(final String textureName, final int numFrames, final Duration duration, final boolean loop) {
+        public EntityBuilder<U> viewFromAnimatedTexture(final String textureName, final int numFrames, final Duration duration, final boolean loop) {
             player.getViewComponent().setAnimatedTexture(textureName, numFrames, duration, loop, false);
             return this;
         }
@@ -229,7 +229,7 @@ public final class FagEntities {
          * @param removeEntityOnFinish true remove the entity on finish, false never remove the entity.
          * @return instance class.
          */
-        public EntityBuilder viewFromAnimatedTexture(final String textureName, final int numFrames, final Duration duration, final boolean loop, final boolean removeEntityOnFinish) {
+        public EntityBuilder<U> viewFromAnimatedTexture(final String textureName, final int numFrames, final Duration duration, final boolean loop, final boolean removeEntityOnFinish) {
             player.getViewComponent().setAnimatedTexture(textureName, numFrames, duration, loop, removeEntityOnFinish);
             return this;
         }
@@ -239,7 +239,7 @@ public final class FagEntities {
          * @param layer the layer.
          * @return instance class.
          */
-        public EntityBuilder renderLayer(final RenderLayer layer) {
+        public EntityBuilder<U> renderLayer(final RenderLayer layer) {
             player.getViewComponent().setRenderLayer(layer);
             return this;
         }
@@ -249,7 +249,7 @@ public final class FagEntities {
          * @param components the components.
          * @return instance class.
          */
-        public EntityBuilder with(final Component... components) {
+        public EntityBuilder<U> with(final Component... components) {
             for (final Component c : components) {
                 player.addComponent(c);
             }
@@ -262,7 +262,7 @@ public final class FagEntities {
          * @param propertyValue propertyValue.
          * @return instance class.
          */
-        public EntityBuilder with(final String propertyKey, final Object propertyValue) {
+        public EntityBuilder<U> with(final String propertyKey, final Object propertyValue) {
             player.setProperty(propertyKey, propertyValue);
             return this;
         }
